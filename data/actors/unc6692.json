@@ -1,0 +1,50 @@
+{
+  "id": "unc6692",
+  "name": "UNC6692",
+  "aliases": ["Storm-1811 (overlapping TTPs)"],
+  "type": "initial_access",
+  "model": "criminal_crew",
+  "status": "active",
+  "first_seen": "2025-09",
+  "last_seen": "2026-06",
+  "origin": "unknown",
+  "motivation": ["financial","access_brokering"],
+  "description": "UNC6692 conducts large-scale Microsoft Teams-based social engineering campaigns, posing as IT helpdesk personnel to manipulate employees into installing malware. Exploits the Teams External Access feature — enabled by default in many M365 tenants — to contact targets directly. Phishing alerts from collaboration tools now represent 42% of all alerts, up from 30%, as users have far lower suspicion of Teams messages vs. email.",
+  "activity_score": 72,
+  "monthly_victims": null,
+  "targeted_sectors": ["SMB","Government","Healthcare","Any M365 tenant"],
+  "targeted_regions": ["North America","Europe"],
+  "ttps": [
+    { "technique_id": "T1566.004", "technique_name": "Phishing: Spearphishing via Service", "notes": "Microsoft Teams external access used to contact targets posing as IT helpdesk" },
+    { "technique_id": "T1566.001", "technique_name": "Phishing: Spearphishing Attachment", "notes": "Initial email flood campaign creates urgency before Teams contact" },
+    { "technique_id": "T1204.002", "technique_name": "User Execution: Malicious File", "notes": "User prompted to install 'local patch' — actually malware payload" },
+    { "technique_id": "T1078", "technique_name": "Valid Accounts", "notes": "MFA code capture or OTP verification leads to account access" },
+    { "technique_id": "T1621", "technique_name": "Multi-Factor Authentication Request Generation", "notes": "Prompts victim to approve MFA or provide OTP during social engineering call" }
+  ],
+  "malware_families": ["varies by campaign — typically RAT or infostealer payload"],
+  "notable_techniques": [
+    "Email flood pre-attack — overwhelms target with spam to create urgency and distraction",
+    "Teams tenant created with name like 'IT Helpdesk' or 'Technical Support' for credibility",
+    "Exploitation of Teams External Access — often enabled by default, rarely monitored",
+    "AI-assisted natural language generation for realistic conversation scripts"
+  ],
+  "detection_opportunities": [
+    "Teams messages from external tenants with helpdesk/IT-themed display names",
+    "Teams External Access enabled with no tenant allowlist restrictions",
+    "Email flood activity (hundreds of messages in short window) preceding Teams contact",
+    "New MFA device enrollment shortly after external Teams contact",
+    "Process execution of remote admin tools following Teams session"
+  ],
+  "sources": [
+    { "title": "Microsoft Threat Intelligence: Storm-1811", "url": "https://www.microsoft.com/en-us/security/blog/2024/05/15/threat-actors-misusing-quick-assist-in-social-engineering-attacks-leading-to-ransomware/" }
+  ],
+  "mention_count_30d": 29,
+  "mention_history": [
+    { "month": "2026-01", "count": 16 },
+    { "month": "2026-02", "count": 20 },
+    { "month": "2026-03", "count": 24 },
+    { "month": "2026-04", "count": 27 },
+    { "month": "2026-05", "count": 29 },
+    { "month": "2026-06", "count": 29 }
+  ]
+}

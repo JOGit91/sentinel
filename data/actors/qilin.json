@@ -1,0 +1,51 @@
+{
+  "id": "qilin",
+  "name": "Qilin",
+  "aliases": ["Agenda"],
+  "type": "ransomware",
+  "model": "RaaS",
+  "status": "active",
+  "first_seen": "2022-08",
+  "last_seen": "2026-06",
+  "origin": "suspected China-nexus",
+  "motivation": ["financial"],
+  "description": "Qilin (also tracked as Agenda) is currently the most active ransomware group by victim volume, maintaining over 100 incidents per month through mid-2026. Operates as a RaaS with an affiliate structure that insulates core operators from disruption. Victim count grew 14x in 2025 relative to 2024, totaling over 900 confirmed organizations.",
+  "activity_score": 98,
+  "monthly_victims": 111,
+  "targeted_sectors": ["Healthcare","Manufacturing","Government","MSP","Financial Services"],
+  "targeted_regions": ["North America","Europe","Asia-Pacific"],
+  "ttps": [
+    { "technique_id": "T1190", "technique_name": "Exploit Public-Facing Application", "notes": "Primary initial access via VPN and edge device vulnerabilities" },
+    { "technique_id": "T1078", "technique_name": "Valid Accounts", "notes": "Frequently abuses stolen credentials for initial access" },
+    { "technique_id": "T1059.001", "technique_name": "PowerShell", "notes": "PowerShell execution throughout attack chain" },
+    { "technique_id": "T1547.001", "technique_name": "Registry Run Keys / Startup Folder", "notes": "Run key persistence" },
+    { "technique_id": "T1021.002", "technique_name": "SMB/Windows Admin Shares", "notes": "PsExec lateral movement" },
+    { "technique_id": "T1486", "technique_name": "Data Encrypted for Impact", "notes": "Rust/Go encryptors; WSL abuse to run Linux ELF encryptors on Windows" },
+    { "technique_id": "T1048", "technique_name": "Exfiltration Over Alternative Protocol", "notes": "96% exfiltration rate Q1 2026" }
+  ],
+  "malware_families": ["Qilin ransomware (Rust)","Qilin ransomware (Go)"],
+  "notable_techniques": [
+    "WSL abuse to execute Linux ELF encryptors, bypassing EDR not configured for Linux binary detection",
+    "Post-RansomHub absorption — ~280% increase in victim disclosures",
+    "Intermittent/partial encryption for speed and evasion"
+  ],
+  "detection_opportunities": [
+    "WSL process spawning unusual child processes",
+    "PsExec execution from non-admin workstations",
+    "Volume shadow copy deletion (vssadmin delete shadows)",
+    "Rapid file rename/extension change events",
+    "PowerShell download cradles from unusual parent processes"
+  ],
+  "sources": [
+    { "title": "Huntress Threat Library: Qilin", "url": "https://www.huntress.com/threat-library/threat-actors/qilin" }
+  ],
+  "mention_count_30d": 47,
+  "mention_history": [
+    { "month": "2026-01", "count": 28 },
+    { "month": "2026-02", "count": 33 },
+    { "month": "2026-03", "count": 38 },
+    { "month": "2026-04", "count": 44 },
+    { "month": "2026-05", "count": 47 },
+    { "month": "2026-06", "count": 47 }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "last_updated": "2026-06-10T00:00:00Z",
+  "mentions": [
+    { "date": "2026-06-09", "actor_id": "qilin", "actor_name": "Qilin", "source": "Huntress Blog", "url": "https://www.huntress.com/blog", "title": "Qilin Ransomware Maintains Top Position in May 2026 Activity Reports", "context": "Named threat actor", "confidence": "high" },
+    { "date": "2026-06-08", "actor_id": "the-gentlemen", "actor_name": "The Gentlemen", "source": "Huntress Blog", "url": "https://www.huntress.com/blog/the-gentlemen-ransomware", "title": "Post-Incident Analysis: The Gentlemen Ransomware Deployments", "context": "Named threat actor", "confidence": "high" },
+    { "date": "2026-06-07", "actor_id": "shinyhunters", "actor_name": "ShinyHunters", "source": "Krebs on Security", "url": "https://krebsonsecurity.com", "title": "ShinyHunters Salesforce Campaign Victim Count Grows", "context": "Named threat actor", "confidence": "high" },
+    { "date": "2026-06-06", "actor_id": "teampcp", "actor_name": "TeamPCP", "source": "Akamai Security Research", "url": "https://www.akamai.com/blog/security-research/mini-shai-hulud-worm-returns-goes-public", "title": "Mini Shai-Hulud: The Worm Returns and Goes Public", "context": "Named threat actor", "confidence": "high" },
+    { "date": "2026-06-05", "actor_id": "salt-typhoon", "actor_name": "Salt Typhoon", "source": "CISA", "url": "https://www.cisa.gov", "title": "Continued Salt Typhoon Activity in Telecommunications Sector", "context": "Named threat actor", "confidence": "high" },
+    { "date": "2026-06-04", "actor_id": "unc6692", "actor_name": "UNC6692", "source": "Microsoft Threat Intelligence", "url": "https://www.microsoft.com/en-us/security/blog", "title": "Teams-Based Helpdesk Impersonation Campaigns Continue in Q2 2026", "context": "Named threat actor", "confidence": "high" },
+    { "date": "2026-06-03", "actor_id": "qilin", "actor_name": "Qilin", "source": "The DFIR Report", "url": "https://thedfirreport.com", "title": "Intrusion Analysis: Qilin Affiliate Campaign Against Healthcare Provider", "context": "Named threat actor", "confidence": "high" },
+    { "date": "2026-06-02", "actor_id": "the-gentlemen", "actor_name": "The Gentlemen", "source": "Bleeping Computer", "url": "https://www.bleepingcomputer.com", "title": "The Gentlemen Ransomware Claims Construction Firm as Latest Victim", "context": "Named threat actor", "confidence": "high" }
+  ]
+}

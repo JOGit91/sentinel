@@ -1,0 +1,48 @@
+{
+  "id": "salt-typhoon",
+  "name": "Salt Typhoon",
+  "aliases": ["GhostEmperor", "FamousSparrow", "Earth Estries"],
+  "type": "apt",
+  "motivation": "Espionage / Intelligence Collection",
+  "origin": "China (PRC state-sponsored)",
+  "status": "active",
+  "first_seen": "2019-01",
+  "last_seen": "2026-06",
+  "activity_score": 72,
+  "raas": false,
+  "affiliate_cut": null,
+  "summary": "Salt Typhoon is a PRC state-sponsored APT focused on espionage and intelligence collection, primarily targeting telecommunications infrastructure and government entities. The group achieved significant notoriety through confirmed penetration of major US telecommunications carriers. The FBI confirmed in February 2026 that Salt Typhoon threats remain active and ongoing. Along with Volt Typhoon, it represents what analysts describe as the most serious confirmed penetration of US infrastructure by a foreign adversary since at least the Cold War.",
+  "targeted_sectors": [
+    "Telecommunications",
+    "Government",
+    "Defense Industrial Base",
+    "Critical Infrastructure"
+  ],
+  "targeted_regions": ["North America", "Europe", "Asia-Pacific", "Southeast Asia"],
+  "ttps": [
+    { "technique_id": "T1190", "technique_name": "Exploit Public-Facing Application", "phase": "Initial Access", "notes": "Known CVEs in network appliances; basic configuration errors exploited for entry" },
+    { "technique_id": "T1059.001", "technique_name": "PowerShell", "phase": "Execution", "notes": "Living-off-the-land — PowerShell used to blend into legitimate activity" },
+    { "technique_id": "T1047", "technique_name": "Windows Management Instrumentation", "phase": "Execution", "notes": "WMIC used for lateral execution" },
+    { "technique_id": "T1112", "technique_name": "Modify Registry", "phase": "Defense Evasion", "notes": "Registry manipulation for persistence and defense evasion" },
+    { "technique_id": "T1543.003", "technique_name": "Windows Service", "phase": "Persistence", "notes": "Windows service creation for persistent access" },
+    { "technique_id": "T1070", "technique_name": "Indicator Removal", "phase": "Defense Evasion", "notes": "Active log and artifact removal to hinder forensic analysis" },
+    { "technique_id": "T1083", "technique_name": "File and Directory Discovery", "phase": "Discovery", "notes": "Broad reconnaissance of target environment before targeted collection" },
+    { "technique_id": "T1119", "technique_name": "Automated Collection", "phase": "Collection", "notes": "Automated collection of communications metadata and content from telecom infrastructure" }
+  ],
+  "malware_families": ["GhostSpider", "SnappyBee", "Demodex rootkit"],
+  "tools": ["WMIC", "PowerShell", "native OS utilities (LOTL)"],
+  "detection_opportunities": [
+    "Monitor for anomalous WMIC and PowerShell execution chains on telecom infrastructure",
+    "Alert on Windows service creation by non-standard parent processes",
+    "Detect registry modifications associated with known Salt Typhoon persistence mechanisms",
+    "Monitor for bulk communication metadata access on telecom carrier infrastructure",
+    "Alert on known CVE exploitation against network appliances",
+    "Detect Demodex rootkit indicators via kernel-level monitoring"
+  ],
+  "iocs": [],
+  "sources": [
+    { "title": "FBI Salt Typhoon Advisory", "url": "https://www.cisa.gov", "date": "2026-02" }
+  ],
+  "mention_count": 0,
+  "mentions": []
+}

@@ -1,0 +1,50 @@
+{
+  "id": "shinyhunters",
+  "name": "ShinyHunters",
+  "aliases": ["UNC6040", "UNC6240", "SLSH (merged: Scattered Lapsus$ Hunters)"],
+  "type": "data_extortion",
+  "motivation": "Financial",
+  "origin": "Unknown (The Com collective, English-speaking)",
+  "status": "active",
+  "first_seen": "2020-01",
+  "last_seen": "2026-06",
+  "activity_score": 82,
+  "raas": false,
+  "affiliate_cut": null,
+  "summary": "ShinyHunters is a financially motivated data theft and extortion group with roots in The Com collective — the same ecosystem as Scattered Spider and LAPSUS$. After arrests in June 2024 the group re-emerged in June 2025 with a materially different playbook centered on AI-powered vishing, Salesforce OAuth abuse, and supply chain compromise via third-party integrations. The defining 2026 operation was the Salesforce Aura Campaign, which exploited misconfigured Experience Cloud guest profiles across an estimated 300-400 organizations, claiming over 1.5 billion stolen Salesforce records.",
+  "targeted_sectors": [
+    "Retail",
+    "SaaS Platforms",
+    "Financial Services",
+    "Logistics",
+    "Insurance"
+  ],
+  "targeted_regions": ["North America", "Europe"],
+  "ttps": [
+    { "technique_id": "T1598.004", "technique_name": "Spearphishing Voice", "phase": "Initial Access", "notes": "AI-powered vishing — operators call employees posing as IT helpdesk, directing to victim-branded phishing sites" },
+    { "technique_id": "T1078", "technique_name": "Valid Accounts", "phase": "Initial Access", "notes": "SSO credential capture followed by MFA device enrollment" },
+    { "technique_id": "T1621", "technique_name": "Multi-Factor Authentication Request Generation", "phase": "Credential Access", "notes": "Captures MFA codes via real-time phishing proxy" },
+    { "technique_id": "T1098.005", "technique_name": "Device Registration", "phase": "Persistence", "notes": "Attacker registers own MFA device after initial credential capture" },
+    { "technique_id": "T1550.001", "technique_name": "Application Access Token", "phase": "Defense Evasion", "notes": "Anodot authentication token abuse to pivot into BigQuery, Snowflake, other SaaS" },
+    { "technique_id": "T1190", "technique_name": "Exploit Public-Facing Application", "phase": "Initial Access", "notes": "Salesforce Experience Cloud /s/sfsites/aura API endpoint exploitation via misconfigured guest profiles" },
+    { "technique_id": "T1567.002", "technique_name": "Exfiltration to Cloud Storage", "phase": "Exfiltration", "notes": "Mullvad VPN used as exfiltration proxy to blend into legitimate commercial VPN traffic" },
+    { "technique_id": "T1657", "technique_name": "Financial Theft", "phase": "Impact", "notes": "Pure data extortion — encryption not typically deployed" }
+  ],
+  "malware_families": [],
+  "tools": ["AuraInspector (weaponized)", "Mullvad VPN"],
+  "detection_opportunities": [
+    "Alert on new MFA device enrollment following login from new location or after helpdesk ticket",
+    "Detect anomalous Salesforce Aura API endpoint access (/s/sfsites/aura)",
+    "Monitor OAuth app consent grants to unknown or newly registered applications",
+    "Alert on bulk Salesforce record queries from new infrastructure",
+    "Detect Anodot or third-party analytics token abuse",
+    "Monitor for Mullvad VPN exit node IPs in authentication logs",
+    "Alert on email flood campaigns preceding helpdesk contact (pre-vishing indicator)"
+  ],
+  "iocs": [],
+  "sources": [
+    { "title": "Huntress ShinyHunters Profile", "url": "https://www.huntress.com/threat-library/threat-actors/shinyhunters", "date": "2026-01" }
+  ],
+  "mention_count": 0,
+  "mentions": []
+}

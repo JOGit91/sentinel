@@ -1,0 +1,55 @@
+{
+  "id": "teampcp",
+  "name": "TeamPCP",
+  "aliases": ["DeadCatx3","PCPcat","ShellForce","CipherForce"],
+  "type": "supply_chain",
+  "model": "criminal_crew",
+  "status": "active",
+  "first_seen": "2025-11",
+  "last_seen": "2026-06",
+  "origin": "unknown (possible LAPSUS$ connection, low confidence)",
+  "motivation": ["financial","access_brokering"],
+  "description": "TeamPCP is a financially motivated supply chain threat actor that pivoted from ransomware/cryptomining to focused software supply chain compromise in early 2026. Best known for the March 2026 cascading campaign compromising Trivy, KICS, LiteLLM, and Telnyx Python SDK, and the May 2026 Mini Shai-Hulud campaign targeting TanStack, Mistral AI, UiPath, and OpenSearch via CI cache poisoning. Operates as an access broker, with stolen credentials monetized by ransomware groups including Vect.",
+  "activity_score": 79,
+  "monthly_victims": null,
+  "targeted_sectors": ["Technology","Software Development","CI/CD Infrastructure","Cloud"],
+  "targeted_regions": ["Global"],
+  "ttps": [
+    { "technique_id": "T1195.001", "technique_name": "Supply Chain Compromise: Compromise Software Dependencies", "notes": "npm package injection via compromised maintainer credentials and CI cache poisoning" },
+    { "technique_id": "T1552.001", "technique_name": "Unsecured Credentials: Credentials in Files", "notes": "Harvest cloud credentials, SSH keys, GitHub tokens, CI/CD secrets from build environments" },
+    { "technique_id": "T1650", "technique_name": "Acquire Access", "notes": "Stolen credentials sold to ransomware operators — Vect group confirmed purchaser" },
+    { "technique_id": "T1059.006", "technique_name": "Python", "notes": "Malicious Python packages with preinstall hooks for guaranteed execution" },
+    { "technique_id": "T1053", "technique_name": "Scheduled Task/Job", "notes": "GitHub Actions workflow abuse for persistent CI/CD access" }
+  ],
+  "malware_families": ["Shai-Hulud worm (Mini variant)","Trivy credential harvester"],
+  "notable_techniques": [
+    "CI cache poisoning via GitHub Actions pull request workflow misconfiguration (TanStack campaign)",
+    "OIDC trusted publishing endpoint abuse — weaponizes GitHub's secure publishing workflow",
+    "Single retained credential cascading through 5 vendor ecosystems (Trivy → Cisco)",
+    "Payload evolution in 8 days: inline Base64 → .pth auto-execution → WAV steganography",
+    "Linux-only to dual-platform pivot within single campaign",
+    "May 12 2026: Mini Shai-Hulud source code publicly released — now commodity attack tooling",
+    "Linked to Cisco internal build system breach, Bitwarden CLI compromise, Mistral AI repo theft"
+  ],
+  "detection_opportunities": [
+    "Anomalous npm publish events from CI/CD service accounts",
+    "Unexpected GitHub repository creation by developer accounts",
+    "Cloud API calls (AWS/GCP/Azure) originating from CI pipeline infrastructure",
+    "GitHub Actions workflow modifications in pull requests from forks",
+    "New OIDC token issuance outside normal deployment windows",
+    "Secrets accessed in CI environment outside expected job context"
+  ],
+  "sources": [
+    { "title": "Akamai: Mini Shai-Hulud Worm Analysis", "url": "https://www.akamai.com/blog/security-research/mini-shai-hulud-worm-returns-goes-public" },
+    { "title": "Picus: Mini Shai-Hulud Explained", "url": "https://www.picussecurity.com/resource/blog/mini-shai-hulud-the-npm-supply-chain-worm-explained" }
+  ],
+  "mention_count_30d": 33,
+  "mention_history": [
+    { "month": "2026-01", "count": 4 },
+    { "month": "2026-02", "count": 8 },
+    { "month": "2026-03", "count": 22 },
+    { "month": "2026-04", "count": 28 },
+    { "month": "2026-05", "count": 33 },
+    { "month": "2026-06", "count": 33 }
+  ]
+}

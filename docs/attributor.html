@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Attributor — SENTINEL</title>
+  <style>
+    :root{--bg:#0a0c10;--surface:#111318;--surface2:#181c24;--border:#1e2430;--border2:#252d3d;--text:#e2e8f0;--text2:#8892a4;--text3:#4a5568;--green:#00d4a1;--green-dim:#00d4a120;--green-mid:#00d4a150;--red:#ff4757;--amber:#ffa502;--blue:#4ecdc4;--purple:#a78bfa;--font-mono:'IBM Plex Mono','Courier New',monospace;--font-sans:'Inter',system-ui,sans-serif;}
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap');
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:14px;line-height:1.6;}
+    body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,212,161,0.015) 2px,rgba(0,212,161,0.015) 4px);pointer-events:none;z-index:1000;}
+    nav{display:flex;align-items:center;gap:1rem;padding:0.875rem 2rem;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:100;}
+    .nav-logo{font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--green);letter-spacing:0.15em;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
+    .nav-logo::before{content:'◈';font-size:16px;animation:pulse 3s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+    .nav-links{display:flex;gap:1.5rem;margin-left:2rem;list-style:none;}
+    .nav-links a{color:var(--text2);text-decoration:none;font-size:13px;transition:color 0.15s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--green);}
+    main{padding:2rem;max-width:800px;margin:0 auto;}
+    .page-header{margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
+    .page-eyebrow{font-family:var(--font-mono);font-size:10px;color:var(--green);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.5rem;}
+    .page-title{font-size:24px;font-weight:600;margin-bottom:0.25rem;}
+    .page-sub{font-size:13px;color:var(--text2);}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:1.5rem;}
+    .card-header{padding:0.875rem 1.25rem;border-bottom:1px solid var(--border);}
+    .card-title{font-family:var(--font-mono);font-size:11px;color:var(--text2);letter-spacing:0.12em;text-transform:uppercase;}
+    .card-body{padding:1.25rem;}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+    @media(max-width:600px){.form-grid{grid-template-columns:1fr;}}
+    .form-group{display:flex;flex-direction:column;gap:6px;}
+    .form-label{font-family:var(--font-mono);font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;}
+    .form-hint{font-size:11px;color:var(--text3);margin-top:2px;}
+    .form-input{background:var(--bg);border:1px solid var(--border2);border-radius:6px;padding:0.5rem 0.75rem;color:var(--text);font-size:13px;font-family:var(--font-mono);outline:none;transition:border-color 0.15s;width:100%;}
+    .form-input:focus{border-color:var(--green-mid);}
+    .form-input::placeholder{color:var(--text3);}
+    .btn-row{display:flex;gap:8px;margin-bottom:1.25rem;}
+    .btn{font-family:var(--font-mono);font-size:12px;letter-spacing:0.08em;padding:0.6rem 1.25rem;border-radius:6px;border:none;cursor:pointer;transition:all 0.15s;}
+    .btn-primary{background:var(--green);color:var(--bg);font-weight:600;}
+    .btn-primary:hover{background:#00e6b0;}
+    .btn-ghost{background:transparent;color:var(--text2);border:1px solid var(--border2);}
+    .btn-ghost:hover{border-color:var(--green-mid);color:var(--green);}
+    .result-item{display:flex;align-items:center;gap:1rem;padding:1rem;border:1px solid var(--border);border-radius:8px;margin-bottom:0.75rem;background:var(--surface2);}
+    .result-rank{font-family:var(--font-mono);font-size:24px;font-weight:600;color:var(--text3);min-width:32px;}
+    .rank-1{color:var(--green);}
+    .rank-2{color:var(--amber);}
+    .rank-3{color:var(--red);}
+    .result-info{flex:1;}
+    .result-name{font-size:15px;font-weight:600;margin-bottom:4px;}
+    .result-desc{font-size:12px;color:var(--text2);margin-bottom:6px;}
+    .match-badge{display:inline-block;font-family:var(--font-mono);font-size:10px;padding:1px 7px;border-radius:3px;background:rgba(0,212,161,0.1);color:var(--green);border:1px solid rgba(0,212,161,0.25);margin:2px 2px 0 0;}
+    .result-conf-wrap{text-align:right;min-width:60px;}
+    .result-conf{font-family:var(--font-mono);font-size:18px;font-weight:600;}
+    .conf-bar-wrap{background:var(--border);border-radius:99px;height:3px;margin-top:4px;}
+    .conf-bar{height:3px;border-radius:99px;}
+    .score-high{color:var(--red);}
+    .score-med{color:var(--amber);}
+    .score-low{color:var(--green);}
+    .empty-state{padding:2rem;text-align:center;color:var(--text3);font-size:13px;}
+    .example-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.25rem;}
+    .example-btn{font-size:11px;padding:4px 10px;border-radius:6px;border:1px solid var(--border2);background:var(--surface2);color:var(--text3);cursor:pointer;transition:all 0.15s;}
+    .example-btn:hover{border-color:var(--green-mid);color:var(--green);}
+    footer{margin-top:3rem;padding:1.5rem 2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;color:var(--text3);}
+    footer a{color:var(--green);text-decoration:none;}
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">SENTINEL</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Dashboard</a></li>
+    <li><a href="actors.html">Actors</a></li>
+    <li><a href="attributor.html" class="active">Attributor</a></li>
+    <li><a href="feed.html">Intel Feed</a></li>
+  </ul>
+</nav>
+<main>
+  <div class="page-header">
+    <div class="page-eyebrow">Threat Attribution</div>
+    <div class="page-title">Actor Attributor</div>
+    <div class="page-sub">Enter observables from an incident or report — get ranked threat actor candidates with confidence scores</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-title">Observables Input</div></div>
+    <div class="card-body">
+      <div style="margin-bottom:0.75rem;">
+        <div class="form-label" style="margin-bottom:6px;">Load example scenario</div>
+        <div class="example-row">
+          <button class="example-btn" onclick="loadExample('fortios')">FortiOS exploitation + admin creation</button>
+          <button class="example-btn" onclick="loadExample('m365')">M365 device code auth + token theft</button>
+          <button class="example-btn" onclick="loadExample('cicd')">CI/CD credential harvest</button>
+          <button class="example-btn" onclick="loadExample('vishing')">Teams helpdesk impersonation</button>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">ATT&CK Technique IDs</label>
+          <input type="text" class="form-input" id="attr-ttps" placeholder="T1190, T1078, T1486" />
+          <div class="form-hint">Comma or space separated</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Targeted Sector</label>
+          <input type="text" class="form-input" id="attr-sector" placeholder="Healthcare, MSP, Government" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Malware / Tool Names</label>
+          <input type="text" class="form-input" id="attr-malware" placeholder="SystemBC, Qilin ransomware" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">IOC Hints / Observables</label>
+          <input type="text" class="form-input" id="attr-ioc" placeholder="Mullvad VPN, NETLOGON, WSL" />
+          <div class="form-hint">Tooling, infrastructure, behaviors</div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="runAttribution()">▶ Run Attribution</button>
+        <button class="btn btn-ghost" onclick="clearForm()">Clear</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="results-section" style="display:none;">
+    <div style="font-family:var(--font-mono);font-size:11px;color:var(--text2);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;">Attribution Results</div>
+    <div id="results-container"></div>
+  </div>
+
+</main>
+<footer>
+  <div>SENTINEL · <a href="https://jogit91.github.io">Jake Ouellette</a></div>
+  <div><a href="index.html">← Dashboard</a></div>
+</footer>
+<script>
+const ACTOR_IDS=['qilin','the-gentlemen','shinyhunters','teampcp','salt-typhoon','unc6692'];
+let actorsData=[];
+
+const EXAMPLES={
+  fortios:{ttps:'T1190, T1078, T1484.001, T1059.001, T1070.001',sector:'Manufacturing, Construction',malware:'',ioc:'FortiGate, NETLOGON, GPMC, PsExec'},
+  m365:{ttps:'T1528, T1078, T1621',sector:'Healthcare, Government',malware:'',ioc:'device code, session token, Entra ID'},
+  cicd:{ttps:'T1195.001, T1552.001',sector:'Technology',malware:'Shai-Hulud',ioc:'npm, GitHub Actions, CI cache, OIDC'},
+  vishing:{ttps:'T1566.004, T1078, T1621, T1204.002',sector:'SMB',malware:'',ioc:'Teams external access, helpdesk, MFA enrollment'}
+};
+
+function loadExample(key){
+  const ex=EXAMPLES[key];
+  if(!ex)return;
+  document.getElementById('attr-ttps').value=ex.ttps;
+  document.getElementById('attr-sector').value=ex.sector;
+  document.getElementById('attr-malware').value=ex.malware;
+  document.getElementById('attr-ioc').value=ex.ioc;
+}
+
+function clearForm(){
+  ['attr-ttps','attr-sector','attr-malware','attr-ioc'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('results-section').style.display='none';
+}
+
+function scoreClass(pct){return pct>70?'score-high':pct>40?'score-med':'score-low';}
+function confBarColor(pct){return pct>70?'var(--red)':pct>40?'var(--amber)':'var(--green)';}
+
+function runAttribution(){
+  const ttpsInput=document.getElementById('attr-ttps').value.toLowerCase();
+  const sectorInput=document.getElementById('attr-sector').value.toLowerCase();
+  const malwareInput=document.getElementById('attr-malware').value.toLowerCase();
+  const iocInput=document.getElementById('attr-ioc').value.toLowerCase();
+
+  if(!ttpsInput&&!sectorInput&&!malwareInput&&!iocInput){
+    alert('Enter at least one observable to run attribution.');
+    return;
+  }
+
+  const inputTtps=ttpsInput.split(/[\s,]+/).filter(t=>t.match(/^t\d/i));
+
+  const scores=actorsData.map(actor=>{
+    let score=0;
+    let matches=[];
+
+    if(inputTtps.length){
+      const actorTtpIds=actor.ttps.map(t=>t.technique_id.toLowerCase());
+      const matched=inputTtps.filter(t=>actorTtpIds.includes(t));
+      if(matched.length){score+=matched.length*25;matches.push(...matched.map(t=>`TTP: ${t.toUpperCase()}`));}
+    }
+    if(sectorInput){
+      const sectors=actor.targeted_sectors.map(s=>s.toLowerCase());
+      const terms=sectorInput.split(/[\s,]+/);
+      const matchedS=terms.filter(s=>s.length>2&&sectors.some(as=>as.includes(s)||s.includes(as)));
+      if(matchedS.length){score+=matchedS.length*20;matches.push(...matchedS.map(s=>`Sector: ${s}`));}
+    }
+    if(malwareInput){
+      const malware=actor.malware_families.map(m=>m.toLowerCase());
+      const terms=malwareInput.split(/[\s,]+/);
+      const matchedM=terms.filter(m=>m.length>3&&malware.some(am=>am.includes(m)||m.includes(am)));
+      if(matchedM.length){score+=matchedM.length*30;matches.push(...matchedM.map(m=>`Malware: ${m}`));}
+    }
+    if(iocInput){
+      const notable=actor.notable_techniques.map(n=>n.toLowerCase()).join(' ');
+      const detect=actor.detection_opportunities.map(d=>d.toLowerCase()).join(' ');
+      const combined=notable+' '+detect;
+      const terms=iocInput.split(/[\s,]+/);
+      const matchedI=terms.filter(i=>i.length>3&&combined.includes(i));
+      if(matchedI.length){score+=matchedI.length*20;matches.push(...matchedI.map(i=>`Observable: ${i}`));}
+    }
+    if(score>0)score+=actor.activity_score*0.1;
+    return{actor,score:Math.round(score),matches:[...new Set(matches)]};
+  });
+
+  const results=scores.filter(s=>s.score>0).sort((a,b)=>b.score-a.score).slice(0,5);
+  const maxScore=results[0]?.score||1;
+
+  const container=document.getElementById('results-container');
+  const section=document.getElementById('results-section');
+  section.style.display='block';
+
+  if(!results.length){
+    container.innerHTML='<div class="empty-state">No strong matches found. Try different observables or broaden inputs.</div>';
+    return;
+  }
+
+  container.innerHTML=results.map((r,i)=>{
+    const pct=Math.round((r.score/maxScore)*100);
+    return`<div class="result-item">
+      <div class="result-rank rank-${i+1}">#${i+1}</div>
+      <div class="result-info">
+        <div class="result-name">${r.actor.name} <span style="font-size:11px;color:var(--text3);font-weight:400;">${r.actor.type.replace('_',' ')}</span></div>
+        <div class="result-desc">${r.actor.motivation.join(', ')} · ${r.actor.origin}</div>
+        <div>${r.matches.map(m=>`<span class="match-badge">${m}</span>`).join('')}</div>
+      </div>
+      <div class="result-conf-wrap">
+        <div class="result-conf ${scoreClass(pct)}">${pct}%</div>
+        <div class="conf-bar-wrap"><div class="conf-bar" style="width:${pct}%;background:${confBarColor(pct)};"></div></div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--text3);margin-top:3px;text-align:right;">confidence</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  section.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+async function loadActors(){
+  const profiles=await Promise.allSettled(
+    ACTOR_IDS.map(id=>
+      fetch(`https://raw.githubusercontent.com/jogit91/sentinel/main/data/actors/${id}.json`)
+        .then(r=>r.ok?r.json():fetch(`../data/actors/${id}.json`).then(r2=>r2.json()))
+    )
+  );
+  actorsData=profiles.filter(r=>r.status==='fulfilled').map(r=>r.value);
+}
+
+loadActors();
+</script>
+</body>
+</html>

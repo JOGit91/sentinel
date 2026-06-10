@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SENTINEL — Actor Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#0D0F14;--surface:#141720;--elevated:#1E2230;--border:#2A2F42;
+      --red:#E63946;--amber:#F4A261;--teal:#2EC4B6;--green:#3DDC84;
+      --muted:#8B949E;--dim:#4A5568;--text:#E2E8F0;
+      --mono:'IBM Plex Mono',monospace;--sans:'Inter',sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh;line-height:1.6;}
+    nav{border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;gap:2rem;height:52px;position:sticky;top:0;background:rgba(13,15,20,0.95);backdrop-filter:blur(8px);z-index:100;}
+    .nav-brand{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:0.18em;color:var(--teal);text-decoration:none;}
+    .nav-brand span{color:var(--muted);font-weight:300;}
+    .nav-links{display:flex;gap:0;margin-left:auto;}
+    .nav-links a{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--muted);text-decoration:none;padding:0 1rem;height:52px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:color 0.15s,border-color 0.15s;}
+    .nav-links a:hover{color:var(--text);border-bottom-color:var(--teal);}
+    .page{max-width:1100px;margin:0 auto;padding:2rem;}
+    .breadcrumb{font-family:var(--mono);font-size:11px;color:var(--dim);margin-bottom:1.5rem;}
+    .breadcrumb a{color:var(--teal);text-decoration:none;}
+    .breadcrumb a:hover{text-decoration:underline;}
+    .profile-header{border-bottom:1px solid var(--border);padding-bottom:1.5rem;margin-bottom:2rem;}
+    .profile-top{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1rem;}
+    .profile-name{font-family:var(--mono);font-size:28px;font-weight:600;color:var(--text);}
+    .profile-aliases{font-family:var(--mono);font-size:12px;color:var(--dim);margin-top:4px;}
+    .type-badge{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:4px 10px;border:1px solid;}
+    .type-ransomware{color:var(--red);border-color:var(--red);}
+    .type-data_extortion{color:var(--amber);border-color:var(--amber);}
+    .type-supply_chain{color:#A78BFA;border-color:#A78BFA;}
+    .type-apt{color:var(--teal);border-color:var(--teal);}
+    .meta-row{display:flex;flex-wrap:wrap;gap:2rem;margin-bottom:1rem;}
+    .meta-item{font-family:var(--mono);font-size:11px;color:var(--dim);}
+    .meta-item span{color:var(--muted);}
+    .activity-row{display:flex;align-items:center;gap:12px;margin-bottom:1rem;}
+    .activity-track{flex:1;max-width:300px;height:4px;background:var(--elevated);}
+    .activity-fill{height:100%;}
+    .activity-label{font-family:var(--mono);font-size:11px;color:var(--muted);}
+    .summary{font-size:14px;color:var(--muted);line-height:1.7;max-width:800px;}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem;}
+    @media(max-width:768px){.two-col{grid-template-columns:1fr;}}
+    .panel{background:var(--surface);border:1px solid var(--border);padding:1.25rem;}
+    .section-label{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);}
+    .ttp-row{display:flex;gap:10px;padding:0.6rem 0;border-bottom:1px solid var(--border);align-items:flex-start;}
+    .ttp-row:last-child{border-bottom:none;}
+    .ttp-id{font-family:var(--mono);font-size:11px;color:var(--teal);min-width:90px;padding-top:2px;}
+    .ttp-name{font-size:12px;color:var(--text);font-weight:500;}
+    .ttp-phase{font-family:var(--mono);font-size:10px;color:var(--dim);margin-top:2px;}
+    .ttp-notes{font-size:11px;color:var(--muted);margin-top:3px;}
+    .tag-list{display:flex;flex-wrap:wrap;gap:6px;}
+    .tag{font-family:var(--mono);font-size:10px;padding:3px 8px;background:var(--elevated);color:var(--muted);}
+    .detect-item{padding:0.5rem 0;border-bottom:1px solid var(--border);font-size:12px;color:var(--muted);display:flex;gap:8px;align-items:flex-start;}
+    .detect-item:last-child{border-bottom:none;}
+    .detect-item::before{content:"→";color:var(--teal);font-family:var(--mono);font-size:11px;flex-shrink:0;padding-top:1px;}
+    .source-item{padding:0.5rem 0;border-bottom:1px solid var(--border);}
+    .source-item:last-child{border-bottom:none;}
+    .source-item a{font-size:12px;color:var(--teal);text-decoration:none;}
+    .source-item a:hover{text-decoration:underline;}
+    .source-date{font-family:var(--mono);font-size:10px;color:var(--dim);}
+    .ioc-empty{font-family:var(--mono);font-size:11px;color:var(--dim);padding:0.5rem 0;}
+    footer{border-top:1px solid var(--border);padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;max-width:1100px;margin:0 auto;}
+    footer p{font-family:var(--mono);font-size:10px;color:var(--dim);}
+    footer a{color:var(--teal);text-decoration:none;}
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="index.html">SENTINEL<span> // TI</span></a>
+  <div class="nav-links">
+    <a href="index.html">Dashboard</a>
+    <a href="actors.html" class="active">Actors</a>
+    <a href="attributor.html">Attributor</a>
+    <a href="feed.html">Intel Feed</a>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="breadcrumb"><a href="index.html">Dashboard</a> / <a href="actors.html">Actors</a> / <span id="bc-name">Loading...</span></div>
+  <div id="profile-container">
+    <div style="font-family:var(--mono);font-size:12px;color:var(--dim);padding:3rem 0;text-align:center">Loading actor profile...</div>
+  </div>
+</div>
+<footer>
+  <p>SENTINEL · <a href="https://jogit91.github.io">Jake Ouellette</a></p>
+  <p>Data from public threat intel sources</p>
+</footer>
+
+<script>
+function getColor(score){if(score>=85)return'var(--red)';if(score>=70)return'var(--amber)';return'var(--teal)';}
+function getTypeColor(type){const m={ransomware:'var(--red)',data_extortion:'var(--amber)',supply_chain:'#A78BFA',apt:'var(--teal)'};return m[type]||'var(--muted)';}
+
+const params = new URLSearchParams(window.location.search);
+const actorId = params.get('id');
+
+if (!actorId) {
+  document.getElementById('profile-container').innerHTML =
+    '<div style="font-family:var(--mono);font-size:12px;color:var(--red);padding:3rem 0;text-align:center">No actor ID specified.</div>';
+} else {
+  fetch(`./data/actors/${actorId}.json`)
+    .then(r => r.json())
+    .then(actor => renderProfile(actor))
+    .catch(() => {
+      document.getElementById('profile-container').innerHTML =
+        '<div style="font-family:var(--mono);font-size:12px;color:var(--red);padding:3rem 0;text-align:center">Actor profile not found.</div>';
+    });
+}
+
+function renderProfile(a) {
+  document.title = `SENTINEL — ${a.name}`;
+  document.getElementById('bc-name').textContent = a.name;
+  const color = getColor(a.activity_score);
+  const aliases = a.aliases && a.aliases.length ? a.aliases.join(', ') : 'None';
+
+  document.getElementById('profile-container').innerHTML = `
+    <div class="profile-header">
+      <div class="profile-top">
+        <div>
+          <div class="profile-name">${a.name}</div>
+          <div class="profile-aliases">aka: ${aliases}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+          <div class="type-badge type-${a.type}">${a.type.replace('_',' ')}</div>
+          <div style="font-family:var(--mono);font-size:10px;color:${a.status==='active'?'var(--red)':'var(--dim)'}">
+            ${a.status==='active'?'● ACTIVE':'○ INACTIVE'}
+          </div>
+        </div>
+      </div>
+      <div class="meta-row">
+        <div class="meta-item">ORIGIN <span>${a.origin}</span></div>
+        <div class="meta-item">MOTIVATION <span>${a.motivation}</span></div>
+        <div class="meta-item">FIRST SEEN <span>${a.first_seen}</span></div>
+        <div class="meta-item">LAST SEEN <span>${a.last_seen}</span></div>
+        ${a.raas ? `<div class="meta-item">RaaS <span style="color:var(--red)">Yes (${a.affiliate_cut}% affiliate cut)</span></div>` : ''}
+      </div>
+      <div class="activity-row">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--dim)">ACTIVITY</div>
+        <div class="activity-track">
+          <div class="activity-fill" style="width:${a.activity_score}%;background:${color}"></div>
+        </div>
+        <div class="activity-label" style="color:${color}">${a.activity_score}/100</div>
+      </div>
+      <div class="summary">${a.summary}</div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="section-label">TTPs — ATT&CK Mapping</div>
+        <div class="panel">
+          ${(a.ttps||[]).map(t => `
+            <div class="ttp-row">
+              <div class="ttp-id">${t.technique_id}</div>
+              <div>
+                <div class="ttp-name">${t.technique_name}</div>
+                <div class="ttp-phase">${t.phase}</div>
+                <div class="ttp-notes">${t.notes}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      <div>
+        <div class="section-label">Targeted Sectors</div>
+        <div class="panel" style="margin-bottom:1rem">
+          <div class="tag-list">
+            ${(a.targeted_sectors||[]).map(s=>`<span class="tag">${s}</span>`).join('')}
+          </div>
+        </div>
+
+        <div class="section-label">Malware & Tools</div>
+        <div class="panel" style="margin-bottom:1rem">
+          <div class="tag-list">
+            ${(a.malware_families||[]).map(m=>`<span class="tag" style="color:var(--red)">${m}</span>`).join('')}
+            ${(a.tools||[]).map(t=>`<span class="tag">${t}</span>`).join('')}
+          </div>
+        </div>
+
+        <div class="section-label">Detection Opportunities</div>
+        <div class="panel" style="margin-bottom:1rem">
+          ${(a.detection_opportunities||[]).map(d=>`<div class="detect-item">${d}</div>`).join('')}
+        </div>
+
+        <div class="section-label">IOCs</div>
+        <div class="panel" style="margin-bottom:1rem">
+          ${(a.iocs||[]).length
+            ? (a.iocs||[]).map(i=>`<div class="detect-item">${i.value} <span style="color:var(--dim)">(${i.type})</span></div>`).join('')
+            : '<div class="ioc-empty">No IOCs ingested yet. Run the ingestor to populate.</div>'
+          }
+        </div>
+
+        <div class="section-label">Sources</div>
+        <div class="panel">
+          ${(a.sources||[]).map(s=>`
+            <div class="source-item">
+              <a href="${s.url}" target="_blank" rel="noopener">${s.title}</a>
+              <div class="source-date">${s.date}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+}
+</script>
+</body>
+</html>

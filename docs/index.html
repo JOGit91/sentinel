@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SENTINEL — Threat Actor Intelligence Platform</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg: #0a0c10;
+      --surface: #111318;
+      --surface2: #181c24;
+      --border: #1e2430;
+      --border2: #252d3d;
+      --text: #e2e8f0;
+      --text2: #8892a4;
+      --text3: #4a5568;
+      --green: #00d4a1;
+      --green-dim: #00d4a120;
+      --green-mid: #00d4a150;
+      --red: #ff4757;
+      --amber: #ffa502;
+      --blue: #4ecdc4;
+      --purple: #a78bfa;
+      --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+      --font-sans: 'Inter', system-ui, sans-serif;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* SCANLINE overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,212,161,0.015) 2px, rgba(0,212,161,0.015) 4px);
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.875rem 2rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--green);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-logo::before {
+      content: '◈';
+      font-size: 16px;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      margin-left: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text2);
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.03em;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover, .nav-links a.active { color: var(--green); }
+
+    .nav-meta {
+      margin-left: auto;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text3);
+    }
+
+    .live-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      margin-right: 6px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* LAYOUT */
+    main { padding: 2rem; max-width: 1400px; margin: 0 auto; }
+
+    .page-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--green);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    .page-sub {
+      font-size: 13px;
+      color: var(--text2);
+    }
+
+    /* STAT STRIP */
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+
+    .stat-cell {
+      background: var(--surface);
+      padding: 1rem 1.25rem;
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text3);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .stat-value {
+      font-family: var(--font-mono);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--green);
+    }
+
+    .stat-sub {
+      font-size: 11px;
+      color: var(--text3);
+      margin-top: 2px;
+    }
+
+    /* GRID */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    }
+
+    /* CARD */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.875rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text2);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .card-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 99px;
+      border: 1px solid var(--border2);
+      color: var(--text3);
+    }
+
+    .card-body { padding: 1.25rem; }
+
+    /* ACTOR CARDS */
+    .actor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .actor-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.125rem;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .actor-card:hover {
+      border-color: var(--green-mid);
+      background: var(--surface2);
+    }
+
+    .actor-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    .actor-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .actor-aliases {
+      font-size: 11px;
+      color: var(--text3);
+    }
+
+    .actor-score-wrap {
+      text-align: right;
+    }
+
+    .actor-score {
+      font-family: var(--font-mono);
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .actor-score-label {
+      font-size: 10px;
+      color: var(--text3);
+      margin-top: 2px;
+    }
+
+    .score-high { color: var(--red); }
+    .score-med { color: var(--amber); }
+    .score-low { color: var(--green); }
+
+    .actor-type-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 0.75rem;
+    }
+
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 3px;
+      letter-spacing: 0.05em;
+    }
+
+    .tag-ransomware { background: rgba(255,71,87,0.15); color: var(--red); border: 1px solid rgba(255,71,87,0.3); }
+    .tag-apt { background: rgba(167,139,250,0.15); color: var(--purple); border: 1px solid rgba(167,139,250,0.3); }
+    .tag-data_extortion { background: rgba(255,165,2,0.15); color: var(--amber); border: 1px solid rgba(255,165,2,0.3); }
+    .tag-supply_chain { background: rgba(78,205,196,0.15); color: var(--blue); border: 1px solid rgba(78,205,196,0.3); }
+    .tag-initial_access { background: rgba(0,212,161,0.15); color: var(--green); border: 1px solid rgba(0,212,161,0.3); }
+    .tag-raas { background: rgba(255,71,87,0.1); color: #ff6b6b; border: 1px solid rgba(255,71,87,0.2); }
+    .tag-nation_state { background: rgba(167,139,250,0.1); color: var(--purple); border: 1px solid rgba(167,139,250,0.2); }
+
+    .actor-sectors {
+      font-size: 12px;
+      color: var(--text2);
+      margin-bottom: 0.5rem;
+    }
+
+    .actor-sectors span { color: var(--text3); }
+
+    .actor-bar-wrap {
+      background: var(--border);
+      border-radius: 99px;
+      height: 3px;
+      margin-top: 0.75rem;
+    }
+
+    .actor-bar {
+      height: 3px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--green), var(--blue));
+      transition: width 0.6s ease;
+    }
+
+    /* CHART */
+    .chart-wrap {
+      position: relative;
+      height: 260px;
+      padding: 0.25rem;
+    }
+
+    /* MENTION FEED */
+    .mention-item {
+      display: flex;
+      gap: 12px;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+
+    .mention-item:last-child { border-bottom: none; }
+
+    .mention-date {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text3);
+      min-width: 70px;
+      padding-top: 2px;
+    }
+
+    .mention-content { flex: 1; }
+
+    .mention-actor {
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .mention-title {
+      font-size: 12px;
+      color: var(--text2);
+      margin-bottom: 2px;
+      line-height: 1.4;
+    }
+
+    .mention-source {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text3);
+    }
+
+    .conf-high { color: var(--green); }
+    .conf-med { color: var(--amber); }
+
+    /* SECTION HEADER */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text2);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .view-all {
+      font-size: 12px;
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    .view-all:hover { text-decoration: underline; }
+
+    /* ATTRIBUTION TOOL */
+    .attr-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 700px) { .attr-form { grid-template-columns: 1fr; } }
+
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+    .form-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .form-input {
+      background: var(--bg);
+      border: 1px solid var(--border2);
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      color: var(--text);
+      font-size: 13px;
+      font-family: var(--font-mono);
+      outline: none;
+      transition: border-color 0.15s;
+      width: 100%;
+    }
+
+    .form-input:focus { border-color: var(--green-mid); }
+    .form-input::placeholder { color: var(--text3); }
+
+    .btn {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      padding: 0.6rem 1.25rem;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: var(--bg);
+      font-weight: 600;
+    }
+
+    .btn-primary:hover { background: #00e6b0; }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text2);
+      border: 1px solid var(--border2);
+    }
+
+    .btn-ghost:hover { border-color: var(--green-mid); color: var(--green); }
+
+    .btn-row { display: flex; gap: 8px; margin-bottom: 1.25rem; }
+
+    .attr-results { margin-top: 1rem; }
+
+    .attr-result-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+      background: var(--surface2);
+    }
+
+    .attr-rank {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text3);
+      min-width: 28px;
+    }
+
+    .attr-rank-1 { color: var(--green); }
+    .attr-rank-2 { color: var(--amber); }
+
+    .attr-info { flex: 1; }
+
+    .attr-actor-name { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+
+    .attr-reasoning { font-size: 12px; color: var(--text2); }
+
+    .attr-conf {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      min-width: 50px;
+      text-align: right;
+    }
+
+    .attr-conf-bar {
+      height: 3px;
+      border-radius: 99px;
+      background: var(--border);
+      margin-top: 4px;
+    }
+
+    .attr-conf-fill {
+      height: 3px;
+      border-radius: 99px;
+      background: var(--green);
+    }
+
+    .empty-state {
+      padding: 2rem;
+      text-align: center;
+      color: var(--text3);
+      font-size: 13px;
+    }
+
+    .loading { color: var(--text3); font-size: 13px; padding: 1rem 0; }
+
+    /* TTP badges in attribution */
+    .match-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 1px 6px;
+      border-radius: 3px;
+      background: var(--green-dim);
+      color: var(--green);
+      border: 1px solid var(--green-mid);
+      margin: 2px 2px 2px 0;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 3rem;
+      padding: 1.5rem 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text3);
+    }
+
+    footer a { color: var(--green); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">SENTINEL</div>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Dashboard</a></li>
+    <li><a href="actors.html">Actors</a></li>
+    <li><a href="attributor.html">Attributor</a></li>
+    <li><a href="feed.html">Intel Feed</a></li>
+  </ul>
+  <div class="nav-meta">
+    <span class="live-dot"></span>
+    <span id="last-updated">Loading...</span>
+  </div>
+</nav>
+
+<main>
+  <div class="page-header">
+    <div class="page-eyebrow">Threat Actor Intelligence Platform</div>
+    <div class="page-title">Active Threat Landscape</div>
+    <div class="page-sub">RSS-ingested · LLM-enriched · Updated every 4 hours · MSP & SMB focused</div>
+  </div>
+
+  <div class="stat-strip" id="stat-strip">
+    <div class="stat-cell">
+      <div class="stat-label">Tracked Actors</div>
+      <div class="stat-value" id="stat-actors">—</div>
+      <div class="stat-sub">Active profiles</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">Mentions (30d)</div>
+      <div class="stat-value" id="stat-mentions">—</div>
+      <div class="stat-sub">Across all sources</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">Most Active</div>
+      <div class="stat-value" id="stat-top" style="font-size:14px;padding-top:4px;">—</div>
+      <div class="stat-sub">By activity score</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">Fastest Rising</div>
+      <div class="stat-value" id="stat-rising" style="font-size:14px;padding-top:4px;">—</div>
+      <div class="stat-sub">30d mention growth</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">RaaS Groups</div>
+      <div class="stat-value" id="stat-raas">—</div>
+      <div class="stat-sub">Active affiliates</div>
+    </div>
+  </div>
+
+  <!-- ACTOR GRID -->
+  <div class="section-header">
+    <div class="section-title">Tracked Threat Actors</div>
+    <a href="actors.html" class="view-all">All actors →</a>
+  </div>
+  <div class="actor-grid" id="actor-grid">
+    <div class="loading">Loading actor profiles...</div>
+  </div>
+
+  <!-- CHARTS + FEED -->
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Activity — Top 6 Actors (6 months)</div>
+        <div class="card-badge">Mention count</div>
+      </div>
+      <div class="card-body">
+        <div class="chart-wrap">
+          <canvas id="activityChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Recent Intel Mentions</div>
+        <a href="feed.html" class="view-all" style="font-size:11px;">Feed →</a>
+      </div>
+      <div class="card-body" id="mention-feed">
+        <div class="loading">Loading feed...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ATTRIBUTION TOOL -->
+  <div class="card" style="margin-bottom:1.5rem;">
+    <div class="card-header">
+      <div class="card-title">Quick Attributor — Identify Actor from Observables</div>
+      <div class="card-badge">Client-side matching</div>
+    </div>
+    <div class="card-body">
+      <div class="attr-form">
+        <div class="form-group">
+          <label class="form-label">ATT&CK Technique IDs</label>
+          <input type="text" class="form-input" id="attr-ttps" placeholder="T1190, T1078, T1486" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Targeted Sector</label>
+          <input type="text" class="form-input" id="attr-sector" placeholder="Healthcare, MSP, Government" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Malware Family / Tool</label>
+          <input type="text" class="form-input" id="attr-malware" placeholder="SystemBC, Qilin ransomware" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">IOC / Observable</label>
+          <input type="text" class="form-input" id="attr-ioc" placeholder="Mullvad VPN, NETLOGON share" />
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="runAttribution()">▶ Run Attribution</button>
+        <button class="btn btn-ghost" onclick="clearAttribution()">Clear</button>
+      </div>
+      <div class="attr-results" id="attr-results">
+        <div class="empty-state">Enter observables above and run attribution to identify likely threat actors.</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div>SENTINEL · Built by <a href="https://jogit91.github.io" target="_blank">Jake Ouellette</a> · Detection Engineer & TI Analyst</div>
+  <div>Data updates every 4h via GitHub Actions · <a href="https://github.com" target="_blank">Source</a></div>
+</footer>
+
+<script>
+let actorsData = [];
+let activityData = {};
+let mentionsData = {};
+
+async function loadData() {
+  try {
+    const [activityRes, mentionsRes] = await Promise.all([
+      fetch('https://raw.githubusercontent.com/jogit91/sentinel/main/data/activity.json'),
+      fetch('https://raw.githubusercontent.com/jogit91/sentinel/main/data/mentions.json')
+    ]);
+
+    // Fallback to relative paths for local dev
+    activityData = activityRes.ok ? await activityRes.json() : await fetch('../data/activity.json').then(r=>r.json());
+    mentionsData = mentionsRes.ok ? await mentionsRes.json() : await fetch('../data/mentions.json').then(r=>r.json());
+
+    const actorIds = activityData.top_actors.map(a => a.id);
+    const actorProfiles = await Promise.allSettled(
+      actorIds.map(id =>
+        fetch(`https://raw.githubusercontent.com/jogit91/sentinel/main/data/actors/${id}.json`)
+          .then(r => r.ok ? r.json() : fetch(`../data/actors/${id}.json`).then(r2=>r2.json()))
+      )
+    );
+
+    actorsData = actorProfiles
+      .filter(r => r.status === 'fulfilled')
+      .map(r => r.value);
+
+    renderAll();
+  } catch(e) {
+    console.error('Load error:', e);
+    // Try local paths
+    try {
+      const [a, m] = await Promise.all([
+        fetch('../data/activity.json').then(r=>r.json()),
+        fetch('../data/mentions.json').then(r=>r.json())
+      ]);
+      activityData = a;
+      mentionsData = m;
+      const actorIds = activityData.top_actors.map(a=>a.id);
+      const profiles = await Promise.allSettled(actorIds.map(id=>fetch(`../data/actors/${id}.json`).then(r=>r.json())));
+      actorsData = profiles.filter(r=>r.status==='fulfilled').map(r=>r.value);
+      renderAll();
+    } catch(e2) {
+      document.getElementById('actor-grid').innerHTML = '<div class="empty-state">Could not load data. Make sure data/ files are accessible.</div>';
+    }
+  }
+}
+
+function renderAll() {
+  renderStats();
+  renderActorGrid();
+  renderChart();
+  renderMentionFeed();
+  document.getElementById('last-updated').textContent =
+    'Updated ' + new Date(activityData.last_updated).toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'});
+}
+
+function renderStats() {
+  const actors = activityData.top_actors || [];
+  const totalMentions = actors.reduce((s,a) => s+a.mention_count_30d, 0);
+  const top = actors.reduce((a,b) => a.activity_score > b.activity_score ? a : b, actors[0]);
+  const rising = actors.reduce((a,b) => a.mention_count_30d > b.mention_count_30d ? a : b, actors[0]);
+  const raas = actors.filter(a=>a.type==='ransomware').length;
+
+  document.getElementById('stat-actors').textContent = actorsData.length || actors.length;
+  document.getElementById('stat-mentions').textContent = totalMentions;
+  document.getElementById('stat-top').textContent = top?.name || '—';
+  document.getElementById('stat-rising').textContent = rising?.name || '—';
+  document.getElementById('stat-raas').textContent = raas;
+}
+
+function getScoreClass(score) {
+  if (score >= 85) return 'score-high';
+  if (score >= 70) return 'score-med';
+  return 'score-low';
+}
+
+function getTypeTag(type, model) {
+  let tags = `<span class="tag tag-${type}">${type.replace('_',' ')}</span>`;
+  if (model === 'RaaS') tags += `<span class="tag tag-raas">RaaS</span>`;
+  if (model === 'nation_state') tags += `<span class="tag tag-nation_state">Nation-State</span>`;
+  return tags;
+}
+
+function renderActorGrid() {
+  const grid = document.getElementById('actor-grid');
+  if (!actorsData.length) {
+    grid.innerHTML = '<div class="empty-state">No actor data loaded.</div>';
+    return;
+  }
+
+  const sorted = [...actorsData].sort((a,b) => b.activity_score - a.activity_score);
+
+  grid.innerHTML = sorted.map(actor => `
+    <a class="actor-card" href="actors.html#${actor.id}">
+      <div class="actor-card-top">
+        <div>
+          <div class="actor-name">${actor.name}</div>
+          <div class="actor-aliases">${actor.aliases?.length ? actor.aliases.slice(0,2).join(', ') : actor.origin}</div>
+        </div>
+        <div class="actor-score-wrap">
+          <div class="actor-score ${getScoreClass(actor.activity_score)}">${actor.activity_score}</div>
+          <div class="actor-score-label">activity</div>
+        </div>
+      </div>
+      <div class="actor-type-row">${getTypeTag(actor.type, actor.model)}</div>
+      <div class="actor-sectors"><span>Targets: </span>${actor.targeted_sectors.slice(0,3).join(', ')}${actor.targeted_sectors.length > 3 ? ' +' + (actor.targeted_sectors.length-3) : ''}</div>
+      <div class="actor-sectors"><span>Motivation: </span>${actor.motivation.join(', ')}</div>
+      <div class="actor-bar-wrap">
+        <div class="actor-bar" style="width:${actor.activity_score}%"></div>
+      </div>
+    </a>
+  `).join('');
+}
+
+function renderChart() {
+  const actors = activityData.top_actors || [];
+  if (!actors.length) return;
+
+  // Get top 5 by activity score
+  const top5 = [...actors].sort((a,b) => b.activity_score - a.activity_score).slice(0,5);
+
+  // Build 6-month labels from actor profiles
+  const months = ['2026-01','2026-02','2026-03','2026-04','2026-05','2026-06'];
+  const labels = ['Jan','Feb','Mar','Apr','May','Jun'];
+
+  const colors = ['#00d4a1','#ff4757','#ffa502','#a78bfa','#4ecdc4'];
+
+  const datasets = top5.map((actor, i) => {
+    const profile = actorsData.find(a => a.id === actor.id);
+    const history = profile?.mention_history || months.map((m,idx) => ({month:m, count: Math.round(actor.mention_count_30d * (0.5 + idx*0.1))}));
+    return {
+      label: actor.name,
+      data: months.map(m => history.find(h=>h.month===m)?.count || 0),
+      borderColor: colors[i],
+      backgroundColor: colors[i] + '18',
+      borderWidth: 2,
+      pointRadius: 3,
+      pointHoverRadius: 5,
+      tension: 0.4,
+      fill: false
+    };
+  });
+
+  const ctx = document.getElementById('activityChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: { labels, datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: {
+          labels: { color: '#8892a4', font: { family: 'IBM Plex Mono', size: 10 }, boxWidth: 12, padding: 16 }
+        },
+        tooltip: {
+          backgroundColor: '#111318',
+          borderColor: '#252d3d',
+          borderWidth: 1,
+          titleColor: '#e2e8f0',
+          bodyColor: '#8892a4',
+          titleFont: { family: 'IBM Plex Mono', size: 11 },
+          bodyFont: { family: 'IBM Plex Mono', size: 11 }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: '#4a5568', font: { family: 'IBM Plex Mono', size: 10 } },
+          grid: { color: '#1e2430' }
+        },
+        y: {
+          ticks: { color: '#4a5568', font: { family: 'IBM Plex Mono', size: 10 } },
+          grid: { color: '#1e2430' }
+        }
+      }
+    }
+  });
+}
+
+function renderMentionFeed() {
+  const feed = document.getElementById('mention-feed');
+  const mentions = (mentionsData.mentions || []).slice(0,6);
+
+  if (!mentions.length) {
+    feed.innerHTML = '<div class="empty-state">No recent mentions.</div>';
+    return;
+  }
+
+  const actorColors = {
+    'qilin': '#ff4757', 'the-gentlemen': '#ff6b6b', 'shinyhunters': '#ffa502',
+    'teampcp': '#4ecdc4', 'salt-typhoon': '#a78bfa', 'unc6692': '#00d4a1'
+  };
+
+  feed.innerHTML = mentions.map(m => `
+    <div class="mention-item">
+      <div class="mention-date">${m.date.slice(5)}</div>
+      <div class="mention-content">
+        <div class="mention-actor" style="color:${actorColors[m.actor_id]||'#e2e8f0'}">${m.actor_name}</div>
+        <div class="mention-title"><a href="${m.url}" target="_blank" style="color:inherit;text-decoration:none;">${m.title}</a></div>
+        <div class="mention-source">${m.source} · <span class="${m.confidence==='high'?'conf-high':'conf-med'}">${m.confidence}</span></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ATTRIBUTION ENGINE
+function runAttribution() {
+  const ttpsInput = document.getElementById('attr-ttps').value.toLowerCase();
+  const sectorInput = document.getElementById('attr-sector').value.toLowerCase();
+  const malwareInput = document.getElementById('attr-malware').value.toLowerCase();
+  const iocInput = document.getElementById('attr-ioc').value.toLowerCase();
+
+  if (!ttpsInput && !sectorInput && !malwareInput && !iocInput) {
+    document.getElementById('attr-results').innerHTML = '<div class="empty-state">Enter at least one observable to run attribution.</div>';
+    return;
+  }
+
+  const inputTtps = ttpsInput.split(/[\s,]+/).filter(t => t.startsWith('t1') || t.match(/^t\d/));
+
+  const scores = actorsData.map(actor => {
+    let score = 0;
+    let matches = [];
+
+    // TTP matching
+    if (inputTtps.length) {
+      const actorTtpIds = actor.ttps.map(t => t.technique_id.toLowerCase());
+      const matched = inputTtps.filter(t => actorTtpIds.includes(t));
+      if (matched.length) {
+        score += matched.length * 25;
+        matches.push(...matched.map(t => `TTP: ${t.toUpperCase()}`));
+      }
+    }
+
+    // Sector matching
+    if (sectorInput) {
+      const sectors = actor.targeted_sectors.map(s => s.toLowerCase());
+      const sectorTerms = sectorInput.split(/[\s,]+/);
+      const matchedSectors = sectorTerms.filter(s => sectors.some(as => as.includes(s) || s.includes(as)));
+      if (matchedSectors.length) {
+        score += matchedSectors.length * 20;
+        matches.push(...matchedSectors.map(s => `Sector: ${s}`));
+      }
+    }
+
+    // Malware matching
+    if (malwareInput) {
+      const malware = actor.malware_families.map(m => m.toLowerCase());
+      const malwareTerms = malwareInput.split(/[\s,]+/);
+      const matchedMalware = malwareTerms.filter(m => malware.some(am => am.includes(m) || m.includes(am)));
+      if (matchedMalware.length) {
+        score += matchedMalware.length * 30;
+        matches.push(...matchedMalware.map(m => `Malware: ${m}`));
+      }
+    }
+
+    // IOC / notable technique matching
+    if (iocInput) {
+      const notable = actor.notable_techniques.map(n => n.toLowerCase()).join(' ');
+      const detOpp = actor.detection_opportunities.map(d => d.toLowerCase()).join(' ');
+      const combined = notable + ' ' + detOpp;
+      const iocTerms = iocInput.split(/[\s,]+/);
+      const matchedIocs = iocTerms.filter(i => i.length > 3 && combined.includes(i));
+      if (matchedIocs.length) {
+        score += matchedIocs.length * 20;
+        matches.push(...matchedIocs.map(i => `IOC: ${i}`));
+      }
+    }
+
+    // Boost by activity score
+    if (score > 0) score += actor.activity_score * 0.1;
+
+    return { actor, score: Math.round(score), matches: [...new Set(matches)] };
+  });
+
+  const results = scores.filter(s => s.score > 0).sort((a,b) => b.score - a.score).slice(0,4);
+
+  const container = document.getElementById('attr-results');
+
+  if (!results.length) {
+    container.innerHTML = '<div class="empty-state">No strong matches found. Try different observables or broaden your inputs.</div>';
+    return;
+  }
+
+  const maxScore = results[0].score;
+
+  container.innerHTML = results.map((r, i) => `
+    <div class="attr-result-item">
+      <div class="attr-rank ${i===0?'attr-rank-1':i===1?'attr-rank-2':''}">#${i+1}</div>
+      <div class="attr-info">
+        <div class="attr-actor-name">${r.actor.name} <span style="font-size:11px;color:var(--text3);font-weight:400;">${r.actor.aliases?.[0]||''}</span></div>
+        <div class="attr-reasoning">
+          ${r.matches.map(m => `<span class="match-badge">${m}</span>`).join('')}
+        </div>
+      </div>
+      <div>
+        <div class="attr-conf ${r.score/maxScore > 0.7 ? 'score-high' : r.score/maxScore > 0.4 ? 'score-med' : 'score-low'}">${Math.round((r.score/maxScore)*100)}%</div>
+        <div class="attr-conf-bar"><div class="attr-conf-fill" style="width:${Math.round((r.score/maxScore)*100)}%"></div></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function clearAttribution() {
+  ['attr-ttps','attr-sector','attr-malware','attr-ioc'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('attr-results').innerHTML = '<div class="empty-state">Enter observables above and run attribution to identify likely threat actors.</div>';
+}
+
+loadData();
+</script>
+</body>
+</html>

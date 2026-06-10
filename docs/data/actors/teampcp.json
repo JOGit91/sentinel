@@ -1,0 +1,51 @@
+{
+  "id": "teampcp",
+  "name": "TeamPCP",
+  "aliases": ["DeadCatx3", "PCPcat", "ShellForce", "CipherForce"],
+  "type": "supply_chain",
+  "motivation": "Financial",
+  "origin": "Unknown (low confidence; possible LAPSUS$ connection unconfirmed)",
+  "status": "active",
+  "first_seen": "2025-10",
+  "last_seen": "2026-06",
+  "activity_score": 78,
+  "raas": false,
+  "affiliate_cut": null,
+  "summary": "TeamPCP is a financially motivated supply chain threat actor that first surfaced in late 2025 and rapidly evolved from ransomware and cryptomining into a focused software supply chain compromise model. The group is best known for the March 2026 cascading supply chain campaign compromising Trivy, Checkmarx KICS, LiteLLM, and the Telnyx Python SDK via retained credentials, and for authoring the Mini Shai-Hulud npm worm variant released in May 2026. On May 12, 2026 TeamPCP publicly released the Shai-Hulud worm source code, effectively commoditizing the attack technique.",
+  "targeted_sectors": [
+    "Technology",
+    "Software Development",
+    "AI/ML Infrastructure",
+    "Telecommunications",
+    "Security Tooling"
+  ],
+  "targeted_regions": ["Global"],
+  "ttps": [
+    { "technique_id": "T1195.001", "technique_name": "Compromise Software Dependencies and Development Tools", "phase": "Initial Access", "notes": "Primary vector — npm package poisoning via compromised maintainer credentials" },
+    { "technique_id": "T1078", "technique_name": "Valid Accounts", "phase": "Initial Access", "notes": "Retained credentials from prior Trivy compromise seeded the March 2026 cascade" },
+    { "technique_id": "T1554", "technique_name": "Compromise Client Software Binary", "phase": "Persistence", "notes": "Malicious code injected into legitimate package releases" },
+    { "technique_id": "T1059.006", "technique_name": "Python", "phase": "Execution", "notes": "Python SDK poisoning; .pth file auto-execution for persistence" },
+    { "technique_id": "T1027", "technique_name": "Obfuscated Files or Information", "phase": "Defense Evasion", "notes": "Payload delivery evolved from Base64 to WAV steganography within 8-day campaign window" },
+    { "technique_id": "T1552.001", "technique_name": "Credentials In Files", "phase": "Credential Access", "notes": "CI/CD secrets, GitHub tokens, AWS/GCP/Azure keys harvested from pipeline environments" },
+    { "technique_id": "T1567.001", "technique_name": "Exfiltration to Code Repository", "phase": "Exfiltration", "notes": "Stolen credentials committed to attacker-controlled GitHub repositories; also committed to victim's own GitHub account" },
+    { "technique_id": "T1610", "technique_name": "Deploy Container", "phase": "Execution", "notes": "GitHub self-install worker deployed for persistent remote code execution" }
+  ],
+  "malware_families": ["Shai-Hulud worm", "Mini Shai-Hulud"],
+  "tools": ["AuraInspector-style tooling", "Bun JavaScript runtime"],
+  "detection_opportunities": [
+    "Monitor for unexpected npm package publish events from maintainer accounts",
+    "Alert on new GitHub repository creation with name 'Shai-Hulud' under any account",
+    "Detect CI/CD secrets access outside normal pipeline execution windows",
+    "Monitor for .pth file creation in Python environments",
+    "Alert on GitHub Actions workflow modifications touching cache or OIDC endpoints",
+    "Detect anomalous cloud API calls (AWS/GCP/Azure) originating from CI infrastructure",
+    "Monitor preinstall hook execution in npm dependency trees"
+  ],
+  "iocs": [],
+  "sources": [
+    { "title": "Akamai Mini Shai-Hulud Analysis", "url": "https://www.akamai.com/blog/security-research/mini-shai-hulud-worm-returns-goes-public", "date": "2026-05" },
+    { "title": "Datadog Shai-Hulud 2.0 Analysis", "url": "https://securitylabs.datadoghq.com/articles/shai-hulud-2.0-npm-worm/", "date": "2025-11" }
+  ],
+  "mention_count": 0,
+  "mentions": []
+}

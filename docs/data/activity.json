@@ -1,0 +1,11 @@
+{
+  "last_updated": "2026-06-10T00:00:00Z",
+  "top_actors": [
+    { "id": "qilin", "name": "Qilin", "activity_score": 95, "mention_count": 0, "type": "ransomware" },
+    { "id": "the-gentlemen", "name": "The Gentlemen", "activity_score": 88, "mention_count": 0, "type": "ransomware" },
+    { "id": "shinyhunters", "name": "ShinyHunters", "activity_score": 82, "mention_count": 0, "type": "data_extortion" },
+    { "id": "teampcp", "name": "TeamPCP", "activity_score": 78, "mention_count": 0, "type": "supply_chain" },
+    { "id": "akira", "name": "Akira", "activity_score": 75, "mention_count": 0, "type": "ransomware" },
+    { "id": "salt-typhoon", "name": "Salt Typhoon", "activity_score": 72, "mention_count": 0, "type": "apt" }
+  ]
+}

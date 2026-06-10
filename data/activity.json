@@ -1,0 +1,11 @@
+{
+  "last_updated": "2026-06-10T00:00:00Z",
+  "top_actors": [
+    { "id": "qilin", "name": "Qilin", "activity_score": 98, "monthly_victims": 111, "type": "ransomware", "mention_count_30d": 47 },
+    { "id": "shinyhunters", "name": "ShinyHunters", "activity_score": 85, "monthly_victims": null, "type": "data_extortion", "mention_count_30d": 41 },
+    { "id": "the-gentlemen", "name": "The Gentlemen", "activity_score": 91, "monthly_victims": 66, "type": "ransomware", "mention_count_30d": 38 },
+    { "id": "salt-typhoon", "name": "Salt Typhoon", "activity_score": 76, "monthly_victims": null, "type": "apt", "mention_count_30d": 31 },
+    { "id": "teampcp", "name": "TeamPCP", "activity_score": 79, "monthly_victims": null, "type": "supply_chain", "mention_count_30d": 33 },
+    { "id": "unc6692", "name": "UNC6692", "activity_score": 72, "monthly_victims": null, "type": "initial_access", "mention_count_30d": 29 }
+  ]
+}

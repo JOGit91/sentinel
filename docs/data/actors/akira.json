@@ -1,0 +1,48 @@
+{
+  "id": "akira",
+  "name": "Akira",
+  "aliases": [],
+  "type": "ransomware",
+  "motivation": "Financial",
+  "origin": "Unknown (suspected Russia-nexus)",
+  "status": "active",
+  "first_seen": "2023-03",
+  "last_seen": "2026-06",
+  "activity_score": 75,
+  "raas": true,
+  "affiliate_cut": 80,
+  "summary": "Akira is a prolific RaaS operation that ranked among the most active ransomware groups in 2025, reportedly extorting approximately $244M from 600+ victims. The group is notable for a rapid 'scan, steal, encrypt' lifecycle and for prioritizing backup infrastructure destruction early in intrusions to prevent victim recovery. In 2026 the group shifted away from experimental Rust code back to a faster, more stable C++ encryptor, reflecting a pragmatic tooling philosophy focused on operational efficiency.",
+  "targeted_sectors": [
+    "Manufacturing",
+    "Education",
+    "IT/MSP",
+    "Finance",
+    "Healthcare"
+  ],
+  "targeted_regions": ["North America", "Europe"],
+  "ttps": [
+    { "technique_id": "T1190", "technique_name": "Exploit Public-Facing Application", "phase": "Initial Access", "notes": "VPN appliances primary initial access; bypasses OTP-based MFA via inherited VPN config artifacts" },
+    { "technique_id": "T1078", "technique_name": "Valid Accounts", "phase": "Initial Access", "notes": "Retained appliance secrets and compromised VPN credentials" },
+    { "technique_id": "T1486", "technique_name": "Data Encrypted for Impact", "phase": "Impact", "notes": "C++ encryptor (reverted from Rust); hypervisor encryption to maximize infrastructure paralysis" },
+    { "technique_id": "T1490", "technique_name": "Inhibit System Recovery", "phase": "Impact", "notes": "Backup infrastructure targeted early to prevent recovery — VSS deletion, backup software disabling" },
+    { "technique_id": "T1048", "technique_name": "Exfiltration Over Alternative Protocol", "phase": "Exfiltration", "notes": "Double extortion — data exfiltrated before encryption" },
+    { "technique_id": "T1021.004", "technique_name": "SSH", "phase": "Lateral Movement", "notes": "SSH lateral movement observed in Linux/ESXi environments" },
+    { "technique_id": "T1562.001", "technique_name": "Disable or Modify Tools", "phase": "Defense Evasion", "notes": "Security tooling disabled early in intrusion lifecycle" }
+  ],
+  "malware_families": ["Akira ransomware (C++ variant)", "Megazord"],
+  "tools": ["RClone", "WinRAR", "AnyDesk", "PsExec"],
+  "detection_opportunities": [
+    "Alert on VPN authentication from new devices or unusual geolocations",
+    "Detect VSS deletion and backup software termination commands",
+    "Monitor for ESXi and Hyper-V encryption activity",
+    "Alert on RClone or WinRAR usage in bulk data staging contexts",
+    "Detect AnyDesk installation outside of approved baseline",
+    "Monitor for rapid large-scale file modification events"
+  ],
+  "iocs": [],
+  "sources": [
+    { "title": "ConnectWise 2026 MSP Threat Report", "url": "https://www.connectwise.com/resources/msp-threat-report", "date": "2026-03" }
+  ],
+  "mention_count": 0,
+  "mentions": []
+}

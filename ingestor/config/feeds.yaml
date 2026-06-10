@@ -1,0 +1,78 @@
+# SENTINEL RSS Feed Configuration
+# Add/remove feeds here — the ingestor reads this file
+
+feeds:
+  # Threat Intelligence
+  - name: "The DFIR Report"
+    url: "https://thedfirreport.com/feed/"
+    category: "threat_intelligence"
+    priority: high
+
+  - name: "Huntress Blog"
+    url: "https://www.huntress.com/blog/rss.xml"
+    category: "threat_intelligence"
+    priority: high
+
+  - name: "Red Canary Blog"
+    url: "https://redcanary.com/blog/feed/"
+    category: "threat_intelligence"
+    priority: high
+
+  - name: "Bleeping Computer"
+    url: "https://www.bleepingcomputer.com/feed/"
+    category: "news"
+    priority: medium
+
+  - name: "Krebs on Security"
+    url: "https://krebsonsecurity.com/feed/"
+    category: "news"
+    priority: medium
+
+  - name: "CISA Advisories"
+    url: "https://www.cisa.gov/cybersecurity-advisories/all.xml"
+    category: "government"
+    priority: high
+
+  - name: "Recorded Future Blog"
+    url: "https://www.recordedfuture.com/feed"
+    category: "threat_intelligence"
+    priority: medium
+
+  - name: "Mandiant Blog"
+    url: "https://www.mandiant.com/resources/blog/rss.xml"
+    category: "threat_intelligence"
+    priority: medium
+
+  - name: "Unit 42 (Palo Alto)"
+    url: "https://unit42.paloaltonetworks.com/feed/"
+    category: "threat_intelligence"
+    priority: medium
+
+  - name: "Microsoft Security Blog"
+    url: "https://www.microsoft.com/en-us/security/blog/feed/"
+    category: "vendor"
+    priority: medium
+
+  # Malware / IOC Feeds
+  - name: "MalwareBazaar Recent"
+    url: "https://bazaar.abuse.ch/export/csv/recent/"
+    category: "ioc"
+    priority: high
+    format: csv
+
+  - name: "URLhaus"
+    url: "https://urlhaus.abuse.ch/downloads/csv_recent/"
+    category: "ioc"
+    priority: medium
+    format: csv
+
+  # Community
+  - name: "Securelist (Kaspersky)"
+    url: "https://securelist.com/feed/"
+    category: "threat_intelligence"
+    priority: low
+
+  - name: "ThreatPost"
+    url: "https://threatpost.com/feed/"
+    category: "news"
+    priority: low
