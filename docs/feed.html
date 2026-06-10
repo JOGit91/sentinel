@@ -76,7 +76,7 @@ let activeFilter='all';
 
 async function loadFeed(){
   try{
-    const res = await fetch('https://raw.githubusercontent.com/jogit91/sentinel/main/data/mentions.json');
+    const res = await fetch('https://raw.githubusercontent.com/JOGit91/sentinel/main/data/mentions.json');
     const data = res.ok ? await res.json() : await fetch('../data/mentions.json').then(r=>r.json());
     allMentions = data.mentions || [];
     buildFilters();

@@ -190,7 +190,7 @@ async function loadActors(){
   const container = document.getElementById('actors-container');
   const profiles = await Promise.allSettled(
     ACTOR_IDS.map(id =>
-      fetch(`https://raw.githubusercontent.com/jogit91/sentinel/main/data/actors/${id}.json`)
+      fetch(`https://raw.githubusercontent.com/JOGit91/sentinel/main/data/actors/${id}.json`)
         .then(r=>r.ok?r.json():fetch(`../data/actors/${id}.json`).then(r2=>r2.json()))
     )
   );
