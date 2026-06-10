@@ -1,0 +1,59 @@
+{
+  "id": "eviltokens",
+  "name": "EvilTokens",
+  "aliases": ["Evil Token", "eviltokensadmin (Telegram operator)"],
+  "type": "initial_access",
+  "model": "criminal_crew",
+  "status": "active",
+  "first_seen": "2026-02",
+  "last_seen": "2026-06",
+  "origin": "unknown",
+  "motivation": ["financial","access_brokering"],
+  "description": "EvilTokens is a turnkey Phishing-as-a-Service (PhaaS) kit that surfaced in cybercrime communities in mid-February 2026 and was publicly detailed by Sekoia in March 2026. Sold via Telegram bots run by 'eviltokensadmin', it automates Microsoft OAuth device-code phishing against Microsoft 365 and Entra ID tenants, harvesting Primary Refresh Tokens that grant access to Outlook, Exchange Online, SharePoint, OneDrive, Teams and Azure. Post-compromise, the kit's AI-augmented automation performs reconnaissance, mailbox rule manipulation, and email harvesting to fuel Business Email Compromise fraud at scale. Microsoft and partners observed 10-15 distinct campaigns per day since mid-March 2026, with infrastructure spanning over 1,000 phishing domains and victims confirmed across the Americas, Europe, the Middle East, Asia and Oceania.",
+  "activity_score": 90,
+  "monthly_victims": null,
+  "targeted_sectors": ["Financial Services","Government","Technology","Professional Services","Any M365/Entra ID tenant"],
+  "targeted_regions": ["North America","Europe","Middle East","Asia","Oceania"],
+  "ttps": [
+    { "technique_id": "T1528", "technique_name": "Steal Application Access Token", "notes": "Abuses OAuth 2.0 device authorization flow to capture Primary Refresh Tokens and downstream access tokens" },
+    { "technique_id": "T1566.002", "technique_name": "Phishing: Spearphishing Link", "notes": "Lures direct victims to enter attacker-supplied device codes at microsoft.com/devicelogin" },
+    { "technique_id": "T1078.004", "technique_name": "Valid Accounts: Cloud Accounts", "notes": "Stolen tokens used to authenticate directly to Microsoft Graph, Exchange Online, and Azure without credentials" },
+    { "technique_id": "T1114.002", "technique_name": "Email Collection: Remote Email Collection", "notes": "Built-in webmail interface and automation harvest mailbox content from Exchange Online via Graph API" },
+    { "technique_id": "T1098.001", "technique_name": "Account Manipulation: Additional Cloud Credentials", "notes": "Token exchange to mint additional scoped tokens for SharePoint, OneDrive, Substrate and Teams" },
+    { "technique_id": "T1583.001", "technique_name": "Acquire Infrastructure: Domains", "notes": "Operator-managed pool of 1,000+ lookalike phishing domains rotated across campaigns" },
+    { "technique_id": "T1656", "technique_name": "Impersonation", "notes": "AI-generated lure content impersonates IT, HR, and partner organizations to drive device-code entry" }
+  ],
+  "malware_families": ["EvilTokens phishing kit"],
+  "notable_techniques": [
+    "Fully automated Telegram-bot storefront ('eviltokensadmin') for kit purchase, configuration, and victim management",
+    "AI-powered post-compromise automation: auto-generates reconnaissance summaries and BEC lure emails from harvested mailbox content",
+    "Token exchange chain converts a single device-code grant into Outlook, Graph, Azure, Substrate, and SharePoint access",
+    "Built-in webmail viewer lets low-skill affiliates browse and exfiltrate victim mailboxes without separate tooling",
+    "10-15 new distinct campaigns per day observed since mid-March 2026, run from a 1,000+ domain rotating infrastructure",
+    "Rapid feature iteration — kit updated continuously by the operator in response to detection coverage"
+  ],
+  "detection_opportunities": [
+    "Sign-ins via the OAuth device authorization flow ('urn:ietf:params:oauth:grant-type:device_code') from unfamiliar apps or locations",
+    "Microsoft Entra ID sign-in logs showing device code grants followed immediately by Graph API calls to Mail, Files, and SharePoint",
+    "New inbox rules or mailbox forwarding created shortly after an unfamiliar device-code authentication",
+    "User-reported prompts to visit microsoft.com/devicelogin and enter a code received via chat, email, or QR code",
+    "Conditional Access policies blocking or flagging legacy/device-code auth flows for non-shared-device scenarios",
+    "Anomalous Graph API enumeration of Teams, OneDrive, and SharePoint shortly after a new token issuance",
+    "Outbound traffic to newly registered lookalike domains hosting EvilTokens phishing pages"
+  ],
+  "sources": [
+    { "title": "Sekoia: New widespread EvilTokens kit: device code phishing as-a-service - Part 1", "url": "https://blog.sekoia.io/new-widespread-eviltokens-kit-device-code-phishing-as-a-service-part-1/" },
+    { "title": "The Hacker News: Device Code Phishing Hits 340+ Microsoft 365 Orgs Across Five Countries via OAuth Abuse", "url": "https://thehackernews.com/2026/03/device-code-phishing-hits-340-microsoft.html" },
+    { "title": "Microsoft Security Blog: Inside an AI-enabled device code phishing campaign", "url": "https://www.microsoft.com/en-us/security/blog/2026/04/06/ai-enabled-device-code-phishing-campaign-april-2026/" },
+    { "title": "BleepingComputer: New EvilTokens service fuels Microsoft device code phishing attacks", "url": "https://www.bleepingcomputer.com/news/security/new-eviltokens-service-fuels-microsoft-device-code-phishing-attacks/" }
+  ],
+  "mention_count_30d": 44,
+  "mention_history": [
+    { "month": "2026-01", "count": 0 },
+    { "month": "2026-02", "count": 1 },
+    { "month": "2026-03", "count": 18 },
+    { "month": "2026-04", "count": 32 },
+    { "month": "2026-05", "count": 41 },
+    { "month": "2026-06", "count": 44 }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "id": "lazarus",
+  "name": "Lazarus Group",
+  "aliases": ["HIDDEN COBRA","Guardians of Peace","ZINC","Diamond Sleet","Labyrinth Chollima","NICKEL ACADEMY","APT38 (financial cluster, see separate profile)","BlueNoroff","Stardust Chollima"],
+  "type": "apt",
+  "model": "nation_state",
+  "status": "active",
+  "first_seen": "2009-01",
+  "last_seen": "2026-06",
+  "origin": "North Korea (RGB)",
+  "motivation": ["espionage","financial","crypto_theft","sanctions_evasion"],
+  "description": "Lazarus Group is North Korea's flagship state-sponsored hacking apparatus, run by the Reconnaissance General Bureau, spanning espionage, destructive attacks, and the regime's primary hard-currency revenue stream via cryptocurrency theft. Through the first four months of 2026, TRM Labs attributes roughly $577M in stolen crypto to the group — about 76% of all global crypto theft this year. Its Contagious Interview / DeceptiveDevelopment fake-recruiter operation continues to trojanize developers via staged coding interviews, delivering BeaverTail and InvisibleFerret through malicious Git repos and npm/PyPI packages. In early 2026 the group was also tied to a supply-chain compromise of the widely used axios npm package and to deploying Medusa ransomware against US healthcare and Middle East targets, broadening its activity beyond pure crypto theft.",
+  "activity_score": 84,
+  "monthly_victims": null,
+  "targeted_sectors": ["Cryptocurrency","Software Development","Blockchain/DeFi","Defense","Healthcare","Government","Media"],
+  "targeted_regions": ["Global","North America","Europe","Asia-Pacific"],
+  "ttps": [
+    { "technique_id": "T1566.002", "technique_name": "Phishing: Spearphishing Link", "notes": "Fake recruiter outreach on LinkedIn, Telegram, and Discord drives victims to staged interview/coding-test sites" },
+    { "technique_id": "T1195.002", "technique_name": "Supply Chain Compromise: Compromise Software Supply Chain", "notes": "Malicious npm/PyPI packages (e.g. compromised axios releases, 'graphalgo'/'bigmathutils' campaign) and trojanized GitHub repos" },
+    { "technique_id": "T1059.007", "technique_name": "Command and Scripting Interpreter: JavaScript", "notes": "BeaverTail JS-based infostealer delivered via Git post-install/post-merge hooks" },
+    { "technique_id": "T1546.004", "technique_name": "Event Triggered Execution: Unix Shell Configuration Modification", "notes": "Malicious payloads planted in .git/hooks (post-merge, pre-push) as second-stage loaders" },
+    { "technique_id": "T1027", "technique_name": "Obfuscated Files or Information", "notes": "Heavy use of fileless/RAM-resident malware and obfuscated JS/Python loaders to evade EDR" },
+    { "technique_id": "T1204.002", "technique_name": "User Execution: Malicious File", "notes": "Victims run trojanized coding-challenge repos or fake video-conferencing apps during sham interviews" },
+    { "technique_id": "T1486", "technique_name": "Data Encrypted for Impact", "notes": "Lazarus subcluster (Andariel/Stonefly-linked) deploying Medusa ransomware against healthcare targets" },
+    { "technique_id": "T1572", "technique_name": "Protocol Tunneling", "notes": "InvisibleFerret Python backdoor establishes persistent remote access tunnels post-infection" }
+  ],
+  "malware_families": ["BeaverTail","InvisibleFerret","AppleJeus","RustBucket","Marstech1","QuiteRAT","Manuscrypt","ThreatNeedle"],
+  "notable_techniques": [
+    "Contagious Interview / DeceptiveDevelopment — fake recruiters lure developers through full sham interview pipelines, hiding loaders inside .git/hooks of coding-test repos",
+    "Operation Marstech Mayhem — 'Marstech1' implant scans for Exodus, Atomic, and MetaMask wallet files across Windows, macOS, and Linux and exfiltrates private keys",
+    "Brandjacked and hijacked maintainer accounts used to push malicious versions of high-traffic npm packages (e.g. axios, with 100M+ weekly downloads)",
+    "Single npm packages (e.g. 'bigmathutils') published clean first, then updated with malicious payloads after building download trust (10,000+ downloads)",
+    "Pivot into Medusa ransomware operations against US healthcare and Middle East targets, blending espionage tooling with for-profit extortion",
+    "Crypto theft proceeds laundered through mixers and cross-chain bridges to fund DPRK weapons programs"
+  ],
+  "detection_opportunities": [
+    "New or modified scripts in .git/hooks/ (post-merge, post-checkout, pre-push) within cloned repositories",
+    "Outbound connections from developer workstations to npm/PyPI-hosted C2 infrastructure shortly after package install",
+    "postinstall/preinstall scripts in package.json fetching remote payloads from non-registry domains",
+    "Recruiter contact via LinkedIn/Telegram/Discord followed by requests to clone and run external code as part of an 'interview'",
+    "Process memory scanning for fileless RAT activity (no payload written to disk) on developer and crypto-custody endpoints",
+    "Unexpected wallet directory access (Exodus, Atomic, MetaMask, Electrum) by unrelated processes",
+    "Sudden encryption activity on healthcare endpoints preceded by Lazarus-associated initial-access tooling (Medusa ransomware)"
+  ],
+  "sources": [
+    { "title": "Lazarus Campaign Plants Malicious Packages in npm and PyPI Ecosystems", "url": "https://thehackernews.com/2026/02/lazarus-campaign-plants-malicious.html" },
+    { "title": "ESET Research's deep dive into DeceptiveDevelopment, North Korean crypto theft via fake job offers", "url": "https://www.eset.com/us/about/newsroom/research/eset-research-deep-dive-deceptivedevelopment-virusbulletin/" },
+    { "title": "Lazarus Group Uses Medusa Ransomware in Middle East and U.S. Healthcare Attacks", "url": "https://thehackernews.com/2026/02/lazarus-group-uses-medusa-ransomware-in.html" },
+    { "title": "Lazarus Group Poisons Axios: Inside the npm Supply Chain Attack", "url": "https://threatbook.io/blog/lazarus-group-poisons-axios-inside-the-npm-supply-chain-attack" }
+  ],
+  "mention_count_30d": 52,
+  "mention_history": [
+    { "month": "2026-01", "count": 33 },
+    { "month": "2026-02", "count": 44 },
+    { "month": "2026-03", "count": 49 },
+    { "month": "2026-04", "count": 51 },
+    { "month": "2026-05", "count": 50 },
+    { "month": "2026-06", "count": 52 }
+  ]
+}

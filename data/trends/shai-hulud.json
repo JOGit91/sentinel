@@ -1,0 +1,48 @@
+{
+  "id": "shai-hulud",
+  "name": "Shai-Hulud npm Supply-Chain Worm",
+  "category": "supply_chain",
+  "trend": "rising",
+  "first_observed": "2025-09",
+  "last_seen": "2026-06",
+  "description": "Shai-Hulud is a self-propagating npm supply-chain worm that compromises maintainer accounts and CI/CD tokens to publish trojanized package versions, which themselves harvest further credentials and re-propagate. A 'Mini Shai-Hulud' variant disclosed in April 2026 targets SAP npm packages via malicious preinstall scripts that execute before most security tooling runs. On May 11, 2026, Microsoft identified a major resurgence compromising 170+ npm packages and 2 PyPI packages across 404 malicious versions, followed by a burst of 300+ malicious versions across 323 packages published in just 22 minutes on May 19. New variants persist via AI coding agent configuration files (Claude Code, VS Code), turning developer tooling into a propagation vector. TeamPCP has publicly claimed authorship of the Mini Shai-Hulud branding, and the related Miasma cluster's June 2026 wave reuses overlapping techniques against npm and PyPI.",
+  "mitre_techniques": [
+    { "technique_id": "T1195.002", "technique_name": "Supply Chain Compromise: Compromise Software Supply Chain", "notes": "Trojanized npm/PyPI package versions published via compromised maintainer accounts" },
+    { "technique_id": "T1552.001", "technique_name": "Unsecured Credentials: Credentials In Files", "notes": "Harvests npm publish tokens, CI/CD secrets, and cloud credentials from developer environments" },
+    { "technique_id": "T1059.007", "technique_name": "Command and Scripting Interpreter: JavaScript", "notes": "Malicious preinstall/postinstall scripts execute automatically during npm install" },
+    { "technique_id": "T1098", "technique_name": "Account Manipulation", "notes": "Stolen maintainer credentials used to publish additional malicious package versions, enabling self-propagation" },
+    { "technique_id": "T1554", "technique_name": "Compromise Host Software Binary", "notes": "Persistence via tampered AI coding agent configuration files (Claude Code, VS Code) on developer workstations" }
+  ],
+  "related_actors": ["teampcp", "miasma"],
+  "related_tools": ["Shai-Hulud worm", "Mini Shai-Hulud", "TruffleHog (abused for secret scanning)"],
+  "notable_examples": [
+    "April 29, 2026: Aikido researchers disclosed 'Mini Shai-Hulud' targeting SAP npm packages via malicious preinstall scripts",
+    "May 11, 2026: Microsoft identified a resurgence compromising 170+ npm packages and 2 PyPI packages across 404 malicious versions",
+    "May 19, 2026: 300+ malicious package versions across 323 packages published in a 22-minute automated burst",
+    "June 1-2, 2026: Miasma cluster's wave hit 50+ additional npm packages plus a related 'Hades' PyPI wave (37 wheels across 19 packages)",
+    "TeamPCP publicly claimed authorship of the Mini Shai-Hulud branding and tooling"
+  ],
+  "detection_opportunities": [
+    "Monitor npm/PyPI install logs for anomalous preinstall/postinstall script execution",
+    "Alert on outbound network connections originating from package install processes",
+    "Audit CI/CD pipeline tokens and AI coding agent (Claude Code, VS Code, Copilot) config files for unexpected modification or credential exposure",
+    "Pin dependency versions and review diffs on transitive dependency updates before allowing them into builds",
+    "Cross-reference installed package versions against published IOC lists from Aikido, Akamai, Snyk, and Microsoft",
+    "Require short-lived, scoped npm publish tokens with mandatory 2FA for maintainer accounts"
+  ],
+  "sources": [
+    { "title": "Mini Shai-Hulud: The Worm Returns and Goes Public", "url": "https://www.akamai.com/blog/security-research/mini-shai-hulud-worm-returns-goes-public" },
+    { "title": "Shai-Hulud 2.0: Guidance for detecting, investigating, and defending against the supply chain attack", "url": "https://www.microsoft.com/en-us/security/blog/2025/12/09/shai-hulud-2-0-guidance-for-detecting-investigating-and-defending-against-the-supply-chain-attack/" },
+    { "title": "Mini Shai-Hulud Hits AntV: 300+ Malicious npm Packages Published via Compromised Maintainer Account", "url": "https://snyk.io/blog/mini-shai-hulud-antv-npm-supply-chain-attack/" },
+    { "title": "Shai-Hulud Worm Returns: SAP npm Supply Chain Attack", "url": "https://www.kodemsecurity.com/resources/the-shai-hulud-worm-returns-new-npm-supply-chain-attack-compromises-sap-packages" }
+  ],
+  "mention_count_30d": 45,
+  "mention_history": [
+    { "month": "2026-01", "count": 8 },
+    { "month": "2026-02", "count": 12 },
+    { "month": "2026-03", "count": 18 },
+    { "month": "2026-04", "count": 28 },
+    { "month": "2026-05", "count": 38 },
+    { "month": "2026-06", "count": 45 }
+  ]
+}

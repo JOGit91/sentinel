@@ -1,0 +1,59 @@
+{
+  "id": "apt37",
+  "name": "APT37",
+  "aliases": ["ScarCruft", "Ricochet Chollima", "InkySquid", "Reaper", "Group123", "Velvet Chollima (overlap)"],
+  "type": "apt",
+  "model": "nation_state",
+  "status": "active",
+  "first_seen": "2012-01",
+  "last_seen": "2026-06",
+  "origin": "North Korea (RGB / MSS-aligned)",
+  "motivation": ["espionage","intelligence_collection"],
+  "description": "APT37 (ScarCruft) is a North Korean cyberespionage unit specializing in browser and document zero-day exploitation, mobile malware, and surveillance of North Korea-focused journalists, defectors, and researchers. In February 2026, Zscaler ThreatLabz disclosed the 'Ruby Jumper' campaign, a toolkit of five new tools (RESTLEAF, SNAKEDROPPER, THUMBSBD, VIRUSTASK, FOOTWINE) using Zoho WorkDrive for C2 and USB-based implants to bridge into air-gapped networks. In April 2026, the group was observed running a multi-stage Facebook social-engineering operation — befriending targets before delivering RokRAT via the same Zoho WorkDrive C2 infrastructure. Earlier, the September 2025 'Operation HanKook Phantom' campaign used RokRAT against South Korean academics, continuing the group's signature use of cloud storage services (Dropbox, pCloud, Yandex, Google Drive) for exfiltration and command-and-control.",
+  "activity_score": 71,
+  "monthly_victims": null,
+  "targeted_sectors": ["Journalism","Human Rights/NGO","Academia","Government","Defense","Think Tanks"],
+  "targeted_regions": ["South Korea","Europe","Middle East","Global (NK-focused diaspora)"],
+  "ttps": [
+    { "technique_id": "T1566.002", "technique_name": "Phishing: Spearphishing Link", "notes": "Operation HanKook Phantom and ToyBox Story used spearphishing emails against South Korean academics and NK-focused activists" },
+    { "technique_id": "T1204.002", "technique_name": "User Execution: Malicious File", "notes": "Trojanized productivity documents and PowerShell loaders deliver RESTLEAF and SNAKEDROPPER in Ruby Jumper campaign" },
+    { "technique_id": "T1102.002", "technique_name": "Web Service: Bidirectional Communication", "notes": "RokRAT and RESTLEAF use Zoho WorkDrive, Dropbox, pCloud, Google Drive, and Yandex Cloud for C2 and exfiltration" },
+    { "technique_id": "T1091", "technique_name": "Replication Through Removable Media", "notes": "USB-based implants (THUMBSBD) used to bridge air-gapped networks in Ruby Jumper campaign" },
+    { "technique_id": "T1204.001", "technique_name": "User Execution: Malicious Link", "notes": "Facebook friend-request social engineering used to build trust before delivering RokRAT payload links" },
+    { "technique_id": "T1056.001", "technique_name": "Input Capture: Keylogging", "notes": "Dolphin and RokRAT implants log keystrokes and capture screenshots from compromised hosts" },
+    { "technique_id": "T1010", "technique_name": "Application Window Discovery", "notes": "Implants enumerate active windows and running processes to identify analysis tools and high-value applications on infected hosts" }
+  ],
+  "malware_families": ["RokRAT","Dolphin","Konni","BabyShark","Gold Dragon","LATEOP","RESTLEAF","SNAKEDROPPER","THUMBSBD","VIRUSTASK","FOOTWINE"],
+  "notable_techniques": [
+    "Historical and continued use of browser/document zero-days (e.g., Internet Explorer) for initial access in supply-chain-adjacent attacks",
+    "Multi-stage Facebook social engineering — adding targets as friends before delivering RokRAT links (April 2026)",
+    "Ruby Jumper toolkit combines cloud-storage C2 (Zoho WorkDrive) with USB implants to cross air-gaps (February 2026)",
+    "RokRAT exfiltrates data via mainstream cloud storage providers (Dropbox, pCloud, Yandex Cloud, Google Drive) to blend with normal traffic",
+    "Mobile malware targeting Android devices of NK-focused journalists and defectors",
+    "Dolphin backdoor reserved for highest-value targets following initial BLUELIGHT-stage access"
+  ],
+  "detection_opportunities": [
+    "Outbound API traffic to Zoho WorkDrive, Dropbox, pCloud, Yandex Cloud, or Google Drive from endpoints with no business justification for those services",
+    "Unexpected USB device activity correlating with new file drops on segmented/air-gapped network hosts",
+    "PowerShell execution chains spawned from document readers (Office, PDF viewers) consistent with RESTLEAF/SNAKEDROPPER loaders",
+    "Social media-originated links (Facebook Messenger, etc.) leading to executable downloads on journalist/researcher endpoints",
+    "Endpoint detections for RokRAT, Dolphin, and Konni implant artifacts and registry run-key persistence",
+    "Mobile device management alerts for sideloaded APKs on Android devices belonging to NK policy-focused personnel",
+    "Anomalous Internet Explorer/legacy browser engine usage in environments where it should be disabled"
+  ],
+  "sources": [
+    { "title": "The Hacker News: North Korea's APT37 Uses Facebook Social Engineering to Deliver RokRAT Malware", "url": "https://thehackernews.com/2026/04/north-koreas-apt37-uses-facebook-social.html" },
+    { "title": "BleepingComputer: APT37 hackers use new malware to breach air-gapped networks", "url": "https://www.bleepingcomputer.com/news/security/apt37-hackers-use-new-malware-to-breach-air-gapped-networks/" },
+    { "title": "The Hacker News: ScarCruft Uses RokRAT Malware in Operation HanKook Phantom Targeting South Korean Academics", "url": "https://thehackernews.com/2025/09/scarcruft-uses-rokrat-malware-in.html" },
+    { "title": "Huntress: APT37 Threat Actor Profile - Tactics, Techniques, and Updates", "url": "https://www.huntress.com/threat-library/threat-actors/apt37" }
+  ],
+  "mention_count_30d": 30,
+  "mention_history": [
+    { "month": "2026-01", "count": 18 },
+    { "month": "2026-02", "count": 27 },
+    { "month": "2026-03", "count": 24 },
+    { "month": "2026-04", "count": 32 },
+    { "month": "2026-05", "count": 29 },
+    { "month": "2026-06", "count": 30 }
+  ]
+}

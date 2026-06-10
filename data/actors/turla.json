@@ -1,0 +1,61 @@
+{
+  "id": "turla",
+  "name": "Turla",
+  "aliases": ["Secret Blizzard", "Snake", "Venomous Bear", "Waterbug", "Uroburos", "WhiteBear", "Krypton", "BELUGASTURGEON"],
+  "type": "apt",
+  "model": "nation_state",
+  "status": "active",
+  "first_seen": "1996-01",
+  "last_seen": "2026-06",
+  "origin": "Russia (FSB Center 16)",
+  "motivation": ["espionage","intelligence_collection","long_term_access"],
+  "description": "Turla, tracked by Microsoft as Secret Blizzard, is one of the most technically sophisticated and patient cyber-espionage units linked to Russia's FSB Center 16. Across 2025-2026 the group has continued its hallmark 'turncoat' tradecraft of hijacking other threat actors' infrastructure and malware — most notably riding on the Pakistan-linked Storm-0156 cluster's footholds in Afghan and Indian government networks to deploy its own backdoors. In mid-2025 Microsoft exposed an ISP-level adversary-in-the-middle (AiTM) campaign against foreign embassies in Moscow, using captive portals and rogue 'Kaspersky AV' root certificates to deliver the ApolloShadow implant via likely SORM lawful-intercept access. In May 2026, Microsoft detailed the evolution of Turla's flagship Kazuar backdoor into a modular, leaderless peer-to-peer botnet with AMSI/ETW/WLDP bypasses — underscoring the group's continued investment in long-haul, low-noise espionage platforms targeting government, diplomatic, and defense sectors.",
+  "activity_score": 81,
+  "monthly_victims": null,
+  "targeted_sectors": ["Government","Diplomatic / Foreign Embassies","Defense","Education & Research","Critical Infrastructure"],
+  "targeted_regions": ["Russia (foreign missions)","Ukraine","Europe","Central Asia","South Asia (Afghanistan, India)"],
+  "ttps": [
+    { "technique_id": "T1584.008", "technique_name": "Compromise Infrastructure: Network Devices / Third-Party Infrastructure", "notes": "Hijacks command-and-control infrastructure and footholds belonging to other threat actors (e.g. Pakistan-linked Storm-0156) to piggyback into targets" },
+    { "technique_id": "T1557", "technique_name": "Adversary-in-the-Middle", "notes": "ISP-level AiTM via captive portals against foreign embassy networks in Moscow, likely leveraging SORM lawful-intercept systems" },
+    { "technique_id": "T1553.004", "technique_name": "Subvert Trust Controls: Install Root Certificate", "notes": "ApolloShadow installs a rogue root CA disguised as Kaspersky AV to enable TLS/SSL stripping of victim traffic" },
+    { "technique_id": "T1102", "technique_name": "Web Service", "notes": "Historic and ongoing use of satellite-based internet links and compromised legitimate websites/cloud services for stealthy C2" },
+    { "technique_id": "T1071.001", "technique_name": "Application Layer Protocol: Web Protocols", "notes": "Kazuar P2P botnet supports multiple C2 channels including HTTP, WebSockets, and Exchange Web Services" },
+    { "technique_id": "T1090.002", "technique_name": "Proxy: External Proxy", "notes": "Modular Kazuar 'Kernel/Bridge/Worker' architecture with leadership election ensures only one node communicates externally, minimizing exposure" },
+    { "technique_id": "T1562.001", "technique_name": "Impair Defenses: Disable or Modify Tools", "notes": "Kazuar implements AMSI, ETW, and Windows Lockdown Policy (WLDP) bypasses to evade endpoint defenses" },
+    { "technique_id": "T1027", "technique_name": "Obfuscated Files or Information", "notes": "Heavily obfuscated, modular backdoor components (Kazuar/Snake) designed for long-term undetected persistence" }
+  ],
+  "malware_families": ["Snake (Uroburos)","Kazuar","ApolloShadow","Amadey (leveraged via hijack)","ComRAT","Crutch"],
+  "notable_techniques": [
+    "Turncoat operations: piggybacking on rival threat actors' (Storm-0156) compromised infrastructure and tooling for its own espionage",
+    "Pioneered satellite-link hijacking for anonymous, geographically untraceable C2",
+    "ISP/telecom-level adversary-in-the-middle access against foreign embassies, likely via Russian SORM intercept systems",
+    "Rogue root certificate impersonating Kaspersky Anti-Virus to silently strip TLS from diplomatic traffic",
+    "Evolution of Kazuar into a leaderless, modular peer-to-peer botnet (Kernel/Bridge/Worker roles) for resilience",
+    "Extremely long operational lifespan (nearly 30 years) with emphasis on stealth over speed",
+    "Use of legitimate cloud and web services as low-and-slow covert channels"
+  ],
+  "detection_opportunities": [
+    "Audit installed root/intermediate CA certificates for unauthorized entries impersonating AV vendors (e.g. fake Kaspersky CA)",
+    "Inspect network traffic for unexpected captive-portal redirects or TLS interception on diplomatic/government endpoints operating in Russia",
+    "Hunt for backdoors or C2 callbacks originating from infrastructure previously attributed to unrelated threat actors (cross-actor infrastructure overlap)",
+    "Monitor for AMSI/ETW provider tampering or WLDP bypass indicators on endpoint security telemetry",
+    "Flag P2P-style internal host-to-host communication patterns inconsistent with normal application traffic (Kazuar Kernel/Bridge/Worker comms)",
+    "Review Exchange Web Services API usage for anomalous automated mailbox access patterns used as C2 channel",
+    "Monitor satellite/VSAT-connected network segments for unusual inbound command traffic"
+  ],
+  "sources": [
+    { "title": "Frozen in transit: Secret Blizzard's AiTM campaign against diplomats - Microsoft Security Blog", "url": "https://www.microsoft.com/en-us/security/blog/2025/07/31/frozen-in-transit-secret-blizzards-aitm-campaign-against-diplomats/" },
+    { "title": "Frequent freeloader part I: Secret Blizzard compromising Storm-0156 infrastructure for espionage - Microsoft Security Blog", "url": "https://www.microsoft.com/en-us/security/blog/2024/12/04/frequent-freeloader-part-i-secret-blizzard-compromising-storm-0156-infrastructure-for-espionage/" },
+    { "title": "Kazuar: Anatomy of a nation-state botnet - Microsoft Security Blog", "url": "https://www.microsoft.com/en-us/security/blog/2026/05/14/kazuar-anatomy-of-a-nation-state-botnet/" },
+    { "title": "Turla Turns Kazuar Backdoor Into Modular P2P Botnet for Persistent Access - The Hacker News", "url": "https://thehackernews.com/2026/05/turla-turns-kazuar-backdoor-into.html" }
+  ],
+  "mention_count_30d": 35,
+  "mention_history": [
+    { "month": "2026-01", "count": 19 },
+    { "month": "2026-02", "count": 21 },
+    { "month": "2026-03", "count": 23 },
+    { "month": "2026-04", "count": 26 },
+    { "month": "2026-05", "count": 34 },
+    { "month": "2026-06", "count": 35 }
+  ]
+}

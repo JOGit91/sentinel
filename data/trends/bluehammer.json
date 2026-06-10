@@ -1,0 +1,44 @@
+{
+  "id": "bluehammer",
+  "name": "BlueHammer (CVE-2026-33825) — Windows Defender LPE Zero-Day",
+  "category": "privilege_escalation",
+  "trend": "rising",
+  "first_observed": "2026-04",
+  "last_seen": "2026-06",
+  "description": "BlueHammer is a Windows local privilege escalation exploit, publicly released on April 3, 2026 by a researcher operating as 'Chaotic Eclipse' (GitHub: Nightmare-Eclipse), targeting CVE-2026-33825 — a time-of-check-to-time-of-use (TOCTOU) race condition in Windows Defender's threat remediation engine. The exploit plants a file that triggers Defender detection, then uses an opportunistic lock to pause Defender mid-remediation and substitutes an NTFS junction point that redirects Defender's privileged file operation into C:\\Windows\\System32, yielding SYSTEM-level access on fully patched Windows 10/11 hosts. Active exploitation with hands-on-keyboard activity began around April 10, 2026, prompting CISA to add CVE-2026-33825 to its Known Exploited Vulnerabilities catalog and order federal agencies to patch by May 7, 2026. BlueHammer is the first of a 'six zero-days in six weeks' disclosure spree against Microsoft Defender, alongside RedSun and UnDefend, all weaponizing Defender's own remediation logic against itself.",
+  "mitre_techniques": [
+    { "technique_id": "T1068", "technique_name": "Exploitation for Privilege Escalation", "notes": "Exploits CVE-2026-33825, a TOCTOU race condition in Defender's remediation engine, to gain SYSTEM from a standard user context" },
+    { "technique_id": "T1562.001", "technique_name": "Impair Defenses: Disable or Modify Tools", "notes": "Turns Defender's own quarantine/remediation action into the privilege-escalation primitive" },
+    { "technique_id": "T1036", "technique_name": "Masquerading", "notes": "Attacker-planted file is crafted to trigger Defender detection, then redirected via NTFS junction during remediation" }
+  ],
+  "related_actors": [],
+  "related_tools": ["BlueHammer PoC", "Nightmare-Eclipse exploit chain"],
+  "notable_examples": [
+    "April 3, 2026: Proof-of-concept publicly released by researcher 'Chaotic Eclipse' (GitHub repo under Nightmare-Eclipse)",
+    "April 10, 2026: In-the-wild exploitation began, with incident responders observing hands-on-keyboard post-exploitation activity",
+    "CISA added CVE-2026-33825 to its KEV catalog, mandating FCEB agency patching by May 7, 2026",
+    "First of a six-zero-day, six-week disclosure spree against Microsoft Defender (BlueHammer, RedSun, UnDefend)"
+  ],
+  "detection_opportunities": [
+    "Apply Microsoft's April 2026 Patch Tuesday update addressing CVE-2026-33825",
+    "Monitor for rapid creation of NTFS junction points targeting C:\\Windows\\System32 by non-SYSTEM processes",
+    "Alert on Defender remediation/quarantine actions immediately followed by file writes in protected system directories",
+    "Watch for opportunistic lock (oplock) usage by unprivileged processes coinciding with Defender scan events",
+    "Use EDR to flag sudden SYSTEM-level process creation from a standard user session"
+  ],
+  "sources": [
+    { "title": "BlueHammer & RedSun: Windows Defender CVE-2026-33825 Zero-day Vulnerability Explained", "url": "https://www.picussecurity.com/resource/blog/bluehammer-redsun-windows-defender-cve-2026-33825-zero-day-vulnerability-explained" },
+    { "title": "CISA orders feds to patch BlueHammer flaw exploited as zero-day", "url": "https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-microsoft-defender-flaw-exploited-in-zero-day-attacks/" },
+    { "title": "BlueHammer: Inside the Windows Zero-Day", "url": "https://www.cyderes.com/howler-cell/windows-zero-day-bluehammer" },
+    { "title": "When the Defender Becomes the Door: BlueHammer, RedSun, and UnDefend in the Wild", "url": "https://www.vectra.ai/blog/when-the-defender-becomes-the-door-bluehammer-redsun-and-undefend-in-the-wild" }
+  ],
+  "mention_count_30d": 30,
+  "mention_history": [
+    { "month": "2026-01", "count": 0 },
+    { "month": "2026-02", "count": 0 },
+    { "month": "2026-03", "count": 0 },
+    { "month": "2026-04", "count": 18 },
+    { "month": "2026-05", "count": 28 },
+    { "month": "2026-06", "count": 30 }
+  ]
+}

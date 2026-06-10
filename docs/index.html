@@ -330,6 +330,14 @@
     .tag-raas { background: rgba(255,71,87,0.1); color: #ff6b6b; border: 1px solid rgba(255,71,87,0.2); }
     .tag-nation_state { background: rgba(167,139,250,0.1); color: var(--purple); border: 1px solid rgba(167,139,250,0.2); }
 
+    /* TREND TAG CATEGORIES */
+    .tag-execution { background: rgba(255,165,2,0.15); color: var(--amber); border: 1px solid rgba(255,165,2,0.3); }
+    .tag-defense_evasion { background: rgba(255,71,87,0.15); color: var(--red); border: 1px solid rgba(255,71,87,0.3); }
+    .tag-credential_access { background: rgba(167,139,250,0.15); color: var(--purple); border: 1px solid rgba(167,139,250,0.3); }
+    .tag-command_and_control { background: rgba(78,205,196,0.15); color: var(--blue); border: 1px solid rgba(78,205,196,0.3); }
+    .tag-persistence { background: rgba(0,212,161,0.15); color: var(--green); border: 1px solid rgba(0,212,161,0.3); }
+    .tag-privilege_escalation { background: rgba(255,99,72,0.15); color: #ff6348; border: 1px solid rgba(255,99,72,0.3); }
+
     .actor-sectors {
       font-size: 14px;
       color: var(--text2);
@@ -350,6 +358,88 @@
       border-radius: 99px;
       background: linear-gradient(90deg, var(--green), var(--blue));
       transition: width 0.6s ease;
+    }
+
+    /* TREND CARDS */
+    .trend-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .trend-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.125rem;
+    }
+
+    .trend-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .trend-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .trend-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 99px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .trend-rising { background: rgba(255,71,87,0.12); color: var(--red); border: 1px solid rgba(255,71,87,0.25); }
+    .trend-stable { background: rgba(136,146,164,0.12); color: var(--text2); border: 1px solid var(--border2); }
+    .trend-declining { background: rgba(0,212,161,0.12); color: var(--green); border: 1px solid rgba(0,212,161,0.25); }
+    .trend-emerging { background: rgba(255,165,2,0.12); color: var(--amber); border: 1px solid rgba(255,165,2,0.25); }
+
+    .trend-type-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 0.625rem;
+    }
+
+    .trend-desc {
+      font-size: 14px;
+      color: var(--text2);
+      margin-bottom: 0.625rem;
+      line-height: 1.5;
+    }
+
+    .trend-meta {
+      font-size: 13px;
+      color: var(--text2);
+      margin-bottom: 0.375rem;
+    }
+
+    .trend-meta span { color: var(--text3); }
+
+    .trend-meta a {
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    .trend-meta a:hover { text-decoration: underline; }
+
+    .trend-mitre {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text3);
     }
 
     /* CHART */
@@ -670,6 +760,15 @@
     </div>
   </div>
 
+  <!-- TACTICS ON THE RISE -->
+  <div class="section-header">
+    <div class="section-title">Tactics &amp; Tools on the Rise</div>
+    <div class="card-badge" id="trends-badge">Trending TTPs</div>
+  </div>
+  <div class="trend-grid" id="trend-grid">
+    <div class="loading">Loading trend data...</div>
+  </div>
+
   <!-- ATTRIBUTION TOOL -->
   <div class="card" style="margin-bottom:1.5rem;">
     <div class="card-header">
@@ -716,6 +815,29 @@
 let actorsData = [];
 let activityData = {};
 let mentionsData = {};
+let trendsData = [];
+
+async function loadTrends() {
+  try {
+    const trendsRes = await fetch('https://raw.githubusercontent.com/JOGit91/sentinel/main/data/trends.json');
+    const trendsIndex = trendsRes.ok ? await trendsRes.json() : await fetch('../data/trends.json').then(r=>r.json());
+
+    const trendIds = (trendsIndex.trending_ttps || []).map(t => t.id);
+    const trendProfiles = await Promise.allSettled(
+      trendIds.map(id =>
+        fetch(`https://raw.githubusercontent.com/JOGit91/sentinel/main/data/trends/${id}.json`)
+          .then(r => r.ok ? r.json() : fetch(`../data/trends/${id}.json`).then(r2=>r2.json()))
+      )
+    );
+
+    trendsData = trendProfiles
+      .filter(r => r.status === 'fulfilled')
+      .map(r => r.value);
+  } catch(e) {
+    console.error('Trends load error:', e);
+    trendsData = [];
+  }
+}
 
 async function loadData() {
   try {
@@ -740,6 +862,8 @@ async function loadData() {
       .filter(r => r.status === 'fulfilled')
       .map(r => r.value);
 
+    await loadTrends();
+
     renderAll();
   } catch(e) {
     console.error('Load error:', e);
@@ -754,6 +878,7 @@ async function loadData() {
       const actorIds = activityData.top_actors.map(a=>a.id);
       const profiles = await Promise.allSettled(actorIds.map(id=>fetch(`../data/actors/${id}.json`).then(r=>r.json())));
       actorsData = profiles.filter(r=>r.status==='fulfilled').map(r=>r.value);
+      await loadTrends();
       renderAll();
     } catch(e2) {
       document.getElementById('actor-grid').innerHTML = '<div class="empty-state">Could not load data. Make sure data/ files are accessible.</div>';
@@ -767,6 +892,7 @@ function renderAll() {
   renderChart();
   renderSectorChart();
   renderMentionFeed();
+  renderTrendsGrid();
   document.getElementById('last-updated').textContent =
     'Updated ' + new Date(activityData.last_updated).toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'});
 }
@@ -932,7 +1058,7 @@ function renderSectorChart() {
       const sectors = actor.targeted_sectors;
       const hasTopSector = topSectors.some(s => sectors.includes(s));
       if (sector === 'Other') {
-        return hasTopSector ? 0 : Math.round(actor.activity_score / 3);
+        return hasTopSector ? 0 : actor.activity_score;
       }
       if (!sectors.includes(sector)) return 0;
       // Weight: distribute score across matched top sectors
@@ -1005,7 +1131,12 @@ function renderMentionFeed() {
 
   const actorColors = {
     'qilin': '#ff4757', 'the-gentlemen': '#ff6b6b', 'shinyhunters': '#ffa502',
-    'teampcp': '#4ecdc4', 'salt-typhoon': '#a78bfa', 'unc6692': '#00d4a1'
+    'teampcp': '#4ecdc4', 'salt-typhoon': '#a78bfa', 'unc6692': '#00d4a1',
+    'lazarus': '#c0392b', 'apt38': '#e67e22', 'apt28': '#d63031',
+    'muddywater': '#00b894', 'mustang-panda': '#fdcb6e', 'eviltokens': '#e84393',
+    'gamaredon': '#0984e3', 'kimsuky': '#6c5ce7', 'miasma': '#b33939',
+    'silver-fox': '#95a5a6', 'turla': '#74b9ff', 'apt37': '#00cec9',
+    'black-basta': '#636e72'
   };
 
   feed.innerHTML = mentions.map(m => `
@@ -1018,6 +1149,46 @@ function renderMentionFeed() {
       </div>
     </div>
   `).join('');
+}
+
+function getTrendBadge(trend) {
+  const labels = { rising: '▲ RISING', stable: '● STABLE', declining: '▼ DECLINING', emerging: '◆ EMERGING' };
+  return `<span class="trend-badge trend-${trend}">${labels[trend] || trend.toUpperCase()}</span>`;
+}
+
+function renderTrendsGrid() {
+  const grid = document.getElementById('trend-grid');
+  if (!trendsData.length) {
+    grid.innerHTML = '<div class="empty-state">No trend data loaded.</div>';
+    return;
+  }
+
+  const sorted = [...trendsData].sort((a,b) => (b.mention_count_30d||0) - (a.mention_count_30d||0));
+
+  grid.innerHTML = sorted.map(trend => {
+    const relatedActors = (trend.related_actors || []).map(id => {
+      const actor = actorsData.find(a => a.id === id);
+      return actor ? `<a href="actors.html#${id}">${actor.name}</a>` : null;
+    }).filter(Boolean);
+
+    const mitre = (trend.mitre_techniques || []).map(t => t.technique_id).join(', ');
+    const desc = trend.description.length > 220 ? trend.description.slice(0,220).trim() + '…' : trend.description;
+
+    return `
+    <div class="trend-card">
+      <div class="trend-card-top">
+        <div class="trend-name">${trend.name}</div>
+        ${getTrendBadge(trend.trend)}
+      </div>
+      <div class="trend-type-row">
+        <span class="tag tag-${trend.category}">${trend.category.replace(/_/g,' ')}</span>
+        <span class="card-badge">${trend.mention_count_30d} mentions/30d</span>
+      </div>
+      <div class="trend-desc">${desc}</div>
+      ${mitre ? `<div class="trend-mitre">MITRE: ${mitre}</div>` : ''}
+      ${relatedActors.length ? `<div class="trend-meta"><span>Linked actors: </span>${relatedActors.join(', ')}</div>` : ''}
+    </div>`;
+  }).join('');
 }
 
 // ATTRIBUTION ENGINE

@@ -1,0 +1,50 @@
+{
+  "id": "clickfix",
+  "name": "ClickFix (Fake CAPTCHA / Verification Social Engineering)",
+  "category": "execution",
+  "trend": "rising",
+  "first_observed": "2024-03",
+  "last_seen": "2026-06",
+  "description": "ClickFix is a social-engineering technique in which a compromised or malicious webpage displays a fake CAPTCHA or 'verify you are human' prompt that instructs the victim to press Win+R, paste a clipboard-injected command, and hit Enter — bypassing the browser sandbox entirely by tricking the user into manually executing PowerShell or mshta commands. Originally a criminal infostealer delivery method (StealC, Lumma, Amatera), it has since been adopted by state-sponsored actors including Kimsuky, APT28, and MuddyWater for espionage operations, and Halcyon's ROC logged over 10 pre-ransomware ClickFix incidents in March-April 2026 alone. A May 2026 Malwarebytes report documented 700+ compromised education and tech websites delivering ClickFix lures via a SQL-injection campaign (CVE-2026-26980), while the IClickFix WordPress framework has hit 3,800+ sites across 82 countries since late 2024. Recent variants leverage signed Microsoft App-V scripts and the Donut shellcode framework to evade EDR while delivering infostealers and RATs like modeloRAT.",
+  "mitre_techniques": [
+    { "technique_id": "T1204.004", "technique_name": "User Execution: Malicious Copy and Paste", "notes": "Core mechanism — JavaScript silently writes a malicious command to the clipboard for the victim to paste and run" },
+    { "technique_id": "T1059.001", "technique_name": "Command and Scripting Interpreter: PowerShell", "notes": "Pasted command typically launches an obfuscated PowerShell one-liner via the Run dialog" },
+    { "technique_id": "T1218.005", "technique_name": "System Binary Proxy Execution: Mshta", "notes": "Some ClickFix variants use mshta.exe to execute remotely-hosted malicious HTA/JS payloads" },
+    { "technique_id": "T1218.007", "technique_name": "System Binary Proxy Execution: Msiexec", "notes": "Variants abuse signed Microsoft App-V (AppV) sequencer scripts as living-off-the-land binaries to proxy script execution" },
+    { "technique_id": "T1027.009", "technique_name": "Obfuscated Files or Information: Embedded Payloads", "notes": "Payloads are GZip-compressed/encrypted and decompressed in-memory before execution via Invoke-Expression" },
+    { "technique_id": "T1566.002", "technique_name": "Phishing: Spearphishing Link", "notes": "Victims are directed to the fake CAPTCHA page via phishing emails or malicious/compromised websites" }
+  ],
+  "related_actors": ["kimsuky", "apt28", "muddywater", "the-gentlemen"],
+  "related_tools": ["StealC", "Lumma Stealer", "Amatera Stealer", "QuasarRAT", "modeloRAT", "IClickFix"],
+  "notable_examples": [
+    "May 2026 Malwarebytes report: 700+ education/tech websites compromised via CVE-2026-26980 SQL injection to serve ClickFix fake CAPTCHA pages",
+    "January 2026 TheHackerNews report on ClickFix campaigns abusing signed Microsoft App-V scripts and trusted CDNs to deliver Amatera Stealer via Donut-generated shellcode",
+    "Kimsuky (Jan-Feb 2025, ongoing into 2026) targeted North Korea policy think tanks with fake secure-drive 'registration' prompts leading to QuasarRAT via ClickFix",
+    "APT28/UNK_RemoteRogue used a fake Google Spreadsheet + reCAPTCHA ClickFix lure to set up SSH tunnels and deploy Metasploit",
+    "Halcyon Ransomware Operations Center logged 10+ pre-ransomware ClickFix intrusions across client environments in March-April 2026, signaling adoption by ransomware affiliates ahead of encryption"
+  ],
+  "detection_opportunities": [
+    "Monitor for Win+R (RunMRU registry key) entries followed immediately by execution of powershell.exe, mshta.exe, or msiexec.exe with long encoded/obfuscated arguments",
+    "Alert on clipboard-to-Run-dialog execution chains — explorer.exe spawning a script interpreter with base64 or compressed payload arguments",
+    "Detect signed Microsoft App-V (AppV) sequencer binaries being invoked with non-standard scripts as a script-execution proxy",
+    "Block or restrict mshta.exe execution where not required by business applications",
+    "User awareness training: legitimate CAPTCHAs (Google, Cloudflare, hCaptcha) never instruct users to open the Run dialog, Terminal, or PowerShell",
+    "Hunt for outbound connections to legitimate CDNs/blockchain-based services immediately following PowerShell execution (used for evasive C2/staging)",
+    "Apply web filtering/EDR rules for known ClickFix page indicators (fake 'I'm not a robot' verification overlays requesting keyboard shortcuts)"
+  ],
+  "sources": [
+    { "title": "ClickFix Attacks Expand Using Fake CAPTCHAs, Microsoft Scripts, and Trusted Web Services", "url": "https://thehackernews.com/2026/01/clickfix-attacks-expand-using-fake.html" },
+    { "title": "700+ education and tech websites hijacked in huge ClickFix malware campaign", "url": "https://www.malwarebytes.com/blog/bugs/2026/05/700-education-and-tech-websites-hijacked-in-huge-clickfix-malware-campaign" },
+    { "title": "State-sponsored hackers embrace ClickFix social engineering tactic", "url": "https://www.bleepingcomputer.com/news/security/state-sponsored-hackers-embrace-clickfix-social-engineering-tactic/" },
+    { "title": "Caught in the CAPTCHA: How ClickFix is Weaponizing Verification Fatigue to Deliver RATs & Infostealers", "url": "https://www.sentinelone.com/blog/how-clickfix-is-weaponizing-verification-fatigue-to-deliver-rats-infostealers/" }
+  ],
+  "mention_count_30d": 47,
+  "mention_history": [
+    { "month": "2026-01", "count": 30 },
+    { "month": "2026-02", "count": 34 },
+    { "month": "2026-03", "count": 39 },
+    { "month": "2026-04", "count": 43 },
+    { "month": "2026-05", "count": 46 },
+    { "month": "2026-06", "count": 47 }
+  ]
+}

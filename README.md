@@ -15,6 +15,7 @@ Built by [Jake Ouellette](https://jogit91.github.io) — Detection Engineer & Th
 - **LLM extraction** — Claude API extracts actor mentions, TTPs, IOCs, and sectors from new articles automatically
 - **Attribution tool** — paste observables (technique IDs, sectors, malware names, IOC hints) and get ranked candidate actors with confidence scores
 - **Activity trending** — 6-month mention history per actor with visual charts
+- **Tactics & Tools on the Rise** — tracks trending TTPs, malware, and exploits (e.g. ClickFix, EDR Silencers, Shai-Hulud, Lumma Stealer) independent of actor attribution, cross-linked to related actor profiles
 
 ## Architecture
 
@@ -38,10 +39,40 @@ No server. No database. No hosting costs. Pure static files + GitHub Actions.
 |---|---|---|
 | Qilin | Ransomware / RaaS | 98 |
 | The Gentlemen | Ransomware / RaaS | 91 |
+| EvilTokens | Initial Access / PhaaS | 90 |
+| APT28 | APT / Nation-State | 88 |
 | ShinyHunters | Data Extortion | 85 |
+| Lazarus Group | APT / Nation-State | 84 |
+| Miasma | Supply Chain | 84 |
+| Silver Fox | APT / China-Nexus | 81 |
+| Turla | APT / Nation-State | 81 |
+| Gamaredon | APT / Nation-State | 80 |
 | TeamPCP | Supply Chain | 79 |
+| APT38 | APT / Nation-State | 78 |
+| Mustang Panda | APT / Nation-State | 78 |
 | Salt Typhoon | APT / Nation-State | 76 |
+| Kimsuky | APT / Nation-State | 74 |
 | UNC6692 | Initial Access / Social Eng. | 72 |
+| APT37 | APT / Nation-State | 71 |
+| MuddyWater | APT / Nation-State | 70 |
+| Black Basta | Ransomware / RaaS | 48 |
+
+## Tactics & Tools on the Rise
+
+In addition to actor profiles, SENTINEL tracks trending TTPs, malware, and exploits — the techniques and tools seeing a spike in threat-intel reporting, regardless of which actor (if any) is currently using them.
+
+| Trend | Category | Status |
+|---|---|---|
+| ClickFix (Fake CAPTCHA / Verification Social Engineering) | Execution | Rising |
+| Shai-Hulud npm Supply-Chain Worm | Supply Chain | Rising |
+| EDR Silencers / EDR Killer Tools | Defense Evasion | Rising |
+| MS Teams Helpdesk Impersonation / Vishing | Initial Access | Rising |
+| Lumma Stealer (LummaC2) | Credential Access | Rising |
+| Rogue RMM Tool Abuse | Command and Control | Rising |
+| BlueHammer (CVE-2026-33825) | Privilege Escalation | Rising |
+| RedSun (CVE-2026-41091) | Privilege Escalation | Rising |
+
+`data/trends.json` is the index (id, name, category, trend, mention_count_30d, sorted by mentions descending). Each entry has a full profile in `data/trends/<id>.json` with description, MITRE ATT&CK techniques, related actors/tools, notable examples, detection opportunities, sources, and 6-month mention history.
 
 ## Setup
 
@@ -65,6 +96,10 @@ In `docs/index.html` and `docs/actors.html`, replace `jogit91/sentinel` with you
 ## Adding New Actors
 
 Create a new JSON file in `data/actors/` following the schema in any existing profile. Add the actor ID to the `top_actors` array in `data/activity.json`.
+
+## Adding New Trend Entries
+
+Create a new JSON file in `data/trends/` following the schema in any existing profile (`category` is one of: `initial_access`, `execution`, `persistence`, `defense_evasion`, `credential_access`, `command_and_control`, `supply_chain`, `privilege_escalation`). Add an entry (id, name, category, trend, mention_count_30d) to `data/trends.json`.
 
 ## Local Development
 
