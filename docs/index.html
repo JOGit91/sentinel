@@ -243,75 +243,101 @@
     .card-body { padding: 1.25rem; }
 
     /* ACTOR CARDS */
-    .actor-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .actor-card {
+    /* ACTOR LIST */
+    .actor-list {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 1.125rem;
-      cursor: pointer;
-      transition: border-color 0.15s, background 0.15s;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+
+    .actor-row {
+      display: grid;
+      grid-template-columns: minmax(140px,1.3fr) auto 1fr 110px;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.625rem 1.25rem;
+      border-bottom: 1px solid var(--border);
       text-decoration: none;
       color: inherit;
-      display: block;
+      transition: background 0.15s;
     }
 
-    .actor-card:hover {
-      border-color: var(--green-mid);
-      background: var(--surface2);
-    }
+    .actor-row:last-child { border-bottom: none; }
+    .actor-row:hover { background: var(--surface2); }
 
-    .actor-card-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      margin-bottom: 0.75rem;
-    }
+    .actor-row-name-wrap { min-width: 0; }
 
-    .actor-name {
-      font-size: 17px;
+    .actor-row-name {
+      font-size: 14px;
       font-weight: 600;
       color: var(--text);
-      margin-bottom: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .actor-aliases {
-      font-size: 13px;
+    .actor-row-aliases {
+      font-size: 11px;
       color: var(--text3);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .actor-score-wrap {
-      text-align: right;
+    .actor-row-tags {
+      display: flex;
+      gap: 4px;
+      flex-wrap: nowrap;
     }
 
-    .actor-score {
-      font-family: var(--font-mono);
-      font-size: 23px;
-      font-weight: 600;
-      line-height: 1;
-    }
-
-    .actor-score-label {
+    .actor-row-sectors {
       font-size: 12px;
       color: var(--text3);
-      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .actor-row-score-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .actor-row-bar-wrap {
+      width: 48px;
+      height: 3px;
+      background: var(--border);
+      border-radius: 99px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .actor-row-bar {
+      height: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--green), var(--blue));
+    }
+
+    .actor-row-score {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 600;
+      width: 26px;
+      text-align: right;
+      flex-shrink: 0;
     }
 
     .score-high { color: var(--red); }
     .score-med { color: var(--amber); }
     .score-low { color: var(--green); }
 
-    .actor-type-row {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-bottom: 0.75rem;
+    @media (max-width: 760px) {
+      .actor-row { grid-template-columns: 1fr auto; }
+      .actor-row-tags, .actor-row-sectors { display: none; }
     }
 
     .tag {
@@ -337,28 +363,6 @@
     .tag-command_and_control { background: rgba(78,205,196,0.15); color: var(--blue); border: 1px solid rgba(78,205,196,0.3); }
     .tag-persistence { background: rgba(0,212,161,0.15); color: var(--green); border: 1px solid rgba(0,212,161,0.3); }
     .tag-privilege_escalation { background: rgba(255,99,72,0.15); color: #ff6348; border: 1px solid rgba(255,99,72,0.3); }
-
-    .actor-sectors {
-      font-size: 14px;
-      color: var(--text2);
-      margin-bottom: 0.5rem;
-    }
-
-    .actor-sectors span { color: var(--text3); }
-
-    .actor-bar-wrap {
-      background: var(--border);
-      border-radius: 99px;
-      height: 3px;
-      margin-top: 0.75rem;
-    }
-
-    .actor-bar {
-      height: 3px;
-      border-radius: 99px;
-      background: linear-gradient(90deg, var(--green), var(--blue));
-      transition: width 0.6s ease;
-    }
 
     /* TREND CARDS */
     .trend-grid {
@@ -721,12 +725,12 @@
     </div>
   </div>
 
-  <!-- ACTOR GRID -->
+  <!-- ACTOR LIST -->
   <div class="section-header">
     <div class="section-title">Tracked Threat Actors</div>
     <a href="actors.html" class="view-all">All actors →</a>
   </div>
-  <div class="actor-grid" id="actor-grid">
+  <div class="actor-list" id="actor-grid">
     <div class="loading">Loading actor profiles...</div>
   </div>
 
@@ -741,11 +745,6 @@
         <div class="chart-wrap">
           <canvas id="activityChart"></canvas>
         </div>
-        <div style="border-top:1px solid var(--border);margin:0.75rem -1.25rem;"></div>
-        <div style="font-family:var(--font-mono);font-size:12px;color:var(--text2);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.75rem;">Actor Score &amp; Sector Exposure</div>
-        <div class="chart-wrap" style="height:220px;">
-          <canvas id="sectorChart"></canvas>
-        </div>
       </div>
     </div>
 
@@ -756,6 +755,19 @@
       </div>
       <div class="card-body" id="mention-feed">
         <div class="loading">Loading feed...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTOR SCORE & SECTOR EXPOSURE -->
+  <div class="card" style="margin-bottom:1.5rem;">
+    <div class="card-header">
+      <div class="card-title">Actor Score &amp; Sector Exposure</div>
+      <div class="card-badge" id="sector-badge">Activity score</div>
+    </div>
+    <div class="card-body">
+      <div class="chart-wrap" id="sector-chart-wrap">
+        <canvas id="sectorChart"></canvas>
       </div>
     </div>
   </div>
@@ -934,22 +946,16 @@ function renderActorGrid() {
   const sorted = [...actorsData].sort((a,b) => b.activity_score - a.activity_score);
 
   grid.innerHTML = sorted.map(actor => `
-    <a class="actor-card" href="actors.html#${actor.id}">
-      <div class="actor-card-top">
-        <div>
-          <div class="actor-name">${actor.name}</div>
-          <div class="actor-aliases">${actor.aliases?.length ? actor.aliases.slice(0,2).join(', ') : actor.origin}</div>
-        </div>
-        <div class="actor-score-wrap">
-          <div class="actor-score ${getScoreClass(actor.activity_score)}">${actor.activity_score}</div>
-          <div class="actor-score-label">activity</div>
-        </div>
+    <a class="actor-row" href="actors.html#${actor.id}">
+      <div class="actor-row-name-wrap">
+        <div class="actor-row-name">${actor.name}</div>
+        <div class="actor-row-aliases">${actor.aliases?.length ? actor.aliases.slice(0,2).join(', ') : actor.origin}</div>
       </div>
-      <div class="actor-type-row">${getTypeTag(actor.type, actor.model)}</div>
-      <div class="actor-sectors"><span>Targets: </span>${actor.targeted_sectors.slice(0,3).join(', ')}${actor.targeted_sectors.length > 3 ? ' +' + (actor.targeted_sectors.length-3) : ''}</div>
-      <div class="actor-sectors"><span>Motivation: </span>${actor.motivation.join(', ')}</div>
-      <div class="actor-bar-wrap">
-        <div class="actor-bar" style="width:${actor.activity_score}%"></div>
+      <div class="actor-row-tags">${getTypeTag(actor.type, actor.model)}</div>
+      <div class="actor-row-sectors">${actor.targeted_sectors.slice(0,3).join(', ')}${actor.targeted_sectors.length > 3 ? ' +' + (actor.targeted_sectors.length-3) : ''}</div>
+      <div class="actor-row-score-wrap">
+        <div class="actor-row-bar-wrap"><div class="actor-row-bar" style="width:${actor.activity_score}%"></div></div>
+        <div class="actor-row-score ${getScoreClass(actor.activity_score)}">${actor.activity_score}</div>
       </div>
     </a>
   `).join('');
@@ -959,16 +965,16 @@ function renderChart() {
   const actors = activityData.top_actors || [];
   if (!actors.length) return;
 
-  // Get top 5 by activity score
-  const top5 = [...actors].sort((a,b) => b.activity_score - a.activity_score).slice(0,5);
+  // Get top 6 by activity score
+  const top6 = [...actors].sort((a,b) => b.activity_score - a.activity_score).slice(0,6);
 
   // Build 6-month labels from actor profiles
   const months = ['2026-01','2026-02','2026-03','2026-04','2026-05','2026-06'];
   const labels = ['Jan','Feb','Mar','Apr','May','Jun'];
 
-  const colors = ['#00d4a1','#ff4757','#ffa502','#a78bfa','#4ecdc4'];
+  const colors = ['#00d4a1','#ff4757','#ffa502','#a78bfa','#4ecdc4','#ff6b6b'];
 
-  const datasets = top5.map((actor, i) => {
+  const datasets = top6.map((actor, i) => {
     const profile = actorsData.find(a => a.id === actor.id);
     const history = profile?.mention_history || months.map((m,idx) => ({month:m, count: Math.round(actor.mention_count_30d * (0.5 + idx*0.1))}));
     return {
@@ -1027,6 +1033,10 @@ function renderSectorChart() {
   const sorted = [...actorsData].sort((a,b) => b.activity_score - a.activity_score);
   const actorNames = sorted.map(a => a.name);
   const actorScores = sorted.map(a => a.activity_score);
+
+  // Size the chart so every actor gets a readable row, regardless of count
+  document.getElementById('sector-chart-wrap').style.height = (sorted.length * 28 + 40) + 'px';
+  document.getElementById('sector-badge').textContent = sorted.length + ' actors';
 
   // Tally sector exposure across all actors — top 5 sectors get their own color
   const sectorCounts = {};
