@@ -377,6 +377,16 @@
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 1.125rem;
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .trend-card:hover {
+      border-color: var(--green-mid);
+      background: var(--surface2);
     }
 
     .trend-card-top {
@@ -690,6 +700,7 @@
   <ul class="nav-links">
     <li><a href="index.html" class="active">Dashboard</a></li>
     <li><a href="actors.html">Actors</a></li>
+    <li><a href="trends.html">Tactics</a></li>
     <li><a href="attributor.html">Attributor</a></li>
     <li><a href="feed.html">Intel Feed</a></li>
   </ul>
@@ -784,7 +795,7 @@
   <!-- TACTICS ON THE RISE -->
   <div class="section-header">
     <div class="section-title">Tactics &amp; Tools on the Rise</div>
-    <div class="card-badge" id="trends-badge">Trending TTPs</div>
+    <a href="trends.html" class="view-all">All tactics →</a>
   </div>
   <div class="trend-grid" id="trend-grid">
     <div class="loading">Loading trend data...</div>
@@ -1187,14 +1198,14 @@ function renderTrendsGrid() {
   grid.innerHTML = sorted.map(trend => {
     const relatedActors = (trend.related_actors || []).map(id => {
       const actor = actorsData.find(a => a.id === id);
-      return actor ? `<a href="actors.html#${id}">${actor.name}</a>` : null;
+      return actor ? actor.name : null;
     }).filter(Boolean);
 
     const mitre = (trend.mitre_techniques || []).map(t => t.technique_id).join(', ');
     const desc = trend.description.length > 220 ? trend.description.slice(0,220).trim() + '…' : trend.description;
 
     return `
-    <div class="trend-card">
+    <a class="trend-card" href="trends.html#${trend.id}">
       <div class="trend-card-top">
         <div class="trend-name">${trend.name}</div>
         ${getTrendBadge(trend.trend)}
@@ -1206,7 +1217,7 @@ function renderTrendsGrid() {
       <div class="trend-desc">${desc}</div>
       ${mitre ? `<div class="trend-mitre">MITRE: ${mitre}</div>` : ''}
       ${relatedActors.length ? `<div class="trend-meta"><span>Linked actors: </span>${relatedActors.join(', ')}</div>` : ''}
-    </div>`;
+    </a>`;
   }).join('');
 }
 

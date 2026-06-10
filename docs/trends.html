@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tactics &amp; Tools on the Rise — SENTINEL</title>
+  <style>
+    :root {
+      --bg:#0a0c10;--surface:#111318;--surface2:#181c24;--border:#1e2430;--border2:#252d3d;
+      --text:#e2e8f0;--text2:#8892a4;--text3:#4a5568;
+      --green:#00d4a1;--green-dim:#00d4a120;--green-mid:#00d4a150;
+      --red:#ff4757;--amber:#ffa502;--blue:#4ecdc4;--purple:#a78bfa;
+      --font-mono:'IBM Plex Mono','Courier New',monospace;
+      --font-sans:'Inter',system-ui,sans-serif;
+    }
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap');
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:16px;line-height:1.6;}
+    body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,212,161,0.015) 2px,rgba(0,212,161,0.015) 4px);pointer-events:none;z-index:1000;}
+    nav{display:flex;align-items:center;gap:1rem;padding:0.875rem 2rem;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:100;}
+    .nav-logo{font-family:var(--font-mono);font-size:17px;font-weight:600;color:var(--green);letter-spacing:0.15em;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
+    .nav-logo::before{content:'◈';font-size:16px;animation:pulse 3s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+    .nav-links{display:flex;gap:1.5rem;margin-left:2rem;list-style:none;}
+    .nav-links a{color:var(--text2);text-decoration:none;font-size:17px;transition:color 0.15s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--green);}
+    main{padding:2rem;max-width:1400px;margin:0 auto;}
+    .page-header{margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
+    .page-eyebrow{font-family:var(--font-mono);font-size:16px;color:var(--green);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.5rem;}
+    .page-title{font-size:28px;font-weight:600;margin-bottom:0.25rem;}
+    .page-sub{font-size:17px;color:var(--text2);}
+
+    .trend-detail{background:var(--surface);border:1px solid var(--border);border-radius:8px;margin-bottom:1.5rem;overflow:hidden;}
+    .trend-detail-header{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;cursor:pointer;user-select:none;}
+    .trend-detail-header:hover{background:var(--surface2);}
+    .trend-detail-name{font-size:21px;font-weight:600;margin-bottom:6px;}
+    .trend-detail-meta{font-family:var(--font-mono);font-size:15px;color:var(--text3);margin-bottom:8px;}
+    .trend-header-right{display:flex;gap:0.75rem;align-items:center;flex-shrink:0;}
+    .trend-big-count{font-family:var(--font-mono);font-size:28px;font-weight:600;text-align:center;}
+    .trend-big-count.trend-rising{color:var(--red);}
+    .trend-big-count.trend-emerging{color:var(--amber);}
+    .trend-big-count.trend-declining{color:var(--green);}
+    .trend-big-count.trend-stable{color:var(--text2);}
+
+    .tag{font-family:var(--font-mono);font-size:16px;padding:2px 8px;border-radius:3px;letter-spacing:0.05em;}
+    .tag-execution{background:rgba(255,165,2,0.15);color:var(--amber);border:1px solid rgba(255,165,2,0.3);}
+    .tag-defense_evasion{background:rgba(255,71,87,0.15);color:var(--red);border:1px solid rgba(255,71,87,0.3);}
+    .tag-credential_access{background:rgba(167,139,250,0.15);color:var(--purple);border:1px solid rgba(167,139,250,0.3);}
+    .tag-command_and_control{background:rgba(78,205,196,0.15);color:var(--blue);border:1px solid rgba(78,205,196,0.3);}
+    .tag-persistence{background:rgba(0,212,161,0.15);color:var(--green);border:1px solid rgba(0,212,161,0.3);}
+    .tag-privilege_escalation{background:rgba(255,99,72,0.15);color:#ff6348;border:1px solid rgba(255,99,72,0.3);}
+    .tag-supply_chain{background:rgba(78,205,196,0.15);color:var(--blue);border:1px solid rgba(78,205,196,0.3);}
+    .tag-initial_access{background:rgba(0,212,161,0.15);color:var(--green);border:1px solid rgba(0,212,161,0.3);}
+
+    .trend-badge{font-family:var(--font-mono);font-size:15px;padding:2px 9px;border-radius:99px;letter-spacing:0.05em;text-transform:uppercase;}
+    .trend-rising{background:rgba(255,71,87,0.12);color:var(--red);border:1px solid rgba(255,71,87,0.25);}
+    .trend-stable{background:rgba(136,146,164,0.12);color:var(--text2);border:1px solid var(--border2);}
+    .trend-declining{background:rgba(0,212,161,0.12);color:var(--green);border:1px solid rgba(0,212,161,0.25);}
+    .trend-emerging{background:rgba(255,165,2,0.12);color:var(--amber);border:1px solid rgba(255,165,2,0.25);}
+
+    .trend-detail-body{display:none;padding:1.5rem;}
+    .trend-detail-body.open{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+    @media(max-width:800px){.trend-detail-body.open{grid-template-columns:1fr;}}
+    .detail-section{margin-bottom:1.25rem;}
+    .detail-label{font-family:var(--font-mono);font-size:16px;color:var(--text3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;padding-bottom:0.375rem;border-bottom:1px solid var(--border);}
+    .detail-text{font-size:17px;color:var(--text2);line-height:1.7;}
+    .ttp-item{display:flex;gap:10px;margin-bottom:0.5rem;align-items:flex-start;}
+    .ttp-id{font-family:var(--font-mono);font-size:17px;color:var(--green);min-width:80px;padding-top:1px;}
+    .ttp-name{font-size:16px;font-weight:500;color:var(--text);}
+    .ttp-notes{font-size:17px;color:var(--text3);}
+    .pill-list{display:flex;flex-wrap:wrap;gap:6px;}
+    .pill{font-size:16px;padding:3px 10px;border-radius:99px;background:var(--surface2);border:1px solid var(--border2);color:var(--text2);}
+    .pill-link{color:var(--green);text-decoration:none;}
+    .pill-link:hover{text-decoration:underline;}
+    .detect-item{font-size:16px;color:var(--text2);padding:0.375rem 0;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:flex-start;}
+    .detect-item:last-child{border-bottom:none;}
+    .detect-item::before{content:'⚡';font-size:16px;color:var(--green);padding-top:2px;flex-shrink:0;}
+    .example-item{font-size:16px;color:var(--text2);padding:0.375rem 0;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:flex-start;}
+    .example-item:last-child{border-bottom:none;}
+    .example-item::before{content:'▸';font-size:16px;color:var(--amber);padding-top:2px;flex-shrink:0;}
+    .source-link{font-size:16px;color:var(--green);text-decoration:none;}
+    .source-link:hover{text-decoration:underline;}
+    .chevron{font-size:16px;color:var(--text3);transition:transform 0.2s;}
+    .chevron.open{transform:rotate(90deg);}
+
+    .mention-spark{display:flex;align-items:flex-end;gap:6px;height:60px;margin-bottom:6px;}
+    .mention-spark-bar{flex:1;background:var(--green-dim);border:1px solid var(--green-mid);border-radius:2px 2px 0 0;min-height:2px;position:relative;}
+    .mention-spark-bar span{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-family:var(--font-mono);font-size:11px;color:var(--text3);white-space:nowrap;}
+    .mention-spark-labels{display:flex;gap:6px;}
+    .mention-spark-labels span{flex:1;text-align:center;font-family:var(--font-mono);font-size:11px;color:var(--text3);}
+
+    footer{margin-top:3rem;padding:1.5rem 2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:17px;color:var(--text3);}
+    footer a{color:var(--green);text-decoration:none;}
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">SENTINEL</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Dashboard</a></li>
+    <li><a href="actors.html">Actors</a></li>
+    <li><a href="trends.html" class="active">Tactics</a></li>
+    <li><a href="attributor.html">Attributor</a></li>
+    <li><a href="feed.html">Intel Feed</a></li>
+  </ul>
+</nav>
+<main>
+  <div class="page-header">
+    <div class="page-eyebrow">Threat Intelligence</div>
+    <div class="page-title">Tactics &amp; Tools on the Rise</div>
+    <div class="page-sub">Click any entry to expand full profile — MITRE techniques, detection opportunities, sources</div>
+  </div>
+  <div id="trends-container"><p style="color:var(--text3);font-size:17px;">Loading trend profiles...</p></div>
+</main>
+<footer>
+  <div>SENTINEL · <a href="https://jogit91.github.io">Jake Ouellette</a></div>
+  <div><a href="index.html">← Dashboard</a></div>
+</footer>
+<script>
+const TREND_BADGE_LABELS = { rising: '▲ RISING', stable: '● STABLE', declining: '▼ DECLINING', emerging: '◆ EMERGING' };
+
+function getCategoryTag(category) {
+  return `<span class="tag tag-${category}">${category.replace(/_/g,' ')}</span>`;
+}
+
+function getTrendBadge(trend) {
+  return `<span class="trend-badge trend-${trend}">${TREND_BADGE_LABELS[trend] || trend.toUpperCase()}</span>`;
+}
+
+function renderTrend(t, actorNames) {
+  const relatedActors = (t.related_actors || []).map(id => {
+    const name = actorNames[id];
+    return name ? `<a class="pill pill-link" href="actors.html#${id}">${name}</a>` : `<span class="pill">${id}</span>`;
+  }).join('');
+
+  const maxCount = Math.max(1, ...(t.mention_history || []).map(h => h.count));
+  const sparkBars = (t.mention_history || []).map(h => `
+    <div class="mention-spark-bar" style="height:${Math.max(4, Math.round((h.count / maxCount) * 100))}%"><span>${h.count}</span></div>
+  `).join('');
+  const sparkLabels = (t.mention_history || []).map(h => `<span>${h.month.slice(5)}</span>`).join('');
+
+  return `
+  <div class="trend-detail" id="${t.id}">
+    <div class="trend-detail-header" onclick="toggleTrend('${t.id}')">
+      <div>
+        <div class="trend-detail-name">${t.name}</div>
+        <div class="trend-detail-meta">First observed ${t.first_observed} · Last seen ${t.last_seen}</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">${getCategoryTag(t.category)}${getTrendBadge(t.trend)}</div>
+      </div>
+      <div class="trend-header-right">
+        <div>
+          <div class="trend-big-count trend-${t.trend}">${t.mention_count_30d}</div>
+          <div style="font-family:var(--font-mono);font-size:16px;color:var(--text3);text-align:center;">mentions/30d</div>
+        </div>
+        <span class="chevron" id="chev-${t.id}">▶</span>
+      </div>
+    </div>
+    <div class="trend-detail-body" id="body-${t.id}">
+      <div>
+        <div class="detail-section">
+          <div class="detail-label">Overview</div>
+          <div class="detail-text">${t.description}</div>
+        </div>
+        <div class="detail-section">
+          <div class="detail-label">MITRE ATT&amp;CK Techniques</div>
+          ${(t.mitre_techniques||[]).map(m=>`
+            <div class="ttp-item">
+              <div class="ttp-id">${m.technique_id}</div>
+              <div>
+                <div class="ttp-name">${m.technique_name}</div>
+                <div class="ttp-notes">${m.notes}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="detail-section">
+          <div class="detail-label">Notable Examples</div>
+          ${(t.notable_examples||[]).map(e=>`<div class="example-item">${e}</div>`).join('')}
+        </div>
+      </div>
+      <div>
+        <div class="detail-section">
+          <div class="detail-label">Related Threat Actors</div>
+          <div class="pill-list">${relatedActors || '<span style="color:var(--text3);font-size:16px;">No specific actor attribution</span>'}</div>
+        </div>
+        <div class="detail-section">
+          <div class="detail-label">Related Tools / Malware</div>
+          <div class="pill-list">${(t.related_tools||[]).map(m=>`<span class="pill">${m}</span>`).join('')||'<span style="color:var(--text3);font-size:16px;">None identified</span>'}</div>
+        </div>
+        <div class="detail-section">
+          <div class="detail-label">Detection Opportunities</div>
+          ${(t.detection_opportunities||[]).map(d=>`<div class="detect-item">${d}</div>`).join('')}
+        </div>
+        <div class="detail-section">
+          <div class="detail-label">Mention Trend (6mo)</div>
+          <div class="mention-spark">${sparkBars}</div>
+          <div class="mention-spark-labels">${sparkLabels}</div>
+        </div>
+        <div class="detail-section">
+          <div class="detail-label">Sources</div>
+          ${(t.sources||[]).map(s=>`<div style="margin-bottom:4px;"><a class="source-link" href="${s.url}" target="_blank">↗ ${s.title}</a></div>`).join('')}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function toggleTrend(id) {
+  const body = document.getElementById('body-'+id);
+  const chev = document.getElementById('chev-'+id);
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  chev.classList.toggle('open', !isOpen);
+}
+
+async function fetchJson(path) {
+  const res = await fetch(`https://raw.githubusercontent.com/JOGit91/sentinel/main/${path}`);
+  return res.ok ? res.json() : fetch(`../${path}`).then(r=>r.json());
+}
+
+async function loadTrends() {
+  const container = document.getElementById('trends-container');
+
+  let trendIndex;
+  try {
+    trendIndex = await fetchJson('data/trends.json');
+  } catch(e) {
+    trendIndex = await fetch('../data/trends.json').then(r=>r.json());
+  }
+  const trendIds = (trendIndex.trending_ttps || []).map(t => t.id);
+
+  const profiles = await Promise.allSettled(trendIds.map(id => fetchJson(`data/trends/${id}.json`)));
+  const trends = profiles.filter(r=>r.status==='fulfilled').map(r=>r.value)
+    .sort((a,b)=>(b.mention_count_30d||0)-(a.mention_count_30d||0));
+
+  if (!trends.length) { container.innerHTML = '<p style="color:var(--text3)">Could not load trend data.</p>'; return; }
+
+  // Resolve related-actor names for cross-linking
+  const actorIds = [...new Set(trends.flatMap(t => t.related_actors || []))];
+  const actorProfiles = await Promise.allSettled(actorIds.map(id => fetchJson(`data/actors/${id}.json`)));
+  const actorNames = {};
+  actorProfiles.forEach(r => { if (r.status === 'fulfilled') actorNames[r.value.id] = r.value.name; });
+
+  container.innerHTML = trends.map(t => renderTrend(t, actorNames)).join('');
+
+  // Auto-expand if hash matches
+  const hash = window.location.hash?.slice(1);
+  if (hash && trendIds.includes(hash)) toggleTrend(hash);
+}
+
+loadTrends();
+</script>
+</body>
+</html>
