@@ -651,6 +651,11 @@
         <div class="chart-wrap">
           <canvas id="activityChart"></canvas>
         </div>
+        <div style="border-top:1px solid var(--border);margin:0.75rem -1.25rem;"></div>
+        <div style="font-family:var(--font-mono);font-size:12px;color:var(--text2);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.75rem;">Actor Score &amp; Sector Exposure</div>
+        <div class="chart-wrap" style="height:220px;">
+          <canvas id="sectorChart"></canvas>
+        </div>
       </div>
     </div>
 
@@ -760,6 +765,7 @@ function renderAll() {
   renderStats();
   renderActorGrid();
   renderChart();
+  renderSectorChart();
   renderMentionFeed();
   document.getElementById('last-updated').textContent =
     'Updated ' + new Date(activityData.last_updated).toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'});
@@ -882,6 +888,106 @@ function renderChart() {
         y: {
           ticks: { color: '#4a5568', font: { family: 'IBM Plex Mono', size: 10 } },
           grid: { color: '#1e2430' }
+        }
+      }
+    }
+  });
+}
+
+function renderSectorChart() {
+  if (!actorsData.length) return;
+
+  // Sort actors by activity score descending
+  const sorted = [...actorsData].sort((a,b) => b.activity_score - a.activity_score);
+  const actorNames = sorted.map(a => a.name);
+  const actorScores = sorted.map(a => a.activity_score);
+
+  // Tally sector exposure across all actors — top 5 sectors get their own color
+  const sectorCounts = {};
+  sorted.forEach(actor => {
+    actor.targeted_sectors.forEach(s => {
+      sectorCounts[s] = (sectorCounts[s] || 0) + 1;
+    });
+  });
+  const topSectors = Object.entries(sectorCounts)
+    .sort((a,b) => b[1]-a[1])
+    .slice(0,5)
+    .map(e => e[0]);
+
+  const sectorColors = {
+    [topSectors[0]]: '#00d4a1',
+    [topSectors[1]]: '#ff4757',
+    [topSectors[2]]: '#ffa502',
+    [topSectors[3]]: '#a78bfa',
+    [topSectors[4]]: '#4ecdc4',
+    'Other': '#2a3444'
+  };
+
+  // Build stacked datasets — one per sector
+  // Each bar segment = 1 point if that actor targets that sector, else 0
+  // We scale so segments sum to the actor's activity score
+  const sectorDatasets = [...topSectors, 'Other'].map(sector => ({
+    label: sector,
+    data: sorted.map(actor => {
+      const sectors = actor.targeted_sectors;
+      const hasTopSector = topSectors.some(s => sectors.includes(s));
+      if (sector === 'Other') {
+        return hasTopSector ? 0 : Math.round(actor.activity_score / 3);
+      }
+      if (!sectors.includes(sector)) return 0;
+      // Weight: distribute score across matched top sectors
+      const matchCount = topSectors.filter(s => sectors.includes(s)).length || 1;
+      return Math.round(actor.activity_score / matchCount);
+    }),
+    backgroundColor: sectorColors[sector] + 'cc',
+    borderColor: sectorColors[sector],
+    borderWidth: 1,
+    borderRadius: 3,
+  }));
+
+  const ctx = document.getElementById('sectorChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: { labels: actorNames, datasets: sectorDatasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      indexAxis: 'y',
+      scales: {
+        x: {
+          stacked: true,
+          max: 120,
+          ticks: { color: '#4a5568', font: { family: 'IBM Plex Mono', size: 11 } },
+          grid: { color: '#1e2430' },
+          title: { display: true, text: 'Activity Score', color: '#4a5568', font: { family: 'IBM Plex Mono', size: 11 } }
+        },
+        y: {
+          stacked: true,
+          ticks: { color: '#8892a4', font: { family: 'IBM Plex Mono', size: 12 } },
+          grid: { color: '#1e2430' }
+        }
+      },
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { color: '#8892a4', font: { family: 'IBM Plex Mono', size: 11 }, boxWidth: 10, padding: 12 }
+        },
+        tooltip: {
+          backgroundColor: '#111318',
+          borderColor: '#252d3d',
+          borderWidth: 1,
+          titleColor: '#e2e8f0',
+          bodyColor: '#8892a4',
+          titleFont: { family: 'IBM Plex Mono', size: 12 },
+          bodyFont: { family: 'IBM Plex Mono', size: 11 },
+          callbacks: {
+            title: (items) => items[0].label,
+            label: (item) => item.dataset.data[item.dataIndex] > 0 ? ` ${item.dataset.label}` : null,
+            footer: (items) => {
+              const actor = actorsData.find(a => a.name === items[0].label);
+              return actor ? `Activity Score: ${actor.activity_score}` : '';
+            }
+          }
         }
       }
     }

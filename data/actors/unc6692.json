@@ -12,7 +12,7 @@
   "description": "UNC6692 conducts large-scale Microsoft Teams-based social engineering campaigns, posing as IT helpdesk personnel to manipulate employees into installing malware. Exploits the Teams External Access feature — enabled by default in many M365 tenants — to contact targets directly. Phishing alerts from collaboration tools now represent 42% of all alerts, up from 30%, as users have far lower suspicion of Teams messages vs. email.",
   "activity_score": 72,
   "monthly_victims": null,
-  "targeted_sectors": ["SMB","Government","Healthcare","Any M365 tenant"],
+  "targeted_sectors": ["SMB","Government","Healthcare","MSP","Any M365 tenant"],
   "targeted_regions": ["North America","Europe"],
   "ttps": [
     { "technique_id": "T1566.004", "technique_name": "Phishing: Spearphishing via Service", "notes": "Microsoft Teams external access used to contact targets posing as IT helpdesk" },

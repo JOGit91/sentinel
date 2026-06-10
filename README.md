@@ -2,7 +2,7 @@
 
 > Personal threat intelligence platform tracking active threat actors, TTPs, and IOCs. RSS-ingested, LLM-enriched, updated every 4 hours via GitHub Actions.
 
-**Live dashboard:** [jogit91.github.io/sentinel](https://jogit91.github.io/sentinel)
+**Live dashboard:** [JOGit91.github.io/sentinel](https://JOGit91.github.io/sentinel)
 
 Built by [Jake Ouellette](https://jogit91.github.io) — Detection Engineer & Threat Intelligence Analyst
 

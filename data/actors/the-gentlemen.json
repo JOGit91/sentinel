@@ -12,7 +12,7 @@
   "description": "The Gentlemen launched as a closed group in mid-2025 before opening as a full RaaS in September 2025, growing to 328 victims in the first five months of 2026 — roughly 10% of all global ransomware claims. Led by threat actor hastalamuerte/zeta88, a former Qilin affiliate. Offers affiliates a 90% revenue split, significantly above industry norms. In May 2026, their own backend infrastructure was breached, exposing internal operations.",
   "activity_score": 91,
   "monthly_victims": 66,
-  "targeted_sectors": ["Manufacturing","Construction","Shipping","Transportation","SMB"],
+  "targeted_sectors": ["Manufacturing","Construction","Shipping","Transportation","SMB","MSP"],
   "targeted_regions": ["North America","Europe"],
   "ttps": [
     { "technique_id": "T1190", "technique_name": "Exploit Public-Facing Application", "notes": "FortiGate and VPN appliance exploitation primary initial access" },

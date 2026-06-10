@@ -12,7 +12,7 @@
   "description": "ShinyHunters re-emerged in mid-2025 with a materially different playbook focused on vishing, Salesforce OAuth flow abuse, and data extortion without encryption. Tracked alongside Scattered Spider and LAPSUS$ as part of the broader SLSH (Scattered Lapsus$ Hunters) collective. Claimed over 1.5 billion Salesforce records stolen from 760 companies via the Salesforce Aura Campaign (Sept 2025–Mar 2026). Arrests in June 2024 temporarily disrupted but did not eliminate the group.",
   "activity_score": 85,
   "monthly_victims": null,
-  "targeted_sectors": ["Retail","Technology","Financial Services","SaaS","CRM platforms"],
+  "targeted_sectors": ["Retail","Technology","Financial Services","SaaS","CRM platforms","MSP"],
   "targeted_regions": ["North America","Europe","Global"],
   "ttps": [
     { "technique_id": "T1598.004", "technique_name": "Phishing for Information: Spearphishing Voice", "notes": "Vishing — call employees posing as IT helpdesk, capture SSO credentials and MFA codes" },

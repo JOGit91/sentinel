@@ -8,39 +8,39 @@
     :root{--bg:#0a0c10;--surface:#111318;--surface2:#181c24;--border:#1e2430;--border2:#252d3d;--text:#e2e8f0;--text2:#8892a4;--text3:#4a5568;--green:#00d4a1;--green-dim:#00d4a120;--green-mid:#00d4a150;--red:#ff4757;--amber:#ffa502;--blue:#4ecdc4;--purple:#a78bfa;--font-mono:'IBM Plex Mono','Courier New',monospace;--font-sans:'Inter',system-ui,sans-serif;}
     @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap');
     *{box-sizing:border-box;margin:0;padding:0;}
-    body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:14px;line-height:1.6;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:16px;line-height:1.6;}
     body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,212,161,0.015) 2px,rgba(0,212,161,0.015) 4px);pointer-events:none;z-index:1000;}
     nav{display:flex;align-items:center;gap:1rem;padding:0.875rem 2rem;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:100;}
-    .nav-logo{font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--green);letter-spacing:0.15em;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
+    .nav-logo{font-family:var(--font-mono);font-size:17px;font-weight:600;color:var(--green);letter-spacing:0.15em;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
     .nav-logo::before{content:'◈';font-size:16px;animation:pulse 3s ease-in-out infinite;}
     @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
     .nav-links{display:flex;gap:1.5rem;margin-left:2rem;list-style:none;}
-    .nav-links a{color:var(--text2);text-decoration:none;font-size:13px;transition:color 0.15s;}
+    .nav-links a{color:var(--text2);text-decoration:none;font-size:17px;transition:color 0.15s;}
     .nav-links a:hover,.nav-links a.active{color:var(--green);}
     main{padding:2rem;max-width:900px;margin:0 auto;}
     .page-header{margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
-    .page-eyebrow{font-family:var(--font-mono);font-size:10px;color:var(--green);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.5rem;}
-    .page-title{font-size:24px;font-weight:600;margin-bottom:0.25rem;}
-    .page-sub{font-size:13px;color:var(--text2);}
+    .page-eyebrow{font-family:var(--font-mono);font-size:16px;color:var(--green);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.5rem;}
+    .page-title{font-size:28px;font-weight:600;margin-bottom:0.25rem;}
+    .page-sub{font-size:17px;color:var(--text2);}
     .filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem;}
-    .filter-btn{font-family:var(--font-mono);font-size:11px;padding:4px 12px;border-radius:99px;border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;transition:all 0.15s;letter-spacing:0.05em;}
+    .filter-btn{font-family:var(--font-mono);font-size:17px;padding:4px 12px;border-radius:99px;border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;transition:all 0.15s;letter-spacing:0.05em;}
     .filter-btn:hover{border-color:var(--green-mid);color:var(--green);}
     .filter-btn.active{background:var(--green-dim);border-color:var(--green-mid);color:var(--green);}
     .mention-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;margin-bottom:0.75rem;transition:border-color 0.15s;}
     .mention-card:hover{border-color:var(--border2);}
     .mention-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:6px;}
-    .mention-actor-name{font-size:13px;font-weight:600;}
-    .mention-title{font-size:14px;color:var(--text);margin-bottom:4px;line-height:1.4;}
+    .mention-actor-name{font-size:17px;font-weight:600;}
+    .mention-title{font-size:16px;color:var(--text);margin-bottom:4px;line-height:1.4;}
     .mention-title a{color:inherit;text-decoration:none;}
     .mention-title a:hover{color:var(--green);}
     .mention-meta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
-    .meta-item{font-family:var(--font-mono);font-size:10px;color:var(--text3);}
-    .conf-badge{font-family:var(--font-mono);font-size:10px;padding:2px 7px;border-radius:99px;}
+    .meta-item{font-family:var(--font-mono);font-size:16px;color:var(--text3);}
+    .conf-badge{font-family:var(--font-mono);font-size:16px;padding:2px 7px;border-radius:99px;}
     .conf-high{background:rgba(0,212,161,0.15);color:var(--green);border:1px solid rgba(0,212,161,0.3);}
     .conf-med{background:rgba(255,165,2,0.15);color:var(--amber);border:1px solid rgba(255,165,2,0.3);}
-    .ttp-badge{font-family:var(--font-mono);font-size:10px;padding:1px 6px;border-radius:3px;background:rgba(0,212,161,0.1);color:var(--green);border:1px solid rgba(0,212,161,0.2);display:inline-block;margin:2px 2px 0 0;}
-    .empty-state{padding:3rem;text-align:center;color:var(--text3);font-size:13px;}
-    footer{margin-top:3rem;padding:1.5rem 2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;color:var(--text3);}
+    .ttp-badge{font-family:var(--font-mono);font-size:16px;padding:1px 6px;border-radius:3px;background:rgba(0,212,161,0.1);color:var(--green);border:1px solid rgba(0,212,161,0.2);display:inline-block;margin:2px 2px 0 0;}
+    .empty-state{padding:3rem;text-align:center;color:var(--text3);font-size:17px;}
+    footer{margin-top:3rem;padding:1.5rem 2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:17px;color:var(--text3);}
     footer a{color:var(--green);text-decoration:none;}
   </style>
 </head>
@@ -63,7 +63,7 @@
   <div class="filter-row" id="filter-row">
     <button class="filter-btn active" onclick="filterMentions('all',this)">All</button>
   </div>
-  <div id="feed-container"><p style="color:var(--text3);font-size:13px;">Loading feed...</p></div>
+  <div id="feed-container"><p style="color:var(--text3);font-size:17px;">Loading feed...</p></div>
 </main>
 <footer>
   <div>SENTINEL · <a href="https://jogit91.github.io">Jake Ouellette</a></div>
@@ -125,7 +125,7 @@ function renderFeed(){
         <span class="conf-badge conf-${m.confidence}">${m.confidence}</span>
       </div>
       <div class="mention-title"><a href="${m.url}" target="_blank">${m.title}</a></div>
-      ${m.summary?`<div style="font-size:12px;color:var(--text2);margin:6px 0;line-height:1.5;">${m.summary}</div>`:''}
+      ${m.summary?`<div style="font-size:16px;color:var(--text2);margin:6px 0;line-height:1.5;">${m.summary}</div>`:''}
       <div class="mention-meta">
         <span class="meta-item">${m.source}</span>
         <span class="meta-item">${m.date}</span>

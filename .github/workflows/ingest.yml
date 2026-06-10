@@ -1,0 +1,42 @@
+name: SENTINEL — Threat Intel Ingestor
+
+on:
+  schedule:
+    # Run every 4 hours
+    - cron: '0 */4 * * *'
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Needed to push updated data files
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install anthropic feedparser pyyaml requests
+
+      - name: Run ingestor
+        working-directory: ./ingestor
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python feeds.py
+
+      - name: Commit updated data
+        run: |
+          git config --local user.email "sentinel-bot@github.com"
+          git config --local user.name "SENTINEL Bot"
+          git add data/
+          git diff --staged --quiet || git commit -m "chore: auto-update threat intel data [$(date -u '+%Y-%m-%d %H:%M')] UTC"
+          git push
