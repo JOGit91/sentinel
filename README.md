@@ -50,6 +50,7 @@ No server. No database. No hosting costs. Pure static files + GitHub Actions.
 | APT38 | APT / Nation-State | 78 |
 | Mustang Panda | APT / Nation-State | 78 |
 | Salt Typhoon | APT / Nation-State | 76 |
+| Akira | Ransomware / RaaS | 75 |
 | Kimsuky | APT / Nation-State | 74 |
 | UNC6692 | Initial Access / Social Eng. | 72 |
 | APT37 | APT / Nation-State | 71 |

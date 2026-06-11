@@ -18,6 +18,7 @@
     { "id": "silver-fox", "name": "Silver Fox", "activity_score": 81, "monthly_victims": null, "type": "apt", "mention_count_30d": 39 },
     { "id": "turla", "name": "Turla", "activity_score": 81, "monthly_victims": null, "type": "apt", "mention_count_30d": 35 },
     { "id": "apt37", "name": "APT37", "activity_score": 71, "monthly_victims": null, "type": "apt", "mention_count_30d": 30 },
-    { "id": "black-basta", "name": "Black Basta", "activity_score": 48, "monthly_victims": 0, "type": "ransomware", "mention_count_30d": 12 }
+    { "id": "black-basta", "name": "Black Basta", "activity_score": 48, "monthly_victims": 0, "type": "ransomware", "mention_count_30d": 12 },
+    { "id": "akira", "name": "Akira", "activity_score": 75, "monthly_victims": 42, "type": "ransomware", "mention_count_30d": 28 }
   ]
 }
