@@ -41,6 +41,14 @@
     "Calculator-named or other utility-disguised binaries making outbound network connections or accessing browser credential stores",
     "Egress traffic to known commercial VPN provider ranges (e.g., NordVPN) from servers that should not require outbound VPN connectivity"
   ],
+  "response_playbook": [
+    "Inventory endpoints for first-time installation of Atera, ScreenConnect, PDQ Deploy, or Action1 with no prior RMM history.",
+    "Review mailbox sign-in activity for anomalous VPN-based access on accounts that recently sent phishing internally.",
+    "Hunt for processes running from C:\\\\ProgramData with non-standard names making outbound WinHTTP connections.",
+    "Check for utility-disguised binaries (e.g., a 'calculator' app) accessing browser credential stores.",
+    "Look for new Deno runtime installations or executions (Dindoor) as a sign of updated tradecraft.",
+    "Scope hunting to diplomatic and foreign-affairs users specifically, given this actor's targeting profile."
+  ],
   "sources": [
     { "title": "Iran-Linked MuddyWater Targets 100+ Organizations in Global Espionage Campaign", "url": "https://thehackernews.com/2025/10/iran-linked-muddywater-targets-100.html" },
     { "title": "Unmasking MuddyWater's New Malware Toolkit Driving International Espionage", "url": "https://www.group-ib.com/blog/muddywater-espionage/" },

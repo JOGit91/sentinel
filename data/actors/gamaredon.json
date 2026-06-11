@@ -43,6 +43,14 @@
     "Monitor DNS for high-volume queries to newly registered or short-TTL dynamic DNS domains",
     "Inspect User-Agent strings claiming to be search engine crawlers (Bingbot, Googlebot) originating from internal hosts"
   ],
+  "response_playbook": [
+    "Flag inbound emails where the sender and 'To' address are identical, with real recipients hidden in BCC.",
+    "Block or flag execution of .hta, .vbs, and .vbe files originating from email attachments or removable media.",
+    "Hunt for outbound requests to Telegram/Telegraph/Supabase endpoints from non-developer workstations.",
+    "Monitor DNS for high-volume queries to newly registered or short-TTL dynamic DNS domains.",
+    "Inspect WinRAR/7-Zip extraction paths for directory traversal (CVE-2025-8088 indicators).",
+    "Given this actor's roughly monthly campaign cadence, treat any single detection as likely part of a broader active wave and expand the hunting window."
+  ],
   "sources": [
     { "title": "Gamaredon Uses Infected Removable Drives to Breach Western Military Mission in Ukraine - The Hacker News", "url": "https://thehackernews.com/2025/04/gamaredon-uses-infected-removable.html" },
     { "title": "FSB's matryoshka #1/3: Inside Gamaredon Cyber Operations - Sekoia", "url": "https://blog.sekoia.io/fsbs-matryoshka-1-3-gamaredons-gifts-that-keeps-unpacking-gammaphish-and-gammaworm/" },

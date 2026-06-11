@@ -43,6 +43,14 @@
     "Process trees showing Rust-compiled loader binaries spawning network connections followed by secondary payload execution (ValleyRAT/Winos 4.0)",
     "Endpoint telemetry showing Gh0stRAT-family C2 protocol characteristics (custom packet headers, XOR-obfuscated traffic) from Winos 4.0/ValleyRAT implants"
   ],
+  "response_playbook": [
+    "Flag inbound 'tax violation' or audit-themed emails with archive attachments containing executables.",
+    "Hunt for loading of unsigned or rarely-seen kernel drivers (especially amsdk.sys / Zemana SDK-based) outside normal deployment.",
+    "Alert on sudden EDR/AV process termination immediately preceding unexplained outbound connections (BYOVD impairment).",
+    "Check signed executables for DLL sideloading from non-standard directories.",
+    "Inspect outbound HTTPS traffic for periodic clipboard-sized transfers (ABCDoor exfiltration pattern).",
+    "Look for Gh0stRAT-family C2 protocol characteristics (custom packet headers, XOR-obfuscated traffic) from Winos 4.0/ValleyRAT."
+  ],
   "sources": [
     { "title": "Silver Fox Deploys ABCDoor Malware via Tax-Themed Phishing in India and Russia", "url": "https://thehackernews.com/2026/05/silver-fox-deploys-abcdoor-malware-via.html" },
     { "title": "Analyzing the Silver Fox tax campaign and the new ABCDoor backdoor", "url": "https://securelist.com/silver-fox-tax-notification-campaign/119575/" },

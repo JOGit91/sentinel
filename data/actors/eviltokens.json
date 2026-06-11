@@ -41,6 +41,14 @@
     "Anomalous Graph API enumeration of Teams, OneDrive, and SharePoint shortly after a new token issuance",
     "Outbound traffic to newly registered lookalike domains hosting EvilTokens phishing pages"
   ],
+  "response_playbook": [
+    "Review Entra ID sign-in logs for OAuth device-code grant flows from unfamiliar apps or locations.",
+    "Audit for new inbox rules or mailbox-forwarding rules created shortly after a device-code authentication event.",
+    "Brief users that legitimate services rarely require visiting microsoft.com/devicelogin with a code received via chat, email, or QR code.",
+    "Restrict the OAuth device-code auth flow via Conditional Access for non-shared-device scenarios.",
+    "Hunt for anomalous Graph API enumeration of Teams/OneDrive/SharePoint following new token issuance.",
+    "Block known EvilTokens phishing infrastructure (rotating lookalike domains) at the email/web gateway."
+  ],
   "sources": [
     { "title": "Sekoia: New widespread EvilTokens kit: device code phishing as-a-service - Part 1", "url": "https://blog.sekoia.io/new-widespread-eviltokens-kit-device-code-phishing-as-a-service-part-1/" },
     { "title": "The Hacker News: Device Code Phishing Hits 340+ Microsoft 365 Orgs Across Five Countries via OAuth Abuse", "url": "https://thehackernews.com/2026/03/device-code-phishing-hits-340-microsoft.html" },

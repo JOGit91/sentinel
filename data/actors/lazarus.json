@@ -42,6 +42,14 @@
     "Unexpected wallet directory access (Exodus, Atomic, MetaMask, Electrum) by unrelated processes",
     "Sudden encryption activity on healthcare endpoints preceded by Lazarus-associated initial-access tooling (Medusa ransomware)"
   ],
+  "response_playbook": [
+    "Scan developer workstations and recently cloned repos for malicious .git/hooks scripts (post-merge, post-checkout, pre-push).",
+    "Audit recently installed npm/PyPI packages for postinstall/preinstall scripts contacting non-registry domains.",
+    "Check crypto wallet directories (Exodus, Atomic, MetaMask, Electrum) for access by unrelated processes.",
+    "If a 'job interview' or recruiter contact requested cloning/running external code, treat the developer's workstation as compromised and isolate it.",
+    "Monitor for fileless RAT memory indicators (BeaverTail/InvisibleFerret) on developer endpoints.",
+    "Watch for ransomware-style encryption activity (Medusa) on healthcare-adjacent systems following any Lazarus-linked initial access."
+  ],
   "sources": [
     { "title": "Lazarus Campaign Plants Malicious Packages in npm and PyPI Ecosystems", "url": "https://thehackernews.com/2026/02/lazarus-campaign-plants-malicious.html" },
     { "title": "ESET Research's deep dive into DeceptiveDevelopment, North Korean crypto theft via fake job offers", "url": "https://www.eset.com/us/about/newsroom/research/eset-research-deep-dive-deceptivedevelopment-virusbulletin/" },

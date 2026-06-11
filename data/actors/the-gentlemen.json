@@ -43,6 +43,14 @@
     "NETLOGON share access outside normal admin patterns",
     "Selective event log clearing (Security, System logs)"
   ],
+  "response_playbook": [
+    "Audit FortiGate and other edge-device admin accounts for unauthorized creation or modification — a primary initial-access vector for this group.",
+    "Check the NETLOGON share for unauthorized executables — the group redeploys its encryptor there after blocked attempts.",
+    "Hunt for SystemBC SOCKS5 proxy beacon traffic to identify C2 infrastructure.",
+    "Review Group Policy (GPMC) change history for malicious GPOs used to push the encryptor at scale.",
+    "Check Defender/AV exclusion lists and tamper-protection settings for unauthorized changes.",
+    "Reconstruct the timeline from Security/System event logs — selective log clearing (4719/1102) is itself an IOC, so missing log ranges are meaningful."
+  ],
   "sources": [
     { "title": "Huntress: The Gentlemen Ransomware Analysis", "url": "https://www.huntress.com/blog/the-gentlemen-ransomware" }
   ],

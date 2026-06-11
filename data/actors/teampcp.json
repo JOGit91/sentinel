@@ -39,6 +39,14 @@
     "New OIDC token issuance outside normal deployment windows",
     "Secrets accessed in CI environment outside expected job context"
   ],
+  "response_playbook": [
+    "Audit recent npm/PyPI publish events from CI/CD service accounts for unauthorized package versions.",
+    "Review GitHub Actions workflow files for modifications introduced via fork pull requests (cache-poisoning vector).",
+    "Rotate any credentials that transited CI pipelines, especially OIDC trusted-publisher tokens.",
+    "Inventory dependencies for known-compromised packages (Shai-Hulud/Mini variant, Trivy-related) and pin or replace them.",
+    "Check for new, unexpected GitHub repositories created by developer or CI service accounts.",
+    "Scan build environments for steganographic payloads (WAV files) and .pth-based auto-execution artifacts."
+  ],
   "sources": [
     { "title": "Akamai: Mini Shai-Hulud Worm Analysis", "url": "https://www.akamai.com/blog/security-research/mini-shai-hulud-worm-returns-goes-public" },
     { "title": "Picus: Mini Shai-Hulud Explained", "url": "https://www.picussecurity.com/resource/blog/mini-shai-hulud-the-npm-supply-chain-worm-explained" }

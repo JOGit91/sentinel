@@ -82,6 +82,18 @@
     .score-med{color:var(--amber);}
     .score-low{color:var(--green);}
     .empty-state{padding:2rem;text-align:center;color:var(--text3);font-size:17px;}
+    .response-card{background:var(--surface);border:1px solid var(--green-mid);border-radius:8px;margin-bottom:1.25rem;overflow:hidden;}
+    .response-card-header{padding:0.875rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:1rem;background:rgba(0,212,161,0.06);}
+    .response-card-title{font-family:var(--font-mono);font-size:17px;color:var(--green);letter-spacing:0.08em;text-transform:uppercase;}
+    .response-card-conf{font-family:var(--font-mono);font-size:16px;color:var(--text3);}
+    .response-card-body{padding:1.25rem;display:grid;grid-template-columns:1.3fr 1fr;gap:1.5rem;}
+    @media(max-width:650px){.response-card-body{grid-template-columns:1fr;}}
+    .rg-label{font-family:var(--font-mono);font-size:16px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem;padding-bottom:0.375rem;border-bottom:1px solid var(--border);}
+    .response-item{font-size:16px;color:var(--text2);padding:0.375rem 0;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:flex-start;}
+    .response-item:last-child{border-bottom:none;}
+    .response-item::before{content:'▸';font-size:16px;color:var(--green);padding-top:2px;flex-shrink:0;}
+    .pill-list{display:flex;flex-wrap:wrap;gap:6px;}
+    .pill{font-size:16px;padding:3px 10px;border-radius:99px;background:var(--surface2);border:1px solid var(--border2);color:var(--text2);font-family:var(--font-mono);}
     .example-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.25rem;}
     .example-btn{font-size:17px;padding:4px 10px;border-radius:6px;border:1px solid var(--border2);background:var(--surface2);color:var(--text3);cursor:pointer;transition:all 0.15s;}
     .example-btn:hover{border-color:var(--green-mid);color:var(--green);}
@@ -174,6 +186,24 @@
 
   <div id="results-section">
     <div class="results-header"><span class="live-dot"></span>Attribution Results · Live</div>
+
+    <div id="response-guidance" class="response-card" style="display:none;">
+      <div class="response-card-header">
+        <div class="response-card-title">⚡ Response Guidance — <span id="rg-name"></span></div>
+        <div class="response-card-conf" id="rg-conf"></div>
+      </div>
+      <div class="response-card-body">
+        <div>
+          <div class="rg-label">If this is the actor, prioritize</div>
+          <div id="rg-playbook"></div>
+        </div>
+        <div>
+          <div class="rg-label">Known TTPs to hunt for</div>
+          <div id="rg-ttps" class="pill-list"></div>
+        </div>
+      </div>
+    </div>
+
     <div id="results-container">
       <div class="empty-state">Add observables above — likely threat actors will appear here and re-rank automatically as your investigation develops.</div>
     </div>
@@ -268,6 +298,26 @@ function loadExample(key){
   })();
 }
 
+function updateResponseGuidance(top,maxScore){
+  const card=document.getElementById('response-guidance');
+  if(!top){
+    card.style.display='none';
+    return;
+  }
+  card.style.display='block';
+  document.getElementById('rg-name').textContent=top.actor.name;
+  const pct=Math.round((top.score/maxScore)*100);
+  document.getElementById('rg-conf').textContent=`Top match · ${pct}% confidence`;
+
+  const playbook=top.actor.response_playbook||[];
+  document.getElementById('rg-playbook').innerHTML=playbook.length
+    ? playbook.slice(0,5).map(s=>`<div class="response-item">${s}</div>`).join('')
+    : '<div class="empty-state" style="padding:0.5rem 0;">No response guidance recorded yet for this actor.</div>';
+
+  const ttps=top.actor.ttps||[];
+  document.getElementById('rg-ttps').innerHTML=ttps.map(t=>`<span class="pill" title="${t.technique_name}">${t.technique_id}</span>`).join('');
+}
+
 function recalculate(){
   const container=document.getElementById('results-container');
 
@@ -275,6 +325,7 @@ function recalculate(){
     container.innerHTML='<div class="empty-state">Add observables above — likely threat actors will appear here and re-rank automatically as your investigation develops.</div>';
     prevRanking=[];
     prevScores={};
+    updateResponseGuidance(null);
     return;
   }
 
@@ -320,10 +371,12 @@ function recalculate(){
     container.innerHTML='<div class="empty-state">No matches yet — keep adding observables as your investigation develops.</div>';
     prevRanking=[];
     prevScores={};
+    updateResponseGuidance(null);
     return;
   }
 
   const maxScore=results[0].score||1;
+  updateResponseGuidance(results[0],maxScore);
 
   container.innerHTML=results.map((r,i)=>{
     const pct=Math.round((r.score/maxScore)*100);

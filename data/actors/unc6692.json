@@ -35,6 +35,14 @@
     "New MFA device enrollment shortly after external Teams contact",
     "Process execution of remote admin tools following Teams session"
   ],
+  "response_playbook": [
+    "Review Teams external-access logs for messages from tenants with helpdesk/IT-themed display names.",
+    "Check for email-flood activity (bulk spam) preceding any Teams contact — this is a known precursor pattern.",
+    "Audit for new MFA device enrollments shortly after external Teams contact.",
+    "Restrict or disable Microsoft Teams External Access, or implement a tenant allowlist if not already enforced.",
+    "Hunt for remote-admin tool execution (AnyDesk, TeamViewer, etc.) following Teams sessions with external participants.",
+    "Brief helpdesk/IT staff on this specific Teams-impersonation vishing pattern."
+  ],
   "sources": [
     { "title": "Microsoft Threat Intelligence: Storm-1811", "url": "https://www.microsoft.com/en-us/security/blog/2024/05/15/threat-actors-misusing-quick-assist-in-social-engineering-attacks-leading-to-ransomware/" }
   ],

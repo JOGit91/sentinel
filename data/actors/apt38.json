@@ -42,6 +42,14 @@
     "Unexpected modifications to transaction-signing or wallet frontend JavaScript at exchanges/custodians",
     "Outbound traffic from finance/crypto custody systems to newly registered or recently re-activated C2 infrastructure"
   ],
+  "response_playbook": [
+    "Review SWIFT/payment-switch logs for anomalous message volume or off-hours fund transfers, especially around weekends/holidays.",
+    "Audit calendar/meeting invites for typosquatted Zoom/Calendly domains and ClickFix-style 'paste to fix' prompts.",
+    "Inspect cloud session tokens for reuse from new geolocations or devices, particularly around wallet/exchange infrastructure.",
+    "Check transaction-signing or wallet front-end JavaScript for unauthorized modifications.",
+    "Trace any developer-workstation compromise forward to downstream cold-wallet or transaction-signing access.",
+    "If financial theft is confirmed, immediately engage exchange/banking partners and blockchain-analysis firms for chain-hopping and mixer tracing."
+  ],
   "sources": [
     { "title": "Safe{Wallet} Confirms North Korean TraderTraitor Hackers Stole $1.5 Billion in Bybit Heist", "url": "https://thehackernews.com/2025/03/safewallet-confirms-north-korean.html" },
     { "title": "FASTCash 2.0: North Korea's BeagleBoyz Robbing Banks (CISA AA20-239A)", "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa20-239a" },

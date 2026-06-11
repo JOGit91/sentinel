@@ -36,6 +36,14 @@
     "Outbound C2 over HTTP/HTTPS to recently registered domains",
     "Lateral movement via legitimate admin protocols from unexpected source systems"
   ],
+  "response_playbook": [
+    "Hunt for WMIC remote execution originating from non-administrative source systems.",
+    "Review newly created Windows services for unauthorized persistence, especially outside patch/deployment windows.",
+    "Audit PowerShell execution for encoded commands launched by unusual parent processes.",
+    "Given this group's long dwell times, extend log review to 6-12 months on telecom and lawful-intercept-adjacent systems.",
+    "Inspect outbound HTTP/HTTPS traffic to recently registered domains for GhostSpider/SparrowDoor/SnappyBee C2.",
+    "If telecom infrastructure is involved, coordinate with carrier security teams given this actor's specific focus on call-record and lawful-intercept systems."
+  ],
   "sources": [
     { "title": "CISA Advisory: Salt Typhoon", "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa24-038a" }
   ],

@@ -41,6 +41,14 @@
     "Mobile device management alerts for sideloaded APKs on Android devices belonging to NK policy-focused personnel",
     "Anomalous Internet Explorer/legacy browser engine usage in environments where it should be disabled"
   ],
+  "response_playbook": [
+    "Monitor outbound traffic to Zoho WorkDrive, Dropbox, pCloud, or Yandex Cloud from endpoints with no business justification for those services.",
+    "Hunt for PowerShell chains spawned from document readers (Office/PDF) consistent with RESTLEAF/SNAKEDROPPER.",
+    "Investigate unsolicited social-media contact (e.g., Facebook Messenger) followed by link-based delivery to journalist or researcher endpoints.",
+    "Check for unexpected USB device activity correlating with new files on segmented or air-gapped hosts.",
+    "Scan endpoints for RokRAT/Dolphin/Konni artifacts and registry run-key persistence.",
+    "For NK-focused personnel, review mobile devices via MDM for sideloaded APKs."
+  ],
   "sources": [
     { "title": "The Hacker News: North Korea's APT37 Uses Facebook Social Engineering to Deliver RokRAT Malware", "url": "https://thehackernews.com/2026/04/north-koreas-apt37-uses-facebook-social.html" },
     { "title": "BleepingComputer: APT37 hackers use new malware to breach air-gapped networks", "url": "https://www.bleepingcomputer.com/news/security/apt37-hackers-use-new-malware-to-breach-air-gapped-networks/" },

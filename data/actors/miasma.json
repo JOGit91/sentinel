@@ -43,6 +43,14 @@
     "AI coding tool (Claude Code, Cursor, Gemini CLI, VS Code) opening a repo and immediately spawning shell processes or credential-access syscalls",
     "Monitoring of Bun runtime downloads/execution on systems where Bun is not an expected dependency"
   ],
+  "response_playbook": [
+    "Monitor npm/pip installs for unexpected network connections to GitHub or Tor exit nodes during dependency installation.",
+    "Inspect installed package trees for unexpected binding.gyp or *-setup.pth files containing embedded scripts.",
+    "Audit for new attacker-controlled GitHub repositories created by developer or CI accounts shortly after a suspicious install.",
+    "Review CI/CD OIDC token issuance and publish events for activity outside normal release windows.",
+    "If using Claude Code, Cursor, Gemini CLI, or VS Code on affected repos, check for unexpected shell spawns or credential-access syscalls when the repo is opened.",
+    "Rotate credentials for maintainer/contributor accounts that may have been exposed via infostealer logs."
+  ],
   "sources": [
     { "title": "The Hacker News: Miasma Supply Chain Attack Compromises Red Hat npm Packages with Credential-Stealing Worm", "url": "https://thehackernews.com/2026/06/miasma-supply-chain-attack-compromises.html" },
     { "title": "Microsoft Security Blog: Preinstall to persistence: Inside the Red Hat npm Miasma credential-stealing campaign", "url": "https://www.microsoft.com/en-us/security/blog/2026/06/02/preinstall-persistence-inside-red-hat-npm-miasma-credential-stealing-campaign/" },

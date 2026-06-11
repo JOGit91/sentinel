@@ -42,6 +42,14 @@
     "Endpoint alerts for AppleSeed/PebbleDash file artifacts and registry persistence keys",
     "GitHub/VS Code notification phishing referencing unfamiliar CVE identifiers prompting tool downloads"
   ],
+  "response_playbook": [
+    "Review inbound emails containing QR codes from external senders referencing conferences, questionnaires, or policy topics.",
+    "Hunt for PowerShell execution immediately following clipboard-paste events (ClickFix pattern).",
+    "Audit outbound connections to *.trycloudflare.com or VS Code Tunnel domains from non-developer hosts.",
+    "Check for unauthorized DWAgent or other remote-support tool installations.",
+    "Scan for AppleSeed/PebbleDash file artifacts and registry persistence keys.",
+    "Treat GitHub/VS Code update notifications referencing unfamiliar CVEs as likely lures — verify out-of-band before acting."
+  ],
   "sources": [
     { "title": "FBI: North Korean Kimsuky Actors Leverage Malicious QR Codes in Spearphishing Campaigns Targeting U.S. Entities", "url": "https://www.fbi.gov/file-repository/cyber-alerts/north-korean-kimsuky-actors-leverage-malicious-qr.pdf/view" },
     { "title": "Securelist: Disclosing new PebbleDash-based tools by Kimsuky", "url": "https://securelist.com/kimsuky-appleseed-pebbledash-campaigns/119785/" },

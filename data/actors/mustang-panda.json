@@ -43,6 +43,14 @@
     "Alert on diplomatic/government-themed documents referencing U.S. partnerships or foreign ministry letterhead arriving via email with embedded macros or remote template injection",
     "Monitor endpoint telemetry for ToneShell and Yokai backdoor persistence mechanisms (scheduled tasks, registry Run keys tied to sideloaded DLLs)"
   ],
+  "response_playbook": [
+    "Audit signed binaries (AV, Adobe, utility executables) for DLL sideloading from non-standard or user-writable directories.",
+    "Inspect removable media for autorun.inf, hidden executables, or new LNK files (PlugX/SnakeDisk worm propagation).",
+    "Flag CHM file execution followed by rundll32 or regsvr32 child processes.",
+    "Review outbound traffic to CDN-fronted domains for FDMTP beaconing patterns.",
+    "Hunt for ToneShell/Yokai persistence via scheduled tasks or registry Run keys tied to sideloaded DLLs.",
+    "Extend hunting beyond traditional government/NGO scope — this actor has broadened into banking and energy/utilities targeting."
+  ],
   "sources": [
     { "title": "Mustang Panda Deploys SnakeDisk USB Worm to Deliver Yokai Backdoor on Thailand IPs - The Hacker News", "url": "https://thehackernews.com/2025/09/mustang-panda-deploys-snakedisk-usb.html" },
     { "title": "Hive0154, aka Mustang Panda, drops updated Toneshell backdoor and novel SnakeDisk USB worm - IBM X-Force", "url": "https://www.ibm.com/think/x-force/hive0154-drops-updated-toneshell-backdoor" },

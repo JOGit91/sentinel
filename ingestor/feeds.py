@@ -23,6 +23,8 @@ FEEDS_CONFIG = Path(__file__).parent / "config" / "feeds.yaml"
 
 MAX_ARTICLES_PER_RUN = 20
 LOOKBACK_HOURS = 6
+MAX_PLAYBOOK_ITEMS = 15
+MAX_NOTABLE_ITEMS = 15
 
 
 def load_seen() -> set:
@@ -90,6 +92,47 @@ def update_actor_mention_count(actor_id: str, mentions_data: dict):
     
     actor["mention_count_30d"] = count
     actor_file.write_text(json.dumps(actor, indent=2))
+
+
+def merge_actor_intel(actor_id: str, extraction: dict):
+    """Fold newly-extracted response recommendations and observed artifacts
+    into an actor's profile, deduplicated and capped, so the IR guidance
+    surfaced in the dashboard grows from real reporting over time."""
+    actor_file = ACTORS_DIR / f"{actor_id}.json"
+    if not actor_file.exists():
+        return
+
+    actor = json.loads(actor_file.read_text())
+    changed = False
+
+    recommendations = extraction.get("response_recommendations") or []
+    if recommendations:
+        playbook = actor.setdefault("response_playbook", [])
+        existing = {p.lower() for p in playbook}
+        for rec in recommendations:
+            rec = rec.strip()
+            if rec and rec.lower() not in existing:
+                playbook.append(rec)
+                existing.add(rec.lower())
+                changed = True
+        if len(playbook) > MAX_PLAYBOOK_ITEMS:
+            del playbook[:len(playbook) - MAX_PLAYBOOK_ITEMS]
+
+    artifacts = extraction.get("observed_artifacts") or []
+    if artifacts:
+        notable = actor.setdefault("notable_techniques", [])
+        existing = {n.lower() for n in notable}
+        for art in artifacts:
+            art = art.strip()
+            if art and art.lower() not in existing:
+                notable.append(art)
+                existing.add(art.lower())
+                changed = True
+        if len(notable) > MAX_NOTABLE_ITEMS:
+            del notable[:len(notable) - MAX_NOTABLE_ITEMS]
+
+    if changed:
+        actor_file.write_text(json.dumps(actor, indent=2))
 
 
 def article_url_hash(url: str) -> str:
@@ -174,7 +217,10 @@ def run_ingestor():
         
         for actor_name in extraction.get("named_actors", []):
             actor_id = infer_actor_id(actor_name, actor_profiles)
-            
+
+            if actor_id:
+                merge_actor_intel(actor_id, extraction)
+
             new_mentions.append({
                 "date": datetime.utcnow().strftime("%Y-%m-%d"),
                 "actor_id": actor_id or actor_name.lower().replace(" ", "-"),

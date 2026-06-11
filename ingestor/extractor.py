@@ -38,10 +38,14 @@ Schema:
   "malware_families": [],
   "targeted_sectors": [],
   "targeted_regions": [],
+  "observed_artifacts": ["specific tools, files, persistence mechanisms, or follow-on activity reported as found on compromised systems, beyond what's already captured in ttps/malware_families"],
+  "response_recommendations": ["concrete incident-response, hunting, or remediation steps the article recommends (or that follow directly from the activity described) for organizations targeted by this actor"],
   "summary": "1-2 sentence summary of threat activity described",
   "confidence": "high|medium|low",
   "relevance_score": 0-100
 }
+
+Leave "observed_artifacts" and "response_recommendations" as empty arrays if the article does not contain this information — do not invent generic advice that isn't grounded in the article.
 
 Known actors to watch for: """ + ", ".join(KNOWN_ACTORS)
 
@@ -79,6 +83,8 @@ def extract_from_article(title: str, content: str, url: str) -> dict:
             "malware_families": [],
             "targeted_sectors": [],
             "targeted_regions": [],
+            "observed_artifacts": [],
+            "response_recommendations": [],
             "summary": "",
             "confidence": "low",
             "relevance_score": 0,

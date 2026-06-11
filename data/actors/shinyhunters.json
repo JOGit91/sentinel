@@ -39,6 +39,14 @@
     "Email flood campaigns preceding helpdesk calls (vishing pre-indicator)",
     "Mullvad VPN IP ranges in outbound exfiltration traffic"
   ],
+  "response_playbook": [
+    "Review Entra ID/Okta logs for new MFA device enrollments following anomalous logins or vishing-style helpdesk calls.",
+    "Audit OAuth app consent grants for unrecognized or newly registered applications with broad mail/file scopes.",
+    "Check Salesforce event logs for anomalous /s/sfsites/aura API access and bulk record exports outside business hours.",
+    "Inspect connected data-warehouse integrations (Snowflake, BigQuery, Anodot) for token misuse and downstream pivoting.",
+    "Flag outbound traffic to Mullvad VPN ranges as a possible exfiltration channel.",
+    "Brief executives and staff on possible follow-on harassment/extortion contact (including swatting threats) and loop in physical security."
+  ],
   "sources": [
     { "title": "Huntress Threat Library: ShinyHunters", "url": "https://www.huntress.com/threat-library/threat-actors/shinyhunters" }
   ],

@@ -40,6 +40,14 @@
     "Volume shadow copy deletion (vssadmin/wmic) combined with rapid file encryption activity",
     "Brute Ratel C4 and Cobalt Strike beacon signatures on endpoint and network telemetry"
   ],
+  "response_playbook": [
+    "Run retrospective hunts against legacy Black Basta/QakBot IOCs even though the brand is largely defunct.",
+    "Tune detections for successor brands (CACTUS, SafePay, DevMan) given documented personnel and tooling overlap.",
+    "Monitor for Microsoft Teams external-access helpdesk impersonation — a TTP this group pioneered that successors have inherited.",
+    "Hunt for Rclone execution and unusual outbound traffic to cloud storage preceding mass file modification.",
+    "Watch for vssadmin/wmic shadow-copy deletion combined with rapid encryption activity.",
+    "Check for Brute Ratel C4 / Cobalt Strike beacon signatures on endpoint and network telemetry."
+  ],
   "sources": [
     { "title": "CISA: #StopRansomware: Black Basta (AA24-131A)", "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa24-131a" },
     { "title": "Barracuda: Lessons from Black Basta's collapse", "url": "https://blog.barracuda.com/2026/02/02/lessons-from-black-basta-s-collapse" },

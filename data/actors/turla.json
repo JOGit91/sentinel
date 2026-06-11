@@ -43,6 +43,14 @@
     "Review Exchange Web Services API usage for anomalous automated mailbox access patterns used as C2 channel",
     "Monitor satellite/VSAT-connected network segments for unusual inbound command traffic"
   ],
+  "response_playbook": [
+    "Audit installed root and intermediate CA certificates for unauthorized entries impersonating AV vendors.",
+    "Inspect for unexpected TLS interception or captive-portal redirects on diplomatic/government endpoints.",
+    "Hunt for C2 callbacks from infrastructure previously attributed to other threat actors — cross-actor infrastructure overlap is a Turla signature.",
+    "Monitor for AMSI/ETW tampering or WLDP bypass indicators.",
+    "Flag P2P-style host-to-host traffic inconsistent with normal application behavior (Kazuar Kernel/Bridge/Worker comms).",
+    "Review Exchange Web Services API usage for anomalous automated mailbox access used as a covert C2 channel."
+  ],
   "sources": [
     { "title": "Frozen in transit: Secret Blizzard's AiTM campaign against diplomats - Microsoft Security Blog", "url": "https://www.microsoft.com/en-us/security/blog/2025/07/31/frozen-in-transit-secret-blizzards-aitm-campaign-against-diplomats/" },
     { "title": "Frequent freeloader part I: Secret Blizzard compromising Storm-0156 infrastructure for espionage - Microsoft Security Blog", "url": "https://www.microsoft.com/en-us/security/blog/2024/12/04/frequent-freeloader-part-i-secret-blizzard-compromising-storm-0156-infrastructure-for-espionage/" },

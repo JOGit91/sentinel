@@ -36,6 +36,14 @@
     "Rapid file rename/extension change events",
     "PowerShell download cradles from unusual parent processes"
   ],
+  "response_playbook": [
+    "Isolate affected hosts and check for WSL/Linux subsystem presence — Qilin deploys Linux ELF encryptors via WSL specifically to bypass EDR not configured for Linux binaries.",
+    "Hunt for vssadmin/wmic shadow copy deletion commands to determine how far the encryption stage has progressed.",
+    "Audit for unauthorized PsExec or SMB admin-share (ADMIN$/C$) activity from non-admin workstations indicating lateral movement.",
+    "Review PowerShell history for download cradles (IEX, Net.WebClient) used to stage the encryptor.",
+    "Preserve forensic images before remediation — Qilin's intermittent/partial encryption can leave recoverable data.",
+    "Audit and rotate credentials for any valid accounts used for initial access (T1190/T1078)."
+  ],
   "sources": [
     { "title": "Huntress Threat Library: Qilin", "url": "https://www.huntress.com/threat-library/threat-actors/qilin" }
   ],
