@@ -1,14 +1,29 @@
-Copyright (c) 2026 Jake Ouellette. All Rights Reserved.
+Copyright (c) 2026 Jake Ouellette
+
+Personal & Non-Commercial Use License
 
 This repository and its contents — including but not limited to source code,
-stylesheets, scripts, data files, and design assets — are made publicly
-viewable as part of a personal portfolio.
+stylesheets, scripts, data files, and design assets — are made available for
+personal, educational, and non-commercial use.
 
-No license, express or implied, is granted to copy, reproduce, modify,
-merge, publish, distribute, sublicense, deploy, or sell copies of this
-repository or any portion of it, for any purpose, without prior written
-permission from the copyright holder.
+Permission is granted to view, download, copy, modify, and use this software
+and its contents free of charge for:
+  - personal projects and learning
+  - research and evaluation (e.g., as part of a hiring process)
+  - any other non-commercial purpose
 
-You may view this repository and its source for personal reference and
-evaluation (e.g., as part of a hiring process). All other rights are
-reserved.
+Commercial use is NOT permitted without prior written permission from the
+copyright holder. "Commercial use" means use intended for or directed toward
+commercial advantage or monetary compensation, including but not limited to
+selling, sublicensing, offering as a paid service, or incorporating this
+software or any substantial portion of it into a product or service that is
+sold, licensed, or otherwise monetized.
+
+Any redistribution of this software or substantial portions of it, with or
+without modification, must retain this license and copyright notice.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM THE
+USE OF THE SOFTWARE.
