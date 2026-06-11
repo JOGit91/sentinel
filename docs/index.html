@@ -1013,6 +1013,15 @@ function renderChart() {
     };
   });
 
+  function distToSegment(px, py, x1, y1, x2, y2) {
+    const dx = x2 - x1, dy = y2 - y1;
+    const lengthSq = dx*dx + dy*dy;
+    let t = lengthSq ? ((px-x1)*dx + (py-y1)*dy) / lengthSq : 0;
+    t = Math.max(0, Math.min(1, t));
+    const projX = x1 + t*dx, projY = y1 + t*dy;
+    return Math.hypot(px-projX, py-projY);
+  }
+
   function highlightDataset(chart, index) {
     chart.data.datasets.forEach((ds, i) => {
       const active = index === null || i === index;
@@ -1034,8 +1043,18 @@ function renderChart() {
       maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
       onHover: (evt, _elements, chart) => {
-        const matches = chart.getElementsAtEventForMode(evt, 'dataset', { intersect: true }, false);
-        highlightDataset(chart, matches.length ? matches[0].datasetIndex : null);
+        const HOVER_PX = 12;
+        let bestIdx = null, bestDist = HOVER_PX;
+        chart.data.datasets.forEach((ds, i) => {
+          const meta = chart.getDatasetMeta(i);
+          if (meta.hidden) return;
+          const pts = meta.data;
+          for (let j = 0; j < pts.length - 1; j++) {
+            const d = distToSegment(evt.x, evt.y, pts[j].x, pts[j].y, pts[j+1].x, pts[j+1].y);
+            if (d < bestDist) { bestDist = d; bestIdx = i; }
+          }
+        });
+        highlightDataset(chart, bestIdx);
       },
       plugins: {
         legend: {
