@@ -17,7 +17,10 @@
     .nav-links{display:flex;gap:1.5rem;margin-left:2rem;list-style:none;}
     .nav-links a{color:var(--text2);text-decoration:none;font-size:17px;transition:color 0.15s;}
     .nav-links a:hover,.nav-links a.active{color:var(--green);}
-    main{padding:2rem;max-width:800px;margin:0 auto;}
+    main{padding:2rem;max-width:1400px;margin:0 auto;}
+    .attributor-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start;}
+    @media(max-width:1000px){.attributor-grid{grid-template-columns:1fr;}}
+    .attributor-col{min-width:0;}
     .page-header{margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
     .page-eyebrow{font-family:var(--font-mono);font-size:16px;color:var(--green);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.5rem;}
     .page-title{font-size:28px;font-weight:600;margin-bottom:0.25rem;}
@@ -119,93 +122,99 @@
     <div class="page-sub">Add observables as you uncover them during an investigation — attribution updates live and tracks how the picture shifts as new evidence comes in</div>
   </div>
 
-  <div class="card">
-    <div class="card-header"><div class="card-title">Simulate an Investigation</div></div>
-    <div class="card-body">
-      <div class="example-row" style="margin-bottom:0;">
-        <button class="example-btn" onclick="loadExample('fortios')">FortiOS exploitation + admin creation</button>
-        <button class="example-btn" onclick="loadExample('m365')">M365 device code auth + token theft</button>
-        <button class="example-btn" onclick="loadExample('cicd')">CI/CD credential harvest</button>
-        <button class="example-btn" onclick="loadExample('vishing')">Teams helpdesk impersonation</button>
-      </div>
-      <div class="form-hint" style="margin-top:8px;">Examples are added one at a time so you can watch the rankings evolve, the way new evidence would arrive mid-investigation.</div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header"><div class="card-title">Add Observable</div></div>
-    <div class="card-body">
-      <div class="obs-input-grid">
-        <div class="form-group">
-          <label class="form-label" style="color:var(--green);">ATT&CK Technique</label>
-          <div class="obs-input-row">
-            <input type="text" class="form-input" id="add-ttp" placeholder="T1190" onkeydown="if(event.key==='Enter')addObservable('ttp')" />
-            <button class="btn btn-ghost" onclick="addObservable('ttp')">+ Add</button>
+  <div class="attributor-grid">
+    <div class="attributor-col">
+      <div class="card">
+        <div class="card-header"><div class="card-title">Simulate an Investigation</div></div>
+        <div class="card-body">
+          <div class="example-row" style="margin-bottom:0;">
+            <button class="example-btn" onclick="loadExample('fortios')">FortiOS exploitation + admin creation</button>
+            <button class="example-btn" onclick="loadExample('m365')">M365 device code auth + token theft</button>
+            <button class="example-btn" onclick="loadExample('cicd')">CI/CD credential harvest</button>
+            <button class="example-btn" onclick="loadExample('vishing')">Teams helpdesk impersonation</button>
           </div>
-          <div class="form-hint">Comma-separated for multiple</div>
+          <div class="form-hint" style="margin-top:8px;">Examples are added one at a time so you can watch the rankings evolve, the way new evidence would arrive mid-investigation.</div>
         </div>
-        <div class="form-group">
-          <label class="form-label" style="color:var(--blue);">Targeted Sector</label>
-          <div class="obs-input-row">
-            <input type="text" class="form-input" id="add-sector" placeholder="Healthcare" onkeydown="if(event.key==='Enter')addObservable('sector')" />
-            <button class="btn btn-ghost" onclick="addObservable('sector')">+ Add</button>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-title">Add Observable</div></div>
+        <div class="card-body">
+          <div class="obs-input-grid">
+            <div class="form-group">
+              <label class="form-label" style="color:var(--green);">ATT&CK Technique</label>
+              <div class="obs-input-row">
+                <input type="text" class="form-input" id="add-ttp" placeholder="T1190" onkeydown="if(event.key==='Enter')addObservable('ttp')" />
+                <button class="btn btn-ghost" onclick="addObservable('ttp')">+ Add</button>
+              </div>
+              <div class="form-hint">Comma-separated for multiple</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" style="color:var(--blue);">Targeted Sector</label>
+              <div class="obs-input-row">
+                <input type="text" class="form-input" id="add-sector" placeholder="Healthcare" onkeydown="if(event.key==='Enter')addObservable('sector')" />
+                <button class="btn btn-ghost" onclick="addObservable('sector')">+ Add</button>
+              </div>
+              <div class="form-hint">e.g. MSP, Government</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" style="color:var(--red);">Malware / Tool</label>
+              <div class="obs-input-row">
+                <input type="text" class="form-input" id="add-malware" placeholder="SystemBC" onkeydown="if(event.key==='Enter')addObservable('malware')" />
+                <button class="btn btn-ghost" onclick="addObservable('malware')">+ Add</button>
+              </div>
+              <div class="form-hint">Ransomware, RAT, loader names</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" style="color:var(--purple);">IOC / Behavior</label>
+              <div class="obs-input-row">
+                <input type="text" class="form-input" id="add-ioc" placeholder="Mullvad VPN" onkeydown="if(event.key==='Enter')addObservable('ioc')" />
+                <button class="btn btn-ghost" onclick="addObservable('ioc')">+ Add</button>
+              </div>
+              <div class="form-hint">Tooling, infrastructure, behaviors</div>
+            </div>
           </div>
-          <div class="form-hint">e.g. MSP, Government</div>
         </div>
-        <div class="form-group">
-          <label class="form-label" style="color:var(--red);">Malware / Tool</label>
-          <div class="obs-input-row">
-            <input type="text" class="form-input" id="add-malware" placeholder="SystemBC" onkeydown="if(event.key==='Enter')addObservable('malware')" />
-            <button class="btn btn-ghost" onclick="addObservable('malware')">+ Add</button>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Investigation Log <span id="log-count" style="color:var(--text3);">(0)</span></div>
+          <button class="btn btn-ghost" onclick="resetInvestigation()">Reset</button>
+        </div>
+        <div class="card-body">
+          <div id="log-container" class="log-container">
+            <div class="empty-state" style="padding:0.5rem 0;">No observables added yet. Add at least one above, or load an example, to begin.</div>
           </div>
-          <div class="form-hint">Ransomware, RAT, loader names</div>
         </div>
-        <div class="form-group">
-          <label class="form-label" style="color:var(--purple);">IOC / Behavior</label>
-          <div class="obs-input-row">
-            <input type="text" class="form-input" id="add-ioc" placeholder="Mullvad VPN" onkeydown="if(event.key==='Enter')addObservable('ioc')" />
-            <button class="btn btn-ghost" onclick="addObservable('ioc')">+ Add</button>
+      </div>
+    </div>
+
+    <div class="attributor-col">
+      <div id="results-section">
+        <div class="results-header"><span class="live-dot"></span>Attribution Results · Live</div>
+
+        <div id="response-guidance" class="response-card" style="display:none;">
+          <div class="response-card-header">
+            <div class="response-card-title">⚡ Response Guidance — <span id="rg-name"></span></div>
+            <div class="response-card-conf" id="rg-conf"></div>
           </div>
-          <div class="form-hint">Tooling, infrastructure, behaviors</div>
+          <div class="response-card-body">
+            <div>
+              <div class="rg-label">If this is the actor, prioritize</div>
+              <div id="rg-playbook"></div>
+            </div>
+            <div>
+              <div class="rg-label">Known TTPs to hunt for</div>
+              <div id="rg-ttps" class="pill-list"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="results-container">
+          <div class="empty-state">Add observables above — likely threat actors will appear here and re-rank automatically as your investigation develops.</div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header">
-      <div class="card-title">Investigation Log <span id="log-count" style="color:var(--text3);">(0)</span></div>
-      <button class="btn btn-ghost" onclick="resetInvestigation()">Reset</button>
-    </div>
-    <div class="card-body">
-      <div id="log-container" class="log-container">
-        <div class="empty-state" style="padding:0.5rem 0;">No observables added yet. Add at least one above, or load an example, to begin.</div>
-      </div>
-    </div>
-  </div>
-
-  <div id="results-section">
-    <div class="results-header"><span class="live-dot"></span>Attribution Results · Live</div>
-
-    <div id="response-guidance" class="response-card" style="display:none;">
-      <div class="response-card-header">
-        <div class="response-card-title">⚡ Response Guidance — <span id="rg-name"></span></div>
-        <div class="response-card-conf" id="rg-conf"></div>
-      </div>
-      <div class="response-card-body">
-        <div>
-          <div class="rg-label">If this is the actor, prioritize</div>
-          <div id="rg-playbook"></div>
-        </div>
-        <div>
-          <div class="rg-label">Known TTPs to hunt for</div>
-          <div id="rg-ttps" class="pill-list"></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="results-container">
-      <div class="empty-state">Add observables above — likely threat actors will appear here and re-rank automatically as your investigation develops.</div>
     </div>
   </div>
 
