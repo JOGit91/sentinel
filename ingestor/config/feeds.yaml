@@ -28,6 +28,11 @@ feeds:
     category: "news"
     priority: medium
 
+  - name: "SecurityWeek"
+    url: "https://www.securityweek.com/feed/"
+    category: "news"
+    priority: medium
+
   - name: "CISA Advisories"
     url: "https://www.cisa.gov/cybersecurity-advisories/all.xml"
     category: "government"

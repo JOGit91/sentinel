@@ -9,6 +9,7 @@
     { "id": "lumma-stealer", "name": "Lumma Stealer (LummaC2)", "category": "credential_access", "trend": "rising", "mention_count_30d": 38 },
     { "id": "rogue-rmm", "name": "Rogue RMM Tool Abuse", "category": "command_and_control", "trend": "rising", "mention_count_30d": 36 },
     { "id": "bluehammer", "name": "BlueHammer (CVE-2026-33825) — Windows Defender LPE Zero-Day", "category": "privilege_escalation", "trend": "rising", "mention_count_30d": 30 },
-    { "id": "redsun", "name": "RedSun (CVE-2026-41091) — Windows Defender Privilege Escalation Zero-Day", "category": "privilege_escalation", "trend": "rising", "mention_count_30d": 27 }
+    { "id": "redsun", "name": "RedSun (CVE-2026-41091) — Windows Defender Privilege Escalation Zero-Day", "category": "privilege_escalation", "trend": "rising", "mention_count_30d": 27 },
+    { "id": "rogueplanet", "name": "RoguePlanet — Microsoft Defender Privilege Escalation Zero-Day", "category": "privilege_escalation", "trend": "rising", "mention_count_30d": 14 }
   ]
 }
