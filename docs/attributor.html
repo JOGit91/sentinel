@@ -26,8 +26,6 @@
     .card-header{padding:0.875rem 1.25rem;border-bottom:1px solid var(--border);}
     .card-title{font-family:var(--font-mono);font-size:17px;color:var(--text2);letter-spacing:0.12em;text-transform:uppercase;}
     .card-body{padding:1.25rem;}
-    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
-    @media(max-width:600px){.form-grid{grid-template-columns:1fr;}}
     .form-group{display:flex;flex-direction:column;gap:6px;}
     .form-label{font-family:var(--font-mono);font-size:16px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;}
     .form-hint{font-size:17px;color:var(--text3);margin-top:2px;}
@@ -40,6 +38,33 @@
     .btn-primary:hover{background:#00e6b0;}
     .btn-ghost{background:transparent;color:var(--text2);border:1px solid var(--border2);}
     .btn-ghost:hover{border-color:var(--green-mid);color:var(--green);}
+    .card-header{display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+    .obs-input-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem 1.25rem;}
+    @media(max-width:560px){.obs-input-grid{grid-template-columns:1fr;}}
+    .obs-input-row{display:flex;gap:6px;}
+    .obs-input-row .form-input{flex:1;min-width:0;}
+    .obs-input-row .btn{padding:0.5rem 0.85rem;white-space:nowrap;}
+    .log-container{display:flex;flex-wrap:wrap;gap:8px;}
+    .obs-chip{display:flex;align-items:center;gap:7px;font-family:var(--font-mono);font-size:16px;padding:5px 8px 5px 11px;border-radius:6px;background:var(--surface2);border:1px solid var(--border2);}
+    .obs-chip .chip-cat{font-size:15px;letter-spacing:0.08em;text-transform:uppercase;opacity:0.7;}
+    .obs-chip.cat-ttp{border-color:rgba(0,212,161,0.3);}
+    .obs-chip.cat-ttp .chip-cat{color:var(--green);}
+    .obs-chip.cat-sector{border-color:rgba(78,205,196,0.3);}
+    .obs-chip.cat-sector .chip-cat{color:var(--blue);}
+    .obs-chip.cat-malware{border-color:rgba(255,71,87,0.3);}
+    .obs-chip.cat-malware .chip-cat{color:var(--red);}
+    .obs-chip.cat-ioc{border-color:rgba(167,139,250,0.3);}
+    .obs-chip.cat-ioc .chip-cat{color:var(--purple);}
+    .chip-remove{cursor:pointer;color:var(--text3);font-size:16px;line-height:1;padding:0 1px;}
+    .chip-remove:hover{color:var(--red);}
+    .results-header{display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:17px;color:var(--text2);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;}
+    .live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(0,212,161,0.8);animation:pulse 1.5s ease-in-out infinite;display:inline-block;}
+    .rank-change{font-family:var(--font-mono);font-size:15px;margin-left:8px;padding:1px 6px;border-radius:3px;}
+    .rank-up{color:var(--green);background:rgba(0,212,161,0.1);}
+    .rank-down{color:var(--text3);background:rgba(74,85,104,0.15);}
+    .rank-new{color:var(--amber);background:rgba(255,165,2,0.12);}
+    @keyframes flash-update{0%{background:rgba(0,212,161,0.14);border-color:var(--green-mid);}100%{background:var(--surface2);border-color:var(--border);}}
+    .result-item.updated{animation:flash-update 1s ease-out;}
     .result-item{display:flex;align-items:center;gap:1rem;padding:1rem;border:1px solid var(--border);border-radius:8px;margin-bottom:0.75rem;background:var(--surface2);}
     .result-rank{font-family:var(--font-mono);font-size:28px;font-weight:600;color:var(--text3);min-width:32px;}
     .rank-1{color:var(--green);}
@@ -79,51 +104,79 @@
   <div class="page-header">
     <div class="page-eyebrow">Threat Attribution</div>
     <div class="page-title">Actor Attributor</div>
-    <div class="page-sub">Enter observables from an incident or report — get ranked threat actor candidates with confidence scores</div>
+    <div class="page-sub">Add observables as you uncover them during an investigation — attribution updates live and tracks how the picture shifts as new evidence comes in</div>
   </div>
 
   <div class="card">
-    <div class="card-header"><div class="card-title">Observables Input</div></div>
+    <div class="card-header"><div class="card-title">Simulate an Investigation</div></div>
     <div class="card-body">
-      <div style="margin-bottom:0.75rem;">
-        <div class="form-label" style="margin-bottom:6px;">Load example scenario</div>
-        <div class="example-row">
-          <button class="example-btn" onclick="loadExample('fortios')">FortiOS exploitation + admin creation</button>
-          <button class="example-btn" onclick="loadExample('m365')">M365 device code auth + token theft</button>
-          <button class="example-btn" onclick="loadExample('cicd')">CI/CD credential harvest</button>
-          <button class="example-btn" onclick="loadExample('vishing')">Teams helpdesk impersonation</button>
-        </div>
+      <div class="example-row" style="margin-bottom:0;">
+        <button class="example-btn" onclick="loadExample('fortios')">FortiOS exploitation + admin creation</button>
+        <button class="example-btn" onclick="loadExample('m365')">M365 device code auth + token theft</button>
+        <button class="example-btn" onclick="loadExample('cicd')">CI/CD credential harvest</button>
+        <button class="example-btn" onclick="loadExample('vishing')">Teams helpdesk impersonation</button>
       </div>
-      <div class="form-grid">
+      <div class="form-hint" style="margin-top:8px;">Examples are added one at a time so you can watch the rankings evolve, the way new evidence would arrive mid-investigation.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-title">Add Observable</div></div>
+    <div class="card-body">
+      <div class="obs-input-grid">
         <div class="form-group">
-          <label class="form-label">ATT&CK Technique IDs</label>
-          <input type="text" class="form-input" id="attr-ttps" placeholder="T1190, T1078, T1486" />
-          <div class="form-hint">Comma or space separated</div>
+          <label class="form-label" style="color:var(--green);">ATT&CK Technique</label>
+          <div class="obs-input-row">
+            <input type="text" class="form-input" id="add-ttp" placeholder="T1190" onkeydown="if(event.key==='Enter')addObservable('ttp')" />
+            <button class="btn btn-ghost" onclick="addObservable('ttp')">+ Add</button>
+          </div>
+          <div class="form-hint">Comma-separated for multiple</div>
         </div>
         <div class="form-group">
-          <label class="form-label">Targeted Sector</label>
-          <input type="text" class="form-input" id="attr-sector" placeholder="Healthcare, MSP, Government" />
+          <label class="form-label" style="color:var(--blue);">Targeted Sector</label>
+          <div class="obs-input-row">
+            <input type="text" class="form-input" id="add-sector" placeholder="Healthcare" onkeydown="if(event.key==='Enter')addObservable('sector')" />
+            <button class="btn btn-ghost" onclick="addObservable('sector')">+ Add</button>
+          </div>
+          <div class="form-hint">e.g. MSP, Government</div>
         </div>
         <div class="form-group">
-          <label class="form-label">Malware / Tool Names</label>
-          <input type="text" class="form-input" id="attr-malware" placeholder="SystemBC, Qilin ransomware" />
+          <label class="form-label" style="color:var(--red);">Malware / Tool</label>
+          <div class="obs-input-row">
+            <input type="text" class="form-input" id="add-malware" placeholder="SystemBC" onkeydown="if(event.key==='Enter')addObservable('malware')" />
+            <button class="btn btn-ghost" onclick="addObservable('malware')">+ Add</button>
+          </div>
+          <div class="form-hint">Ransomware, RAT, loader names</div>
         </div>
         <div class="form-group">
-          <label class="form-label">IOC Hints / Observables</label>
-          <input type="text" class="form-input" id="attr-ioc" placeholder="Mullvad VPN, NETLOGON, WSL" />
+          <label class="form-label" style="color:var(--purple);">IOC / Behavior</label>
+          <div class="obs-input-row">
+            <input type="text" class="form-input" id="add-ioc" placeholder="Mullvad VPN" onkeydown="if(event.key==='Enter')addObservable('ioc')" />
+            <button class="btn btn-ghost" onclick="addObservable('ioc')">+ Add</button>
+          </div>
           <div class="form-hint">Tooling, infrastructure, behaviors</div>
         </div>
-      </div>
-      <div class="btn-row">
-        <button class="btn btn-primary" onclick="runAttribution()">▶ Run Attribution</button>
-        <button class="btn btn-ghost" onclick="clearForm()">Clear</button>
       </div>
     </div>
   </div>
 
-  <div id="results-section" style="display:none;">
-    <div style="font-family:var(--font-mono);font-size:17px;color:var(--text2);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;">Attribution Results</div>
-    <div id="results-container"></div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Investigation Log <span id="log-count" style="color:var(--text3);">(0)</span></div>
+      <button class="btn btn-ghost" onclick="resetInvestigation()">Reset</button>
+    </div>
+    <div class="card-body">
+      <div id="log-container" class="log-container">
+        <div class="empty-state" style="padding:0.5rem 0;">No observables added yet. Add at least one above, or load an example, to begin.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="results-section">
+    <div class="results-header"><span class="live-dot"></span>Attribution Results · Live</div>
+    <div id="results-container">
+      <div class="empty-state">Add observables above — likely threat actors will appear here and re-rank automatically as your investigation develops.</div>
+    </div>
   </div>
 
 </main>
@@ -134,71 +187,127 @@
 <script>
 const ACTOR_IDS=['qilin','the-gentlemen','shinyhunters','teampcp','salt-typhoon','unc6692','lazarus','apt38','apt28','muddywater','mustang-panda','eviltokens','gamaredon','kimsuky','miasma','silver-fox','turla','apt37','black-basta'];
 let actorsData=[];
+let observables=[]; // {id, type:'ttp'|'sector'|'malware'|'ioc', value}
+let obsCounter=0;
+let prevRanking=[]; // actor ids in previous result order
+let prevScores={}; // actor id -> previous score
+
+const CAT_LABELS={ttp:'TTP',sector:'Sector',malware:'Malware',ioc:'IOC'};
 
 const EXAMPLES={
-  fortios:{ttps:'T1190, T1078, T1484.001, T1059.001, T1070.001',sector:'Manufacturing, Construction',malware:'',ioc:'FortiGate, NETLOGON, GPMC, PsExec'},
-  m365:{ttps:'T1528, T1078, T1621',sector:'Healthcare, Government',malware:'',ioc:'device code, session token, Entra ID'},
-  cicd:{ttps:'T1195.001, T1552.001',sector:'Technology',malware:'Shai-Hulud',ioc:'npm, GitHub Actions, CI cache, OIDC'},
-  vishing:{ttps:'T1566.004, T1078, T1621, T1204.002',sector:'SMB',malware:'',ioc:'Teams external access, helpdesk, MFA enrollment'}
+  fortios:{ttp:['T1190','T1078','T1484.001','T1059.001','T1070.001'],sector:['Manufacturing','Construction'],malware:[],ioc:['FortiGate','NETLOGON','GPMC','PsExec']},
+  m365:{ttp:['T1528','T1078','T1621'],sector:['Healthcare','Government'],malware:[],ioc:['device code','session token','Entra ID']},
+  cicd:{ttp:['T1195.001','T1552.001'],sector:['Technology'],malware:['Shai-Hulud'],ioc:['npm','GitHub Actions','CI cache','OIDC']},
+  vishing:{ttp:['T1566.004','T1078','T1621','T1204.002'],sector:['SMB'],malware:[],ioc:['Teams external access','helpdesk','MFA enrollment']}
 };
-
-function loadExample(key){
-  const ex=EXAMPLES[key];
-  if(!ex)return;
-  document.getElementById('attr-ttps').value=ex.ttps;
-  document.getElementById('attr-sector').value=ex.sector;
-  document.getElementById('attr-malware').value=ex.malware;
-  document.getElementById('attr-ioc').value=ex.ioc;
-}
-
-function clearForm(){
-  ['attr-ttps','attr-sector','attr-malware','attr-ioc'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('results-section').style.display='none';
-}
 
 function scoreClass(pct){return pct>70?'score-high':pct>40?'score-med':'score-low';}
 function confBarColor(pct){return pct>70?'var(--red)':pct>40?'var(--amber)':'var(--green)';}
 
-function runAttribution(){
-  const ttpsInput=document.getElementById('attr-ttps').value.toLowerCase();
-  const sectorInput=document.getElementById('attr-sector').value.toLowerCase();
-  const malwareInput=document.getElementById('attr-malware').value.toLowerCase();
-  const iocInput=document.getElementById('attr-ioc').value.toLowerCase();
+function addObservable(type){
+  const input=document.getElementById(`add-${type}`);
+  const raw=input.value.trim();
+  if(!raw)return;
+  const tokens=type==='ttp'
+    ? raw.split(/[\s,]+/).filter(Boolean)
+    : raw.split(/,/).map(t=>t.trim()).filter(Boolean);
+  tokens.forEach(tok=>observables.push({id:++obsCounter,type,value:tok}));
+  input.value='';
+  renderLog();
+  recalculate();
+}
 
-  if(!ttpsInput&&!sectorInput&&!malwareInput&&!iocInput){
-    alert('Enter at least one observable to run attribution.');
+function removeObservable(id){
+  observables=observables.filter(o=>o.id!==id);
+  renderLog();
+  recalculate();
+}
+
+function resetInvestigation(){
+  observables=[];
+  prevRanking=[];
+  prevScores={};
+  renderLog();
+  recalculate();
+}
+
+function renderLog(){
+  const container=document.getElementById('log-container');
+  document.getElementById('log-count').textContent=`(${observables.length})`;
+  if(!observables.length){
+    container.innerHTML='<div class="empty-state" style="padding:0.5rem 0;">No observables added yet. Add at least one above, or load an example, to begin.</div>';
+    return;
+  }
+  container.innerHTML=observables.map(o=>`
+    <div class="obs-chip cat-${o.type}">
+      <span class="chip-cat">${CAT_LABELS[o.type]}</span>
+      <span>${o.value}</span>
+      <span class="chip-remove" onclick="removeObservable(${o.id})">×</span>
+    </div>
+  `).join('');
+}
+
+function loadExample(key){
+  const ex=EXAMPLES[key];
+  if(!ex)return;
+  resetInvestigation();
+  const queue=[
+    ...ex.ttp.map(value=>({type:'ttp',value})),
+    ...ex.sector.map(value=>({type:'sector',value})),
+    ...ex.malware.map(value=>({type:'malware',value})),
+    ...ex.ioc.map(value=>({type:'ioc',value}))
+  ];
+  let i=0;
+  (function step(){
+    if(i>=queue.length)return;
+    const o=queue[i++];
+    observables.push({id:++obsCounter,type:o.type,value:o.value});
+    renderLog();
+    recalculate();
+    setTimeout(step,400);
+  })();
+}
+
+function recalculate(){
+  const container=document.getElementById('results-container');
+
+  if(!observables.length){
+    container.innerHTML='<div class="empty-state">Add observables above — likely threat actors will appear here and re-rank automatically as your investigation develops.</div>';
+    prevRanking=[];
+    prevScores={};
     return;
   }
 
-  const inputTtps=ttpsInput.split(/[\s,]+/).filter(t=>t.match(/^t\d/i));
+  const ttps=observables.filter(o=>o.type==='ttp').map(o=>o.value.toLowerCase());
+  const sectors=observables.filter(o=>o.type==='sector').map(o=>o.value.toLowerCase());
+  const malware=observables.filter(o=>o.type==='malware').map(o=>o.value.toLowerCase());
+  const iocs=observables.filter(o=>o.type==='ioc').map(o=>o.value.toLowerCase());
 
   const scores=actorsData.map(actor=>{
     let score=0;
     let matches=[];
 
-    if(inputTtps.length){
+    if(ttps.length){
       const actorTtpIds=actor.ttps.map(t=>t.technique_id.toLowerCase());
-      const matched=inputTtps.filter(t=>actorTtpIds.includes(t));
+      const matched=ttps.filter(t=>actorTtpIds.includes(t));
       if(matched.length){score+=matched.length*25;matches.push(...matched.map(t=>`TTP: ${t.toUpperCase()}`));}
     }
-    if(sectorInput){
-      const sectors=actor.targeted_sectors.map(s=>s.toLowerCase());
-      const terms=sectorInput.split(/[\s,]+/);
-      const matchedS=terms.filter(s=>s.length>2&&sectors.some(as=>as.includes(s)||s.includes(as)));
+    if(sectors.length){
+      const actorSectors=actor.targeted_sectors.map(s=>s.toLowerCase());
+      const matchedS=sectors.filter(s=>s.length>2&&actorSectors.some(as=>as.includes(s)||s.includes(as)));
       if(matchedS.length){score+=matchedS.length*20;matches.push(...matchedS.map(s=>`Sector: ${s}`));}
     }
-    if(malwareInput){
-      const malware=actor.malware_families.map(m=>m.toLowerCase());
-      const terms=malwareInput.split(/[\s,]+/);
-      const matchedM=terms.filter(m=>m.length>3&&malware.some(am=>am.includes(m)||m.includes(am)));
+    if(malware.length){
+      const actorMalware=actor.malware_families.map(m=>m.toLowerCase());
+      const matchedM=malware.filter(m=>m.length>3&&actorMalware.some(am=>am.includes(m)||m.includes(am)));
       if(matchedM.length){score+=matchedM.length*30;matches.push(...matchedM.map(m=>`Malware: ${m}`));}
     }
-    if(iocInput){
+    if(iocs.length){
       const notable=actor.notable_techniques.map(n=>n.toLowerCase()).join(' ');
       const detect=actor.detection_opportunities.map(d=>d.toLowerCase()).join(' ');
       const combined=notable+' '+detect;
-      const terms=iocInput.split(/[\s,]+/);
-      const matchedI=terms.filter(i=>i.length>3&&combined.includes(i));
+      const words=iocs.flatMap(i=>i.split(/\s+/));
+      const matchedI=[...new Set(words.filter(w=>w.length>3&&combined.includes(w)))];
       if(matchedI.length){score+=matchedI.length*20;matches.push(...matchedI.map(i=>`Observable: ${i}`));}
     }
     if(score>0)score+=actor.activity_score*0.1;
@@ -206,23 +315,31 @@ function runAttribution(){
   });
 
   const results=scores.filter(s=>s.score>0).sort((a,b)=>b.score-a.score).slice(0,5);
-  const maxScore=results[0]?.score||1;
-
-  const container=document.getElementById('results-container');
-  const section=document.getElementById('results-section');
-  section.style.display='block';
 
   if(!results.length){
-    container.innerHTML='<div class="empty-state">No strong matches found. Try different observables or broaden inputs.</div>';
+    container.innerHTML='<div class="empty-state">No matches yet — keep adding observables as your investigation develops.</div>';
+    prevRanking=[];
+    prevScores={};
     return;
   }
 
+  const maxScore=results[0].score||1;
+
   container.innerHTML=results.map((r,i)=>{
     const pct=Math.round((r.score/maxScore)*100);
-    return`<div class="result-item">
+    const prevIdx=prevRanking.indexOf(r.actor.id);
+    let changeHtml='';
+    if(prevRanking.length){
+      if(prevIdx===-1)changeHtml='<span class="rank-change rank-new">NEW</span>';
+      else if(prevIdx>i)changeHtml=`<span class="rank-change rank-up">▲ ${prevIdx-i}</span>`;
+      else if(prevIdx<i)changeHtml=`<span class="rank-change rank-down">▼ ${i-prevIdx}</span>`;
+    }
+    const scoreChanged=prevScores[r.actor.id]===undefined||prevScores[r.actor.id]!==r.score;
+    const flashClass=prevRanking.length&&scoreChanged?'updated':'';
+    return`<div class="result-item ${flashClass}">
       <div class="result-rank rank-${i+1}">#${i+1}</div>
       <div class="result-info">
-        <div class="result-name">${r.actor.name} <span style="font-size:17px;color:var(--text3);font-weight:400;">${r.actor.type.replace('_',' ')}</span></div>
+        <div class="result-name">${r.actor.name} <span style="font-size:17px;color:var(--text3);font-weight:400;">${r.actor.type.replace('_',' ')}</span>${changeHtml}</div>
         <div class="result-desc">${r.actor.motivation.join(', ')} · ${r.actor.origin}</div>
         <div>${r.matches.map(m=>`<span class="match-badge">${m}</span>`).join('')}</div>
       </div>
@@ -234,7 +351,8 @@ function runAttribution(){
     </div>`;
   }).join('');
 
-  section.scrollIntoView({behavior:'smooth',block:'start'});
+  prevRanking=results.map(r=>r.actor.id);
+  prevScores=Object.fromEntries(results.map(r=>[r.actor.id,r.score]));
 }
 
 async function loadActors(){

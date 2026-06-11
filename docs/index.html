@@ -997,30 +997,51 @@ function renderChart() {
   const datasets = top10.map((actor, i) => {
     const profile = actorsData.find(a => a.id === actor.id);
     const history = profile?.mention_history || months.map((m,idx) => ({month:m, count: Math.round(actor.mention_count_30d * (0.5 + idx*0.1))}));
+    const color = colors[i];
     return {
       label: actor.name,
       data: months.map(m => history.find(h=>h.month===m)?.count || 0),
-      borderColor: colors[i],
-      backgroundColor: colors[i] + '18',
+      borderColor: color,
+      backgroundColor: color + '18',
+      pointBackgroundColor: color,
       borderWidth: 2,
       pointRadius: 3,
       pointHoverRadius: 5,
       tension: 0.4,
-      fill: false
+      fill: false,
+      _baseColor: color
     };
   });
 
+  function highlightDataset(chart, index) {
+    chart.data.datasets.forEach((ds, i) => {
+      const active = index === null || i === index;
+      ds.borderColor = active ? ds._baseColor : ds._baseColor + '1f';
+      ds.pointBackgroundColor = active ? ds._baseColor : ds._baseColor + '1f';
+      ds.borderWidth = (index !== null && i === index) ? 3 : 2;
+      ds.pointRadius = active ? 3 : 0;
+      ds.order = (index !== null && i === index) ? 0 : 1;
+    });
+    chart.update('none');
+  }
+
   const ctx = document.getElementById('activityChart').getContext('2d');
-  new Chart(ctx, {
+  const chart = new Chart(ctx, {
     type: 'line',
     data: { labels, datasets },
     options: {
       responsive: true,
       maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
+      onHover: (evt, _elements, chart) => {
+        const matches = chart.getElementsAtEventForMode(evt, 'dataset', { intersect: true }, false);
+        highlightDataset(chart, matches.length ? matches[0].datasetIndex : null);
+      },
       plugins: {
         legend: {
-          labels: { color: '#8892a4', font: { family: 'IBM Plex Mono', size: 10 }, boxWidth: 10, padding: 10 }
+          labels: { color: '#8892a4', font: { family: 'IBM Plex Mono', size: 10 }, boxWidth: 10, padding: 10 },
+          onHover: (_evt, legendItem, legend) => highlightDataset(legend.chart, legendItem.datasetIndex),
+          onLeave: (_evt, _legendItem, legend) => highlightDataset(legend.chart, null)
         },
         tooltip: {
           backgroundColor: '#111318',
@@ -1044,6 +1065,44 @@ function renderChart() {
       }
     }
   });
+
+  ctx.canvas.addEventListener('mouseleave', () => highlightDataset(chart, null));
+}
+
+// Maps near-duplicate / sub-category sector labels onto the broader category
+// they fall under, so e.g. "Banking" and "Fintech" both count toward
+// "Financial Services" instead of fragmenting into one-off "Other" buckets.
+const SECTOR_ALIASES = {
+  'military': 'Defense',
+  'bioinformatics': 'Healthcare',
+  'banking': 'Financial Services',
+  'cryptocurrency': 'Financial Services',
+  'cryptocurrency exchanges': 'Financial Services',
+  'defi/blockchain bridges': 'Financial Services',
+  'blockchain/defi': 'Financial Services',
+  'swift member banks': 'Financial Services',
+  'atm/payment switch networks': 'Financial Services',
+  'fintech': 'Financial Services',
+  'software development': 'Technology',
+  'cloud': 'Technology',
+  'saas': 'Technology',
+  'ci/cd infrastructure': 'Technology',
+  'ai/ml': 'Technology',
+  'crm platforms': 'Technology',
+  'any m365 tenant': 'Technology',
+  'any m365/entra id tenant': 'Technology',
+  'foreign affairs / diplomatic': 'Government',
+  'foreign affairs ministries': 'Government',
+  'diplomatic missions': 'Government',
+  'diplomatic / embassies': 'Government',
+  'foreign diplomatic missions': 'Government',
+  'diplomatic / foreign embassies': 'Government',
+  'law enforcement': 'Government',
+  'think tanks': 'Government'
+};
+
+function normalizeSector(s) {
+  return SECTOR_ALIASES[s.toLowerCase()] || s;
 }
 
 function renderSectorChart() {
@@ -1061,7 +1120,8 @@ function renderSectorChart() {
   // Tally sector exposure across all actors — top 5 sectors get their own color
   const sectorCounts = {};
   sorted.forEach(actor => {
-    actor.targeted_sectors.forEach(s => {
+    const normalized = [...new Set(actor.targeted_sectors.map(normalizeSector))];
+    normalized.forEach(s => {
       sectorCounts[s] = (sectorCounts[s] || 0) + 1;
     });
   });
@@ -1085,7 +1145,7 @@ function renderSectorChart() {
   const sectorDatasets = [...topSectors, 'Other'].map(sector => ({
     label: sector,
     data: sorted.map(actor => {
-      const sectors = actor.targeted_sectors;
+      const sectors = [...new Set(actor.targeted_sectors.map(normalizeSector))];
       const hasTopSector = topSectors.some(s => sectors.includes(s));
       if (sector === 'Other') {
         return hasTopSector ? 0 : actor.activity_score;
@@ -1138,7 +1198,16 @@ function renderSectorChart() {
           bodyFont: { family: 'IBM Plex Mono', size: 11 },
           callbacks: {
             title: (items) => items[0].label,
-            label: (item) => item.dataset.data[item.dataIndex] > 0 ? ` ${item.dataset.label}` : null,
+            label: (item) => {
+              if (item.dataset.data[item.dataIndex] <= 0) return null;
+              if (item.dataset.label === 'Other') {
+                const actor = actorsData.find(a => a.name === item.label);
+                const others = [...new Set(actor.targeted_sectors.map(normalizeSector))]
+                  .filter(s => !topSectors.includes(s));
+                return ` Other: ${others.join(', ')}`;
+              }
+              return ` ${item.dataset.label}`;
+            },
             footer: (items) => {
               const actor = actorsData.find(a => a.name === items[0].label);
               return actor ? `Activity Score: ${actor.activity_score}` : '';
