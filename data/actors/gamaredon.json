@@ -2,6 +2,7 @@
   "id": "gamaredon",
   "name": "Gamaredon",
   "aliases": ["Shuckworm", "Armageddon", "Primitive Bear", "ACTINIUM", "UAC-0010", "Iron Tilden", "Aqua Blizzard", "BlueAlpha"],
+  "mitre_attack_id": "G0047",
   "type": "apt",
   "model": "nation_state",
   "status": "active",

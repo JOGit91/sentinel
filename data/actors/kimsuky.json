@@ -2,6 +2,7 @@
   "id": "kimsuky",
   "name": "Kimsuky",
   "aliases": ["APT43", "Black Banshee", "Velvet Chollima", "Emerald Sleet", "THALLIUM", "Springtail", "TA427"],
+  "mitre_attack_id": "G0094",
   "type": "apt",
   "model": "nation_state",
   "status": "active",

@@ -182,6 +182,13 @@ function renderActor(a){
           <div class="detail-label">Sources</div>
           ${a.sources.map(s=>`<div style="margin-bottom:4px;"><a class="source-link" href="${s.url}" target="_blank">↗ ${s.title}</a></div>`).join('')}
         </div>
+        <div class="detail-section">
+          <div class="detail-label">External References</div>
+          ${a.mitre_attack_id
+            ? `<div style="margin-bottom:4px;"><a class="source-link" href="https://attack.mitre.org/groups/${a.mitre_attack_id}/" target="_blank">↗ MITRE ATT&CK ${a.mitre_attack_id} — ${a.name}</a></div>`
+            : `<div style="margin-bottom:4px;"><a class="source-link" href="https://attack.mitre.org/groups/" target="_blank">↗ Cross-reference on MITRE ATT&CK Groups</a></div>`
+          }
+        </div>
       </div>
     </div>
   </div>`;

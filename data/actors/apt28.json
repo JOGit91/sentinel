@@ -2,6 +2,7 @@
   "id": "apt28",
   "name": "APT28",
   "aliases": ["Fancy Bear", "Forest Blizzard", "Sofacy", "Sednit", "Pawn Storm", "STRONTIUM", "GruesomeLarch", "UAC-0001"],
+  "mitre_attack_id": "G0007",
   "type": "apt",
   "model": "nation_state",
   "status": "active",

@@ -2,6 +2,7 @@
   "id": "turla",
   "name": "Turla",
   "aliases": ["Secret Blizzard", "Snake", "Venomous Bear", "Waterbug", "Uroburos", "WhiteBear", "Krypton", "BELUGASTURGEON"],
+  "mitre_attack_id": "G0010",
   "type": "apt",
   "model": "nation_state",
   "status": "active",

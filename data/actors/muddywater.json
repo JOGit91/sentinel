@@ -2,6 +2,7 @@
   "id": "muddywater",
   "name": "MuddyWater",
   "aliases": ["Mango Sandstorm", "Static Kitten", "Seedworm", "TEMP.Zagros", "Earth Vetala", "MERCURY", "TA450", "Boggy Serpens"],
+  "mitre_attack_id": "G0069",
   "type": "apt",
   "model": "nation_state",
   "status": "active",

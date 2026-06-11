@@ -2,6 +2,7 @@
   "id": "lazarus",
   "name": "Lazarus Group",
   "aliases": ["HIDDEN COBRA","Guardians of Peace","ZINC","Diamond Sleet","Labyrinth Chollima","NICKEL ACADEMY","APT38 (financial cluster, see separate profile)","BlueNoroff","Stardust Chollima"],
+  "mitre_attack_id": "G0032",
   "type": "apt",
   "model": "nation_state",
   "status": "active",

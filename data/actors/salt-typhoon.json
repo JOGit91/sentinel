@@ -2,6 +2,7 @@
   "id": "salt-typhoon",
   "name": "Salt Typhoon",
   "aliases": ["GhostEmperor","FamousSparrow","UNC2286"],
+  "mitre_attack_id": "G1045",
   "type": "apt",
   "model": "nation_state",
   "status": "active",

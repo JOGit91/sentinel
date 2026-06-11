@@ -2,6 +2,7 @@
   "id": "apt38",
   "name": "APT38",
   "aliases": ["BlueNoroff","Stardust Chollima","BeagleBoyz","Sapphire Sleet","NICKEL GLADSTONE","COPERNICIUM","TraderTraitor","Lazarus Group (parent umbrella, see separate profile)"],
+  "mitre_attack_id": "G0082",
   "type": "apt",
   "model": "nation_state",
   "status": "active",

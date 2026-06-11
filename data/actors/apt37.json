@@ -2,6 +2,7 @@
   "id": "apt37",
   "name": "APT37",
   "aliases": ["ScarCruft", "Ricochet Chollima", "InkySquid", "Reaper", "Group123", "Velvet Chollima (overlap)"],
+  "mitre_attack_id": "G0067",
   "type": "apt",
   "model": "nation_state",
   "status": "active",

@@ -2,6 +2,7 @@
   "id": "mustang-panda",
   "name": "Mustang Panda",
   "aliases": ["Bronze President", "Stately Taurus", "RedDelta", "TA416", "Earth Preta", "Camaro Dragon", "Twill Typhoon", "HIVE0154", "Red Lich"],
+  "mitre_attack_id": "G0129",
   "type": "apt",
   "model": "nation_state",
   "status": "active",
