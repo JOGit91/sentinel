@@ -13,7 +13,7 @@
     { "technique_id": "T1098", "technique_name": "Account Manipulation", "notes": "Stolen maintainer credentials used to publish additional malicious package versions, enabling self-propagation" },
     { "technique_id": "T1554", "technique_name": "Compromise Host Software Binary", "notes": "Persistence via tampered AI coding agent configuration files (Claude Code, VS Code) on developer workstations" }
   ],
-  "related_actors": ["teampcp", "miasma"],
+  "related_actors": ["teampcp"],
   "related_tools": ["Shai-Hulud worm", "Mini Shai-Hulud", "TruffleHog (abused for secret scanning)"],
   "notable_examples": [
     "April 29, 2026: Aikido researchers disclosed 'Mini Shai-Hulud' targeting SAP npm packages via malicious preinstall scripts",

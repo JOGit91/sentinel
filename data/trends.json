@@ -4,6 +4,7 @@
     { "id": "clickfix", "name": "ClickFix (Fake CAPTCHA / Verification Social Engineering)", "category": "execution", "trend": "rising", "mention_count_30d": 47 },
     { "id": "edr-silencers", "name": "EDR Silencers / EDR Killer Tools", "category": "defense_evasion", "trend": "rising", "mention_count_30d": 41 },
     { "id": "shai-hulud", "name": "Shai-Hulud npm Supply-Chain Worm", "category": "supply_chain", "trend": "rising", "mention_count_30d": 45 },
+    { "id": "miasma", "name": "Miasma (npm/PyPI Supply-Chain Worm)", "category": "supply_chain", "trend": "rising", "mention_count_30d": 47 },
     { "id": "teams-helpdesk-impersonation", "name": "MS Teams Helpdesk Impersonation / Vishing", "category": "initial_access", "trend": "rising", "mention_count_30d": 38 },
     { "id": "lumma-stealer", "name": "Lumma Stealer (LummaC2)", "category": "credential_access", "trend": "rising", "mention_count_30d": 38 },
     { "id": "rogue-rmm", "name": "Rogue RMM Tool Abuse", "category": "command_and_control", "trend": "rising", "mention_count_30d": 36 },

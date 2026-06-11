@@ -43,7 +43,6 @@ No server. No database. No hosting costs. Pure static files + GitHub Actions.
 | APT28 | APT / Nation-State | 88 |
 | ShinyHunters | Data Extortion | 85 |
 | Lazarus Group | APT / Nation-State | 84 |
-| Miasma | Supply Chain | 84 |
 | Silver Fox | APT / China-Nexus | 81 |
 | Turla | APT / Nation-State | 81 |
 | Gamaredon | APT / Nation-State | 80 |
@@ -65,6 +64,7 @@ In addition to actor profiles, SENTINEL tracks trending TTPs, malware, and explo
 |---|---|---|
 | ClickFix (Fake CAPTCHA / Verification Social Engineering) | Execution | Rising |
 | Shai-Hulud npm Supply-Chain Worm | Supply Chain | Rising |
+| Miasma (npm/PyPI Supply-Chain Worm) | Supply Chain | Rising |
 | EDR Silencers / EDR Killer Tools | Defense Evasion | Rising |
 | MS Teams Helpdesk Impersonation / Vishing | Initial Access | Rising |
 | Lumma Stealer (LummaC2) | Credential Access | Rising |

@@ -797,6 +797,17 @@
     <div class="section-title">Tactics &amp; Tools on the Rise</div>
     <a href="trends.html" class="view-all">All tactics →</a>
   </div>
+  <div class="card" style="margin-bottom:1.5rem;">
+    <div class="card-header">
+      <div class="card-title">Activity — Tactics &amp; Tools on the Rise (6 months)</div>
+      <div class="card-badge">Mention count</div>
+    </div>
+    <div class="card-body">
+      <div class="chart-wrap chart-wrap-tall">
+        <canvas id="trendsChart"></canvas>
+      </div>
+    </div>
+  </div>
   <div class="trend-grid" id="trend-grid">
     <div class="loading">Loading trend data...</div>
   </div>
@@ -925,6 +936,7 @@ function renderAll() {
   renderSectorChart();
   renderMentionFeed();
   renderTrendsGrid();
+  renderTrendsChart();
   document.getElementById('last-updated').textContent =
     'Updated ' + new Date(activityData.last_updated).toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'});
 }
@@ -1035,6 +1047,109 @@ function renderChart() {
   }
 
   const ctx = document.getElementById('activityChart').getContext('2d');
+  const chart = new Chart(ctx, {
+    type: 'line',
+    data: { labels, datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      onHover: (evt, _elements, chart) => {
+        const HOVER_PX = 12;
+        let bestIdx = null, bestDist = HOVER_PX;
+        chart.data.datasets.forEach((ds, i) => {
+          const meta = chart.getDatasetMeta(i);
+          if (meta.hidden) return;
+          const pts = meta.data;
+          for (let j = 0; j < pts.length - 1; j++) {
+            const d = distToSegment(evt.x, evt.y, pts[j].x, pts[j].y, pts[j+1].x, pts[j+1].y);
+            if (d < bestDist) { bestDist = d; bestIdx = i; }
+          }
+        });
+        highlightDataset(chart, bestIdx);
+      },
+      plugins: {
+        legend: {
+          labels: { color: '#8892a4', font: { family: 'IBM Plex Mono', size: 10 }, boxWidth: 10, padding: 10 },
+          onHover: (_evt, legendItem, legend) => highlightDataset(legend.chart, legendItem.datasetIndex),
+          onLeave: (_evt, _legendItem, legend) => highlightDataset(legend.chart, null)
+        },
+        tooltip: {
+          backgroundColor: '#111318',
+          borderColor: '#252d3d',
+          borderWidth: 1,
+          titleColor: '#e2e8f0',
+          bodyColor: '#8892a4',
+          titleFont: { family: 'IBM Plex Mono', size: 11 },
+          bodyFont: { family: 'IBM Plex Mono', size: 11 }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: '#4a5568', font: { family: 'IBM Plex Mono', size: 10 } },
+          grid: { color: '#1e2430' }
+        },
+        y: {
+          ticks: { color: '#4a5568', font: { family: 'IBM Plex Mono', size: 10 } },
+          grid: { color: '#1e2430' }
+        }
+      }
+    }
+  });
+
+  ctx.canvas.addEventListener('mouseleave', () => highlightDataset(chart, null));
+}
+
+function renderTrendsChart() {
+  if (!trendsData.length) return;
+
+  const top10 = [...trendsData].sort((a,b) => (b.mention_count_30d||0) - (a.mention_count_30d||0)).slice(0,10);
+
+  const months = ['2026-01','2026-02','2026-03','2026-04','2026-05','2026-06'];
+  const labels = ['Jan','Feb','Mar','Apr','May','Jun'];
+
+  const colors = ['#00d4a1','#ff4757','#ffa502','#a78bfa','#4ecdc4','#ff6b6b','#74b9ff','#fdcb6e','#e84393','#00b894'];
+
+  const datasets = top10.map((trend, i) => {
+    const history = trend.mention_history || [];
+    const color = colors[i];
+    return {
+      label: trend.name,
+      data: months.map(m => history.find(h=>h.month===m)?.count || 0),
+      borderColor: color,
+      backgroundColor: color + '18',
+      pointBackgroundColor: color,
+      borderWidth: 2,
+      pointRadius: 3,
+      pointHoverRadius: 5,
+      tension: 0.4,
+      fill: false,
+      _baseColor: color
+    };
+  });
+
+  function distToSegment(px, py, x1, y1, x2, y2) {
+    const dx = x2 - x1, dy = y2 - y1;
+    const lengthSq = dx*dx + dy*dy;
+    let t = lengthSq ? ((px-x1)*dx + (py-y1)*dy) / lengthSq : 0;
+    t = Math.max(0, Math.min(1, t));
+    const projX = x1 + t*dx, projY = y1 + t*dy;
+    return Math.hypot(px-projX, py-projY);
+  }
+
+  function highlightDataset(chart, index) {
+    chart.data.datasets.forEach((ds, i) => {
+      const active = index === null || i === index;
+      ds.borderColor = active ? ds._baseColor : ds._baseColor + '1f';
+      ds.pointBackgroundColor = active ? ds._baseColor : ds._baseColor + '1f';
+      ds.borderWidth = (index !== null && i === index) ? 3 : 2;
+      ds.pointRadius = active ? 3 : 0;
+      ds.order = (index !== null && i === index) ? 0 : 1;
+    });
+    chart.update('none');
+  }
+
+  const ctx = document.getElementById('trendsChart').getContext('2d');
   const chart = new Chart(ctx, {
     type: 'line',
     data: { labels, datasets },
@@ -1252,7 +1367,7 @@ function renderMentionFeed() {
     'teampcp': '#4ecdc4', 'salt-typhoon': '#a78bfa', 'unc6692': '#00d4a1',
     'lazarus': '#c0392b', 'apt38': '#e67e22', 'apt28': '#d63031',
     'muddywater': '#00b894', 'mustang-panda': '#fdcb6e', 'eviltokens': '#e84393',
-    'gamaredon': '#0984e3', 'kimsuky': '#6c5ce7', 'miasma': '#b33939',
+    'gamaredon': '#0984e3', 'kimsuky': '#6c5ce7',
     'silver-fox': '#95a5a6', 'turla': '#74b9ff', 'apt37': '#00cec9',
     'black-basta': '#636e72'
   };

@@ -1,20 +1,12 @@
 {
   "id": "miasma",
-  "name": "Miasma",
-  "aliases": ["Miasma: The Spreading Blight", "Mini Shai-Hulud (Miasma variant)", "IronWorm (related Rust loader)", "Hades (PyPI wave)"],
-  "type": "supply_chain",
-  "model": "unknown",
-  "status": "active",
-  "first_seen": "2026-06",
+  "name": "Miasma (npm/PyPI Supply-Chain Worm)",
+  "category": "supply_chain",
+  "trend": "rising",
+  "first_observed": "2026-06",
   "last_seen": "2026-06",
-  "origin": "unknown (built on Mini Shai-Hulud worm code publicly released by TeamPCP in May 2026)",
-  "motivation": ["financial","access_brokering"],
   "description": "Miasma is a self-replicating, credential-stealing worm that emerged in early June 2026 as the latest descendant of the Mini Shai-Hulud codebase TeamPCP released publicly in May 2026. The initial wave compromised 50+ npm packages — including at least 32 under the @redhat-cloud-services namespace (~80,000 weekly downloads) — via a 4.29MB obfuscated preinstall dropper, abusing GitHub Actions OIDC trusted publishing to forge SLSA provenance and push trojanized releases. A parallel Rust-based 'IronWorm' stealer variant uses an eBPF rootkit and Tor C2 to scrape developer secrets, while the 'Hades' wave hit PyPI with 37 malicious wheels across 19 packages using .pth startup-hook execution to deploy a Bun-based credential stealer targeting GitHub, npm, AWS, GCP, Azure, Anthropic, and CI/CD tokens. On June 5, 2026, the worm propagated using stolen contributor credentials to compromise 73 Microsoft GitHub repositories (Azure, Azure-Samples, Microsoft, MicrosoftDocs orgs), injecting configuration that triggers credential harvesting when the repo is opened in AI coding tools like Claude Code, Gemini CLI, Cursor, and VS Code. Attribution remains unclear — the campaign reuses TeamPCP's publicly released tooling but has not been definitively linked to the same operators.",
-  "activity_score": 84,
-  "monthly_victims": null,
-  "targeted_sectors": ["Technology","Software Development","Cloud","CI/CD Infrastructure","AI/ML","Bioinformatics"],
-  "targeted_regions": ["Global"],
-  "ttps": [
+  "mitre_techniques": [
     { "technique_id": "T1195.001", "technique_name": "Supply Chain Compromise: Compromise Software Dependencies", "notes": "50+ trojanized npm packages and 19 PyPI packages (37 malicious wheels) distributed via official registries" },
     { "technique_id": "T1554", "technique_name": "Compromise Host Software Binary", "notes": "'Phantom Gyp' technique abuses 157-byte binding.gyp files to trigger code execution during npm install, bypassing pre/postinstall script monitoring" },
     { "technique_id": "T1546.016", "technique_name": "Installer Packages", "notes": "PyPI .pth startup-hook files auto-execute via Python's site module on interpreter startup, downloading the Bun runtime to run obfuscated payloads" },
@@ -24,8 +16,9 @@
     { "technique_id": "T1014", "technique_name": "Rootkit", "notes": "IronWorm Rust-based variant deploys an eBPF kernel rootkit to hide stealer activity from host monitoring" },
     { "technique_id": "T1567", "technique_name": "Exfiltration Over Web Service", "notes": "Stolen credentials exfiltrated to attacker-controlled GitHub repositories ('The Spreading Blight') and IronWorm exfiltrates over Tor C2" }
   ],
-  "malware_families": ["Miasma worm", "IronWorm (Rust stealer)", "Hades (Bun-based credential stealer)", "Mini Shai-Hulud (base codebase)"],
-  "notable_techniques": [
+  "related_actors": ["teampcp"],
+  "related_tools": ["Miasma worm", "IronWorm (Rust stealer)", "Hades (Bun-based credential stealer)", "Mini Shai-Hulud (base codebase)"],
+  "notable_examples": [
     "Worm self-replicates by harvesting maintainer/contributor credentials and using them to publish further trojanized package versions",
     "'Phantom Gyp' technique executes via binding.gyp during npm install, evading tools that only monitor pre/postinstall lifecycle scripts",
     "Hades PyPI wave uses .pth startup hooks so malicious code runs on Python interpreter startup without the package ever being imported",
@@ -42,14 +35,6 @@
     "Unexpected outbound SSH/SCP connections from developer workstations to unfamiliar internal or external hosts",
     "AI coding tool (Claude Code, Cursor, Gemini CLI, VS Code) opening a repo and immediately spawning shell processes or credential-access syscalls",
     "Monitoring of Bun runtime downloads/execution on systems where Bun is not an expected dependency"
-  ],
-  "response_playbook": [
-    "Monitor npm/pip installs for unexpected network connections to GitHub or Tor exit nodes during dependency installation.",
-    "Inspect installed package trees for unexpected binding.gyp or *-setup.pth files containing embedded scripts.",
-    "Audit for new attacker-controlled GitHub repositories created by developer or CI accounts shortly after a suspicious install.",
-    "Review CI/CD OIDC token issuance and publish events for activity outside normal release windows.",
-    "If using Claude Code, Cursor, Gemini CLI, or VS Code on affected repos, check for unexpected shell spawns or credential-access syscalls when the repo is opened.",
-    "Rotate credentials for maintainer/contributor accounts that may have been exposed via infostealer logs."
   ],
   "sources": [
     { "title": "The Hacker News: Miasma Supply Chain Attack Compromises Red Hat npm Packages with Credential-Stealing Worm", "url": "https://thehackernews.com/2026/06/miasma-supply-chain-attack-compromises.html" },
