@@ -14,6 +14,7 @@ Built by [Jake Ouellette](https://jogit91.github.io) — Detection Engineer & Th
 - **Auto-ingests** from 15+ threat intelligence RSS feeds every 4 hours via GitHub Actions
 - **LLM extraction** — Claude API extracts actor mentions, TTPs, IOCs, and sectors from new articles automatically
 - **Attribution tool** — paste observables (technique IDs, sectors, malware names, IOC hints) and get ranked candidate actors with confidence scores
+- **Org Risk Profile** — describe your vertical, cloud/business services, hardware stack, and special cases to get likely threat actors, trending tactics, recommended threat hunts, and prioritized mitigations, with links to further reading and recent coverage
 - **Activity trending** — 6-month mention history per actor with visual charts
 - **Tactics & Tools on the Rise** — tracks trending TTPs, malware, and exploits (e.g. ClickFix, EDR Silencers, Shai-Hulud, Lumma Stealer) independent of actor attribution, cross-linked to related actor profiles
 
@@ -101,6 +102,10 @@ Create a new JSON file in `data/actors/` following the schema in any existing pr
 ## Adding New Trend Entries
 
 Create a new JSON file in `data/trends/` following the schema in any existing profile (`category` is one of: `initial_access`, `execution`, `persistence`, `defense_evasion`, `credential_access`, `command_and_control`, `supply_chain`, `privilege_escalation`). Add an entry (id, name, category, trend, mention_count_30d) to `data/trends.json`.
+
+## Extending the Org Risk Profile
+
+`data/exposure-mappings.json` is the knowledge base behind the Risk Profile tool (`docs/profile.html`). It maps verticals, cloud/business services, firewalls, endpoints, infrastructure, and special cases to MITRE ATT&CK techniques, keywords (matched against actor/trend data), curated mitigations (with `critical`/`high`/`medium` priority), and threat hunts. To add a new stack item, add an entry to the relevant category following the existing shape and add a corresponding checkbox in `docs/profile.html`.
 
 ## Local Development
 

@@ -1,0 +1,507 @@
+{
+  "verticals": [
+    "Healthcare",
+    "Government / Public Sector",
+    "Financial Services",
+    "Legal / Professional Services",
+    "Education",
+    "Manufacturing",
+    "Technology / Software",
+    "Retail",
+    "Energy / Utilities / Critical Infrastructure",
+    "Telecommunications",
+    "Defense / Military",
+    "Non-Profit / NGO",
+    "Construction",
+    "Transportation / Logistics",
+    "MSP (Managed Service Provider)",
+    "Cryptocurrency / Fintech",
+    "Media / Journalism",
+    "Other"
+  ],
+  "services": {
+    "m365": {
+      "label": "Microsoft 365 / Entra ID",
+      "keywords": ["m365", "entra id", "exchange online", "sharepoint", "oauth", "device code", "teams", "onedrive"],
+      "mitre_techniques": ["T1528", "T1078.004", "T1621", "T1098.001"],
+      "mitigations": [
+        { "text": "Enforce phishing-resistant MFA (FIDO2/passkeys) and disable legacy/basic auth across the Entra ID tenant.", "priority": "critical" },
+        { "text": "Block or tightly restrict the OAuth device authorization code flow via Conditional Access — EvilTokens-style device-code phishing relies on it being open.", "priority": "critical" },
+        { "text": "Enable Conditional Access policies that block sign-ins from unfamiliar locations/devices and require re-auth for high-risk Graph API scopes.", "priority": "high" },
+        { "text": "Audit OAuth app consents and Microsoft Graph API activity monthly for anomalous mailbox/SharePoint access.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for OAuth device-code sign-ins followed immediately by Graph API mailbox or SharePoint access.",
+        "Search for new MFA method registrations shortly after a sign-in from a new device or location."
+      ]
+    },
+    "google-workspace": {
+      "label": "Google Workspace",
+      "keywords": ["google workspace", "gmail", "google drive", "oauth", "workspace admin"],
+      "mitre_techniques": ["T1078.004", "T1566.002"],
+      "mitigations": [
+        { "text": "Enforce 2-Step Verification (security keys preferred) org-wide via the Google Workspace Admin policy.", "priority": "critical" },
+        { "text": "Restrict third-party OAuth app access to Workspace data via the Admin console allow-list.", "priority": "high" },
+        { "text": "Enable and review Google Workspace security alerts (suspicious login, mass download/sharing) in the Alert Center.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Review Workspace login audit logs for impossible-travel and new-device sign-ins.",
+        "Hunt for bulk Google Drive sharing or download events outside business hours."
+      ]
+    },
+    "aws": {
+      "label": "Amazon Web Services (AWS)",
+      "keywords": ["aws", "s3", "iam", "cloudtrail", "ec2", "cloud storage", "cloud accounts"],
+      "mitre_techniques": ["T1078.002", "T1530", "T1552.001"],
+      "mitigations": [
+        { "text": "Disable long-lived IAM access keys for human users — require SSO/temporary STS credentials.", "priority": "critical" },
+        { "text": "Enable GuardDuty and CloudTrail org-wide with alerting on anomalous API calls from new regions or IPs.", "priority": "high" },
+        { "text": "Restrict S3 bucket policies and audit regularly for public/anonymous access.", "priority": "high" },
+        { "text": "Rotate and vault any developer-held cloud credentials; scan repos and CI for leaked AWS keys.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for AWS API activity using developer/CI credentials from unfamiliar IP ranges or regions.",
+        "Search CloudTrail for GetSessionToken/AssumeRole calls followed by unusual bulk S3 GetObject activity."
+      ]
+    },
+    "azure": {
+      "label": "Microsoft Azure",
+      "keywords": ["azure", "entra id", "azure ad", "cloud accounts", "azure resource manager"],
+      "mitre_techniques": ["T1078.004", "T1098.001"],
+      "mitigations": [
+        { "text": "Enable Azure AD Privileged Identity Management (PIM) for all admin roles — no standing Global Admin access.", "priority": "critical" },
+        { "text": "Enable Microsoft Defender for Cloud and Defender for Identity across all subscriptions.", "priority": "high" },
+        { "text": "Review Azure AD app registrations and service principal credentials quarterly for unused or over-privileged entries.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for new Azure AD app registrations granted high-privilege Graph API scopes (Mail.Read, Directory.ReadWrite.All).",
+        "Search sign-in logs for token replay indicators — the same token used from disparate IPs or geographies."
+      ]
+    },
+    "gcp": {
+      "label": "Google Cloud Platform (GCP)",
+      "keywords": ["gcp", "google cloud", "service account", "cloud storage"],
+      "mitre_techniques": ["T1078.004", "T1530"],
+      "mitigations": [
+        { "text": "Disable service account key downloads where possible; use Workload Identity Federation instead.", "priority": "critical" },
+        { "text": "Enable Security Command Center and audit IAM bindings for overly broad roles (Owner/Editor) at the project level.", "priority": "high" },
+        { "text": "Restrict and log access to GCS buckets containing sensitive data.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for service account key creation or download events outside of CI/CD pipelines.",
+        "Search Cloud Audit Logs for IAM policy changes granting broad roles to new principals."
+      ]
+    },
+    "sso-idp": {
+      "label": "SSO / Identity Provider (Okta, Ping, etc.)",
+      "keywords": ["sso", "okta", "identity provider", "mfa", "helpdesk", "vishing"],
+      "mitre_techniques": ["T1621", "T1598.004", "T1078"],
+      "mitigations": [
+        { "text": "Require phishing-resistant MFA (hardware keys/passkeys) for IdP admin and helpdesk accounts specifically — these are the highest-value vishing targets.", "priority": "critical" },
+        { "text": "Implement out-of-band verification for any helpdesk-initiated MFA reset or new-device enrollment request.", "priority": "high" },
+        { "text": "Enable IdP session/token binding and shorten session lifetimes for high-privilege roles.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for new MFA factor enrollments initiated via helpdesk/support tickets without independent verification.",
+        "Search IdP logs for repeated failed MFA pushes followed by a successful approval (MFA fatigue pattern)."
+      ]
+    },
+    "file-sharing-collab": {
+      "label": "Cloud File Sharing & Collaboration (SharePoint, Slack, Teams, Dropbox)",
+      "keywords": ["teams", "sharepoint", "onedrive", "dropbox", "collaboration", "external access"],
+      "mitre_techniques": ["T1566.004", "T1102.002"],
+      "mitigations": [
+        { "text": "Disable external Teams/Slack access by default, or restrict it to an allow-list of verified domains — helpdesk-impersonation vishing relies on open external messaging.", "priority": "critical" },
+        { "text": "Block or alert on uploads/downloads to consumer cloud storage (Dropbox, pCloud, MEGA) from corporate endpoints.", "priority": "high" },
+        { "text": "Train staff to verify any 'IT support' contact arriving via Teams/Slack chat through a second channel before acting.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for inbound Teams/Slack messages from external tenants followed by remote-access tool installation.",
+        "Search proxy/EDR logs for uploads to Zoho WorkDrive, pCloud, Yandex Disk, or similar uncommon cloud storage."
+      ]
+    },
+    "source-control-cicd": {
+      "label": "Source Control & CI/CD (GitHub, GitLab, Azure DevOps)",
+      "keywords": ["github", "gitlab", "ci/cd", "npm", "pypi", "git hooks", "supply chain", "ci cache"],
+      "mitre_techniques": ["T1195.001", "T1195.002", "T1552.001", "T1053"],
+      "mitigations": [
+        { "text": "Enforce 2FA and short-lived tokens (OIDC) for all CI/CD and package-registry accounts — no long-lived npm/PyPI publish tokens.", "priority": "critical" },
+        { "text": "Pin dependency versions and use lockfiles; enable supply-chain scanning on pull requests for new or changed dependencies.", "priority": "critical" },
+        { "text": "Restrict GitHub Actions workflow permissions to least privilege and require approval for workflows from forks/new contributors.", "priority": "high" },
+        { "text": "Audit dependencies for unexpected postinstall/preinstall or git-hook scripts.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for new or modified .git/hooks (post-merge, pre-push) or npm preinstall/postinstall scripts across repos.",
+        "Search CI logs for credential or secret access (cloud keys, SSH keys, registry tokens) from build jobs that don't normally need them.",
+        "Review recently published package versions for newly added network calls or obfuscated code."
+      ]
+    }
+  },
+  "firewalls": {
+    "sonicwall": {
+      "label": "SonicWall",
+      "keywords": ["sonicwall", "vpn appliance", "edge device"],
+      "mitre_techniques": ["T1190", "T1078"],
+      "mitigations": [
+        { "text": "Patch SonicWall firmware immediately upon vendor advisories — edge VPN appliances are a top initial-access vector for ransomware (Akira, Qilin, The Gentlemen all exploit public-facing edge devices).", "priority": "critical" },
+        { "text": "Rotate all local firewall/VPN account credentials and any secrets stored in the appliance config after any patch or suspected exposure — retained config artifacts let attackers bypass MFA.", "priority": "critical" },
+        { "text": "Disable management interfaces on the WAN side; restrict admin access to an internal management network or VPN.", "priority": "high" },
+        { "text": "Enable and centrally log SSL-VPN authentication events for anomaly detection.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for SonicWall SSL-VPN logins from new countries/ASNs or outside business hours.",
+        "Search for firewall admin-account logins immediately followed by configuration changes or new local accounts."
+      ]
+    },
+    "fortinet": {
+      "label": "Fortinet / FortiGate",
+      "keywords": ["fortigate", "fortios", "vpn appliance", "edge device"],
+      "mitre_techniques": ["T1190", "T1078", "T1484.001"],
+      "mitigations": [
+        { "text": "Patch FortiOS/FortiGate as soon as advisories are published — The Gentlemen and similar ransomware crews specifically target FortiGate VPN appliances for initial access using compromised admin accounts.", "priority": "critical" },
+        { "text": "Rotate FortiGate admin credentials and any cached VPN secrets after patching; assume credentials may already be retained by an attacker.", "priority": "critical" },
+        { "text": "Audit Group Policy for unexpected domain-wide changes pushed via GPMC — a known follow-on technique after edge-device compromise.", "priority": "high" },
+        { "text": "Restrict the FortiGate management plane to out-of-band networks only.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for FortiGate admin logins from unfamiliar source IPs followed by VPN user/policy changes.",
+        "Search for new or modified Group Policy Objects pushed domain-wide outside of change windows.",
+        "Hunt for Microsoft Defender tampering via PowerShell shortly after VPN authentication events."
+      ]
+    },
+    "paloalto": {
+      "label": "Palo Alto Networks",
+      "keywords": ["palo alto", "globalprotect", "vpn appliance", "edge device"],
+      "mitre_techniques": ["T1190", "T1078"],
+      "mitigations": [
+        { "text": "Patch PAN-OS/GlobalProtect promptly on every advisory — internet-facing VPN/firewall management interfaces remain a top ransomware entry point.", "priority": "critical" },
+        { "text": "Disable GlobalProtect portal/gateway management access from the internet; require internal/VPN-only admin access.", "priority": "high" },
+        { "text": "Enable threat-prevention logging and forward firewall logs to the SIEM for correlation with endpoint alerts.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for GlobalProtect VPN logins from new device fingerprints or geographies shortly before lateral-movement (PsExec/SMB) alerts."
+      ]
+    },
+    "cisco": {
+      "label": "Cisco (ASA / Meraki / Firepower)",
+      "keywords": ["cisco", "asa", "meraki", "firepower", "vpn appliance", "webmail"],
+      "mitre_techniques": ["T1190", "T1110", "T1071"],
+      "mitigations": [
+        { "text": "Patch Cisco ASA/Firepower/IOS promptly — nation-state actors and ransomware crews exploit known edge-device CVEs for initial access.", "priority": "critical" },
+        { "text": "Enable account lockout/rate-limiting on VPN and webmail portals — large-scale password spraying against logistics/tech firm VPNs has been observed from nation-state actors.", "priority": "high" },
+        { "text": "Forward Cisco device syslogs to the SIEM and alert on configuration changes outside maintenance windows.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for high-volume authentication failures against VPN/webmail portals followed by a single success (password-spraying pattern).",
+        "Search for unexpected outbound C2-style traffic over common application-layer ports (443/53) from network devices themselves."
+      ]
+    },
+    "ubiquiti": {
+      "label": "Ubiquiti (UniFi)",
+      "keywords": ["ubiquiti", "unifi", "router", "edge device"],
+      "mitre_techniques": ["T1190", "T1078"],
+      "mitigations": [
+        { "text": "Disable the UniFi cloud-management/remote-access portal if not actively used, and ensure the controller is patched to the latest version.", "priority": "critical" },
+        { "text": "Change default admin credentials and disable WAN-facing management access to UniFi controllers/gateways.", "priority": "high" },
+        { "text": "Segment guest/BYOD Wi-Fi networks from internal corporate VLANs at the UniFi gateway.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for UniFi controller admin logins from unfamiliar IPs or default-credential access attempts."
+      ]
+    },
+    "watchguard": {
+      "label": "WatchGuard",
+      "keywords": ["watchguard", "firebox", "vpn appliance", "edge device"],
+      "mitre_techniques": ["T1190", "T1078"],
+      "mitigations": [
+        { "text": "Patch WatchGuard Firebox firmware promptly and review Branch Office VPN / Mobile VPN configurations for unused tunnels.", "priority": "critical" },
+        { "text": "Restrict Firebox management access to a dedicated management VLAN; disable WAN management.", "priority": "high" },
+        { "text": "Enable WatchGuard Dimension/log forwarding to the SIEM for VPN authentication anomalies.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for Mobile VPN (SSL/IKEv2) logins from new devices or impossible-travel locations."
+      ]
+    },
+    "pfsense": {
+      "label": "pfSense / OPNsense",
+      "keywords": ["pfsense", "opnsense", "firewall", "edge device"],
+      "mitre_techniques": ["T1190", "T1078"],
+      "mitigations": [
+        { "text": "Keep pfSense/OPNsense and all installed packages patched; remove unused packages that expand the attack surface.", "priority": "critical" },
+        { "text": "Restrict the web GUI to a management-only interface/VLAN, never expose it directly to the WAN.", "priority": "high" },
+        { "text": "Enable OpenVPN/IPsec connection logging and forward to the SIEM.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for web GUI login attempts from WAN-side addresses (should be zero if properly segmented)."
+      ]
+    },
+    "checkpoint": {
+      "label": "Check Point",
+      "keywords": ["check point", "vpn appliance", "edge device"],
+      "mitre_techniques": ["T1190", "T1078"],
+      "mitigations": [
+        { "text": "Apply Check Point hotfixes/advisories immediately, especially for Remote Access VPN-related CVEs.", "priority": "critical" },
+        { "text": "Review Mobile Access/VPN blade configurations for legacy authentication methods and disable them.", "priority": "high" },
+        { "text": "Centralize SmartLog/SmartEvent logging for VPN authentication anomaly detection.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for Check Point Remote Access VPN logins outside expected user populations or geographies."
+      ]
+    },
+    "other-firewall": {
+      "label": "Other / Unmanaged Edge Device",
+      "keywords": ["edge device", "vpn appliance", "firewall"],
+      "mitre_techniques": ["T1190", "T1078"],
+      "mitigations": [
+        { "text": "Inventory every internet-facing device (firewall, VPN concentrator, router) and confirm it receives regular firmware/security updates — unmanaged edge devices are a leading ransomware entry point.", "priority": "critical" },
+        { "text": "Ensure remote management interfaces are not exposed to the internet on any edge device.", "priority": "high" }
+      ],
+      "hunts": [
+        "Hunt for authentication logs on any internet-facing appliance for anomalous source IPs or login times."
+      ]
+    }
+  },
+  "endpoints": {
+    "windows": {
+      "label": "Windows",
+      "keywords": ["powershell", "windows", "registry", "group policy", "event log", "wmi"],
+      "mitre_techniques": ["T1059.001", "T1547.001", "T1112", "T1070.001", "T1021.002", "T1047"],
+      "mitigations": [
+        { "text": "Enable PowerShell Script Block Logging and Constrained Language Mode for non-admin users — PowerShell is the dominant execution vector across ransomware and APT intrusions.", "priority": "critical" },
+        { "text": "Restrict and monitor use of PsExec/WMIC/SMB admin shares for lateral movement; alert on first-time use of these tools by a host.", "priority": "high" },
+        { "text": "Forward Windows Event Logs (including Security and PowerShell logs) to a central SIEM with tamper-evident storage — event-log clearing is a known evasion step.", "priority": "high" },
+        { "text": "Audit Registry Run-key and Scheduled Task persistence locations regularly via EDR.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for Windows Event Log clearing events on endpoints and domain controllers.",
+        "Search for PsExec/WMIC-based lateral movement originating from non-IT-admin accounts.",
+        "Hunt for new Registry Run key or Scheduled Task entries created outside of software deployment windows."
+      ]
+    },
+    "macos": {
+      "label": "macOS",
+      "keywords": ["macos", "python", "chromium", "credential stealer"],
+      "mitre_techniques": ["T1059.006", "T1555"],
+      "mitigations": [
+        { "text": "Enforce Gatekeeper/notarization requirements and block execution of unsigned or ad-hoc-signed binaries via MDM policy.", "priority": "critical" },
+        { "text": "Deploy EDR with macOS coverage and monitor for unusual Python or shell-script execution from downloaded applications.", "priority": "high" },
+        { "text": "Restrict browser-stored credential access and encourage a password manager over browser-saved passwords.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for Python or shell scripts executed from Downloads, /tmp, or quarantine-bypassed applications.",
+        "Search for access to Chrome/Safari credential stores by non-browser processes."
+      ]
+    },
+    "linux": {
+      "label": "Linux",
+      "keywords": ["linux", "ssh", "esxi", "rclone", "cron"],
+      "mitre_techniques": ["T1021.004", "T1053"],
+      "mitigations": [
+        { "text": "Disable SSH password authentication in favor of key-based auth, and restrict SSH access to a jump host/bastion.", "priority": "critical" },
+        { "text": "Monitor for installation or execution of RClone or similar exfiltration tools on Linux servers.", "priority": "high" },
+        { "text": "Audit cron jobs and systemd timers regularly for unauthorized persistence.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for SSH lateral movement between Linux/ESXi hosts using shared or default credentials.",
+        "Search for RClone, WinRAR, or similar staging-tool execution on Linux servers preceding large outbound transfers."
+      ]
+    },
+    "mobile": {
+      "label": "Mobile (iOS / Android)",
+      "keywords": ["mobile", "qr code", "quishing", "sms"],
+      "mitre_techniques": ["T1204.001", "T1598.003"],
+      "mitigations": [
+        { "text": "Enforce MDM enrollment for any mobile device accessing corporate email/data, with conditional access requiring a managed-device check.", "priority": "critical" },
+        { "text": "Train users on QR-code ('quishing') phishing — malicious QR codes in emails or documents redirect mobile devices to credential-harvesting pages, bypassing email link scanning.", "priority": "high" },
+        { "text": "Restrict corporate app installs to managed app catalogs (MAM).", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for mobile-device sign-ins to corporate accounts immediately following a QR-code-containing email."
+      ]
+    },
+    "chromeos": {
+      "label": "ChromeOS",
+      "keywords": ["chromeos", "chromium", "browser extension"],
+      "mitre_techniques": ["T1176"],
+      "mitigations": [
+        { "text": "Restrict Chrome extension installs to an admin-managed allow-list via the Google Admin console — malicious/credential-stealing extensions are a growing vector.", "priority": "high" },
+        { "text": "Enable Chrome Enterprise security policies (Safe Browsing, download protection) at the organizational-unit level.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Audit installed Chrome extensions fleet-wide for newly published or low-reputation extensions with broad permissions."
+      ]
+    },
+    "nas": {
+      "label": "Network-Attached Storage (Synology / QNAP)",
+      "keywords": ["nas", "synology", "qnap", "backup", "file server"],
+      "mitre_techniques": ["T1490", "T1486"],
+      "mitigations": [
+        { "text": "Patch Synology/QNAP DSM/QTS promptly and disable internet-exposed admin/management ports — NAS devices are frequently targeted directly by ransomware and as backup-destruction targets.", "priority": "critical" },
+        { "text": "Keep at least one backup copy offline/immutable and isolated from the production domain — ransomware crews prioritize destroying connected backup infrastructure.", "priority": "critical" },
+        { "text": "Enable 2FA on NAS admin accounts and disable default admin accounts.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for mass file modification/encryption events on NAS shares.",
+        "Alert on NAS admin logins or snapshot/backup-job deletions from unfamiliar source IPs."
+      ]
+    }
+  },
+  "infrastructure": {
+    "esxi": {
+      "label": "VMware ESXi / vSphere",
+      "keywords": ["esxi", "vsphere", "hypervisor", "datastore"],
+      "mitre_techniques": ["T1486", "T1021.004"],
+      "mitigations": [
+        { "text": "Place ESXi management interfaces on an isolated management network — never expose the vSphere/ESXi management plane to general endpoint VLANs or the internet.", "priority": "critical" },
+        { "text": "Enable ESXi lockdown mode and require vCenter-mediated access only; disable SSH on hosts by default.", "priority": "critical" },
+        { "text": "Maintain offline/immutable backups of VM datastores — hypervisor-level encryption can paralyze an entire virtualized environment in a single operation.", "priority": "high" }
+      ],
+      "hunts": [
+        "Hunt for SSH enablement on ESXi hosts or direct datastore browser access from endpoint subnets.",
+        "Search for mass .vmdk/datastore file modification events indicating hypervisor-level encryption in progress."
+      ]
+    },
+    "hyperv": {
+      "label": "Microsoft Hyper-V",
+      "keywords": ["hyper-v", "hypervisor", "virtual machine"],
+      "mitre_techniques": ["T1486", "T1490"],
+      "mitigations": [
+        { "text": "Isolate Hyper-V host management (and Failover Cluster Manager) on a dedicated management VLAN, separate from general AD administration.", "priority": "critical" },
+        { "text": "Maintain offline/immutable backups of VM checkpoints and configuration — hypervisor encryption can affect all guest VMs simultaneously.", "priority": "high" }
+      ],
+      "hunts": [
+        "Hunt for bulk VM export/checkpoint deletion or mass .vhdx modification events on Hyper-V hosts."
+      ]
+    },
+    "onprem-ad": {
+      "label": "On-Premises Active Directory",
+      "keywords": ["active directory", "domain controller", "group policy", "kerberos", "ntlm"],
+      "mitre_techniques": ["T1484.001", "T1078", "T1110", "T1187"],
+      "mitigations": [
+        { "text": "Disable NTLMv1/LM and restrict NTLMv2 where possible; monitor for forced-authentication/relay attempts (e.g. via crafted Outlook reminders or file paths).", "priority": "critical" },
+        { "text": "Audit Group Policy Objects for unauthorized domain-wide changes and restrict GPO-edit rights to a small admin group with PIM/JIT access.", "priority": "critical" },
+        { "text": "Implement a tiered admin model (Tier 0/1/2) so domain-controller-level credentials are never used on standard workstations.", "priority": "high" },
+        { "text": "Enable account lockout policies and monitor for password-spraying patterns against domain accounts.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for newly created or modified GPOs deployed domain-wide outside change windows.",
+        "Search for NTLM authentication to unexpected hosts (forced-auth/relay indicators).",
+        "Hunt for anomalous account-manipulation events — new mailbox folder permissions, added group memberships."
+      ]
+    },
+    "rmm": {
+      "label": "RMM / Remote Access Tooling (ConnectWise, AnyDesk, TeamViewer, Atera, etc.)",
+      "keywords": ["anydesk", "teamviewer", "screenconnect", "connectwise", "atera", "pdq deploy", "action1", "remote access", "rmm"],
+      "mitre_techniques": ["T1219"],
+      "mitigations": [
+        { "text": "Maintain an allow-list of approved RMM tools and alert on/block execution of any RMM software not on that list — attackers routinely install AnyDesk/ScreenConnect/Atera for hands-on-keyboard access.", "priority": "critical" },
+        { "text": "Restrict RMM tool installation to admin accounts only, and require change-ticket correlation for new RMM agent deployments.", "priority": "high" },
+        { "text": "Review RMM tool access logs regularly for sessions originating outside business hours or from unfamiliar IPs.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for installation of AnyDesk, ScreenConnect, Atera, TeamViewer, or PDQ Deploy outside of approved deployment workflows.",
+        "Search for RMM tool sessions initiated immediately following a phishing/vishing-related alert."
+      ]
+    }
+  },
+  "special_cases": {
+    "self-hosted-website": {
+      "label": "Self-Hosted Public Website / Web Application",
+      "keywords": ["sql injection", "website", "web application", "wordpress", "compromised website"],
+      "mitre_techniques": ["T1190", "T1566.002"],
+      "mitigations": [
+        { "text": "Run regular vulnerability scans/pen tests against public-facing web apps and patch CMS plugins (e.g. WordPress) promptly — compromised legitimate websites are now a primary delivery mechanism for fake-CAPTCHA (ClickFix) malware campaigns.", "priority": "critical" },
+        { "text": "Deploy a WAF in front of any self-hosted website and monitor for SQL-injection attempts.", "priority": "high" },
+        { "text": "Subscribe to a website-integrity monitoring service to detect unauthorized content/script injections quickly.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for unexpected JavaScript injections or new admin users on CMS-hosted websites.",
+        "Monitor outbound web logs for visitors being redirected to known ClickFix-style fake-CAPTCHA domains."
+      ]
+    },
+    "vpn-remote-access": {
+      "label": "VPN Remote Access for Employees",
+      "keywords": ["vpn", "remote access", "mfa", "ssl-vpn"],
+      "mitre_techniques": ["T1190", "T1078", "T1110"],
+      "mitigations": [
+        { "text": "Require phishing-resistant MFA on all VPN connections — VPN credential/appliance compromise is the leading initial-access vector for ransomware groups like Akira and Qilin.", "priority": "critical" },
+        { "text": "Enforce device posture checks (managed device, EDR present, patched OS) before granting VPN access.", "priority": "high" },
+        { "text": "Geofence or alert on VPN logins from countries/regions where the organization has no staff.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for VPN logins from new devices/geolocations followed shortly by internal scanning or lateral-movement activity.",
+        "Search for repeated VPN authentication failures across many accounts (password spraying)."
+      ]
+    },
+    "byod": {
+      "label": "Bring Your Own Device (BYOD)",
+      "keywords": ["byod", "personal device", "unmanaged endpoint", "mobile"],
+      "mitre_techniques": ["T1555", "T1204.002"],
+      "mitigations": [
+        { "text": "Require enrollment in MDM/MAM with a minimum security baseline (disk encryption, screen lock, OS patch level) before personal devices can access corporate data.", "priority": "critical" },
+        { "text": "Use app-level containerization (e.g. Intune App Protection) so corporate data can be wiped from personal devices without a full device wipe.", "priority": "high" },
+        { "text": "Block legacy/unmanaged-device authentication to corporate email and SaaS apps via Conditional Access.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for corporate-account sign-ins from devices that have never enrolled in MDM.",
+        "Search for credential-stealer indicators (browser credential-store access) on personally-owned endpoints with EDR coverage."
+      ]
+    },
+    "msp-third-party-access": {
+      "label": "MSP / Third-Party IT Manages This Environment",
+      "keywords": ["msp", "third-party access", "rmm", "supply chain"],
+      "mitre_techniques": ["T1199", "T1078"],
+      "mitigations": [
+        { "text": "Require your MSP to use unique, audited credentials per client (no shared/global admin credentials across their client base) — MSP compromise gives attackers one-to-many access.", "priority": "critical" },
+        { "text": "Require MFA and IP allow-listing on any RMM/remote-access tooling your MSP uses to connect to your environment.", "priority": "high" },
+        { "text": "Request your MSP's incident-response plan and confirm your organization is notified within a defined SLA of any security incident on their side.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for RMM sessions from your MSP originating from unfamiliar IP ranges or at unusual hours.",
+        "Review which accounts/credentials your MSP holds and confirm none are shared across multiple client environments."
+      ]
+    },
+    "ot-ics": {
+      "label": "OT / ICS / Industrial Control Systems",
+      "keywords": ["ot", "ics", "scada", "plc", "industrial"],
+      "mitre_techniques": ["T1190", "T1071.001"],
+      "mitigations": [
+        { "text": "Maintain a strict network segmentation boundary (e.g. firewalled DMZ) between IT and OT/ICS networks — do not allow direct routing between corporate AD and control-system networks.", "priority": "critical" },
+        { "text": "Inventory all OT/ICS assets and ensure none are directly internet-reachable; remote access should go through a jump host with MFA.", "priority": "critical" },
+        { "text": "Monitor IT/OT boundary traffic for protocol anomalies (unexpected Modbus/DNP3/OPC traffic crossing into IT segments).", "priority": "high" }
+      ],
+      "hunts": [
+        "Hunt for any network traffic crossing the IT/OT boundary outside of an approved allow-list of protocols/hosts.",
+        "Search for remote-access tool installations on OT engineering workstations."
+      ]
+    },
+    "regulated-data": {
+      "label": "Handles Regulated Data (PII / PHI / Cardholder Data)",
+      "keywords": ["data exfiltration", "double extortion", "exfiltration", "cloud storage"],
+      "mitre_techniques": ["T1048", "T1567.002", "T1530"],
+      "mitigations": [
+        { "text": "Implement DLP policies on egress channels (email, cloud storage, USB) for data classified as regulated (PII/PHI/PCI) — double-extortion ransomware exfiltrates this data before encrypting it.", "priority": "critical" },
+        { "text": "Encrypt regulated data at rest and restrict bulk-export/API access to it with monitoring and rate-limiting (e.g. Salesforce/SaaS record exports).", "priority": "high" },
+        { "text": "Maintain a current data-flow map identifying every system that stores or processes regulated data, to scope incident response quickly.", "priority": "medium" }
+      ],
+      "hunts": [
+        "Hunt for large/bulk data transfers (RClone, WinRAR archives, API bulk-export calls) involving systems that hold regulated data.",
+        "Monitor for exfiltration to consumer cloud storage or VPN services used to blend outbound traffic."
+      ]
+    },
+    "no-mfa": {
+      "label": "No Org-Wide MFA Enforcement",
+      "keywords": ["valid accounts", "credential", "password", "mfa"],
+      "mitre_techniques": ["T1078", "T1110", "T1078.004"],
+      "mitigations": [
+        { "text": "Enforce MFA for 100% of user accounts, prioritizing VPN, email, and any cloud admin accounts first — stolen/valid credentials are the single most common initial-access technique across tracked actors.", "priority": "critical" },
+        { "text": "Eliminate shared/local admin accounts without MFA; require unique credentials per admin with MFA on every login.", "priority": "critical" },
+        { "text": "Enable breached-password detection (e.g. Entra ID Password Protection) and force resets on matches.", "priority": "high" }
+      ],
+      "hunts": [
+        "Hunt for successful logins immediately following a password-spray pattern (many failures across accounts, one success).",
+        "Search for logins to privileged accounts with no corresponding MFA challenge in the auth logs."
+      ]
+    }
+  }
+}

@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Org Risk Profile — SENTINEL</title>
+  <style>
+    :root{--bg:#0a0c10;--surface:#111318;--surface2:#181c24;--border:#1e2430;--border2:#252d3d;--text:#e2e8f0;--text2:#8892a4;--text3:#4a5568;--green:#00d4a1;--green-dim:#00d4a120;--green-mid:#00d4a150;--red:#ff4757;--amber:#ffa502;--blue:#4ecdc4;--purple:#a78bfa;--font-mono:'IBM Plex Mono','Courier New',monospace;--font-sans:'Inter',system-ui,sans-serif;}
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap');
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:16px;line-height:1.6;}
+    body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,212,161,0.015) 2px,rgba(0,212,161,0.015) 4px);pointer-events:none;z-index:1000;}
+    nav{display:flex;align-items:center;gap:1rem;padding:0.875rem 2rem;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:100;}
+    .nav-logo{font-family:var(--font-mono);font-size:17px;font-weight:600;color:var(--green);letter-spacing:0.15em;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
+    .nav-logo::before{content:'◈';font-size:16px;animation:pulse 3s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+    .nav-links{display:flex;gap:1.5rem;margin-left:2rem;list-style:none;}
+    .nav-links a{color:var(--text2);text-decoration:none;font-size:17px;transition:color 0.15s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--green);}
+    main{padding:2rem;max-width:1100px;margin:0 auto;}
+    .page-header{margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
+    .page-eyebrow{font-family:var(--font-mono);font-size:16px;color:var(--green);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.5rem;}
+    .page-title{font-size:28px;font-weight:600;margin-bottom:0.25rem;}
+    .page-sub{font-size:17px;color:var(--text2);}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:1.5rem;}
+    .card-header{padding:0.875rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+    .card-title{font-family:var(--font-mono);font-size:17px;color:var(--text2);letter-spacing:0.12em;text-transform:uppercase;}
+    .card-badge{font-family:var(--font-mono);font-size:12px;padding:2px 8px;border-radius:99px;border:1px solid var(--border2);color:var(--text3);}
+    .card-body{padding:1.25rem;}
+    .form-group{display:flex;flex-direction:column;gap:6px;}
+    .form-label{font-family:var(--font-mono);font-size:16px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;}
+    .form-hint{font-size:17px;color:var(--text3);margin-top:2px;}
+    .form-input{background:var(--bg);border:1px solid var(--border2);border-radius:6px;padding:0.5rem 0.75rem;color:var(--text);font-size:17px;font-family:var(--font-mono);outline:none;transition:border-color 0.15s;width:100%;}
+    .form-input:focus{border-color:var(--green-mid);}
+    .btn{font-family:var(--font-mono);font-size:16px;letter-spacing:0.08em;padding:0.6rem 1.25rem;border-radius:6px;border:none;cursor:pointer;transition:all 0.15s;}
+    .btn-primary{background:var(--green);color:var(--bg);font-weight:600;}
+    .btn-primary:hover{background:#00e6b0;}
+    .btn-ghost{background:transparent;color:var(--text2);border:1px solid var(--border2);}
+    .btn-ghost:hover{border-color:var(--green-mid);color:var(--green);}
+    .example-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:0;}
+    .example-btn{font-size:17px;padding:4px 10px;border-radius:6px;border:1px solid var(--border2);background:var(--surface2);color:var(--text3);cursor:pointer;transition:all 0.15s;text-align:left;}
+    .example-btn:hover{border-color:var(--green-mid);color:var(--green);}
+
+    .profile-section{margin-bottom:1.5rem;}
+    .profile-section:last-child{margin-bottom:0;}
+    .profile-section-title{font-family:var(--font-mono);font-size:16px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.625rem;}
+    .checkbox-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:0.5rem;}
+    .checkbox-item{display:flex;align-items:center;gap:8px;padding:0.5rem 0.75rem;border:1px solid var(--border2);border-radius:6px;background:var(--surface2);cursor:pointer;font-size:16px;transition:border-color 0.15s,background 0.15s;}
+    .checkbox-item:hover{border-color:var(--green-mid);}
+    .checkbox-item:has(input:checked){border-color:var(--green-mid);background:rgba(0,212,161,0.08);color:var(--text);}
+    .checkbox-item input{accent-color:var(--green);width:15px;height:15px;cursor:pointer;flex-shrink:0;}
+    .form-actions{display:flex;justify-content:flex-end;margin-top:0.5rem;}
+
+    .empty-state{padding:2rem;text-align:center;color:var(--text3);font-size:17px;}
+    .result-item{display:flex;align-items:center;gap:1rem;padding:1rem;border:1px solid var(--border);border-radius:8px;margin-bottom:0.75rem;background:var(--surface2);}
+    .result-rank{font-family:var(--font-mono);font-size:28px;font-weight:600;color:var(--text3);min-width:32px;}
+    .rank-1{color:var(--green);}
+    .rank-2{color:var(--amber);}
+    .rank-3{color:var(--red);}
+    .result-info{flex:1;}
+    .result-name{font-size:17px;font-weight:600;margin-bottom:4px;}
+    .result-name a{color:inherit;text-decoration:none;}
+    .result-name a:hover{color:var(--green);}
+    .result-desc{font-size:16px;color:var(--text2);margin-bottom:6px;}
+    .match-badge{display:inline-block;font-family:var(--font-mono);font-size:16px;padding:1px 7px;border-radius:3px;background:rgba(0,212,161,0.1);color:var(--green);border:1px solid rgba(0,212,161,0.25);margin:2px 2px 0 0;}
+    .result-conf-wrap{text-align:right;min-width:60px;}
+    .result-conf{font-family:var(--font-mono);font-size:21px;font-weight:600;}
+    .conf-bar-wrap{background:var(--border);border-radius:99px;height:3px;margin-top:4px;}
+    .conf-bar{height:3px;border-radius:99px;}
+    .score-high{color:var(--red);}
+    .score-med{color:var(--amber);}
+    .score-low{color:var(--green);}
+
+    .tag{font-family:var(--font-mono);font-size:12px;padding:2px 8px;border-radius:3px;letter-spacing:0.05em;text-transform:uppercase;white-space:nowrap;}
+    .tag-execution{background:rgba(255,165,2,0.15);color:var(--amber);border:1px solid rgba(255,165,2,0.3);}
+    .tag-defense_evasion{background:rgba(255,71,87,0.15);color:var(--red);border:1px solid rgba(255,71,87,0.3);}
+    .tag-credential_access{background:rgba(167,139,250,0.15);color:var(--purple);border:1px solid rgba(167,139,250,0.3);}
+    .tag-command_and_control{background:rgba(78,205,196,0.15);color:var(--blue);border:1px solid rgba(78,205,196,0.3);}
+    .tag-persistence{background:rgba(0,212,161,0.15);color:var(--green);border:1px solid rgba(0,212,161,0.3);}
+    .tag-privilege_escalation{background:rgba(255,99,72,0.15);color:#ff6348;border:1px solid rgba(255,99,72,0.3);}
+    .tag-supply_chain{background:rgba(78,205,196,0.15);color:var(--blue);border:1px solid rgba(78,205,196,0.3);}
+    .tag-initial_access{background:rgba(0,212,161,0.15);color:var(--green);border:1px solid rgba(0,212,161,0.3);}
+
+    .trend-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;}
+    .trend-card{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:1.125rem;display:block;text-decoration:none;color:inherit;cursor:pointer;transition:border-color 0.15s,background 0.15s;}
+    .trend-card:hover{border-color:var(--green-mid);background:var(--surface);}
+    .trend-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:0.75rem;margin-bottom:0.5rem;}
+    .trend-name{font-size:16px;font-weight:600;color:var(--text);line-height:1.3;}
+    .trend-badge{font-family:var(--font-mono);font-size:11px;padding:2px 8px;border-radius:99px;letter-spacing:0.05em;text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
+    .trend-rising{background:rgba(255,71,87,0.12);color:var(--red);border:1px solid rgba(255,71,87,0.25);}
+    .trend-stable{background:rgba(136,146,164,0.12);color:var(--text2);border:1px solid var(--border2);}
+    .trend-declining{background:rgba(0,212,161,0.12);color:var(--green);border:1px solid rgba(0,212,161,0.25);}
+    .trend-emerging{background:rgba(255,165,2,0.12);color:var(--amber);border:1px solid rgba(255,165,2,0.25);}
+    .trend-type-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:0.625rem;}
+    .trend-desc{font-size:14px;color:var(--text2);margin-bottom:0.625rem;line-height:1.5;}
+    .trend-mitre{font-family:var(--font-mono);font-size:11px;color:var(--text3);margin-bottom:0.5rem;}
+
+    .hunt-cols{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+    @media(max-width:700px){.hunt-cols{grid-template-columns:1fr;}}
+    .hunt-label{font-family:var(--font-mono);font-size:16px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem;padding-bottom:0.375rem;border-bottom:1px solid var(--border);}
+    .response-item{font-size:16px;color:var(--text2);padding:0.375rem 0;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:flex-start;}
+    .response-item:last-child{border-bottom:none;}
+    .response-item::before{content:'▸';font-size:16px;color:var(--green);padding-top:2px;flex-shrink:0;}
+
+    .priority-tag{display:inline-block;font-family:var(--font-mono);font-size:14px;padding:1px 8px;border-radius:3px;text-transform:uppercase;letter-spacing:0.08em;margin-right:10px;flex-shrink:0;min-width:64px;text-align:center;}
+    .priority-critical{background:rgba(255,71,87,0.12);color:var(--red);border:1px solid rgba(255,71,87,0.3);}
+    .priority-high{background:rgba(255,165,2,0.12);color:var(--amber);border:1px solid rgba(255,165,2,0.3);}
+    .priority-medium{background:rgba(0,212,161,0.12);color:var(--green);border:1px solid rgba(0,212,161,0.3);}
+    .mitigation-item{display:flex;align-items:flex-start;gap:4px;padding:0.5rem 0;border-bottom:1px solid var(--border);font-size:16px;color:var(--text2);}
+    .mitigation-item:last-child{border-bottom:none;}
+
+    .playbook-block{margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border);}
+    .playbook-title{font-family:var(--font-mono);font-size:16px;color:var(--green);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem;}
+
+    .frg-group{margin-bottom:1rem;}
+    .frg-group:last-child{margin-bottom:0;}
+    .frg-title{font-family:var(--font-mono);font-size:15px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;}
+    .frg-link{display:block;font-size:16px;color:var(--green);text-decoration:none;padding:3px 0;}
+    .frg-link:hover{text-decoration:underline;}
+
+    .mention-card{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;margin-bottom:0.75rem;transition:border-color 0.15s;}
+    .mention-card:hover{border-color:var(--border2);}
+    .mention-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:6px;}
+    .mention-actor-name{font-size:17px;font-weight:600;}
+    .mention-title{font-size:16px;color:var(--text);margin-bottom:4px;line-height:1.4;}
+    .mention-title a{color:inherit;text-decoration:none;}
+    .mention-title a:hover{color:var(--green);}
+    .mention-meta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
+    .meta-item{font-family:var(--font-mono);font-size:16px;color:var(--text3);}
+    .conf-badge{font-family:var(--font-mono);font-size:16px;padding:2px 7px;border-radius:99px;}
+    .conf-high{background:rgba(0,212,161,0.15);color:var(--green);border:1px solid rgba(0,212,161,0.3);}
+    .conf-medium{background:rgba(255,165,2,0.15);color:var(--amber);border:1px solid rgba(255,165,2,0.3);}
+    .conf-low{background:rgba(255,71,87,0.15);color:var(--red);border:1px solid rgba(255,71,87,0.3);}
+
+    footer{margin-top:3rem;padding:1.5rem 2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:17px;color:var(--text3);}
+    footer a{color:var(--green);text-decoration:none;}
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">SENTINEL</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Dashboard</a></li>
+    <li><a href="actors.html">Actors</a></li>
+    <li><a href="trends.html">Tactics</a></li>
+    <li><a href="attributor.html">Attributor</a></li>
+    <li><a href="profile.html" class="active">Risk Profile</a></li>
+    <li><a href="feed.html">Intel Feed</a></li>
+  </ul>
+</nav>
+<main>
+  <div class="page-header">
+    <div class="page-eyebrow">Risk Assessment</div>
+    <div class="page-title">Org Risk Profile</div>
+    <div class="page-sub">Describe your organization's vertical, services, and stack — get likely threat actors, trending tactics, threat hunts, and mitigations tailored to your exposure</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-title">Example Profiles</div></div>
+    <div class="card-body">
+      <div class="example-row">
+        <button class="example-btn" onclick="loadExample('healthcare')">Regional Healthcare Provider</button>
+        <button class="example-btn" onclick="loadExample('msp')">MSP (Multi-Client IT Provider)</button>
+        <button class="example-btn" onclick="loadExample('government')">State/Local Government Agency</button>
+        <button class="example-btn" onclick="loadExample('startup')">Tech / SaaS Startup</button>
+      </div>
+      <div class="form-hint" style="margin-top:8px;">Each example populates the full profile below and shows the resulting threat picture instantly.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Build Your Profile</div>
+      <button class="btn btn-ghost" onclick="resetProfile()">Reset</button>
+    </div>
+    <div class="card-body">
+      <div class="profile-section">
+        <div class="profile-section-title">Organization Vertical</div>
+        <div class="form-group">
+          <select id="vertical-select" class="form-input" onchange="recalculate()">
+            <option value="">— Select your organization's vertical —</option>
+            <option value="Healthcare">Healthcare</option>
+            <option value="Government / Public Sector">Government / Public Sector</option>
+            <option value="Financial Services">Financial Services</option>
+            <option value="Legal / Professional Services">Legal / Professional Services</option>
+            <option value="Education">Education</option>
+            <option value="Manufacturing">Manufacturing</option>
+            <option value="Technology / Software">Technology / Software</option>
+            <option value="Retail">Retail</option>
+            <option value="Energy / Utilities / Critical Infrastructure">Energy / Utilities / Critical Infrastructure</option>
+            <option value="Telecommunications">Telecommunications</option>
+            <option value="Defense / Military">Defense / Military</option>
+            <option value="Non-Profit / NGO">Non-Profit / NGO</option>
+            <option value="Construction">Construction</option>
+            <option value="Transportation / Logistics">Transportation / Logistics</option>
+            <option value="MSP (Managed Service Provider)">MSP (Managed Service Provider)</option>
+            <option value="Cryptocurrency / Fintech">Cryptocurrency / Fintech</option>
+            <option value="Media / Journalism">Media / Journalism</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="profile-section">
+        <div class="profile-section-title">Cloud &amp; Business Services</div>
+        <div class="checkbox-grid">
+          <label class="checkbox-item"><input type="checkbox" data-cat="services" value="m365" onchange="recalculate()"> Microsoft 365 / Entra ID</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="services" value="google-workspace" onchange="recalculate()"> Google Workspace</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="services" value="aws" onchange="recalculate()"> Amazon Web Services (AWS)</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="services" value="azure" onchange="recalculate()"> Microsoft Azure</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="services" value="gcp" onchange="recalculate()"> Google Cloud Platform (GCP)</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="services" value="sso-idp" onchange="recalculate()"> SSO / Identity Provider (Okta, Ping, etc.)</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="services" value="file-sharing-collab" onchange="recalculate()"> Cloud File Sharing &amp; Collaboration (SharePoint, Slack, Teams, Dropbox)</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="services" value="source-control-cicd" onchange="recalculate()"> Source Control &amp; CI/CD (GitHub, GitLab, Azure DevOps)</label>
+        </div>
+      </div>
+
+      <div class="profile-section">
+        <div class="profile-section-title">Firewall / Edge Device</div>
+        <div class="checkbox-grid">
+          <label class="checkbox-item"><input type="checkbox" data-cat="firewalls" value="sonicwall" onchange="recalculate()"> SonicWall</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="firewalls" value="fortinet" onchange="recalculate()"> Fortinet / FortiGate</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="firewalls" value="paloalto" onchange="recalculate()"> Palo Alto Networks</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="firewalls" value="cisco" onchange="recalculate()"> Cisco (ASA / Meraki / Firepower)</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="firewalls" value="ubiquiti" onchange="recalculate()"> Ubiquiti (UniFi)</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="firewalls" value="watchguard" onchange="recalculate()"> WatchGuard</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="firewalls" value="pfsense" onchange="recalculate()"> pfSense / OPNsense</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="firewalls" value="checkpoint" onchange="recalculate()"> Check Point</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="firewalls" value="other-firewall" onchange="recalculate()"> Other / Unmanaged Edge Device</label>
+        </div>
+      </div>
+
+      <div class="profile-section">
+        <div class="profile-section-title">Endpoints</div>
+        <div class="checkbox-grid">
+          <label class="checkbox-item"><input type="checkbox" data-cat="endpoints" value="windows" onchange="recalculate()"> Windows</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="endpoints" value="macos" onchange="recalculate()"> macOS</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="endpoints" value="linux" onchange="recalculate()"> Linux</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="endpoints" value="mobile" onchange="recalculate()"> Mobile (iOS / Android)</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="endpoints" value="chromeos" onchange="recalculate()"> ChromeOS</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="endpoints" value="nas" onchange="recalculate()"> Network-Attached Storage (Synology / QNAP)</label>
+        </div>
+      </div>
+
+      <div class="profile-section">
+        <div class="profile-section-title">Infrastructure</div>
+        <div class="checkbox-grid">
+          <label class="checkbox-item"><input type="checkbox" data-cat="infrastructure" value="esxi" onchange="recalculate()"> VMware ESXi / vSphere</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="infrastructure" value="hyperv" onchange="recalculate()"> Microsoft Hyper-V</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="infrastructure" value="onprem-ad" onchange="recalculate()"> On-Premises Active Directory</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="infrastructure" value="rmm" onchange="recalculate()"> RMM / Remote Access Tooling (ConnectWise, AnyDesk, TeamViewer, etc.)</label>
+        </div>
+      </div>
+
+      <div class="profile-section">
+        <div class="profile-section-title">Special Cases</div>
+        <div class="checkbox-grid">
+          <label class="checkbox-item"><input type="checkbox" data-cat="special_cases" value="self-hosted-website" onchange="recalculate()"> Self-Hosted Public Website / Web App</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="special_cases" value="vpn-remote-access" onchange="recalculate()"> VPN Remote Access for Employees</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="special_cases" value="byod" onchange="recalculate()"> Bring Your Own Device (BYOD)</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="special_cases" value="msp-third-party-access" onchange="recalculate()"> MSP / Third-Party IT Manages This Environment</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="special_cases" value="ot-ics" onchange="recalculate()"> OT / ICS / Industrial Control Systems</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="special_cases" value="regulated-data" onchange="recalculate()"> Handles Regulated Data (PII / PHI / Cardholder Data)</label>
+          <label class="checkbox-item"><input type="checkbox" data-cat="special_cases" value="no-mfa" onchange="recalculate()"> No Org-Wide MFA Enforcement</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="results-section">
+    <div id="results-empty" class="empty-state">Select a vertical and at least one item from your stack above — or load an example — to see your risk profile.</div>
+
+    <div id="results-content" style="display:none;">
+      <div class="card">
+        <div class="card-header"><div class="card-title">Likely Threat Actors</div></div>
+        <div class="card-body" id="actors-container"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-title">Trending Tactics Relevant to You</div></div>
+        <div class="card-body">
+          <div class="trend-grid" id="trends-container"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-title">Recommended Threat Hunts</div></div>
+        <div class="card-body">
+          <div class="hunt-cols">
+            <div>
+              <div class="hunt-label">Tailored to Your Stack</div>
+              <div id="hunts-stack-container"></div>
+            </div>
+            <div>
+              <div class="hunt-label">Based on Active Threats</div>
+              <div id="hunts-threat-container"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-title">Recommended Mitigations</div></div>
+        <div class="card-body">
+          <div id="playbook-container"></div>
+          <div id="mitigations-container"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-title">Further Reading</div></div>
+        <div class="card-body" id="further-reading-container"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-title">Recent Coverage</div></div>
+        <div class="card-body" id="recent-coverage-container"></div>
+      </div>
+    </div>
+  </div>
+
+</main>
+<footer>
+  <div>SENTINEL · <a href="https://jogit91.github.io">Jake Ouellette</a></div>
+  <div><a href="index.html">← Dashboard</a></div>
+</footer>
+<script>
+const ACTOR_IDS=['qilin','the-gentlemen','shinyhunters','teampcp','salt-typhoon','unc6692','lazarus','apt38','apt28','muddywater','mustang-panda','eviltokens','gamaredon','kimsuky','silver-fox','turla','apt37','black-basta','akira'];
+
+let actorsData=[];
+let trendsData=[];
+let mappings=null;
+
+const EXAMPLES={
+  healthcare:{
+    vertical:'Healthcare',
+    services:['m365'],
+    firewalls:['fortinet'],
+    endpoints:['windows'],
+    infrastructure:['onprem-ad','esxi'],
+    special_cases:['vpn-remote-access','regulated-data']
+  },
+  msp:{
+    vertical:'MSP (Managed Service Provider)',
+    services:['m365'],
+    firewalls:['sonicwall'],
+    endpoints:['windows','macos'],
+    infrastructure:['rmm'],
+    special_cases:['msp-third-party-access']
+  },
+  government:{
+    vertical:'Government / Public Sector',
+    services:['m365','azure'],
+    firewalls:['cisco'],
+    endpoints:['windows'],
+    infrastructure:['onprem-ad'],
+    special_cases:['vpn-remote-access','regulated-data']
+  },
+  startup:{
+    vertical:'Technology / Software',
+    services:['aws','gcp','google-workspace','source-control-cicd'],
+    firewalls:[],
+    endpoints:['macos','linux'],
+    infrastructure:[],
+    special_cases:['self-hosted-website','byod']
+  }
+};
+
+function scoreClass(pct){return pct>70?'score-high':pct>40?'score-med':'score-low';}
+function confBarColor(pct){return pct>70?'var(--red)':pct>40?'var(--amber)':'var(--green)';}
+
+function getTrendBadge(trend){
+  const labels={rising:'▲ RISING',stable:'● STABLE',declining:'▼ DECLINING',emerging:'◆ EMERGING'};
+  return `<span class="trend-badge trend-${trend}">${labels[trend]||trend.toUpperCase()}</span>`;
+}
+
+function loadExample(key){
+  const ex=EXAMPLES[key];
+  if(!ex)return;
+  document.getElementById('vertical-select').value=ex.vertical;
+  document.querySelectorAll('input[data-cat]').forEach(cb=>{
+    cb.checked=(ex[cb.dataset.cat]||[]).includes(cb.value);
+  });
+  recalculate();
+}
+
+function resetProfile(){
+  document.getElementById('vertical-select').value='';
+  document.querySelectorAll('input[data-cat]').forEach(cb=>cb.checked=false);
+  recalculate();
+}
+
+function getSelectedKeys(){
+  const selected={services:[],firewalls:[],endpoints:[],infrastructure:[],special_cases:[]};
+  document.querySelectorAll('input[data-cat]:checked').forEach(cb=>{
+    selected[cb.dataset.cat].push(cb.value);
+  });
+  return selected;
+}
+
+function getSelectedItems(selected){
+  if(!mappings)return[];
+  const items=[];
+  Object.keys(selected).forEach(cat=>{
+    selected[cat].forEach(key=>{
+      const item=mappings[cat]&&mappings[cat][key];
+      if(item)items.push(item);
+    });
+  });
+  return items;
+}
+
+// "Government / Public Sector" -> ["government","public sector"], "MSP (Managed Service Provider)" -> ["msp"]
+function getVerticalTokens(vertical){
+  if(!vertical)return[];
+  const stripped=vertical.replace(/\([^)]*\)/g,'');
+  return stripped.split('/').map(s=>s.trim().toLowerCase()).filter(s=>s.length>2);
+}
+
+function scoreActors(vertical,items){
+  const vTokens=getVerticalTokens(vertical);
+  const allTechniques=[...new Set(items.flatMap(i=>i.mitre_techniques||[]))].map(t=>t.toUpperCase());
+  const allKeywords=[...new Set(items.flatMap(i=>i.keywords||[]))].map(k=>k.toLowerCase());
+
+  const scored=actorsData.map(actor=>{
+    let score=0;
+    let matches=[];
+
+    if(vTokens.length){
+      const actorSectors=(actor.targeted_sectors||[]).map(s=>s.toLowerCase());
+      actorSectors.forEach(as=>{
+        if(vTokens.some(vt=>as.includes(vt)||vt.includes(as))){
+          score+=35;
+          matches.push(`Sector: ${as}`);
+        }
+      });
+    }
+
+    if(allTechniques.length){
+      const actorTtpIds=(actor.ttps||[]).map(t=>t.technique_id.toUpperCase());
+      allTechniques.forEach(t=>{
+        if(actorTtpIds.includes(t)){
+          score+=15;
+          matches.push(`TTP: ${t}`);
+        }
+      });
+    }
+
+    if(allKeywords.length){
+      const combined=[...(actor.malware_families||[]),...(actor.notable_techniques||[]),...(actor.detection_opportunities||[])].join(' ').toLowerCase();
+      allKeywords.forEach(k=>{
+        if(combined.includes(k)){
+          score+=8;
+          matches.push(`Stack: ${k}`);
+        }
+      });
+    }
+
+    if(score>0)score+=actor.activity_score*0.15;
+    return{actor,score:Math.round(score),matches:[...new Set(matches)]};
+  });
+
+  return scored.filter(s=>s.score>0).sort((a,b)=>b.score-a.score).slice(0,5);
+}
+
+function scoreTrends(items,topActorIds){
+  const allTechniques=[...new Set(items.flatMap(i=>i.mitre_techniques||[]))].map(t=>t.toUpperCase());
+  const allKeywords=[...new Set(items.flatMap(i=>i.keywords||[]))].map(k=>k.toLowerCase());
+
+  const scored=trendsData.map(trend=>{
+    let score=0;
+    let matches=[];
+
+    if(allTechniques.length){
+      const trendTtpIds=(trend.mitre_techniques||[]).map(t=>t.technique_id.toUpperCase());
+      allTechniques.forEach(t=>{
+        if(trendTtpIds.includes(t)){
+          score+=15;
+          matches.push(`TTP: ${t}`);
+        }
+      });
+    }
+
+    if(allKeywords.length){
+      const combined=[trend.description||'',...(trend.related_tools||[]),...(trend.notable_examples||[])].join(' ').toLowerCase();
+      allKeywords.forEach(k=>{
+        if(combined.includes(k)){
+          score+=8;
+          matches.push(`Stack: ${k}`);
+        }
+      });
+    }
+
+    if(score>0&&topActorIds.length&&(trend.related_actors||[]).some(id=>topActorIds.includes(id))){
+      score+=10;
+      matches.push('Linked to matched actor');
+    }
+
+    return{trend,score:Math.round(score),matches:[...new Set(matches)]};
+  });
+
+  return scored.filter(s=>s.score>0).sort((a,b)=>b.score-a.score).slice(0,4);
+}
+
+function renderActors(results){
+  const container=document.getElementById('actors-container');
+  if(!results.length){
+    container.innerHTML='<div class="empty-state">No specific actor matches for this combination yet — try adding more of your stack or selecting a vertical.</div>';
+    return;
+  }
+  const maxScore=results[0].score||1;
+  container.innerHTML=results.map((r,i)=>{
+    const pct=Math.round((r.score/maxScore)*100);
+    return`<div class="result-item">
+      <div class="result-rank rank-${i+1}">#${i+1}</div>
+      <div class="result-info">
+        <div class="result-name"><a href="actors.html#${r.actor.id}">${r.actor.name}</a> <span style="font-size:17px;color:var(--text3);font-weight:400;">${(r.actor.type||'').replace('_',' ')}</span></div>
+        <div class="result-desc">${(r.actor.motivation||[]).join(', ')} · ${r.actor.origin||''}</div>
+        <div>${r.matches.slice(0,8).map(m=>`<span class="match-badge">${m}</span>`).join('')}</div>
+      </div>
+      <div class="result-conf-wrap">
+        <div class="result-conf ${scoreClass(pct)}">${pct}%</div>
+        <div class="conf-bar-wrap"><div class="conf-bar" style="width:${pct}%;background:${confBarColor(pct)};"></div></div>
+        <div style="font-family:var(--font-mono);font-size:16px;color:var(--text3);margin-top:3px;text-align:right;">relevance</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderTrends(results){
+  const container=document.getElementById('trends-container');
+  if(!results.length){
+    container.innerHTML='<div class="empty-state">No trending tactics specifically tied to this stack yet.</div>';
+    return;
+  }
+  container.innerHTML=results.map(r=>{
+    const trend=r.trend;
+    const mitre=(trend.mitre_techniques||[]).map(t=>t.technique_id).join(', ');
+    const desc=trend.description.length>200?trend.description.slice(0,200).trim()+'…':trend.description;
+    return`<a class="trend-card" href="trends.html#${trend.id}">
+      <div class="trend-card-top">
+        <div class="trend-name">${trend.name}</div>
+        ${getTrendBadge(trend.trend)}
+      </div>
+      <div class="trend-type-row">
+        <span class="tag tag-${trend.category}">${trend.category.replace(/_/g,' ')}</span>
+        <span class="card-badge">${trend.mention_count_30d} mentions/30d</span>
+      </div>
+      <div class="trend-desc">${desc}</div>
+      ${mitre?`<div class="trend-mitre">MITRE: ${mitre}</div>`:''}
+      <div>${r.matches.slice(0,6).map(m=>`<span class="match-badge">${m}</span>`).join('')}</div>
+    </a>`;
+  }).join('');
+}
+
+function renderHunts(items,actorResults,trendResults){
+  const stackContainer=document.getElementById('hunts-stack-container');
+  const threatContainer=document.getElementById('hunts-threat-container');
+
+  const stackHunts=[...new Set(items.flatMap(i=>i.hunts||[]))].slice(0,6);
+  stackContainer.innerHTML=stackHunts.length
+    ? stackHunts.map(h=>`<div class="response-item">${h}</div>`).join('')
+    : '<div class="empty-state" style="padding:0.5rem 0;">No stack-specific hunts yet — select services, hardware, or special cases above.</div>';
+
+  const threatHunts=[...new Set([
+    ...actorResults.flatMap(r=>r.actor.detection_opportunities||[]),
+    ...trendResults.flatMap(r=>r.trend.detection_opportunities||[])
+  ])].slice(0,6);
+  threatContainer.innerHTML=threatHunts.length
+    ? threatHunts.map(h=>`<div class="response-item">${h}</div>`).join('')
+    : '<div class="empty-state" style="padding:0.5rem 0;">No active-threat hunts matched yet.</div>';
+}
+
+function renderMitigations(items,actorResults){
+  const playbookContainer=document.getElementById('playbook-container');
+  const container=document.getElementById('mitigations-container');
+
+  if(actorResults.length){
+    const top=actorResults[0].actor;
+    const playbook=(top.response_playbook||[]).slice(0,5);
+    playbookContainer.innerHTML=playbook.length
+      ? `<div class="playbook-block">
+          <div class="playbook-title">⚡ If Targeted by ${top.name}, Prioritize</div>
+          ${playbook.map(s=>`<div class="response-item">${s}</div>`).join('')}
+        </div>`
+      : '';
+  } else {
+    playbookContainer.innerHTML='';
+  }
+
+  const all=items.flatMap(i=>i.mitigations||[]);
+  const seen=new Set();
+  const deduped=all.filter(m=>{
+    if(seen.has(m.text))return false;
+    seen.add(m.text);
+    return true;
+  });
+  const order={critical:0,high:1,medium:2};
+  deduped.sort((a,b)=>(order[a.priority]??3)-(order[b.priority]??3));
+
+  container.innerHTML=deduped.length
+    ? deduped.map(m=>`<div class="mitigation-item"><span class="priority-tag priority-${m.priority}">${m.priority}</span><span>${m.text}</span></div>`).join('')
+    : '<div class="empty-state">Select services, hardware, or special cases above to see tailored mitigations.</div>';
+}
+
+function renderFurtherReading(actorResults,trendResults){
+  const container=document.getElementById('further-reading-container');
+  const groups=[];
+
+  actorResults.slice(0,3).forEach(r=>{
+    const sources=(r.actor.sources||[]).slice(0,3);
+    if(sources.length)groups.push({name:r.actor.name,sources});
+  });
+  trendResults.slice(0,2).forEach(r=>{
+    const sources=(r.trend.sources||[]).slice(0,3);
+    if(sources.length)groups.push({name:r.trend.name,sources});
+  });
+
+  container.innerHTML=groups.length
+    ? groups.map(g=>`<div class="frg-group">
+        <div class="frg-title">${g.name}</div>
+        ${g.sources.map(s=>`<a class="frg-link" href="${s.url}" target="_blank" rel="noopener">${s.title} →</a>`).join('')}
+      </div>`).join('')
+    : '<div class="empty-state">No sources to surface yet.</div>';
+}
+
+function renderRecentCoverage(topActorIds){
+  const container=document.getElementById('recent-coverage-container');
+  if(!topActorIds.length||!mentionsData.length){
+    container.innerHTML='<div class="empty-state">No recent coverage matched yet.</div>';
+    return;
+  }
+  const matched=mentionsData
+    .filter(m=>topActorIds.includes(m.actor_id))
+    .sort((a,b)=>new Date(b.date)-new Date(a.date))
+    .slice(0,8);
+
+  container.innerHTML=matched.length
+    ? matched.map(m=>`
+      <div class="mention-card">
+        <div class="mention-card-top">
+          <div class="mention-actor-name">${m.actor_name}</div>
+          <span class="conf-badge conf-${m.confidence}">${m.confidence}</span>
+        </div>
+        <div class="mention-title"><a href="${m.url}" target="_blank" rel="noopener">${m.title}</a></div>
+        <div class="mention-meta">
+          <span class="meta-item">${m.source}</span>
+          <span class="meta-item">${m.date}</span>
+        </div>
+      </div>`).join('')
+    : '<div class="empty-state">No recent coverage matched yet.</div>';
+}
+
+function recalculate(){
+  const vertical=document.getElementById('vertical-select').value;
+  const selected=getSelectedKeys();
+  const items=getSelectedItems(selected);
+  const hasInput=vertical||Object.values(selected).some(arr=>arr.length);
+
+  const emptyEl=document.getElementById('results-empty');
+  const contentEl=document.getElementById('results-content');
+
+  if(!hasInput||!mappings||!actorsData.length){
+    emptyEl.style.display='block';
+    contentEl.style.display='none';
+    return;
+  }
+  emptyEl.style.display='none';
+  contentEl.style.display='block';
+
+  const actorResults=scoreActors(vertical,items);
+  const topActorIds=actorResults.map(r=>r.actor.id);
+  const trendResults=scoreTrends(items,topActorIds);
+
+  renderActors(actorResults);
+  renderTrends(trendResults);
+  renderHunts(items,actorResults,trendResults);
+  renderMitigations(items,actorResults);
+  renderFurtherReading(actorResults,trendResults);
+  renderRecentCoverage(topActorIds);
+}
+
+let mentionsData=[];
+
+async function loadActors(){
+  const profiles=await Promise.allSettled(
+    ACTOR_IDS.map(id=>
+      fetch(`https://raw.githubusercontent.com/JOGit91/sentinel/main/data/actors/${id}.json`)
+        .then(r=>r.ok?r.json():fetch(`../data/actors/${id}.json`).then(r2=>r2.json()))
+    )
+  );
+  actorsData=profiles.filter(r=>r.status==='fulfilled').map(r=>r.value);
+}
+
+async function loadTrends(){
+  const trendsRes=await fetch('https://raw.githubusercontent.com/JOGit91/sentinel/main/data/trends.json');
+  const trendsIndex=trendsRes.ok?await trendsRes.json():await fetch('../data/trends.json').then(r=>r.json());
+  const trendIds=(trendsIndex.trending_ttps||[]).map(t=>t.id);
+
+  const profiles=await Promise.allSettled(
+    trendIds.map(id=>
+      fetch(`https://raw.githubusercontent.com/JOGit91/sentinel/main/data/trends/${id}.json`)
+        .then(r=>r.ok?r.json():fetch(`../data/trends/${id}.json`).then(r2=>r2.json()))
+    )
+  );
+  trendsData=profiles.filter(r=>r.status==='fulfilled').map(r=>r.value);
+}
+
+async function loadMappings(){
+  const res=await fetch('https://raw.githubusercontent.com/JOGit91/sentinel/main/data/exposure-mappings.json');
+  mappings=res.ok?await res.json():await fetch('../data/exposure-mappings.json').then(r=>r.json());
+}
+
+async function loadMentions(){
+  const res=await fetch('https://raw.githubusercontent.com/JOGit91/sentinel/main/data/mentions.json');
+  const data=res.ok?await res.json():await fetch('../data/mentions.json').then(r=>r.json());
+  mentionsData=data.mentions||[];
+}
+
+async function init(){
+  await Promise.all([loadActors(),loadTrends(),loadMappings(),loadMentions()]);
+  recalculate();
+}
+
+init();
+</script>
+</body>
+</html>
