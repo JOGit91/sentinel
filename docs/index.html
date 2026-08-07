@@ -930,6 +930,16 @@ async function loadData() {
   }
 }
 
+function rollingMonths() {
+  const now = new Date();
+  const result = [];
+  for (let i = 5; i >= 0; i--) {
+    const d = new Date(now.getFullYear(), now.getMonth() - 1 - i, 1);
+    result.push(d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0'));
+  }
+  return result;
+}
+
 function renderAll() {
   renderStats();
   renderActorGrid();
@@ -1001,9 +1011,9 @@ function renderChart() {
   // Get top 10 by activity score
   const top10 = [...actors].sort((a,b) => b.activity_score - a.activity_score).slice(0,10);
 
-  // Build 6-month labels from actor profiles
-  const months = ['2026-01','2026-02','2026-03','2026-04','2026-05','2026-06'];
-  const labels = ['Jan','Feb','Mar','Apr','May','Jun'];
+  // Rolling 6-month window: last 6 completed calendar months
+  const months = rollingMonths();
+  const labels = months.map(m => new Date(m + '-02').toLocaleString('en-US', {month:'short'}));
 
   const colors = ['#00d4a1','#ff4757','#ffa502','#a78bfa','#4ecdc4','#ff6b6b','#74b9ff','#fdcb6e','#e84393','#00b894'];
 
@@ -1106,8 +1116,8 @@ function renderTrendsChart() {
 
   const top10 = [...trendsData].sort((a,b) => (b.mention_count_30d||0) - (a.mention_count_30d||0)).slice(0,10);
 
-  const months = ['2026-01','2026-02','2026-03','2026-04','2026-05','2026-06'];
-  const labels = ['Jan','Feb','Mar','Apr','May','Jun'];
+  const months = rollingMonths();
+  const labels = months.map(m => new Date(m + '-02').toLocaleString('en-US', {month:'short'}));
 
   const colors = ['#00d4a1','#ff4757','#ffa502','#a78bfa','#4ecdc4','#ff6b6b','#74b9ff','#fdcb6e','#e84393','#00b894'];
 
