@@ -10,6 +10,7 @@ from datetime import datetime
 import anthropic
 
 client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
+CLAUDE_MODEL = os.environ.get("CLAUDE_MODEL", "claude-sonnet-4-6")
 
 KNOWN_ACTORS = [
     "Qilin", "Agenda", "The Gentlemen", "ShinyHunters", "UNC6040", "UNC6240", "SLSH",
@@ -54,7 +55,7 @@ def extract_from_article(title: str, content: str, url: str) -> dict:
     """Extract TI from article text using Claude API."""
     try:
         response = client.messages.create(
-            model="claude-sonnet-4-6",
+            model=CLAUDE_MODEL,
             max_tokens=1000,
             system=SYSTEM_PROMPT,
             messages=[{
