@@ -90,10 +90,14 @@ def _rolling_6_months() -> list[str]:
 
 
 def refresh_all_actor_histories(actor_profiles: list, mentions_data: dict):
-    """Rebuild rolling 6-month mention_history and mention_count_30d for every actor."""
+    """Slide the 6-month mention_history window and update mention_count_30d for every actor."""
     mentions = mentions_data.get("mentions", [])
     months = _rolling_6_months()
     cutoff_30d = (datetime.utcnow() - timedelta(days=30)).strftime("%Y-%m-%d")
+
+    # Months that actually appear in mentions.json — only override counts for these.
+    # For months with no ingestor coverage, preserve existing seeded/historical values.
+    covered_months = {m.get("date", "")[:7] for m in mentions if len(m.get("date", "")) >= 7}
 
     for actor in actor_profiles:
         actor_id = actor["id"]
@@ -109,16 +113,20 @@ def refresh_all_actor_histories(actor_profiles: list, mentions_data: dict):
             if m.get("actor_id") == actor_id and m.get("date", "") >= cutoff_30d
         )
 
-        # Per-month counts from mentions.json
-        history_map: dict[str, int] = {}
+        # Existing history as a lookup so we can preserve counts for uncovered months
+        existing = {e["month"]: e["count"] for e in actor_data.get("mention_history", [])}
+
+        # Counts from mentions.json for months that have coverage
+        data_counts: dict[str, int] = {}
         for m in mentions:
             if m.get("actor_id") == actor_id:
                 date = m.get("date", "")
                 if len(date) >= 7:
-                    history_map[date[:7]] = history_map.get(date[:7], 0) + 1
+                    data_counts[date[:7]] = data_counts.get(date[:7], 0) + 1
 
         actor_data["mention_history"] = [
-            {"month": mo, "count": history_map.get(mo, 0)} for mo in months
+            {"month": mo, "count": data_counts[mo] if mo in covered_months else existing.get(mo, 0)}
+            for mo in months
         ]
 
         actor_file.write_text(json.dumps(actor_data, indent=2))
