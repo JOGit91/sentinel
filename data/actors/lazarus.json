@@ -138,7 +138,7 @@
       "url": "https://threatbook.io/blog/lazarus-group-poisons-axios-inside-the-npm-supply-chain-attack"
     }
   ],
-  "mention_count_30d": 52,
+  "mention_count_30d": 0,
   "mention_history": [
     {
       "month": "2026-02",
@@ -154,11 +154,11 @@
     },
     {
       "month": "2026-05",
-      "count": 50
+      "count": 0
     },
     {
       "month": "2026-06",
-      "count": 52
+      "count": 1
     },
     {
       "month": "2026-07",

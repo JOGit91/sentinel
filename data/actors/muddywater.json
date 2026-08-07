@@ -129,7 +129,7 @@
       "url": "https://attack.mitre.org/groups/G0069/"
     }
   ],
-  "mention_count_30d": 24,
+  "mention_count_30d": 0,
   "mention_history": [
     {
       "month": "2026-02",
@@ -145,11 +145,11 @@
     },
     {
       "month": "2026-05",
-      "count": 22
+      "count": 1
     },
     {
       "month": "2026-06",
-      "count": 24
+      "count": 0
     },
     {
       "month": "2026-07",

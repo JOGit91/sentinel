@@ -1,24 +1,157 @@
 {
-  "last_updated": "2026-06-10T00:00:00Z",
+  "last_updated": "2026-08-07T17:41:48.492189Z",
   "top_actors": [
-    { "id": "qilin", "name": "Qilin", "activity_score": 98, "monthly_victims": 111, "type": "ransomware", "mention_count_30d": 47 },
-    { "id": "shinyhunters", "name": "ShinyHunters", "activity_score": 85, "monthly_victims": null, "type": "data_extortion", "mention_count_30d": 41 },
-    { "id": "the-gentlemen", "name": "The Gentlemen", "activity_score": 91, "monthly_victims": 66, "type": "ransomware", "mention_count_30d": 38 },
-    { "id": "salt-typhoon", "name": "Salt Typhoon", "activity_score": 76, "monthly_victims": null, "type": "apt", "mention_count_30d": 31 },
-    { "id": "teampcp", "name": "TeamPCP", "activity_score": 79, "monthly_victims": null, "type": "supply_chain", "mention_count_30d": 33 },
-    { "id": "unc6692", "name": "UNC6692", "activity_score": 72, "monthly_victims": null, "type": "initial_access", "mention_count_30d": 29 },
-    { "id": "lazarus", "name": "Lazarus Group", "activity_score": 84, "monthly_victims": null, "type": "apt", "mention_count_30d": 52 },
-    { "id": "apt38", "name": "APT38", "activity_score": 78, "monthly_victims": null, "type": "apt", "mention_count_30d": 36 },
-    { "id": "apt28", "name": "APT28", "activity_score": 88, "monthly_victims": null, "type": "apt", "mention_count_30d": 44 },
-    { "id": "muddywater", "name": "MuddyWater", "activity_score": 70, "monthly_victims": null, "type": "apt", "mention_count_30d": 24 },
-    { "id": "mustang-panda", "name": "Mustang Panda", "activity_score": 78, "monthly_victims": null, "type": "apt", "mention_count_30d": 30 },
-    { "id": "eviltokens", "name": "EvilTokens", "activity_score": 90, "monthly_victims": null, "type": "initial_access", "mention_count_30d": 44 },
-    { "id": "gamaredon", "name": "Gamaredon", "activity_score": 80, "monthly_victims": null, "type": "apt", "mention_count_30d": 34 },
-    { "id": "kimsuky", "name": "Kimsuky", "activity_score": 74, "monthly_victims": null, "type": "apt", "mention_count_30d": 33 },
-    { "id": "silver-fox", "name": "Silver Fox", "activity_score": 81, "monthly_victims": null, "type": "apt", "mention_count_30d": 39 },
-    { "id": "turla", "name": "Turla", "activity_score": 81, "monthly_victims": null, "type": "apt", "mention_count_30d": 35 },
-    { "id": "apt37", "name": "APT37", "activity_score": 71, "monthly_victims": null, "type": "apt", "mention_count_30d": 30 },
-    { "id": "black-basta", "name": "Black Basta", "activity_score": 48, "monthly_victims": 0, "type": "ransomware", "mention_count_30d": 12 },
-    { "id": "akira", "name": "Akira", "activity_score": 75, "monthly_victims": 42, "type": "ransomware", "mention_count_30d": 28 }
+    {
+      "id": "qilin",
+      "name": "Qilin",
+      "activity_score": 98,
+      "monthly_victims": 111,
+      "type": "ransomware",
+      "mention_count_30d": 0
+    },
+    {
+      "id": "the-gentlemen",
+      "name": "The Gentlemen",
+      "activity_score": 91,
+      "monthly_victims": 66,
+      "type": "ransomware",
+      "mention_count_30d": 0
+    },
+    {
+      "id": "eviltokens",
+      "name": "EvilTokens",
+      "activity_score": 90,
+      "monthly_victims": null,
+      "type": "initial_access",
+      "mention_count_30d": 0
+    },
+    {
+      "id": "apt28",
+      "name": "APT28",
+      "activity_score": 88,
+      "monthly_victims": null,
+      "type": "apt",
+      "mention_count_30d": 0
+    },
+    {
+      "id": "shinyhunters",
+      "name": "ShinyHunters",
+      "activity_score": 85,
+      "monthly_victims": null,
+      "type": "data_extortion",
+      "mention_count_30d": 0
+    },
+    {
+      "id": "lazarus",
+      "name": "Lazarus Group",
+      "activity_score": 84,
+      "monthly_victims": null,
+      "type": "apt",
+      "mention_count_30d": 0
+    },
+    {
+      "id": "silver-fox",
+      "name": "Silver Fox",
+      "activity_score": 81,
+      "monthly_victims": null,
+      "type": "apt",
+      "mention_count_30d": 0
+    },
+    {
+      "id": "turla",
+      "name": "Turla",
+      "activity_score": 81,
+      "monthly_victims": null,
+      "type": "apt",
+      "mention_count_30d": 0
+    },
+    {
+      "id": "gamaredon",
+      "name": "Gamaredon",
+      "activity_score": 80,
+      "monthly_victims": null,
+      "type": "apt",
+      "mention_count_30d": 0
+    },
+    {
+      "id": "teampcp",
+      "name": "TeamPCP",
+      "activity_score": 79,
+      "monthly_victims": null,
+      "type": "supply_chain",
+      "mention_count_30d": 0
+    },
+    {
+      "id": "apt38",
+      "name": "APT38",
+      "activity_score": 78,
+      "monthly_victims": null,
+      "type": "apt",
+      "mention_count_30d": 0
+    },
+    {
+      "id": "mustang-panda",
+      "name": "Mustang Panda",
+      "activity_score": 78,
+      "monthly_victims": null,
+      "type": "apt",
+      "mention_count_30d": 0
+    },
+    {
+      "id": "salt-typhoon",
+      "name": "Salt Typhoon",
+      "activity_score": 76,
+      "monthly_victims": null,
+      "type": "apt",
+      "mention_count_30d": 0
+    },
+    {
+      "id": "akira",
+      "name": "Akira",
+      "activity_score": 75,
+      "monthly_victims": 42,
+      "type": "ransomware",
+      "mention_count_30d": 0
+    },
+    {
+      "id": "kimsuky",
+      "name": "Kimsuky",
+      "activity_score": 74,
+      "monthly_victims": null,
+      "type": "apt",
+      "mention_count_30d": 0
+    },
+    {
+      "id": "unc6692",
+      "name": "UNC6692",
+      "activity_score": 72,
+      "monthly_victims": null,
+      "type": "initial_access",
+      "mention_count_30d": 0
+    },
+    {
+      "id": "apt37",
+      "name": "APT37",
+      "activity_score": 71,
+      "monthly_victims": null,
+      "type": "apt",
+      "mention_count_30d": 0
+    },
+    {
+      "id": "muddywater",
+      "name": "MuddyWater",
+      "activity_score": 70,
+      "monthly_victims": null,
+      "type": "apt",
+      "mention_count_30d": 0
+    },
+    {
+      "id": "black-basta",
+      "name": "Black Basta",
+      "activity_score": 48,
+      "monthly_victims": 0,
+      "type": "ransomware",
+      "mention_count_30d": 0
+    }
   ]
 }

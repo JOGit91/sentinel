@@ -133,7 +133,7 @@
       "url": "https://attack.mitre.org/groups/G0082/"
     }
   ],
-  "mention_count_30d": 36,
+  "mention_count_30d": 0,
   "mention_history": [
     {
       "month": "2026-02",
@@ -149,11 +149,11 @@
     },
     {
       "month": "2026-05",
-      "count": 33
+      "count": 0
     },
     {
       "month": "2026-06",
-      "count": 36
+      "count": 1
     },
     {
       "month": "2026-07",
