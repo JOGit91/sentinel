@@ -76,21 +76,38 @@ def save_activity(data: dict):
 
 
 def update_actor_mention_count(actor_id: str, mentions_data: dict):
-    """Increment 30-day mention count for an actor."""
+    """Update 30-day mention count and month-by-month history for an actor."""
     actor_file = ACTORS_DIR / f"{actor_id}.json"
     if not actor_file.exists():
         return
-    
+
     actor = json.loads(actor_file.read_text())
-    
+
     # Count mentions in last 30 days from the mentions feed
     cutoff = (datetime.utcnow() - timedelta(days=30)).strftime("%Y-%m-%d")
     count = sum(
         1 for m in mentions_data.get("mentions", [])
         if m.get("actor_id") == actor_id and m.get("date", "") >= cutoff
     )
-    
     actor["mention_count_30d"] = count
+
+    # Upsert current month into mention_history (keeps last 6 months)
+    current_month = datetime.utcnow().strftime("%Y-%m")
+    month_count = sum(
+        1 for m in mentions_data.get("mentions", [])
+        if m.get("actor_id") == actor_id and m.get("date", "").startswith(current_month)
+    )
+    history = actor.setdefault("mention_history", [])
+    for entry in history:
+        if entry.get("month") == current_month:
+            entry["count"] = month_count
+            break
+    else:
+        history.append({"month": current_month, "count": month_count})
+    # Keep only the 6 most recent months, sorted ascending
+    history.sort(key=lambda x: x["month"])
+    actor["mention_history"] = history[-6:]
+
     actor_file.write_text(json.dumps(actor, indent=2))
 
 
