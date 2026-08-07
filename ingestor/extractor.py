@@ -54,7 +54,7 @@ def extract_from_article(title: str, content: str, url: str) -> dict:
     """Extract TI from article text using Claude API."""
     try:
         response = client.messages.create(
-            model="claude-sonnet-4-20250514",
+            model="claude-sonnet-4-6",
             max_tokens=1000,
             system=SYSTEM_PROMPT,
             messages=[{
