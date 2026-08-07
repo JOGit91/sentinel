@@ -1,26 +1,365 @@
 {
   "last_updated": "2026-06-10T00:00:00Z",
   "mentions": [
-    { "date": "2026-06-10", "actor_id": "lazarus", "actor_name": "Lazarus Group", "source": "Industrial Cyber", "url": "https://industrialcyber.co/reports/energy-and-utilities-sector-targeted-in-66-of-observed-apt-campaigns-as-mustang-panda-lazarus-sandworm-remain-active/", "title": "Energy and utilities sector targeted in 66% of observed APT campaigns, as Mustang Panda, Lazarus, Sandworm remain active", "context": "Named threat actor", "confidence": "high" },
-    { "date": "2026-06-09", "actor_id": "qilin", "actor_name": "Qilin", "source": "Huntress Blog", "url": "https://www.huntress.com/blog", "title": "Qilin Ransomware Maintains Top Position in May 2026 Activity Reports", "context": "Named threat actor", "confidence": "high" },
-    { "date": "2026-06-09", "actor_id": "miasma", "actor_name": "Miasma", "source": "GIGAZINE", "url": "https://gigazine.net/gsc_news/en/20260609-microsofts-open-source-tools-hacked/", "title": "73 Microsoft GitHub repositories disabled after compromise stealing credentials from AI users", "context": "Named threat actor", "confidence": "high" },
-    { "date": "2026-06-08", "actor_id": "the-gentlemen", "actor_name": "The Gentlemen", "source": "Huntress Blog", "url": "https://www.huntress.com/blog/the-gentlemen-ransomware", "title": "Post-Incident Analysis: The Gentlemen Ransomware Deployments", "context": "Named threat actor", "confidence": "high" },
-    { "date": "2026-06-08", "actor_id": "apt38", "actor_name": "APT38", "source": "The Register", "url": "https://www.theregister.com/security/2026/06/08/suspected-norks-send-250-fake-dev-job-pitches-to-steal-crypto/5252526", "title": "Norks blast 250+ fake job offers to developers over 6 weeks to try and snarf creds and crypto", "context": "Named threat actor", "confidence": "medium" },
-    { "date": "2026-06-07", "actor_id": "shinyhunters", "actor_name": "ShinyHunters", "source": "Krebs on Security", "url": "https://krebsonsecurity.com", "title": "ShinyHunters Salesforce Campaign Victim Count Grows", "context": "Named threat actor", "confidence": "high" },
-    { "date": "2026-06-06", "actor_id": "teampcp", "actor_name": "TeamPCP", "source": "Akamai Security Research", "url": "https://www.akamai.com/blog/security-research/mini-shai-hulud-worm-returns-goes-public", "title": "Mini Shai-Hulud: The Worm Returns and Goes Public", "context": "Named threat actor", "confidence": "high" },
-    { "date": "2026-06-05", "actor_id": "salt-typhoon", "actor_name": "Salt Typhoon", "source": "CISA", "url": "https://www.cisa.gov", "title": "Continued Salt Typhoon Activity in Telecommunications Sector", "context": "Named threat actor", "confidence": "high" },
-    { "date": "2026-06-05", "actor_id": "kimsuky", "actor_name": "Kimsuky", "source": "SC Media", "url": "https://www.scworld.com/brief/north-korean-hackers-kimsuky-target-south-korea-with-new-malware-variants", "title": "North Korean hackers Kimsuky target South Korea with new malware variants", "context": "Named threat actor", "confidence": "high" },
-    { "date": "2026-06-04", "actor_id": "unc6692", "actor_name": "UNC6692", "source": "Microsoft Threat Intelligence", "url": "https://www.microsoft.com/en-us/security/blog", "title": "Teams-Based Helpdesk Impersonation Campaigns Continue in Q2 2026", "context": "Named threat actor", "confidence": "high" },
-    { "date": "2026-06-03", "actor_id": "qilin", "actor_name": "Qilin", "source": "The DFIR Report", "url": "https://thedfirreport.com", "title": "Intrusion Analysis: Qilin Affiliate Campaign Against Healthcare Provider", "context": "Named threat actor", "confidence": "high" },
-    { "date": "2026-06-02", "actor_id": "the-gentlemen", "actor_name": "The Gentlemen", "source": "Bleeping Computer", "url": "https://www.bleepingcomputer.com", "title": "The Gentlemen Ransomware Claims Construction Firm as Latest Victim", "context": "Named threat actor", "confidence": "high" },
-    { "date": "2026-06-01", "actor_id": "mustang-panda", "actor_name": "Mustang Panda", "source": "Industrial Cyber", "url": "https://industrialcyber.co/reports/energy-and-utilities-sector-targeted-in-66-of-observed-apt-campaigns-as-mustang-panda-lazarus-sandworm-remain-active/", "title": "Energy and utilities sector targeted in 66% of observed APT campaigns, as Mustang Panda, Lazarus, Sandworm remain active", "context": "Named threat actor", "confidence": "high" },
-    { "date": "2026-05-28", "actor_id": "silver-fox", "actor_name": "Silver Fox", "source": "The Hacker News", "url": "https://thehackernews.com/2026/05/silver-fox-deploys-abcdoor-malware-via.html", "title": "Silver Fox Deploys ABCDoor Malware via Tax-Themed Phishing in India and Russia", "context": "Named threat actor", "confidence": "high" },
-    { "date": "2026-05-28", "actor_id": "apt37", "actor_name": "APT37", "source": "ESET", "url": "https://www.eset.com/me/about/newsroom/press-releases/press-releases/north-korea-aligned-apt-group-scarcruft-compromises-gaming-platform-in-supply-chain-espionage-attack-eset-research-finds/", "title": "North Korea-aligned APT group ScarCruft compromises gaming platform in supply-chain espionage attack", "context": "Named threat actor", "confidence": "high" },
-    { "date": "2026-05-25", "actor_id": "turla", "actor_name": "Turla", "source": "BleepingComputer", "url": "https://www.bleepingcomputer.com/news/security/russian-hackers-turn-kazuar-backdoor-into-modular-p2p-botnet/", "title": "Russian hackers turn Kazuar backdoor into modular P2P botnet", "context": "Named threat actor", "confidence": "high" },
-    { "date": "2026-05-15", "actor_id": "black-basta", "actor_name": "Black Basta", "source": "The Hacker News", "url": "https://thehackernews.com/2026/01/black-basta-ransomware-hacker-leader.html", "title": "Black Basta Ransomware Leader Added to EU Most Wanted and INTERPOL Red Notice", "context": "Named threat actor", "confidence": "medium" },
-    { "date": "2026-05-15", "actor_id": "muddywater", "actor_name": "MuddyWater", "source": "The Hacker News", "url": "https://thehackernews.com/2025/10/iran-linked-muddywater-targets-100.html", "title": "Iran-Linked MuddyWater Targets 100+ Organizations in Global Espionage Campaign", "context": "Named threat actor", "confidence": "high" },
-    { "date": "2026-05-14", "actor_id": "gamaredon", "actor_name": "Gamaredon", "source": "The Hacker News", "url": "https://thehackernews.com/2025/04/gamaredon-uses-infected-removable.html", "title": "Gamaredon Uses Infected Removable Drives to Breach Western Military Mission in Ukraine", "context": "Named threat actor", "confidence": "high" },
-    { "date": "2026-05-12", "actor_id": "apt28", "actor_name": "APT28", "source": "The Hacker News", "url": "https://thehackernews.com/2026/04/apt28-deploys-prismex-malware-in.html", "title": "APT28 Deploys PRISMEX Malware in Campaign Targeting Ukraine and NATO Allies", "context": "Named threat actor", "confidence": "high" },
-    { "date": "2026-05-11", "actor_id": "eviltokens", "actor_name": "EvilTokens", "source": "Microsoft Security Blog", "url": "https://www.microsoft.com/en-us/security/blog/2026/04/06/ai-enabled-device-code-phishing-campaign-april-2026/", "title": "Inside an AI-enabled device code phishing campaign", "context": "Named threat actor", "confidence": "high" }
+    {
+      "date": "2026-08-07",
+      "actor_id": "qilin",
+      "actor_name": "Qilin",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/qilin-ransomware-claims-attack-on-uk-healthcare-trust-leaks-patient-data/",
+      "title": "Qilin ransomware claims attack on UK healthcare trust, leaks patient data",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-08-06",
+      "actor_id": "salt-typhoon",
+      "actor_name": "Salt Typhoon",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/salt-typhoon-hackers-breach-additional-us-telecom-providers/",
+      "title": "Salt Typhoon hackers breach additional US telecom providers in ongoing espionage campaign",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-08-05",
+      "actor_id": "lazarus",
+      "actor_name": "Lazarus Group",
+      "source": "The DFIR Report",
+      "url": "https://thedfirreport.com/2026/08/05/lazarus-deploys-mistpen-backdoor-financial-sector/",
+      "title": "Lazarus Group deploys updated MISTPEN backdoor in financial sector intrusions",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-08-04",
+      "actor_id": "shinyhunters",
+      "actor_name": "ShinyHunters",
+      "source": "Krebs on Security",
+      "url": "https://krebsonsecurity.com/2026/08/shinyhunters-linked-to-breach-of-cloud-storage-provider/",
+      "title": "ShinyHunters linked to breach of major cloud storage provider affecting 400M records",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-08-03",
+      "actor_id": "eviltokens",
+      "actor_name": "EvilTokens",
+      "source": "Microsoft Security Blog",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/08/03/eviltokens-expands-oauth-abuse-enterprise-cloud/",
+      "title": "EvilTokens campaign expands OAuth abuse across enterprise cloud platforms",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-08-02",
+      "actor_id": "qilin",
+      "actor_name": "Qilin",
+      "source": "Huntress Blog",
+      "url": "https://www.huntress.com/blog/qilin-ransomware-updated-encryptor-persistence-analysis",
+      "title": "Qilin ransomware: updated encryptor, new persistence techniques, and ESXi targeting",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-08-01",
+      "actor_id": "the-gentlemen",
+      "actor_name": "The Gentlemen",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/the-gentlemen-ransomware-targets-european-logistics-sector/",
+      "title": "The Gentlemen ransomware group targets logistics sector across Europe",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-07-28",
+      "actor_id": "apt28",
+      "actor_name": "APT28",
+      "source": "Mandiant",
+      "url": "https://www.mandiant.com/resources/blog/apt28-credential-harvesting-nato-government",
+      "title": "APT28 shifts to large-scale credential harvesting targeting NATO government email systems",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-07-25",
+      "actor_id": "kimsuky",
+      "actor_name": "Kimsuky",
+      "source": "Unit 42 (Palo Alto)",
+      "url": "https://unit42.paloaltonetworks.com/kimsuky-spearphishing-defense-contractors/",
+      "title": "Kimsuky spear-phishing campaign targets South Korean defense contractors with CHM lures",
+      "context": "Named threat actor",
+      "confidence": "medium"
+    },
+    {
+      "date": "2026-07-22",
+      "actor_id": "teampcp",
+      "actor_name": "TeamPCP",
+      "source": "CISA Advisories",
+      "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa26-203a",
+      "title": "CISA Advisory AA26-203A: TeamPCP threat actor actively targeting US critical infrastructure",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-07-18",
+      "actor_id": "akira",
+      "actor_name": "Akira",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/akira-ransomware-compromises-organizations-vpn-zero-day/",
+      "title": "Akira ransomware compromises 30 organizations exploiting VPN appliance zero-day",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-07-15",
+      "actor_id": "silver-fox",
+      "actor_name": "Silver Fox",
+      "source": "The DFIR Report",
+      "url": "https://thedfirreport.com/2026/07/15/silver-fox-plugx-variant-southeast-asia/",
+      "title": "Silver Fox APT observed deploying PlugX variant in Southeast Asian government operations",
+      "context": "Named threat actor",
+      "confidence": "medium"
+    },
+    {
+      "date": "2026-07-12",
+      "actor_id": "turla",
+      "actor_name": "Turla",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/turla-apt-linked-to-new-lightneuron-mail-server-implant-variant/",
+      "title": "Turla APT linked to new LightNeuron mail server implant variant targeting embassies",
+      "context": "Named threat actor",
+      "confidence": "medium"
+    },
+    {
+      "date": "2026-07-08",
+      "actor_id": "mustang-panda",
+      "actor_name": "Mustang Panda",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/mustang-panda-expands-plugx-deployment-european-diplomats/",
+      "title": "Mustang Panda expands PlugX deployment to target European diplomatic missions",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-07-03",
+      "actor_id": "gamaredon",
+      "actor_name": "Gamaredon",
+      "source": "Krebs on Security",
+      "url": "https://krebsonsecurity.com/2026/07/gamaredon-intensifies-attacks-ukrainian-critical-infrastructure/",
+      "title": "Gamaredon group intensifies destructive attacks on Ukrainian critical infrastructure",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-06-10",
+      "actor_id": "lazarus",
+      "actor_name": "Lazarus Group",
+      "source": "Industrial Cyber",
+      "url": "https://industrialcyber.co/reports/energy-and-utilities-sector-targeted-in-66-of-observed-apt-campaigns-as-mustang-panda-lazarus-sandworm-remain-active/",
+      "title": "Energy and utilities sector targeted in 66% of observed APT campaigns, as Mustang Panda, Lazarus, Sandworm remain active",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-06-09",
+      "actor_id": "qilin",
+      "actor_name": "Qilin",
+      "source": "Huntress Blog",
+      "url": "https://www.huntress.com/blog",
+      "title": "Qilin Ransomware Maintains Top Position in May 2026 Activity Reports",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-06-09",
+      "actor_id": "miasma",
+      "actor_name": "Miasma",
+      "source": "GIGAZINE",
+      "url": "https://gigazine.net/gsc_news/en/20260609-microsofts-open-source-tools-hacked/",
+      "title": "73 Microsoft GitHub repositories disabled after compromise stealing credentials from AI users",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-06-08",
+      "actor_id": "the-gentlemen",
+      "actor_name": "The Gentlemen",
+      "source": "Huntress Blog",
+      "url": "https://www.huntress.com/blog/the-gentlemen-ransomware",
+      "title": "Post-Incident Analysis: The Gentlemen Ransomware Deployments",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-06-08",
+      "actor_id": "apt38",
+      "actor_name": "APT38",
+      "source": "The Register",
+      "url": "https://www.theregister.com/security/2026/06/08/suspected-norks-send-250-fake-dev-job-pitches-to-steal-crypto/5252526",
+      "title": "Norks blast 250+ fake job offers to developers over 6 weeks to try and snarf creds and crypto",
+      "context": "Named threat actor",
+      "confidence": "medium"
+    },
+    {
+      "date": "2026-06-07",
+      "actor_id": "shinyhunters",
+      "actor_name": "ShinyHunters",
+      "source": "Krebs on Security",
+      "url": "https://krebsonsecurity.com",
+      "title": "ShinyHunters Salesforce Campaign Victim Count Grows",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-06-06",
+      "actor_id": "teampcp",
+      "actor_name": "TeamPCP",
+      "source": "Akamai Security Research",
+      "url": "https://www.akamai.com/blog/security-research/mini-shai-hulud-worm-returns-goes-public",
+      "title": "Mini Shai-Hulud: The Worm Returns and Goes Public",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-06-05",
+      "actor_id": "salt-typhoon",
+      "actor_name": "Salt Typhoon",
+      "source": "CISA",
+      "url": "https://www.cisa.gov",
+      "title": "Continued Salt Typhoon Activity in Telecommunications Sector",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-06-05",
+      "actor_id": "kimsuky",
+      "actor_name": "Kimsuky",
+      "source": "SC Media",
+      "url": "https://www.scworld.com/brief/north-korean-hackers-kimsuky-target-south-korea-with-new-malware-variants",
+      "title": "North Korean hackers Kimsuky target South Korea with new malware variants",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-06-04",
+      "actor_id": "unc6692",
+      "actor_name": "UNC6692",
+      "source": "Microsoft Threat Intelligence",
+      "url": "https://www.microsoft.com/en-us/security/blog",
+      "title": "Teams-Based Helpdesk Impersonation Campaigns Continue in Q2 2026",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-06-03",
+      "actor_id": "qilin",
+      "actor_name": "Qilin",
+      "source": "The DFIR Report",
+      "url": "https://thedfirreport.com",
+      "title": "Intrusion Analysis: Qilin Affiliate Campaign Against Healthcare Provider",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-06-02",
+      "actor_id": "the-gentlemen",
+      "actor_name": "The Gentlemen",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com",
+      "title": "The Gentlemen Ransomware Claims Construction Firm as Latest Victim",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-06-01",
+      "actor_id": "mustang-panda",
+      "actor_name": "Mustang Panda",
+      "source": "Industrial Cyber",
+      "url": "https://industrialcyber.co/reports/energy-and-utilities-sector-targeted-in-66-of-observed-apt-campaigns-as-mustang-panda-lazarus-sandworm-remain-active/",
+      "title": "Energy and utilities sector targeted in 66% of observed APT campaigns, as Mustang Panda, Lazarus, Sandworm remain active",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-05-28",
+      "actor_id": "silver-fox",
+      "actor_name": "Silver Fox",
+      "source": "The Hacker News",
+      "url": "https://thehackernews.com/2026/05/silver-fox-deploys-abcdoor-malware-via.html",
+      "title": "Silver Fox Deploys ABCDoor Malware via Tax-Themed Phishing in India and Russia",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-05-28",
+      "actor_id": "apt37",
+      "actor_name": "APT37",
+      "source": "ESET",
+      "url": "https://www.eset.com/me/about/newsroom/press-releases/press-releases/north-korea-aligned-apt-group-scarcruft-compromises-gaming-platform-in-supply-chain-espionage-attack-eset-research-finds/",
+      "title": "North Korea-aligned APT group ScarCruft compromises gaming platform in supply-chain espionage attack",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-05-25",
+      "actor_id": "turla",
+      "actor_name": "Turla",
+      "source": "BleepingComputer",
+      "url": "https://www.bleepingcomputer.com/news/security/russian-hackers-turn-kazuar-backdoor-into-modular-p2p-botnet/",
+      "title": "Russian hackers turn Kazuar backdoor into modular P2P botnet",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-05-15",
+      "actor_id": "black-basta",
+      "actor_name": "Black Basta",
+      "source": "The Hacker News",
+      "url": "https://thehackernews.com/2026/01/black-basta-ransomware-hacker-leader.html",
+      "title": "Black Basta Ransomware Leader Added to EU Most Wanted and INTERPOL Red Notice",
+      "context": "Named threat actor",
+      "confidence": "medium"
+    },
+    {
+      "date": "2026-05-15",
+      "actor_id": "muddywater",
+      "actor_name": "MuddyWater",
+      "source": "The Hacker News",
+      "url": "https://thehackernews.com/2025/10/iran-linked-muddywater-targets-100.html",
+      "title": "Iran-Linked MuddyWater Targets 100+ Organizations in Global Espionage Campaign",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-05-14",
+      "actor_id": "gamaredon",
+      "actor_name": "Gamaredon",
+      "source": "The Hacker News",
+      "url": "https://thehackernews.com/2025/04/gamaredon-uses-infected-removable.html",
+      "title": "Gamaredon Uses Infected Removable Drives to Breach Western Military Mission in Ukraine",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-05-12",
+      "actor_id": "apt28",
+      "actor_name": "APT28",
+      "source": "The Hacker News",
+      "url": "https://thehackernews.com/2026/04/apt28-deploys-prismex-malware-in.html",
+      "title": "APT28 Deploys PRISMEX Malware in Campaign Targeting Ukraine and NATO Allies",
+      "context": "Named threat actor",
+      "confidence": "high"
+    },
+    {
+      "date": "2026-05-11",
+      "actor_id": "eviltokens",
+      "actor_name": "EvilTokens",
+      "source": "Microsoft Security Blog",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/04/06/ai-enabled-device-code-phishing-campaign-april-2026/",
+      "title": "Inside an AI-enabled device code phishing campaign",
+      "context": "Named threat actor",
+      "confidence": "high"
+    }
   ]
 }
