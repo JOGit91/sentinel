@@ -1,7 +1,16 @@
 {
   "id": "apt28",
   "name": "APT28",
-  "aliases": ["Fancy Bear", "Forest Blizzard", "Sofacy", "Sednit", "Pawn Storm", "STRONTIUM", "GruesomeLarch", "UAC-0001"],
+  "aliases": [
+    "Fancy Bear",
+    "Forest Blizzard",
+    "Sofacy",
+    "Sednit",
+    "Pawn Storm",
+    "STRONTIUM",
+    "GruesomeLarch",
+    "UAC-0001"
+  ],
   "mitre_attack_id": "G0007",
   "type": "apt",
   "model": "nation_state",
@@ -9,23 +18,82 @@
   "first_seen": "2004-01",
   "last_seen": "2026-06",
   "origin": "Russia (GRU Unit 26165 / 85th GTsSS)",
-  "motivation": ["espionage","intelligence_collection","sabotage","information_operations"],
+  "motivation": [
+    "espionage",
+    "intelligence_collection",
+    "sabotage",
+    "information_operations"
+  ],
   "description": "APT28 is a long-running cyber espionage unit operated by Russia's GRU military intelligence (Unit 26165). Throughout 2025-2026 the group has run an aggressive, multi-pronged campaign targeting Western logistics and technology firms supporting Ukraine aid shipments, alongside continued spearphishing of Ukrainian government, defense, and prosecutorial bodies. Recent activity includes the new PRISMEX malware family deployed against Ukraine and NATO logistics networks, the LLM-assisted LAMEHUG malware that queries large language models to generate malicious commands on the fly, and rapid same-day exploitation of a newly disclosed Microsoft Office zero-day (CVE-2026-21509). APT28 remains one of the most operationally tempo-heavy and high-profile state APTs given the ongoing war context, combining custom implants (HEADLACE, MASEPIE, OCEANMAP, STEELHOOK, BEARDSHELL, COVENANT) with NTLM-relay credential theft and Exchange mailbox abuse.",
   "activity_score": 88,
   "monthly_victims": null,
-  "targeted_sectors": ["Government","Defense","Logistics & Transportation","Technology","Energy","Foreign Affairs / Diplomatic","Critical Infrastructure"],
-  "targeted_regions": ["Ukraine","NATO member states","Europe","North America"],
-  "ttps": [
-    { "technique_id": "T1566.001", "technique_name": "Phishing: Spearphishing Attachment", "notes": "Weaponized Office documents and ZIP/PIF lures (e.g. 'Attachment.pdf.zip') against Ukrainian government and defense bodies" },
-    { "technique_id": "T1566.002", "technique_name": "Phishing: Spearphishing Link", "notes": "Lures delivered via Signal Desktop, which does not enforce Mark-of-the-Web, bypassing Office macro protections" },
-    { "technique_id": "T1212", "technique_name": "Exploitation for Credential Access", "notes": "Exploitation of Outlook CVE-2023-23397 and rapid same-day abuse of new Office zero-day CVE-2026-21509 to leak NTLM hashes" },
-    { "technique_id": "T1187", "technique_name": "Forced Authentication", "notes": "NTLMv2 hash relay attacks via crafted Outlook reminder/task notes and malicious files to capture credentials" },
-    { "technique_id": "T1098", "technique_name": "Account Manipulation", "notes": "Modification of Microsoft Exchange mailbox folder permissions to maintain covert, persistent access to victim mail" },
-    { "technique_id": "T1110", "technique_name": "Brute Force", "notes": "Large-scale password spraying and credential guessing against logistics and tech firm webmail/VPN portals" },
-    { "technique_id": "T1059", "technique_name": "Command and Scripting Interpreter", "notes": "LAMEHUG malware queries an LLM to dynamically generate PowerShell/CMD commands for reconnaissance and exfiltration" },
-    { "technique_id": "T1071.001", "technique_name": "Application Layer Protocol: Web Protocols", "notes": "MASEPIE and PRISMEX use HTTP(S)-based C2 channels embedded in custom Python and .NET implants" }
+  "targeted_sectors": [
+    "Government",
+    "Defense",
+    "Logistics & Transportation",
+    "Technology",
+    "Energy",
+    "Foreign Affairs / Diplomatic",
+    "Critical Infrastructure"
   ],
-  "malware_families": ["HEADLACE","MASEPIE","OCEANMAP","STEELHOOK","BEARDSHELL","COVENANT","PRISMEX","LAMEHUG"],
+  "targeted_regions": [
+    "Ukraine",
+    "NATO member states",
+    "Europe",
+    "North America"
+  ],
+  "ttps": [
+    {
+      "technique_id": "T1566.001",
+      "technique_name": "Phishing: Spearphishing Attachment",
+      "notes": "Weaponized Office documents and ZIP/PIF lures (e.g. 'Attachment.pdf.zip') against Ukrainian government and defense bodies"
+    },
+    {
+      "technique_id": "T1566.002",
+      "technique_name": "Phishing: Spearphishing Link",
+      "notes": "Lures delivered via Signal Desktop, which does not enforce Mark-of-the-Web, bypassing Office macro protections"
+    },
+    {
+      "technique_id": "T1212",
+      "technique_name": "Exploitation for Credential Access",
+      "notes": "Exploitation of Outlook CVE-2023-23397 and rapid same-day abuse of new Office zero-day CVE-2026-21509 to leak NTLM hashes"
+    },
+    {
+      "technique_id": "T1187",
+      "technique_name": "Forced Authentication",
+      "notes": "NTLMv2 hash relay attacks via crafted Outlook reminder/task notes and malicious files to capture credentials"
+    },
+    {
+      "technique_id": "T1098",
+      "technique_name": "Account Manipulation",
+      "notes": "Modification of Microsoft Exchange mailbox folder permissions to maintain covert, persistent access to victim mail"
+    },
+    {
+      "technique_id": "T1110",
+      "technique_name": "Brute Force",
+      "notes": "Large-scale password spraying and credential guessing against logistics and tech firm webmail/VPN portals"
+    },
+    {
+      "technique_id": "T1059",
+      "technique_name": "Command and Scripting Interpreter",
+      "notes": "LAMEHUG malware queries an LLM to dynamically generate PowerShell/CMD commands for reconnaissance and exfiltration"
+    },
+    {
+      "technique_id": "T1071.001",
+      "technique_name": "Application Layer Protocol: Web Protocols",
+      "notes": "MASEPIE and PRISMEX use HTTP(S)-based C2 channels embedded in custom Python and .NET implants"
+    }
+  ],
+  "malware_families": [
+    "HEADLACE",
+    "MASEPIE",
+    "OCEANMAP",
+    "STEELHOOK",
+    "BEARDSHELL",
+    "COVENANT",
+    "PRISMEX",
+    "LAMEHUG"
+  ],
   "notable_techniques": [
     "First confirmed nation-state actor using an LLM at runtime to generate malicious commands (LAMEHUG)",
     "Same-day exploitation of newly disclosed Office zero-day CVE-2026-21509, indicating pre-positioned exploit development",
@@ -45,7 +113,7 @@
     "Apply emergency patching/virtual patching for newly disclosed Office vulnerabilities given APT28's same-day exploitation history"
   ],
   "response_playbook": [
-    "Apply emergency or virtual patching for newly disclosed Office vulnerabilities — APT28 has demonstrated same-day exploitation of new CVEs.",
+    "Apply emergency or virtual patching for newly disclosed Office vulnerabilities \u00e2\u20ac\u201d APT28 has demonstrated same-day exploitation of new CVEs.",
     "Audit Exchange mailbox folder permissions and delegate access for unauthorized changes.",
     "Flag outbound NTLM authentication attempts to external or untrusted hosts (relay indicators).",
     "Inspect Signal Desktop-delivered attachments for execution without Mark-of-the-Web flags.",
@@ -53,18 +121,48 @@
     "Review SOHO/edge router configurations for unauthorized changes indicating use as an anonymization relay."
   ],
   "sources": [
-    { "title": "Western intelligence agencies unite to expose Russian hacking campaign against logistics and tech firms - The Record", "url": "https://therecord.media/western-intelligence-alert-russia-hackers-logistics-fancy-bear-apt28" },
-    { "title": "APT28 Deploys PRISMEX Malware in Campaign Targeting Ukraine and NATO Allies - The Hacker News", "url": "https://thehackernews.com/2026/04/apt28-deploys-prismex-malware-in.html" },
-    { "title": "Russian APT28 Exploit Zero-Day Hours After Microsoft Discloses Office Vulnerability - The Cyber Express", "url": "https://thecyberexpress.com/russian-apt28-exploit-zero-day-cve-2026-21509/" },
-    { "title": "Ukraine pins AI-powered LameHug malware attacks on defense sector to Russian-backed APT28 group - Industrial Cyber", "url": "https://industrialcyber.co/ransomware/ukraine-pins-ai-powered-lamehug-malware-attacks-on-defense-sector-to-russian-backed-apt28-group/" }
+    {
+      "title": "Western intelligence agencies unite to expose Russian hacking campaign against logistics and tech firms - The Record",
+      "url": "https://therecord.media/western-intelligence-alert-russia-hackers-logistics-fancy-bear-apt28"
+    },
+    {
+      "title": "APT28 Deploys PRISMEX Malware in Campaign Targeting Ukraine and NATO Allies - The Hacker News",
+      "url": "https://thehackernews.com/2026/04/apt28-deploys-prismex-malware-in.html"
+    },
+    {
+      "title": "Russian APT28 Exploit Zero-Day Hours After Microsoft Discloses Office Vulnerability - The Cyber Express",
+      "url": "https://thecyberexpress.com/russian-apt28-exploit-zero-day-cve-2026-21509/"
+    },
+    {
+      "title": "Ukraine pins AI-powered LameHug malware attacks on defense sector to Russian-backed APT28 group - Industrial Cyber",
+      "url": "https://industrialcyber.co/ransomware/ukraine-pins-ai-powered-lamehug-malware-attacks-on-defense-sector-to-russian-backed-apt28-group/"
+    }
   ],
   "mention_count_30d": 44,
   "mention_history": [
-    { "month": "2026-01", "count": 30 },
-    { "month": "2026-02", "count": 33 },
-    { "month": "2026-03", "count": 35 },
-    { "month": "2026-04", "count": 41 },
-    { "month": "2026-05", "count": 43 },
-    { "month": "2026-06", "count": 44 }
+    {
+      "month": "2026-02",
+      "count": 0
+    },
+    {
+      "month": "2026-03",
+      "count": 0
+    },
+    {
+      "month": "2026-04",
+      "count": 0
+    },
+    {
+      "month": "2026-05",
+      "count": 1
+    },
+    {
+      "month": "2026-06",
+      "count": 0
+    },
+    {
+      "month": "2026-07",
+      "count": 0
+    }
   ]
 }

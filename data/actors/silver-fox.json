@@ -1,43 +1,105 @@
 {
   "id": "silver-fox",
   "name": "Silver Fox",
-  "aliases": ["Void Arachne", "SwimSnake", "Valley Thief", "UTG-Q-1000"],
+  "aliases": [
+    "Void Arachne",
+    "SwimSnake",
+    "Valley Thief",
+    "UTG-Q-1000"
+  ],
   "type": "apt",
   "model": "criminal_crew",
   "status": "active",
   "first_seen": "2023-01",
   "last_seen": "2026-06",
   "origin": "China (suspected state-nexus, financially-opportunistic)",
-  "motivation": ["financial","espionage","data_theft"],
-  "description": "Silver Fox is a China-nexus threat cluster best known for mass-distributing Winos 4.0 (also tracked as ValleyRAT), a modular Gh0stRAT-derived remote access trojan, primarily via trojanized installers, malicious search-engine ads, and DLL sideloading targeting Chinese-speaking users. Throughout 2025 the group escalated with a Bring Your Own Vulnerable Driver (BYOVD) campaign abusing a Microsoft-signed but unblocklisted WatchDog Anti-Malware driver (amsdk.sys) to kill EDR processes before deploying ValleyRAT, and expanded geographically into Japan, Malaysia, and Taiwan via HoldingHands RAT and tax-season spear phishing. In May-June 2026, Securelist and The Hacker News reported a new tax-themed phishing wave against Indian and Russian organizations (industrial, consulting, retail, transportation) using fake Income Tax Department notices and modified Rust loaders to deliver ValleyRAT alongside a previously undocumented Python-based backdoor, ABCDoor — which supports persistence, screenshotting, remote keyboard/mouse control, file operations, and clipboard exfiltration. The group's blend of high-volume opportunistic phishing with kernel-level evasion tradecraft and rapid international expansion makes it one of the most actively reported China-linked clusters right now.",
+  "motivation": [
+    "financial",
+    "espionage",
+    "data_theft"
+  ],
+  "description": "Silver Fox is a China-nexus threat cluster best known for mass-distributing Winos 4.0 (also tracked as ValleyRAT), a modular Gh0stRAT-derived remote access trojan, primarily via trojanized installers, malicious search-engine ads, and DLL sideloading targeting Chinese-speaking users. Throughout 2025 the group escalated with a Bring Your Own Vulnerable Driver (BYOVD) campaign abusing a Microsoft-signed but unblocklisted WatchDog Anti-Malware driver (amsdk.sys) to kill EDR processes before deploying ValleyRAT, and expanded geographically into Japan, Malaysia, and Taiwan via HoldingHands RAT and tax-season spear phishing. In May-June 2026, Securelist and The Hacker News reported a new tax-themed phishing wave against Indian and Russian organizations (industrial, consulting, retail, transportation) using fake Income Tax Department notices and modified Rust loaders to deliver ValleyRAT alongside a previously undocumented Python-based backdoor, ABCDoor \u00e2\u20ac\u201d which supports persistence, screenshotting, remote keyboard/mouse control, file operations, and clipboard exfiltration. The group's blend of high-volume opportunistic phishing with kernel-level evasion tradecraft and rapid international expansion makes it one of the most actively reported China-linked clusters right now.",
   "activity_score": 81,
   "monthly_victims": null,
-  "targeted_sectors": ["Industrial","Consulting","Retail","Transportation","Government","Financial Services","Technology"],
-  "targeted_regions": ["China","Taiwan","India","Russia","Japan","Malaysia"],
-  "ttps": [
-    { "technique_id": "T1566.001", "technique_name": "Phishing: Spearphishing Attachment", "notes": "Tax-themed lures impersonating Income Tax Department notices, delivered as archive attachments containing 'list of tax violations'" },
-    { "technique_id": "T1027.013", "technique_name": "Obfuscated Files or Information: Encrypted/Encoded File", "notes": "Modified Rust-based loaders sourced from public repositories used to download and execute ValleyRAT" },
-    { "technique_id": "T1574.002", "technique_name": "Hijack Execution Flow: DLL Side-Loading", "notes": "Trojanized legitimate applications/installers used to side-load malicious DLLs that launch Winos 4.0/ValleyRAT" },
-    { "technique_id": "T1068", "technique_name": "Exploitation for Privilege Escalation", "notes": "BYOVD abuse of Microsoft-signed WatchDog Anti-Malware driver (amsdk.sys) to gain kernel-level access" },
-    { "technique_id": "T1562.001", "technique_name": "Impair Defenses: Disable or Modify Tools", "notes": "Vulnerable signed driver used to terminate EDR/AV processes prior to payload execution" },
-    { "technique_id": "T1071.001", "technique_name": "Application Layer Protocol: Web Protocols", "notes": "ABCDoor backdoor communicates with C2 over HTTPS to receive tasking and exfiltrate data" },
-    { "technique_id": "T1115", "technique_name": "Clipboard Data", "notes": "ABCDoor harvests and exfiltrates clipboard contents from infected hosts" },
-    { "technique_id": "T1059", "technique_name": "Command and Scripting Interpreter", "notes": "ValleyRAT plugin acts as loader for Python-based ABCDoor backdoor" }
+  "targeted_sectors": [
+    "Industrial",
+    "Consulting",
+    "Retail",
+    "Transportation",
+    "Government",
+    "Financial Services",
+    "Technology"
   ],
-  "malware_families": ["Winos 4.0", "ValleyRAT", "ABCDoor", "HoldingHands RAT", "Gh0stRAT (derivative)"],
+  "targeted_regions": [
+    "China",
+    "Taiwan",
+    "India",
+    "Russia",
+    "Japan",
+    "Malaysia"
+  ],
+  "ttps": [
+    {
+      "technique_id": "T1566.001",
+      "technique_name": "Phishing: Spearphishing Attachment",
+      "notes": "Tax-themed lures impersonating Income Tax Department notices, delivered as archive attachments containing 'list of tax violations'"
+    },
+    {
+      "technique_id": "T1027.013",
+      "technique_name": "Obfuscated Files or Information: Encrypted/Encoded File",
+      "notes": "Modified Rust-based loaders sourced from public repositories used to download and execute ValleyRAT"
+    },
+    {
+      "technique_id": "T1574.002",
+      "technique_name": "Hijack Execution Flow: DLL Side-Loading",
+      "notes": "Trojanized legitimate applications/installers used to side-load malicious DLLs that launch Winos 4.0/ValleyRAT"
+    },
+    {
+      "technique_id": "T1068",
+      "technique_name": "Exploitation for Privilege Escalation",
+      "notes": "BYOVD abuse of Microsoft-signed WatchDog Anti-Malware driver (amsdk.sys) to gain kernel-level access"
+    },
+    {
+      "technique_id": "T1562.001",
+      "technique_name": "Impair Defenses: Disable or Modify Tools",
+      "notes": "Vulnerable signed driver used to terminate EDR/AV processes prior to payload execution"
+    },
+    {
+      "technique_id": "T1071.001",
+      "technique_name": "Application Layer Protocol: Web Protocols",
+      "notes": "ABCDoor backdoor communicates with C2 over HTTPS to receive tasking and exfiltrate data"
+    },
+    {
+      "technique_id": "T1115",
+      "technique_name": "Clipboard Data",
+      "notes": "ABCDoor harvests and exfiltrates clipboard contents from infected hosts"
+    },
+    {
+      "technique_id": "T1059",
+      "technique_name": "Command and Scripting Interpreter",
+      "notes": "ValleyRAT plugin acts as loader for Python-based ABCDoor backdoor"
+    }
+  ],
+  "malware_families": [
+    "Winos 4.0",
+    "ValleyRAT",
+    "ABCDoor",
+    "HoldingHands RAT",
+    "Gh0stRAT (derivative)"
+  ],
   "notable_techniques": [
     "Tax-season phishing lures impersonating national tax authorities (India's Income Tax Department, Russian equivalents) with fake 'tax violation' archives",
     "BYOVD abuse of a Microsoft-signed WatchDog Anti-Malware driver (amsdk.sys) not present on Microsoft's vulnerable driver blocklist or LOLDrivers at time of campaign",
     "One-byte modification of vulnerable driver binaries to generate new file hashes while preserving valid Microsoft signatures, evading hash-based blocklists",
     "Trojanized popular Chinese-language software installers and DLL sideloading as primary initial-access vector for Winos 4.0",
-    "ValleyRAT used as a multi-stage loader/plugin platform — most recently to deliver the previously undocumented Python-based ABCDoor backdoor",
+    "ValleyRAT used as a multi-stage loader/plugin platform \u00e2\u20ac\u201d most recently to deliver the previously undocumented Python-based ABCDoor backdoor",
     "Rapid geographic expansion in 2025-2026 from Chinese-speaking targets into Taiwan, Japan, Malaysia, India, and Russia via HoldingHands RAT and ABCDoor",
     "High-volume email blasts (1,600+ malicious emails in a single campaign window) against industrial, consulting, retail, and transportation sectors"
   ],
   "detection_opportunities": [
     "Inbound emails referencing tax audits, tax violations, or income tax notices with archive attachments containing executables or Rust-compiled loaders",
     "Loading of unsigned or rarely-seen kernel drivers, especially amsdk.sys (WatchDog Anti-Malware) or other Zemana SDK-based drivers, outside normal software deployment",
-    "Sudden termination of EDR/AV processes immediately preceding unexplained outbound connections — indicative of BYOVD-based defense impairment",
+    "Sudden termination of EDR/AV processes immediately preceding unexplained outbound connections \u00e2\u20ac\u201d indicative of BYOVD-based defense impairment",
     "DLL sideloading patterns: legitimate signed executables loading DLLs from non-standard or user-writable directories",
     "Outbound HTTPS beaconing with periodic clipboard-sized data transfers, consistent with ABCDoor exfiltration behavior",
     "Process trees showing Rust-compiled loader binaries spawning network connections followed by secondary payload execution (ValleyRAT/Winos 4.0)",
@@ -52,18 +114,48 @@
     "Look for Gh0stRAT-family C2 protocol characteristics (custom packet headers, XOR-obfuscated traffic) from Winos 4.0/ValleyRAT."
   ],
   "sources": [
-    { "title": "Silver Fox Deploys ABCDoor Malware via Tax-Themed Phishing in India and Russia", "url": "https://thehackernews.com/2026/05/silver-fox-deploys-abcdoor-malware-via.html" },
-    { "title": "Analyzing the Silver Fox tax campaign and the new ABCDoor backdoor", "url": "https://securelist.com/silver-fox-tax-notification-campaign/119575/" },
-    { "title": "Silver Fox Exploits Microsoft-Signed WatchDog Driver to Deploy ValleyRAT Malware", "url": "https://thehackernews.com/2025/09/silver-fox-exploits-microsoft-signed.html" },
-    { "title": "Silver Fox Expands Winos 4.0 (ValleyRAT) and HoldingHands RAT Cyber Attacks to Japan and Malaysia", "url": "https://thehackernews.com/2025/10/silver-fox-expands-winos-40-attacks-to.html" }
+    {
+      "title": "Silver Fox Deploys ABCDoor Malware via Tax-Themed Phishing in India and Russia",
+      "url": "https://thehackernews.com/2026/05/silver-fox-deploys-abcdoor-malware-via.html"
+    },
+    {
+      "title": "Analyzing the Silver Fox tax campaign and the new ABCDoor backdoor",
+      "url": "https://securelist.com/silver-fox-tax-notification-campaign/119575/"
+    },
+    {
+      "title": "Silver Fox Exploits Microsoft-Signed WatchDog Driver to Deploy ValleyRAT Malware",
+      "url": "https://thehackernews.com/2025/09/silver-fox-exploits-microsoft-signed.html"
+    },
+    {
+      "title": "Silver Fox Expands Winos 4.0 (ValleyRAT) and HoldingHands RAT Cyber Attacks to Japan and Malaysia",
+      "url": "https://thehackernews.com/2025/10/silver-fox-expands-winos-40-attacks-to.html"
+    }
   ],
   "mention_count_30d": 39,
   "mention_history": [
-    { "month": "2026-01", "count": 12 },
-    { "month": "2026-02", "count": 14 },
-    { "month": "2026-03", "count": 13 },
-    { "month": "2026-04", "count": 15 },
-    { "month": "2026-05", "count": 33 },
-    { "month": "2026-06", "count": 39 }
+    {
+      "month": "2026-02",
+      "count": 0
+    },
+    {
+      "month": "2026-03",
+      "count": 0
+    },
+    {
+      "month": "2026-04",
+      "count": 0
+    },
+    {
+      "month": "2026-05",
+      "count": 1
+    },
+    {
+      "month": "2026-06",
+      "count": 0
+    },
+    {
+      "month": "2026-07",
+      "count": 0
+    }
   ]
 }

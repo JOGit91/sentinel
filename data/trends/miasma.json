@@ -5,26 +5,65 @@
   "trend": "rising",
   "first_observed": "2026-06",
   "last_seen": "2026-06",
-  "description": "Miasma is a self-replicating, credential-stealing worm that emerged in early June 2026 as the latest descendant of the Mini Shai-Hulud codebase TeamPCP released publicly in May 2026. The initial wave compromised 50+ npm packages — including at least 32 under the @redhat-cloud-services namespace (~80,000 weekly downloads) — via a 4.29MB obfuscated preinstall dropper, abusing GitHub Actions OIDC trusted publishing to forge SLSA provenance and push trojanized releases. A parallel Rust-based 'IronWorm' stealer variant uses an eBPF rootkit and Tor C2 to scrape developer secrets, while the 'Hades' wave hit PyPI with 37 malicious wheels across 19 packages using .pth startup-hook execution to deploy a Bun-based credential stealer targeting GitHub, npm, AWS, GCP, Azure, Anthropic, and CI/CD tokens. On June 5, 2026, the worm propagated using stolen contributor credentials to compromise 73 Microsoft GitHub repositories (Azure, Azure-Samples, Microsoft, MicrosoftDocs orgs), injecting configuration that triggers credential harvesting when the repo is opened in AI coding tools like Claude Code, Gemini CLI, Cursor, and VS Code. Attribution remains unclear — the campaign reuses TeamPCP's publicly released tooling but has not been definitively linked to the same operators.",
+  "description": "Miasma is a self-replicating, credential-stealing worm that emerged in early June 2026 as the latest descendant of the Mini Shai-Hulud codebase TeamPCP released publicly in May 2026. The initial wave compromised 50+ npm packages \u00e2\u20ac\u201d including at least 32 under the @redhat-cloud-services namespace (~80,000 weekly downloads) \u00e2\u20ac\u201d via a 4.29MB obfuscated preinstall dropper, abusing GitHub Actions OIDC trusted publishing to forge SLSA provenance and push trojanized releases. A parallel Rust-based 'IronWorm' stealer variant uses an eBPF rootkit and Tor C2 to scrape developer secrets, while the 'Hades' wave hit PyPI with 37 malicious wheels across 19 packages using .pth startup-hook execution to deploy a Bun-based credential stealer targeting GitHub, npm, AWS, GCP, Azure, Anthropic, and CI/CD tokens. On June 5, 2026, the worm propagated using stolen contributor credentials to compromise 73 Microsoft GitHub repositories (Azure, Azure-Samples, Microsoft, MicrosoftDocs orgs), injecting configuration that triggers credential harvesting when the repo is opened in AI coding tools like Claude Code, Gemini CLI, Cursor, and VS Code. Attribution remains unclear \u00e2\u20ac\u201d the campaign reuses TeamPCP's publicly released tooling but has not been definitively linked to the same operators.",
   "mitre_techniques": [
-    { "technique_id": "T1195.001", "technique_name": "Supply Chain Compromise: Compromise Software Dependencies", "notes": "50+ trojanized npm packages and 19 PyPI packages (37 malicious wheels) distributed via official registries" },
-    { "technique_id": "T1554", "technique_name": "Compromise Host Software Binary", "notes": "'Phantom Gyp' technique abuses 157-byte binding.gyp files to trigger code execution during npm install, bypassing pre/postinstall script monitoring" },
-    { "technique_id": "T1546.016", "technique_name": "Installer Packages", "notes": "PyPI .pth startup-hook files auto-execute via Python's site module on interpreter startup, downloading the Bun runtime to run obfuscated payloads" },
-    { "technique_id": "T1552.001", "technique_name": "Unsecured Credentials: Credentials in Files", "notes": "Harvests GitHub, npm, PyPI, RubyGems, JFrog, CircleCI, Anthropic, AWS, GCP, Azure, Kubernetes, Docker, Vault, and SSH credentials" },
-    { "technique_id": "T1098", "technique_name": "Account Manipulation", "notes": "Abuses GitHub Actions OIDC trusted publishing to mint short-lived npm tokens and push forged-provenance malicious releases" },
-    { "technique_id": "T1570", "technique_name": "Lateral Tool Transfer", "notes": "Worm replicates and spreads laterally across developer networks via SSH/SCP using stolen keys, then republishes trojanized packages" },
-    { "technique_id": "T1014", "technique_name": "Rootkit", "notes": "IronWorm Rust-based variant deploys an eBPF kernel rootkit to hide stealer activity from host monitoring" },
-    { "technique_id": "T1567", "technique_name": "Exfiltration Over Web Service", "notes": "Stolen credentials exfiltrated to attacker-controlled GitHub repositories ('The Spreading Blight') and IronWorm exfiltrates over Tor C2" }
+    {
+      "technique_id": "T1195.001",
+      "technique_name": "Supply Chain Compromise: Compromise Software Dependencies",
+      "notes": "50+ trojanized npm packages and 19 PyPI packages (37 malicious wheels) distributed via official registries"
+    },
+    {
+      "technique_id": "T1554",
+      "technique_name": "Compromise Host Software Binary",
+      "notes": "'Phantom Gyp' technique abuses 157-byte binding.gyp files to trigger code execution during npm install, bypassing pre/postinstall script monitoring"
+    },
+    {
+      "technique_id": "T1546.016",
+      "technique_name": "Installer Packages",
+      "notes": "PyPI .pth startup-hook files auto-execute via Python's site module on interpreter startup, downloading the Bun runtime to run obfuscated payloads"
+    },
+    {
+      "technique_id": "T1552.001",
+      "technique_name": "Unsecured Credentials: Credentials in Files",
+      "notes": "Harvests GitHub, npm, PyPI, RubyGems, JFrog, CircleCI, Anthropic, AWS, GCP, Azure, Kubernetes, Docker, Vault, and SSH credentials"
+    },
+    {
+      "technique_id": "T1098",
+      "technique_name": "Account Manipulation",
+      "notes": "Abuses GitHub Actions OIDC trusted publishing to mint short-lived npm tokens and push forged-provenance malicious releases"
+    },
+    {
+      "technique_id": "T1570",
+      "technique_name": "Lateral Tool Transfer",
+      "notes": "Worm replicates and spreads laterally across developer networks via SSH/SCP using stolen keys, then republishes trojanized packages"
+    },
+    {
+      "technique_id": "T1014",
+      "technique_name": "Rootkit",
+      "notes": "IronWorm Rust-based variant deploys an eBPF kernel rootkit to hide stealer activity from host monitoring"
+    },
+    {
+      "technique_id": "T1567",
+      "technique_name": "Exfiltration Over Web Service",
+      "notes": "Stolen credentials exfiltrated to attacker-controlled GitHub repositories ('The Spreading Blight') and IronWorm exfiltrates over Tor C2"
+    }
   ],
-  "related_actors": ["teampcp"],
-  "related_tools": ["Miasma worm", "IronWorm (Rust stealer)", "Hades (Bun-based credential stealer)", "Mini Shai-Hulud (base codebase)"],
+  "related_actors": [
+    "teampcp"
+  ],
+  "related_tools": [
+    "Miasma worm",
+    "IronWorm (Rust stealer)",
+    "Hades (Bun-based credential stealer)",
+    "Mini Shai-Hulud (base codebase)"
+  ],
   "notable_examples": [
     "Worm self-replicates by harvesting maintainer/contributor credentials and using them to publish further trojanized package versions",
     "'Phantom Gyp' technique executes via binding.gyp during npm install, evading tools that only monitor pre/postinstall lifecycle scripts",
     "Hades PyPI wave uses .pth startup hooks so malicious code runs on Python interpreter startup without the package ever being imported",
     "Re-compromised the 'durabletask' package a second time after TeamPCP's original Mini Shai-Hulud infection the prior month",
     "Compromised contributor credentials sat in infostealer logs for ~7 weeks (since April 13, 2026) before being weaponized for the GitHub org breach",
-    "Targets AI coding agents specifically — payload triggers when affected repos are opened in Claude Code, Cursor, Gemini CLI, or VS Code",
+    "Targets AI coding agents specifically \u00e2\u20ac\u201d payload triggers when affected repos are opened in Claude Code, Cursor, Gemini CLI, or VS Code",
     "GitHub disabled all 73 affected Microsoft repositories in an automated sweep within 105 seconds of detection"
   ],
   "detection_opportunities": [
@@ -37,18 +76,48 @@
     "Monitoring of Bun runtime downloads/execution on systems where Bun is not an expected dependency"
   ],
   "sources": [
-    { "title": "The Hacker News: Miasma Supply Chain Attack Compromises Red Hat npm Packages with Credential-Stealing Worm", "url": "https://thehackernews.com/2026/06/miasma-supply-chain-attack-compromises.html" },
-    { "title": "Microsoft Security Blog: Preinstall to persistence: Inside the Red Hat npm Miasma credential-stealing campaign", "url": "https://www.microsoft.com/en-us/security/blog/2026/06/02/preinstall-persistence-inside-red-hat-npm-miasma-credential-stealing-campaign/" },
-    { "title": "The Hacker News: Miasma Worm Hits 73 Microsoft GitHub Repositories in Major Supply Chain Attack", "url": "https://thehackernews.com/2026/06/miasma-worm-hits-73-microsoft-github.html" },
-    { "title": "The Hacker News: Hades PyPI Attack: 19 Packages Poisoned to Auto-Run Bun Credential Stealer", "url": "https://thehackernews.com/2026/06/hades-pypi-attack-19-packages-poisoned.html" }
+    {
+      "title": "The Hacker News: Miasma Supply Chain Attack Compromises Red Hat npm Packages with Credential-Stealing Worm",
+      "url": "https://thehackernews.com/2026/06/miasma-supply-chain-attack-compromises.html"
+    },
+    {
+      "title": "Microsoft Security Blog: Preinstall to persistence: Inside the Red Hat npm Miasma credential-stealing campaign",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/06/02/preinstall-persistence-inside-red-hat-npm-miasma-credential-stealing-campaign/"
+    },
+    {
+      "title": "The Hacker News: Miasma Worm Hits 73 Microsoft GitHub Repositories in Major Supply Chain Attack",
+      "url": "https://thehackernews.com/2026/06/miasma-worm-hits-73-microsoft-github.html"
+    },
+    {
+      "title": "The Hacker News: Hades PyPI Attack: 19 Packages Poisoned to Auto-Run Bun Credential Stealer",
+      "url": "https://thehackernews.com/2026/06/hades-pypi-attack-19-packages-poisoned.html"
+    }
   ],
   "mention_count_30d": 47,
   "mention_history": [
-    { "month": "2026-01", "count": 0 },
-    { "month": "2026-02", "count": 0 },
-    { "month": "2026-03", "count": 0 },
-    { "month": "2026-04", "count": 1 },
-    { "month": "2026-05", "count": 5 },
-    { "month": "2026-06", "count": 47 }
+    {
+      "month": "2026-02",
+      "count": 0
+    },
+    {
+      "month": "2026-03",
+      "count": 0
+    },
+    {
+      "month": "2026-04",
+      "count": 1
+    },
+    {
+      "month": "2026-05",
+      "count": 5
+    },
+    {
+      "month": "2026-06",
+      "count": 47
+    },
+    {
+      "month": "2026-07",
+      "count": 0
+    }
   ]
 }

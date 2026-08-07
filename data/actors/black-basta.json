@@ -1,29 +1,77 @@
 {
   "id": "black-basta",
   "name": "Black Basta",
-  "aliases": ["Conti splinter", "UNC4393"],
+  "aliases": [
+    "Conti splinter",
+    "UNC4393"
+  ],
   "type": "ransomware",
   "model": "RaaS",
   "status": "inactive",
   "first_seen": "2022-04",
   "last_seen": "2025-02",
   "origin": "Russia (Conti splinter group)",
-  "motivation": ["financial"],
-  "description": "Black Basta was a top-tier Russian-speaking ransomware-as-a-service operation that splintered from Conti in early 2022 and went on to extort hundreds of organizations, primarily via QakBot and Brute Ratel-delivered initial access. The operation effectively collapsed in February 2025 after an internal chat-log leak ('BlackBastaGPT') exposed its operators, victim negotiations, and infrastructure, combined with the prior law-enforcement takedown of the QakBot botnet (Operation Duck Hunt). Its data-leak site went dark by the end of February 2025 and no new Black Basta-branded encryptions have been confirmed since. In January 2026, German and Ukrainian law enforcement raided the homes of alleged 'hash cracker' affiliates and publicly identified group leader Oleg Evgenievich Nefedov ('GG'), adding him to the EU Most Wanted list and an INTERPOL Red Notice. Researchers assess that surviving members and affiliates dispersed into other RaaS brands — including CACTUS, SafePay, and the newer DevMan operation built on leaked Conti/Black Basta and DragonForce code — meaning the Black Basta brand itself remains dormant even as its TTPs and personnel persist under other names.",
+  "motivation": [
+    "financial"
+  ],
+  "description": "Black Basta was a top-tier Russian-speaking ransomware-as-a-service operation that splintered from Conti in early 2022 and went on to extort hundreds of organizations, primarily via QakBot and Brute Ratel-delivered initial access. The operation effectively collapsed in February 2025 after an internal chat-log leak ('BlackBastaGPT') exposed its operators, victim negotiations, and infrastructure, combined with the prior law-enforcement takedown of the QakBot botnet (Operation Duck Hunt). Its data-leak site went dark by the end of February 2025 and no new Black Basta-branded encryptions have been confirmed since. In January 2026, German and Ukrainian law enforcement raided the homes of alleged 'hash cracker' affiliates and publicly identified group leader Oleg Evgenievich Nefedov ('GG'), adding him to the EU Most Wanted list and an INTERPOL Red Notice. Researchers assess that surviving members and affiliates dispersed into other RaaS brands \u00e2\u20ac\u201d including CACTUS, SafePay, and the newer DevMan operation built on leaked Conti/Black Basta and DragonForce code \u00e2\u20ac\u201d meaning the Black Basta brand itself remains dormant even as its TTPs and personnel persist under other names.",
   "activity_score": 48,
   "monthly_victims": 0,
-  "targeted_sectors": ["Healthcare","Manufacturing","Construction","Government","Financial Services"],
-  "targeted_regions": ["North America","Europe"],
-  "ttps": [
-    { "technique_id": "T1566.001", "technique_name": "Phishing: Spearphishing Attachment", "notes": "Historically delivered via QakBot email campaigns prior to the botnet's 2023 takedown" },
-    { "technique_id": "T1566.004", "technique_name": "Phishing: Spearphishing via Service", "notes": "Microsoft Teams helpdesk impersonation and email-bombing used to gain initial foothold (overlap with Storm-1811/UNC6692-style activity)" },
-    { "technique_id": "T1219", "technique_name": "Remote Access Software", "notes": "Abused legitimate remote management tools (e.g., Quick Assist, AnyDesk) for hands-on-keyboard access after social engineering" },
-    { "technique_id": "T1486", "technique_name": "Data Encrypted for Impact", "notes": "ChaCha20-based Black Basta encryptor with double-extortion leak site" },
-    { "technique_id": "T1567.002", "technique_name": "Exfiltration to Cloud Storage", "notes": "Used Rclone to exfiltrate data to cloud storage prior to encryption" },
-    { "technique_id": "T1078", "technique_name": "Valid Accounts", "notes": "Brute Ratel and Cobalt Strike used for credential theft and lateral movement" },
-    { "technique_id": "T1490", "technique_name": "Inhibit System Recovery", "notes": "Deleted volume shadow copies and disabled recovery options prior to encryption" }
+  "targeted_sectors": [
+    "Healthcare",
+    "Manufacturing",
+    "Construction",
+    "Government",
+    "Financial Services"
   ],
-  "malware_families": ["Black Basta encryptor","QakBot","Brute Ratel C4","Cobalt Strike","Rclone"],
+  "targeted_regions": [
+    "North America",
+    "Europe"
+  ],
+  "ttps": [
+    {
+      "technique_id": "T1566.001",
+      "technique_name": "Phishing: Spearphishing Attachment",
+      "notes": "Historically delivered via QakBot email campaigns prior to the botnet's 2023 takedown"
+    },
+    {
+      "technique_id": "T1566.004",
+      "technique_name": "Phishing: Spearphishing via Service",
+      "notes": "Microsoft Teams helpdesk impersonation and email-bombing used to gain initial foothold (overlap with Storm-1811/UNC6692-style activity)"
+    },
+    {
+      "technique_id": "T1219",
+      "technique_name": "Remote Access Software",
+      "notes": "Abused legitimate remote management tools (e.g., Quick Assist, AnyDesk) for hands-on-keyboard access after social engineering"
+    },
+    {
+      "technique_id": "T1486",
+      "technique_name": "Data Encrypted for Impact",
+      "notes": "ChaCha20-based Black Basta encryptor with double-extortion leak site"
+    },
+    {
+      "technique_id": "T1567.002",
+      "technique_name": "Exfiltration to Cloud Storage",
+      "notes": "Used Rclone to exfiltrate data to cloud storage prior to encryption"
+    },
+    {
+      "technique_id": "T1078",
+      "technique_name": "Valid Accounts",
+      "notes": "Brute Ratel and Cobalt Strike used for credential theft and lateral movement"
+    },
+    {
+      "technique_id": "T1490",
+      "technique_name": "Inhibit System Recovery",
+      "notes": "Deleted volume shadow copies and disabled recovery options prior to encryption"
+    }
+  ],
+  "malware_families": [
+    "Black Basta encryptor",
+    "QakBot",
+    "Brute Ratel C4",
+    "Cobalt Strike",
+    "Rclone"
+  ],
   "notable_techniques": [
     "Operation effectively ended after the 2025 'BlackBastaGPT' internal chat-log leak exposed operator identities, infrastructure, and victim negotiations",
     "Leak site went dark by end of February 2025 with no confirmed new encryptions under the Black Basta brand since",
@@ -43,24 +91,54 @@
   "response_playbook": [
     "Run retrospective hunts against legacy Black Basta/QakBot IOCs even though the brand is largely defunct.",
     "Tune detections for successor brands (CACTUS, SafePay, DevMan) given documented personnel and tooling overlap.",
-    "Monitor for Microsoft Teams external-access helpdesk impersonation — a TTP this group pioneered that successors have inherited.",
+    "Monitor for Microsoft Teams external-access helpdesk impersonation \u00e2\u20ac\u201d a TTP this group pioneered that successors have inherited.",
     "Hunt for Rclone execution and unusual outbound traffic to cloud storage preceding mass file modification.",
     "Watch for vssadmin/wmic shadow-copy deletion combined with rapid encryption activity.",
     "Check for Brute Ratel C4 / Cobalt Strike beacon signatures on endpoint and network telemetry."
   ],
   "sources": [
-    { "title": "CISA: #StopRansomware: Black Basta (AA24-131A)", "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa24-131a" },
-    { "title": "Barracuda: Lessons from Black Basta's collapse", "url": "https://blog.barracuda.com/2026/02/02/lessons-from-black-basta-s-collapse" },
-    { "title": "The Hacker News: Black Basta Ransomware Leader Added to EU Most Wanted and INTERPOL Red Notice", "url": "https://thehackernews.com/2026/01/black-basta-ransomware-hacker-leader.html" },
-    { "title": "Vectra AI: From Conti to Black Basta to DevMan: The Endless Ransomware Rebrand", "url": "https://www.vectra.ai/blog/from-conti-to-black-basta-to-devman-the-endless-ransomware-rebrand" }
+    {
+      "title": "CISA: #StopRansomware: Black Basta (AA24-131A)",
+      "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa24-131a"
+    },
+    {
+      "title": "Barracuda: Lessons from Black Basta's collapse",
+      "url": "https://blog.barracuda.com/2026/02/02/lessons-from-black-basta-s-collapse"
+    },
+    {
+      "title": "The Hacker News: Black Basta Ransomware Leader Added to EU Most Wanted and INTERPOL Red Notice",
+      "url": "https://thehackernews.com/2026/01/black-basta-ransomware-hacker-leader.html"
+    },
+    {
+      "title": "Vectra AI: From Conti to Black Basta to DevMan: The Endless Ransomware Rebrand",
+      "url": "https://www.vectra.ai/blog/from-conti-to-black-basta-to-devman-the-endless-ransomware-rebrand"
+    }
   ],
   "mention_count_30d": 12,
   "mention_history": [
-    { "month": "2026-01", "count": 22 },
-    { "month": "2026-02", "count": 18 },
-    { "month": "2026-03", "count": 15 },
-    { "month": "2026-04", "count": 13 },
-    { "month": "2026-05", "count": 12 },
-    { "month": "2026-06", "count": 12 }
+    {
+      "month": "2026-02",
+      "count": 0
+    },
+    {
+      "month": "2026-03",
+      "count": 0
+    },
+    {
+      "month": "2026-04",
+      "count": 0
+    },
+    {
+      "month": "2026-05",
+      "count": 1
+    },
+    {
+      "month": "2026-06",
+      "count": 0
+    },
+    {
+      "month": "2026-07",
+      "count": 0
+    }
   ]
 }

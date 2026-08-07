@@ -1,19 +1,39 @@
 {
   "id": "redsun",
-  "name": "RedSun (CVE-2026-41091) — Windows Defender Privilege Escalation Zero-Day",
+  "name": "RedSun (CVE-2026-41091) \u00e2\u20ac\u201d Windows Defender Privilege Escalation Zero-Day",
   "category": "privilege_escalation",
   "trend": "rising",
   "first_observed": "2026-04",
   "last_seen": "2026-06",
   "description": "RedSun is the second of three Windows Defender zero-days disclosed within roughly two weeks by researcher 'Chaotic Eclipse', published April 15, 2026 in the GitHub repo Nightmare-Eclipse/RedSun. It exploits a logic flaw in how Defender handles cloud-tagged placeholder files: rather than quarantining or deleting a detected malicious file, Defender can rewrite or restore it to its original location with elevated privileges. Combined with NTFS directory junctions, opportunistic locks, and Cloud Files API tricks, an attacker can redirect that privileged restore operation to overwrite protected system files and obtain SYSTEM access on fully patched Windows 10, Windows 11, and Windows Server 2019+. Huntress documented the first real-world exploitation in mid-April 2026, and the flaw remained unpatched for roughly six weeks despite active exploitation before Microsoft addressed it as CVE-2026-41091 in Defender Engine version 1.1.26040.8 on May 19, 2026. RedSun forms part of the same 'Defender becomes the door' disclosure wave as BlueHammer and UnDefend.",
   "mitre_techniques": [
-    { "technique_id": "T1068", "technique_name": "Exploitation for Privilege Escalation", "notes": "Exploits CVE-2026-41091, a logic flaw in Defender's cloud-file restore handling, to gain SYSTEM" },
-    { "technique_id": "T1562.001", "technique_name": "Impair Defenses: Disable or Modify Tools", "notes": "Abuses Defender's own privileged 'restore from quarantine' action as the escalation primitive" },
-    { "technique_id": "T1574", "technique_name": "Hijack Execution Flow", "notes": "NTFS directory junctions redirect Defender's privileged file restore to overwrite protected system paths" },
-    { "technique_id": "T1027", "technique_name": "Obfuscated Files or Information", "notes": "Cloud-tagged placeholder files crafted to trigger the vulnerable Defender code path" }
+    {
+      "technique_id": "T1068",
+      "technique_name": "Exploitation for Privilege Escalation",
+      "notes": "Exploits CVE-2026-41091, a logic flaw in Defender's cloud-file restore handling, to gain SYSTEM"
+    },
+    {
+      "technique_id": "T1562.001",
+      "technique_name": "Impair Defenses: Disable or Modify Tools",
+      "notes": "Abuses Defender's own privileged 'restore from quarantine' action as the escalation primitive"
+    },
+    {
+      "technique_id": "T1574",
+      "technique_name": "Hijack Execution Flow",
+      "notes": "NTFS directory junctions redirect Defender's privileged file restore to overwrite protected system paths"
+    },
+    {
+      "technique_id": "T1027",
+      "technique_name": "Obfuscated Files or Information",
+      "notes": "Cloud-tagged placeholder files crafted to trigger the vulnerable Defender code path"
+    }
   ],
   "related_actors": [],
-  "related_tools": ["RedSun PoC", "Nightmare-Eclipse exploit chain", "UnDefend (related zero-day)"],
+  "related_tools": [
+    "RedSun PoC",
+    "Nightmare-Eclipse exploit chain",
+    "UnDefend (related zero-day)"
+  ],
   "notable_examples": [
     "April 15, 2026: Proof-of-concept published in GitHub repo Nightmare-Eclipse/RedSun, the second of three Defender zero-days from the same researcher in two weeks",
     "Mid-April 2026: Huntress incident responders documented the first confirmed real-world exploitation",
@@ -28,18 +48,48 @@
     "Hunt for SYSTEM-level process creation immediately following Defender scan-triggered file operations"
   ],
   "sources": [
-    { "title": "Microsoft Defender 0-Day Vulnerability \"RedSun\" Enables Full SYSTEM Access", "url": "https://cybersecuritynews.com/defender-0-day-redsun/" },
-    { "title": "RedSun Zero-Day: When Defender Becomes the Delivery Mechanism", "url": "https://www.cyderes.com/howler-cell/redsun-zero-day" },
-    { "title": "Mitigate RedSun Zero-Day Without A Patch", "url": "https://blog.qualys.com/qualys-insights/2026/04/22/dont-wait-for-a-patch-mitigate-redsun-risk-in-microsoft-defender-today" },
-    { "title": "Microsoft Defender Zero-Days Patched: RedSun, UnDefend Exploits Already Used in Live Intrusions", "url": "https://www.techtimes.com/articles/316957/20260521/microsoft-defender-zero-days-patched-redsun-undefend-exploits-already-used-live-intrusions.htm" }
+    {
+      "title": "Microsoft Defender 0-Day Vulnerability \"RedSun\" Enables Full SYSTEM Access",
+      "url": "https://cybersecuritynews.com/defender-0-day-redsun/"
+    },
+    {
+      "title": "RedSun Zero-Day: When Defender Becomes the Delivery Mechanism",
+      "url": "https://www.cyderes.com/howler-cell/redsun-zero-day"
+    },
+    {
+      "title": "Mitigate RedSun Zero-Day Without A Patch",
+      "url": "https://blog.qualys.com/qualys-insights/2026/04/22/dont-wait-for-a-patch-mitigate-redsun-risk-in-microsoft-defender-today"
+    },
+    {
+      "title": "Microsoft Defender Zero-Days Patched: RedSun, UnDefend Exploits Already Used in Live Intrusions",
+      "url": "https://www.techtimes.com/articles/316957/20260521/microsoft-defender-zero-days-patched-redsun-undefend-exploits-already-used-live-intrusions.htm"
+    }
   ],
   "mention_count_30d": 27,
   "mention_history": [
-    { "month": "2026-01", "count": 0 },
-    { "month": "2026-02", "count": 0 },
-    { "month": "2026-03", "count": 0 },
-    { "month": "2026-04", "count": 15 },
-    { "month": "2026-05", "count": 25 },
-    { "month": "2026-06", "count": 27 }
+    {
+      "month": "2026-02",
+      "count": 0
+    },
+    {
+      "month": "2026-03",
+      "count": 0
+    },
+    {
+      "month": "2026-04",
+      "count": 15
+    },
+    {
+      "month": "2026-05",
+      "count": 25
+    },
+    {
+      "month": "2026-06",
+      "count": 27
+    },
+    {
+      "month": "2026-07",
+      "count": 0
+    }
   ]
 }

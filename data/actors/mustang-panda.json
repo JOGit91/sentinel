@@ -1,7 +1,17 @@
 {
   "id": "mustang-panda",
   "name": "Mustang Panda",
-  "aliases": ["Bronze President", "Stately Taurus", "RedDelta", "TA416", "Earth Preta", "Camaro Dragon", "Twill Typhoon", "HIVE0154", "Red Lich"],
+  "aliases": [
+    "Bronze President",
+    "Stately Taurus",
+    "RedDelta",
+    "TA416",
+    "Earth Preta",
+    "Camaro Dragon",
+    "Twill Typhoon",
+    "HIVE0154",
+    "Red Lich"
+  ],
   "mitre_attack_id": "G0129",
   "type": "apt",
   "model": "nation_state",
@@ -9,23 +19,84 @@
   "first_seen": "2012-01",
   "last_seen": "2026-06",
   "origin": "China (MSS-linked)",
-  "motivation": ["espionage", "intelligence_collection", "geopolitical_advantage"],
-  "description": "Mustang Panda is a long-running China-nexus espionage group targeting government ministries, diplomatic missions, NGOs, and increasingly critical infrastructure across Southeast Asia, Europe, South Asia, and the Americas. The group is best known for abusing DLL sideloading via signed legitimate binaries to deploy customized PlugX/Korplug variants, and for distributing malware via infected USB removable media that self-propagates across air-gapped and isolated networks. Despite an early-2025 international law enforcement operation that disrupted a large portion of its PlugX infrastructure, Mustang Panda demonstrated rapid resilience by retooling around new backdoors — including LOTUSLITE, FDMTP, COOLCLIENT, and the ToneShell family — and the new SnakeDisk USB worm used to deliver the Yokai backdoor against Thai and U.S. policy-sector targets in late 2025. In early-to-mid 2026 the group expanded a 'PlugX Diplomacy' campaign using DOPLUGS downloaders and U.S.-themed diplomatic lures, and an updated LOTUSLITE variant hit Indian banking and South Korean policy organizations via CHM/DLL sideloading in April 2026. As of June 2026, Mustang Panda is among the most active APTs observed targeting the energy and utilities sector globally, reflecting a broadening focus beyond traditional diplomatic espionage.",
+  "motivation": [
+    "espionage",
+    "intelligence_collection",
+    "geopolitical_advantage"
+  ],
+  "description": "Mustang Panda is a long-running China-nexus espionage group targeting government ministries, diplomatic missions, NGOs, and increasingly critical infrastructure across Southeast Asia, Europe, South Asia, and the Americas. The group is best known for abusing DLL sideloading via signed legitimate binaries to deploy customized PlugX/Korplug variants, and for distributing malware via infected USB removable media that self-propagates across air-gapped and isolated networks. Despite an early-2025 international law enforcement operation that disrupted a large portion of its PlugX infrastructure, Mustang Panda demonstrated rapid resilience by retooling around new backdoors \u00e2\u20ac\u201d including LOTUSLITE, FDMTP, COOLCLIENT, and the ToneShell family \u00e2\u20ac\u201d and the new SnakeDisk USB worm used to deliver the Yokai backdoor against Thai and U.S. policy-sector targets in late 2025. In early-to-mid 2026 the group expanded a 'PlugX Diplomacy' campaign using DOPLUGS downloaders and U.S.-themed diplomatic lures, and an updated LOTUSLITE variant hit Indian banking and South Korean policy organizations via CHM/DLL sideloading in April 2026. As of June 2026, Mustang Panda is among the most active APTs observed targeting the energy and utilities sector globally, reflecting a broadening focus beyond traditional diplomatic espionage.",
   "activity_score": 78,
   "monthly_victims": null,
-  "targeted_sectors": ["Government", "Diplomatic Missions", "NGO", "Think Tanks", "Banking", "Energy", "Telecommunications", "Religious Institutions"],
-  "targeted_regions": ["Asia-Pacific", "Southeast Asia", "Europe", "South Asia", "North America"],
-  "ttps": [
-    { "technique_id": "T1574.002", "technique_name": "Hijack Execution Flow: DLL Side-Loading", "notes": "Loads malicious DLLs (PlugX/Korplug, ToneShell, LOTUSLITE) via legitimate signed executables to evade detection" },
-    { "technique_id": "T1091", "technique_name": "Replication Through Removable Media", "notes": "SnakeDisk and earlier PlugX worm variants self-propagate via infected USB drives to reach air-gapped networks" },
-    { "technique_id": "T1566.001", "technique_name": "Phishing: Spearphishing Attachment", "notes": "Diplomatic-themed lure documents (often U.S. partnership/foreign ministry briefings) deliver DOPLUGS downloaders" },
-    { "technique_id": "T1132.001", "technique_name": "Data Encoding: Standard Encoding", "notes": "Custom RC4-based encryption routines used in DOPLUGS and PlugX C2 communications" },
-    { "technique_id": "T1105", "technique_name": "Ingress Tool Transfer", "notes": "DOPLUGS and FDMTP function primarily as lightweight downloaders to fetch full PlugX/ToneShell payloads post-compromise" },
-    { "technique_id": "T1071.001", "technique_name": "Application Layer Protocol: Web Protocols", "notes": "FDMTP backdoor traffic impersonates well-known CDN providers to blend with legitimate web traffic" },
-    { "technique_id": "T1218.001", "technique_name": "System Binary Proxy Execution: Compiled HTML File", "notes": "CHM (compiled help file) lures used to drop and execute LOTUSLITE via DLL sideloading against Indian banks" },
-    { "technique_id": "T1219", "technique_name": "Remote Access Software", "notes": "ToneShell and Yokai backdoors provide persistent remote access for long-term espionage operations" }
+  "targeted_sectors": [
+    "Government",
+    "Diplomatic Missions",
+    "NGO",
+    "Think Tanks",
+    "Banking",
+    "Energy",
+    "Telecommunications",
+    "Religious Institutions"
   ],
-  "malware_families": ["PlugX", "Korplug", "DOPLUGS", "ToneShell", "LOTUSLITE", "SnakeDisk", "Yokai", "FDMTP", "COOLCLIENT"],
+  "targeted_regions": [
+    "Asia-Pacific",
+    "Southeast Asia",
+    "Europe",
+    "South Asia",
+    "North America"
+  ],
+  "ttps": [
+    {
+      "technique_id": "T1574.002",
+      "technique_name": "Hijack Execution Flow: DLL Side-Loading",
+      "notes": "Loads malicious DLLs (PlugX/Korplug, ToneShell, LOTUSLITE) via legitimate signed executables to evade detection"
+    },
+    {
+      "technique_id": "T1091",
+      "technique_name": "Replication Through Removable Media",
+      "notes": "SnakeDisk and earlier PlugX worm variants self-propagate via infected USB drives to reach air-gapped networks"
+    },
+    {
+      "technique_id": "T1566.001",
+      "technique_name": "Phishing: Spearphishing Attachment",
+      "notes": "Diplomatic-themed lure documents (often U.S. partnership/foreign ministry briefings) deliver DOPLUGS downloaders"
+    },
+    {
+      "technique_id": "T1132.001",
+      "technique_name": "Data Encoding: Standard Encoding",
+      "notes": "Custom RC4-based encryption routines used in DOPLUGS and PlugX C2 communications"
+    },
+    {
+      "technique_id": "T1105",
+      "technique_name": "Ingress Tool Transfer",
+      "notes": "DOPLUGS and FDMTP function primarily as lightweight downloaders to fetch full PlugX/ToneShell payloads post-compromise"
+    },
+    {
+      "technique_id": "T1071.001",
+      "technique_name": "Application Layer Protocol: Web Protocols",
+      "notes": "FDMTP backdoor traffic impersonates well-known CDN providers to blend with legitimate web traffic"
+    },
+    {
+      "technique_id": "T1218.001",
+      "technique_name": "System Binary Proxy Execution: Compiled HTML File",
+      "notes": "CHM (compiled help file) lures used to drop and execute LOTUSLITE via DLL sideloading against Indian banks"
+    },
+    {
+      "technique_id": "T1219",
+      "technique_name": "Remote Access Software",
+      "notes": "ToneShell and Yokai backdoors provide persistent remote access for long-term espionage operations"
+    }
+  ],
+  "malware_families": [
+    "PlugX",
+    "Korplug",
+    "DOPLUGS",
+    "ToneShell",
+    "LOTUSLITE",
+    "SnakeDisk",
+    "Yokai",
+    "FDMTP",
+    "COOLCLIENT"
+  ],
   "notable_techniques": [
     "Self-propagating USB worm variants of PlugX and the newer SnakeDisk worm reach air-gapped and isolated networks via removable media",
     "Heavy reliance on DLL sideloading through signed, trusted binaries (antivirus components, Adobe, Microsoft tools) to mask malicious DLL execution",
@@ -50,21 +121,51 @@
     "Flag CHM file execution followed by rundll32 or regsvr32 child processes.",
     "Review outbound traffic to CDN-fronted domains for FDMTP beaconing patterns.",
     "Hunt for ToneShell/Yokai persistence via scheduled tasks or registry Run keys tied to sideloaded DLLs.",
-    "Extend hunting beyond traditional government/NGO scope — this actor has broadened into banking and energy/utilities targeting."
+    "Extend hunting beyond traditional government/NGO scope \u00e2\u20ac\u201d this actor has broadened into banking and energy/utilities targeting."
   ],
   "sources": [
-    { "title": "Mustang Panda Deploys SnakeDisk USB Worm to Deliver Yokai Backdoor on Thailand IPs - The Hacker News", "url": "https://thehackernews.com/2025/09/mustang-panda-deploys-snakedisk-usb.html" },
-    { "title": "Hive0154, aka Mustang Panda, drops updated Toneshell backdoor and novel SnakeDisk USB worm - IBM X-Force", "url": "https://www.ibm.com/think/x-force/hive0154-drops-updated-toneshell-backdoor" },
-    { "title": "Mustang Panda's New LOTUSLITE Variant Targets India Banks, South Korea Policy Circles - The Hacker News", "url": "https://thehackernews.com/2026/04/mustang-pandas-new-lotuslite-variant.html" },
-    { "title": "PlugX Diplomacy: Mustang Panda Campaign - Dream Security", "url": "https://dreamgroup.com/plugx-diplomacy-mustang-panda-campaign/" }
+    {
+      "title": "Mustang Panda Deploys SnakeDisk USB Worm to Deliver Yokai Backdoor on Thailand IPs - The Hacker News",
+      "url": "https://thehackernews.com/2025/09/mustang-panda-deploys-snakedisk-usb.html"
+    },
+    {
+      "title": "Hive0154, aka Mustang Panda, drops updated Toneshell backdoor and novel SnakeDisk USB worm - IBM X-Force",
+      "url": "https://www.ibm.com/think/x-force/hive0154-drops-updated-toneshell-backdoor"
+    },
+    {
+      "title": "Mustang Panda's New LOTUSLITE Variant Targets India Banks, South Korea Policy Circles - The Hacker News",
+      "url": "https://thehackernews.com/2026/04/mustang-pandas-new-lotuslite-variant.html"
+    },
+    {
+      "title": "PlugX Diplomacy: Mustang Panda Campaign - Dream Security",
+      "url": "https://dreamgroup.com/plugx-diplomacy-mustang-panda-campaign/"
+    }
   ],
   "mention_count_30d": 30,
   "mention_history": [
-    { "month": "2026-01", "count": 19 },
-    { "month": "2026-02", "count": 21 },
-    { "month": "2026-03", "count": 24 },
-    { "month": "2026-04", "count": 28 },
-    { "month": "2026-05", "count": 29 },
-    { "month": "2026-06", "count": 30 }
+    {
+      "month": "2026-02",
+      "count": 0
+    },
+    {
+      "month": "2026-03",
+      "count": 0
+    },
+    {
+      "month": "2026-04",
+      "count": 0
+    },
+    {
+      "month": "2026-05",
+      "count": 0
+    },
+    {
+      "month": "2026-06",
+      "count": 1
+    },
+    {
+      "month": "2026-07",
+      "count": 0
+    }
   ]
 }

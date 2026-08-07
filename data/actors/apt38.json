@@ -1,7 +1,16 @@
 {
   "id": "apt38",
   "name": "APT38",
-  "aliases": ["BlueNoroff","Stardust Chollima","BeagleBoyz","Sapphire Sleet","NICKEL GLADSTONE","COPERNICIUM","TraderTraitor","Lazarus Group (parent umbrella, see separate profile)"],
+  "aliases": [
+    "BlueNoroff",
+    "Stardust Chollima",
+    "BeagleBoyz",
+    "Sapphire Sleet",
+    "NICKEL GLADSTONE",
+    "COPERNICIUM",
+    "TraderTraitor",
+    "Lazarus Group (parent umbrella, see separate profile)"
+  ],
   "mitre_attack_id": "G0082",
   "type": "apt",
   "model": "nation_state",
@@ -9,27 +18,82 @@
   "first_seen": "2014-01",
   "last_seen": "2026-06",
   "origin": "North Korea (RGB)",
-  "motivation": ["financial","sanctions_evasion","crypto_theft"],
-  "description": "APT38 (BlueNoroff) is the financial-crime-focused cluster of North Korea's Reconnaissance General Bureau cyber apparatus, historically responsible for SWIFT-network bank heists (Bangladesh Bank, $81M, 2016) and the FASTCash ATM cash-out scheme that hit banks across dozens of countries. The group has since pivoted almost entirely to cryptocurrency exchanges and DeFi platforms, executing the largest crypto theft in history — the ~$1.5B Bybit/Safe{Wallet} heist in February 2025 — via a compromised macOS developer workstation and stolen AWS session tokens. In 2026, BlueNoroff continues high-tempo operations against crypto and fintech firms using typosquatted Zoom/Calendly meeting lures and ClickFix clipboard-injection malware, including a confirmed intrusion at a North American crypto company in January 2026 and the March 2026 Bitrefill breach. APT38's tradecraft remains distinguished by patient, multi-month operations culminating in precisely-timed, custom-tailored cash-out and laundering operations.",
+  "motivation": [
+    "financial",
+    "sanctions_evasion",
+    "crypto_theft"
+  ],
+  "description": "APT38 (BlueNoroff) is the financial-crime-focused cluster of North Korea's Reconnaissance General Bureau cyber apparatus, historically responsible for SWIFT-network bank heists (Bangladesh Bank, $81M, 2016) and the FASTCash ATM cash-out scheme that hit banks across dozens of countries. The group has since pivoted almost entirely to cryptocurrency exchanges and DeFi platforms, executing the largest crypto theft in history \u00e2\u20ac\u201d the ~$1.5B Bybit/Safe{Wallet} heist in February 2025 \u00e2\u20ac\u201d via a compromised macOS developer workstation and stolen AWS session tokens. In 2026, BlueNoroff continues high-tempo operations against crypto and fintech firms using typosquatted Zoom/Calendly meeting lures and ClickFix clipboard-injection malware, including a confirmed intrusion at a North American crypto company in January 2026 and the March 2026 Bitrefill breach. APT38's tradecraft remains distinguished by patient, multi-month operations culminating in precisely-timed, custom-tailored cash-out and laundering operations.",
   "activity_score": 78,
   "monthly_victims": null,
-  "targeted_sectors": ["Banking","Cryptocurrency Exchanges","DeFi/Blockchain Bridges","SWIFT Member Banks","ATM/Payment Switch Networks","Fintech"],
-  "targeted_regions": ["Global","Asia-Pacific","Middle East","North America"],
-  "ttps": [
-    { "technique_id": "T1078.002", "technique_name": "Valid Accounts: Domain Accounts", "notes": "Stolen AWS/cloud session tokens from compromised developer workstations used to bypass MFA (Bybit/Safe{Wallet} heist)" },
-    { "technique_id": "T1195.002", "technique_name": "Supply Chain Compromise: Compromise Software Supply Chain", "notes": "Compromise of trusted third-party wallet/vendor software (Safe{Wallet}) to inject malicious transaction-signing logic" },
-    { "technique_id": "T1059.006", "technique_name": "Command and Scripting Interpreter: Python", "notes": "PyYAML RCE exploited via trojanized crypto-themed Python application delivered to a macOS developer" },
-    { "technique_id": "T1566.004", "technique_name": "Phishing: Spearphishing via Service", "notes": "Typosquatted Zoom meeting links delivered through manipulated Calendly invites to crypto-firm employees" },
-    { "technique_id": "T1059.001", "technique_name": "Command and Scripting Interpreter: PowerShell", "notes": "ClickFix-style clipboard injection tricks victims into pasting and executing malicious PowerShell commands" },
-    { "technique_id": "T1185", "technique_name": "Browser Session Hijacking", "notes": "Injection of malicious JavaScript into web app frontends to silently redirect cryptocurrency transactions to attacker wallets" },
-    { "technique_id": "T1565.001", "technique_name": "Data Manipulation: Stored Data Manipulation", "notes": "FASTCash: manipulation of payment switch application responses to approve fraudulent ATM withdrawals" },
-    { "technique_id": "T1657", "technique_name": "Financial Theft", "notes": "Core mission objective — SWIFT transfer fraud, ATM cash-outs, and exchange/bridge fund redirection" }
+  "targeted_sectors": [
+    "Banking",
+    "Cryptocurrency Exchanges",
+    "DeFi/Blockchain Bridges",
+    "SWIFT Member Banks",
+    "ATM/Payment Switch Networks",
+    "Fintech"
   ],
-  "malware_families": ["TraderTraitor","FASTCash","Manuscrypt","Dacls","CageyChameleon","DangerousPassword"],
+  "targeted_regions": [
+    "Global",
+    "Asia-Pacific",
+    "Middle East",
+    "North America"
+  ],
+  "ttps": [
+    {
+      "technique_id": "T1078.002",
+      "technique_name": "Valid Accounts: Domain Accounts",
+      "notes": "Stolen AWS/cloud session tokens from compromised developer workstations used to bypass MFA (Bybit/Safe{Wallet} heist)"
+    },
+    {
+      "technique_id": "T1195.002",
+      "technique_name": "Supply Chain Compromise: Compromise Software Supply Chain",
+      "notes": "Compromise of trusted third-party wallet/vendor software (Safe{Wallet}) to inject malicious transaction-signing logic"
+    },
+    {
+      "technique_id": "T1059.006",
+      "technique_name": "Command and Scripting Interpreter: Python",
+      "notes": "PyYAML RCE exploited via trojanized crypto-themed Python application delivered to a macOS developer"
+    },
+    {
+      "technique_id": "T1566.004",
+      "technique_name": "Phishing: Spearphishing via Service",
+      "notes": "Typosquatted Zoom meeting links delivered through manipulated Calendly invites to crypto-firm employees"
+    },
+    {
+      "technique_id": "T1059.001",
+      "technique_name": "Command and Scripting Interpreter: PowerShell",
+      "notes": "ClickFix-style clipboard injection tricks victims into pasting and executing malicious PowerShell commands"
+    },
+    {
+      "technique_id": "T1185",
+      "technique_name": "Browser Session Hijacking",
+      "notes": "Injection of malicious JavaScript into web app frontends to silently redirect cryptocurrency transactions to attacker wallets"
+    },
+    {
+      "technique_id": "T1565.001",
+      "technique_name": "Data Manipulation: Stored Data Manipulation",
+      "notes": "FASTCash: manipulation of payment switch application responses to approve fraudulent ATM withdrawals"
+    },
+    {
+      "technique_id": "T1657",
+      "technique_name": "Financial Theft",
+      "notes": "Core mission objective \u00e2\u20ac\u201d SWIFT transfer fraud, ATM cash-outs, and exchange/bridge fund redirection"
+    }
+  ],
+  "malware_families": [
+    "TraderTraitor",
+    "FASTCash",
+    "Manuscrypt",
+    "Dacls",
+    "CageyChameleon",
+    "DangerousPassword"
+  ],
   "notable_techniques": [
-    "Bybit/Safe{Wallet} heist (Feb 2025, ~$1.5B in ETH) — single compromised macOS developer credential escalated into full transaction-signing compromise of a major exchange's cold wallet workflow",
-    "FASTCash — modifies responses from compromised payment switch application servers to authorize fraudulent ATM cash-outs simultaneously across many countries within minutes",
-    "Long-dwell, surveillance-heavy operations — months of reconnaissance on victim banking/exchange infrastructure before executing a heist on a precisely timed weekend or holiday window",
+    "Bybit/Safe{Wallet} heist (Feb 2025, ~$1.5B in ETH) \u00e2\u20ac\u201d single compromised macOS developer credential escalated into full transaction-signing compromise of a major exchange's cold wallet workflow",
+    "FASTCash \u00e2\u20ac\u201d modifies responses from compromised payment switch application servers to authorize fraudulent ATM cash-outs simultaneously across many countries within minutes",
+    "Long-dwell, surveillance-heavy operations \u00e2\u20ac\u201d months of reconnaissance on victim banking/exchange infrastructure before executing a heist on a precisely timed weekend or holiday window",
     "Typosquatted Zoom/Calendly lures combined with ClickFix clipboard hijacking to gain initial access at crypto and fintech firms",
     "Funds laundered at speed through chain-hopping, mixers, and OTC brokers immediately following theft to outpace freezing/recovery efforts",
     "Use of legitimate cloud session tokens (not just credentials) to fully bypass MFA on cloud-hosted wallet infrastructure"
@@ -52,18 +116,48 @@
     "If financial theft is confirmed, immediately engage exchange/banking partners and blockchain-analysis firms for chain-hopping and mixer tracing."
   ],
   "sources": [
-    { "title": "Safe{Wallet} Confirms North Korean TraderTraitor Hackers Stole $1.5 Billion in Bybit Heist", "url": "https://thehackernews.com/2025/03/safewallet-confirms-north-korean.html" },
-    { "title": "FASTCash 2.0: North Korea's BeagleBoyz Robbing Banks (CISA AA20-239A)", "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa20-239a" },
-    { "title": "North Korean Hackers Target Crypto Firms with ClickFix and Zoom Lures", "url": "https://www.infosecurity-magazine.com/news/bluenoroff-dprk-hackers-target/" },
-    { "title": "MITRE ATT&CK: APT38 / BlueNoroff (G0082)", "url": "https://attack.mitre.org/groups/G0082/" }
+    {
+      "title": "Safe{Wallet} Confirms North Korean TraderTraitor Hackers Stole $1.5 Billion in Bybit Heist",
+      "url": "https://thehackernews.com/2025/03/safewallet-confirms-north-korean.html"
+    },
+    {
+      "title": "FASTCash 2.0: North Korea's BeagleBoyz Robbing Banks (CISA AA20-239A)",
+      "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa20-239a"
+    },
+    {
+      "title": "North Korean Hackers Target Crypto Firms with ClickFix and Zoom Lures",
+      "url": "https://www.infosecurity-magazine.com/news/bluenoroff-dprk-hackers-target/"
+    },
+    {
+      "title": "MITRE ATT&CK: APT38 / BlueNoroff (G0082)",
+      "url": "https://attack.mitre.org/groups/G0082/"
+    }
   ],
   "mention_count_30d": 36,
   "mention_history": [
-    { "month": "2026-01", "count": 22 },
-    { "month": "2026-02", "count": 30 },
-    { "month": "2026-03", "count": 39 },
-    { "month": "2026-04", "count": 34 },
-    { "month": "2026-05", "count": 33 },
-    { "month": "2026-06", "count": 36 }
+    {
+      "month": "2026-02",
+      "count": 0
+    },
+    {
+      "month": "2026-03",
+      "count": 0
+    },
+    {
+      "month": "2026-04",
+      "count": 0
+    },
+    {
+      "month": "2026-05",
+      "count": 0
+    },
+    {
+      "month": "2026-06",
+      "count": 1
+    },
+    {
+      "month": "2026-07",
+      "count": 0
+    }
   ]
 }

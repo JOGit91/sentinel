@@ -5,17 +5,53 @@
   "trend": "rising",
   "first_observed": "2024-06",
   "last_seen": "2026-06",
-  "description": "EDR killer tools — software designed to terminate, blind, or block telemetry from endpoint detection and response agents — have become a near-universal precursor step in ransomware intrusions. ESET's 2026 research catalogued nearly 90 distinct EDR killers in active use, including BYOVD (bring-your-own-vulnerable-driver) variants like EDRSandblast/EDRKillShifter and newer 'driverless' tools such as EDRSilencer and EDR-Freeze that abuse Windows Filtering Platform rules or process-freezing APIs instead of kernel drivers. EDRKillShifter, originally built by RansomHub, has since been adopted as shared affiliate tooling across Play, BianLian, Medusa, Qilin, DragonForce, BlackSuit, RansomHub, Crytox, Lynx, and INC ransomware operations. In April 2026, Cisco Talos detailed Qilin and Warlock affiliates using a customized EDRSandblast variant via a previously-unknown vulnerable driver (TPwSav.sys) capable of disabling 300+ EDR products in a four-stage infection chain immediately preceding encryptor deployment.",
+  "description": "EDR killer tools \u00e2\u20ac\u201d software designed to terminate, blind, or block telemetry from endpoint detection and response agents \u00e2\u20ac\u201d have become a near-universal precursor step in ransomware intrusions. ESET's 2026 research catalogued nearly 90 distinct EDR killers in active use, including BYOVD (bring-your-own-vulnerable-driver) variants like EDRSandblast/EDRKillShifter and newer 'driverless' tools such as EDRSilencer and EDR-Freeze that abuse Windows Filtering Platform rules or process-freezing APIs instead of kernel drivers. EDRKillShifter, originally built by RansomHub, has since been adopted as shared affiliate tooling across Play, BianLian, Medusa, Qilin, DragonForce, BlackSuit, RansomHub, Crytox, Lynx, and INC ransomware operations. In April 2026, Cisco Talos detailed Qilin and Warlock affiliates using a customized EDRSandblast variant via a previously-unknown vulnerable driver (TPwSav.sys) capable of disabling 300+ EDR products in a four-stage infection chain immediately preceding encryptor deployment.",
   "mitre_techniques": [
-    { "technique_id": "T1562.001", "technique_name": "Impair Defenses: Disable or Modify Tools", "notes": "EDR/AV agents are terminated, unloaded, or have their self-protection disabled prior to encryptor execution" },
-    { "technique_id": "T1068", "technique_name": "Exploitation for Privilege Escalation", "notes": "Vulnerable signed drivers are loaded to gain kernel-level privileges needed to kill protected EDR processes" },
-    { "technique_id": "T1027", "technique_name": "Obfuscated Files or Information", "notes": "EDR killer payloads (e.g., EDRKillShifter loader) are packed/encrypted and decrypted only in memory at execution time" },
-    { "technique_id": "T1543.003", "technique_name": "Create or Modify System Process: Windows Service", "notes": "Some EDR killers install a malicious or vulnerable driver as a kernel service to gain SYSTEM-level access" },
-    { "technique_id": "T1490", "technique_name": "Inhibit System Recovery", "notes": "Often paired with EDR-killer deployment immediately before ransomware encryption and shadow copy deletion" },
-    { "technique_id": "T1059.001", "technique_name": "Command and Scripting Interpreter: PowerShell", "notes": "PowerShell/batch scripts frequently used to drop and launch the EDR killer driver/loader pair" }
+    {
+      "technique_id": "T1562.001",
+      "technique_name": "Impair Defenses: Disable or Modify Tools",
+      "notes": "EDR/AV agents are terminated, unloaded, or have their self-protection disabled prior to encryptor execution"
+    },
+    {
+      "technique_id": "T1068",
+      "technique_name": "Exploitation for Privilege Escalation",
+      "notes": "Vulnerable signed drivers are loaded to gain kernel-level privileges needed to kill protected EDR processes"
+    },
+    {
+      "technique_id": "T1027",
+      "technique_name": "Obfuscated Files or Information",
+      "notes": "EDR killer payloads (e.g., EDRKillShifter loader) are packed/encrypted and decrypted only in memory at execution time"
+    },
+    {
+      "technique_id": "T1543.003",
+      "technique_name": "Create or Modify System Process: Windows Service",
+      "notes": "Some EDR killers install a malicious or vulnerable driver as a kernel service to gain SYSTEM-level access"
+    },
+    {
+      "technique_id": "T1490",
+      "technique_name": "Inhibit System Recovery",
+      "notes": "Often paired with EDR-killer deployment immediately before ransomware encryption and shadow copy deletion"
+    },
+    {
+      "technique_id": "T1059.001",
+      "technique_name": "Command and Scripting Interpreter: PowerShell",
+      "notes": "PowerShell/batch scripts frequently used to drop and launch the EDR killer driver/loader pair"
+    }
   ],
-  "related_actors": ["qilin", "the-gentlemen", "black-basta"],
-  "related_tools": ["EDRSilencer", "EDRKillShifter", "EDRSandblast", "EDR-Freeze", "Terminator", "AuKill", "TPwSav.sys"],
+  "related_actors": [
+    "qilin",
+    "the-gentlemen",
+    "black-basta"
+  ],
+  "related_tools": [
+    "EDRSilencer",
+    "EDRKillShifter",
+    "EDRSandblast",
+    "EDR-Freeze",
+    "Terminator",
+    "AuKill",
+    "TPwSav.sys"
+  ],
   "notable_examples": [
     "Cisco Talos (April 2026): Qilin and Warlock ransomware affiliates use a customized EDRSandblast variant exploiting the TPwSav.sys vulnerable driver to disable 300+ EDR products",
     "ESET (March 2026): catalogued ~90 distinct EDR killer tools in the wild, noting reuse of drivers like BdApiUtil.sys and TfSysMon.sys across dead-av, TfSysMon-Killer, DLKiller, and Susanoo",
@@ -29,22 +65,52 @@
     "Detect sudden EDR agent process termination, service stoppage, or loss of telemetry heartbeat across multiple endpoints in a short window",
     "Enable and enforce tamper protection / self-defense features on all EDR agents, and alert on attempts to disable them",
     "Hunt for process-suspend API calls (NtSuspendProcess) targeting EDR/AV processes, indicative of EDR-Freeze-style techniques",
-    "Treat any EDR outage or agent silence on a host as a high-priority incident — it frequently precedes ransomware encryption by minutes to hours",
+    "Treat any EDR outage or agent silence on a host as a high-priority incident \u00e2\u20ac\u201d it frequently precedes ransomware encryption by minutes to hours",
     "Apply Microsoft's vulnerable driver blocklist (HVCI/WDAC) to prevent loading of known BYOVD drivers used by EDR killers"
   ],
   "sources": [
-    { "title": "EDR killers are now standard equipment in ransomware attacks", "url": "https://www.helpnetsecurity.com/2026/03/19/edr-killer-ransomware-attacks/" },
-    { "title": "Qilin and Warlock Ransomware Use Vulnerable Drivers to Disable 300+ EDR Tools", "url": "https://thehackernews.com/2026/04/qilin-and-warlock-ransomware-use.html" },
-    { "title": "EDR killers explained: Beyond the drivers", "url": "https://www.welivesecurity.com/en/eset-research/edr-killers-explained-beyond-the-drivers/" },
-    { "title": "Shared secret: EDR killer in the kill chain", "url": "https://www.sophos.com/en-us/blog/shared-secret-edr-killer-in-the-kill-chain" }
+    {
+      "title": "EDR killers are now standard equipment in ransomware attacks",
+      "url": "https://www.helpnetsecurity.com/2026/03/19/edr-killer-ransomware-attacks/"
+    },
+    {
+      "title": "Qilin and Warlock Ransomware Use Vulnerable Drivers to Disable 300+ EDR Tools",
+      "url": "https://thehackernews.com/2026/04/qilin-and-warlock-ransomware-use.html"
+    },
+    {
+      "title": "EDR killers explained: Beyond the drivers",
+      "url": "https://www.welivesecurity.com/en/eset-research/edr-killers-explained-beyond-the-drivers/"
+    },
+    {
+      "title": "Shared secret: EDR killer in the kill chain",
+      "url": "https://www.sophos.com/en-us/blog/shared-secret-edr-killer-in-the-kill-chain"
+    }
   ],
   "mention_count_30d": 41,
   "mention_history": [
-    { "month": "2026-01", "count": 24 },
-    { "month": "2026-02", "count": 29 },
-    { "month": "2026-03", "count": 35 },
-    { "month": "2026-04", "count": 40 },
-    { "month": "2026-05", "count": 40 },
-    { "month": "2026-06", "count": 41 }
+    {
+      "month": "2026-02",
+      "count": 29
+    },
+    {
+      "month": "2026-03",
+      "count": 35
+    },
+    {
+      "month": "2026-04",
+      "count": 40
+    },
+    {
+      "month": "2026-05",
+      "count": 40
+    },
+    {
+      "month": "2026-06",
+      "count": 41
+    },
+    {
+      "month": "2026-07",
+      "count": 0
+    }
   ]
 }

@@ -7,15 +7,45 @@
   "last_seen": "2026-06",
   "description": "Threat actors abuse Microsoft Teams' default-enabled external access and Quick Assist to impersonate internal IT/helpdesk staff, often after first 'email-bombing' a target's inbox with hundreds of subscription/spam emails to manufacture urgency. The attacker then messages or calls the victim over Teams offering to 'fix' the spam problem, walking them through granting remote control or running a 'patch' that is actually a malware loader. This pattern, pioneered by groups like Storm-1811 and refined by UNC6692 (now deploying the custom 'SNOW' malware suite per Microsoft's April 2026 disclosure), has become a leading human-operated intrusion vector because users trust internal collaboration-platform messages far more than email. Microsoft's April 2026 'cross-tenant helpdesk impersonation' playbook and multiple CSO/TheHackerNews reports confirm the technique is now being used against financial institutions in a documented 9-stage attack chain leading to data exfiltration and ransomware staging.",
   "mitre_techniques": [
-    { "technique_id": "T1566.004", "technique_name": "Phishing: Spearphishing via Service", "notes": "Cross-tenant Microsoft Teams messages used to directly contact targets while posing as IT support" },
-    { "technique_id": "T1566.001", "technique_name": "Phishing: Spearphishing Attachment", "notes": "Pre-attack email-bombing campaign floods the inbox with subscription spam to create urgency" },
-    { "technique_id": "T1204.002", "technique_name": "User Execution: Malicious File", "notes": "Victim is talked into downloading and running a 'fix' or 'patch' that is the malware payload" },
-    { "technique_id": "T1219", "technique_name": "Remote Access Software", "notes": "Victim is guided to install or accept Quick Assist / RMM session, giving the attacker hands-on-keyboard access" },
-    { "technique_id": "T1078", "technique_name": "Valid Accounts", "notes": "Captured credentials and approved MFA prompts are reused for follow-on access" },
-    { "technique_id": "T1621", "technique_name": "Multi-Factor Authentication Request Generation", "notes": "Attacker triggers MFA prompts during the call and instructs the victim to approve them" }
+    {
+      "technique_id": "T1566.004",
+      "technique_name": "Phishing: Spearphishing via Service",
+      "notes": "Cross-tenant Microsoft Teams messages used to directly contact targets while posing as IT support"
+    },
+    {
+      "technique_id": "T1566.001",
+      "technique_name": "Phishing: Spearphishing Attachment",
+      "notes": "Pre-attack email-bombing campaign floods the inbox with subscription spam to create urgency"
+    },
+    {
+      "technique_id": "T1204.002",
+      "technique_name": "User Execution: Malicious File",
+      "notes": "Victim is talked into downloading and running a 'fix' or 'patch' that is the malware payload"
+    },
+    {
+      "technique_id": "T1219",
+      "technique_name": "Remote Access Software",
+      "notes": "Victim is guided to install or accept Quick Assist / RMM session, giving the attacker hands-on-keyboard access"
+    },
+    {
+      "technique_id": "T1078",
+      "technique_name": "Valid Accounts",
+      "notes": "Captured credentials and approved MFA prompts are reused for follow-on access"
+    },
+    {
+      "technique_id": "T1621",
+      "technique_name": "Multi-Factor Authentication Request Generation",
+      "notes": "Attacker triggers MFA prompts during the call and instructs the victim to approve them"
+    }
   ],
-  "related_actors": ["unc6692"],
-  "related_tools": ["Quick Assist", "SNOW malware suite", "Microsoft Teams External Access"],
+  "related_actors": [
+    "unc6692"
+  ],
+  "related_tools": [
+    "Quick Assist",
+    "SNOW malware suite",
+    "Microsoft Teams External Access"
+  ],
   "notable_examples": [
     "Microsoft's April 2026 'Cross-tenant helpdesk impersonation to data exfiltration' blog detailing a human-operated intrusion playbook abusing Teams external access",
     "UNC6692 campaign deploying the custom 'SNOW' malware suite (including a malicious browser extension) after Teams-based helpdesk impersonation, per TheHackerNews April 2026 reporting",
@@ -33,18 +63,48 @@
     "Train users to verify all 'IT support' contact through a known internal ticketing channel, never via unsolicited Teams messages"
   ],
   "sources": [
-    { "title": "Cross-tenant helpdesk impersonation to data exfiltration: A human-operated intrusion playbook", "url": "https://www.microsoft.com/en-us/security/blog/2026/04/18/crosstenant-helpdesk-impersonation-data-exfiltration-human-operated-intrusion-playbook/" },
-    { "title": "UNC6692 Impersonates IT Help Desk via Microsoft Teams to Deploy SNOW Malware", "url": "https://thehackernews.com/2026/04/unc6692-impersonates-it-helpdesk-via.html" },
-    { "title": "Attackers abuse Microsoft Teams to impersonate the IT helpdesk in a new enterprise intrusion playbook", "url": "https://www.csoonline.com/article/4160858/attackers-abuse-microsoft-teams-to-impersonate-the-it-helpdesk-in-a-new-enterprise-intrusion-playbook.html" },
-    { "title": "Microsoft Teams Helpdesk Impersonation: The 9-Stage Attack Chain Targeting Financial Institutions", "url": "https://www.myabt.com/blog/teams-helpdesk-impersonation-9-stage-intrusion-financial-institutions" }
+    {
+      "title": "Cross-tenant helpdesk impersonation to data exfiltration: A human-operated intrusion playbook",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/04/18/crosstenant-helpdesk-impersonation-data-exfiltration-human-operated-intrusion-playbook/"
+    },
+    {
+      "title": "UNC6692 Impersonates IT Help Desk via Microsoft Teams to Deploy SNOW Malware",
+      "url": "https://thehackernews.com/2026/04/unc6692-impersonates-it-helpdesk-via.html"
+    },
+    {
+      "title": "Attackers abuse Microsoft Teams to impersonate the IT helpdesk in a new enterprise intrusion playbook",
+      "url": "https://www.csoonline.com/article/4160858/attackers-abuse-microsoft-teams-to-impersonate-the-it-helpdesk-in-a-new-enterprise-intrusion-playbook.html"
+    },
+    {
+      "title": "Microsoft Teams Helpdesk Impersonation: The 9-Stage Attack Chain Targeting Financial Institutions",
+      "url": "https://www.myabt.com/blog/teams-helpdesk-impersonation-9-stage-intrusion-financial-institutions"
+    }
   ],
   "mention_count_30d": 38,
   "mention_history": [
-    { "month": "2026-01", "count": 19 },
-    { "month": "2026-02", "count": 23 },
-    { "month": "2026-03", "count": 28 },
-    { "month": "2026-04", "count": 36 },
-    { "month": "2026-05", "count": 37 },
-    { "month": "2026-06", "count": 38 }
+    {
+      "month": "2026-02",
+      "count": 23
+    },
+    {
+      "month": "2026-03",
+      "count": 28
+    },
+    {
+      "month": "2026-04",
+      "count": 36
+    },
+    {
+      "month": "2026-05",
+      "count": 37
+    },
+    {
+      "month": "2026-06",
+      "count": 38
+    },
+    {
+      "month": "2026-07",
+      "count": 0
+    }
   ]
 }

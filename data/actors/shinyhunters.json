@@ -1,35 +1,77 @@
 {
   "id": "shinyhunters",
   "name": "ShinyHunters",
-  "aliases": ["UNC6040","UNC6240","SLSH (merged: Scattered Lapsus$ Hunters)"],
+  "aliases": [
+    "UNC6040",
+    "UNC6240",
+    "SLSH (merged: Scattered Lapsus$ Hunters)"
+  ],
   "type": "data_extortion",
   "model": "criminal_crew",
   "status": "active",
   "first_seen": "2020-01",
   "last_seen": "2026-06",
   "origin": "The Com collective (English-speaking)",
-  "motivation": ["financial","notoriety"],
-  "description": "ShinyHunters re-emerged in mid-2025 with a materially different playbook focused on vishing, Salesforce OAuth flow abuse, and data extortion without encryption. Tracked alongside Scattered Spider and LAPSUS$ as part of the broader SLSH (Scattered Lapsus$ Hunters) collective. Claimed over 1.5 billion Salesforce records stolen from 760 companies via the Salesforce Aura Campaign (Sept 2025–Mar 2026). Arrests in June 2024 temporarily disrupted but did not eliminate the group.",
+  "motivation": [
+    "financial",
+    "notoriety"
+  ],
+  "description": "ShinyHunters re-emerged in mid-2025 with a materially different playbook focused on vishing, Salesforce OAuth flow abuse, and data extortion without encryption. Tracked alongside Scattered Spider and LAPSUS$ as part of the broader SLSH (Scattered Lapsus$ Hunters) collective. Claimed over 1.5 billion Salesforce records stolen from 760 companies via the Salesforce Aura Campaign (Sept 2025\u00e2\u20ac\u201cMar 2026). Arrests in June 2024 temporarily disrupted but did not eliminate the group.",
   "activity_score": 85,
   "monthly_victims": null,
-  "targeted_sectors": ["Retail","Technology","Financial Services","SaaS","CRM platforms","MSP"],
-  "targeted_regions": ["North America","Europe","Global"],
+  "targeted_sectors": [
+    "Retail",
+    "Technology",
+    "Financial Services",
+    "SaaS",
+    "CRM platforms",
+    "MSP"
+  ],
+  "targeted_regions": [
+    "North America",
+    "Europe",
+    "Global"
+  ],
   "ttps": [
-    { "technique_id": "T1598.004", "technique_name": "Phishing for Information: Spearphishing Voice", "notes": "Vishing — call employees posing as IT helpdesk, capture SSO credentials and MFA codes" },
-    { "technique_id": "T1078", "technique_name": "Valid Accounts", "notes": "Log in with captured SSO credentials — no malware required" },
-    { "technique_id": "T1621", "technique_name": "Multi-Factor Authentication Request Generation", "notes": "MFA code capture during vishing call; subsequent new MFA device enrollment" },
-    { "technique_id": "T1528", "technique_name": "Steal Application Access Token", "notes": "OAuth token theft from Salesforce, Salesloft, Drift, Anodot integrations" },
-    { "technique_id": "T1530", "technique_name": "Data from Cloud Storage", "notes": "Bulk Salesforce record exfiltration via Aura API endpoint (/s/sfsites/aura)" },
-    { "technique_id": "T1048", "technique_name": "Exfiltration Over Alternative Protocol", "notes": "Mullvad VPN used to blend exfiltration traffic" }
+    {
+      "technique_id": "T1598.004",
+      "technique_name": "Phishing for Information: Spearphishing Voice",
+      "notes": "Vishing \u00e2\u20ac\u201d call employees posing as IT helpdesk, capture SSO credentials and MFA codes"
+    },
+    {
+      "technique_id": "T1078",
+      "technique_name": "Valid Accounts",
+      "notes": "Log in with captured SSO credentials \u00e2\u20ac\u201d no malware required"
+    },
+    {
+      "technique_id": "T1621",
+      "technique_name": "Multi-Factor Authentication Request Generation",
+      "notes": "MFA code capture during vishing call; subsequent new MFA device enrollment"
+    },
+    {
+      "technique_id": "T1528",
+      "technique_name": "Steal Application Access Token",
+      "notes": "OAuth token theft from Salesforce, Salesloft, Drift, Anodot integrations"
+    },
+    {
+      "technique_id": "T1530",
+      "technique_name": "Data from Cloud Storage",
+      "notes": "Bulk Salesforce record exfiltration via Aura API endpoint (/s/sfsites/aura)"
+    },
+    {
+      "technique_id": "T1048",
+      "technique_name": "Exfiltration Over Alternative Protocol",
+      "notes": "Mullvad VPN used to blend exfiltration traffic"
+    }
   ],
   "malware_families": [],
   "notable_techniques": [
-    "Salesforce Aura Campaign — exploited misconfigured Experience Cloud guest user profiles via /s/sfsites/aura API endpoint across 300-400 orgs",
+    "Salesforce Aura Campaign \u00e2\u20ac\u201d exploited misconfigured Experience Cloud guest user profiles via /s/sfsites/aura API endpoint across 300-400 orgs",
     "AI-powered voice calls that adjust tone in real-time for vishing",
-    "New MFA device enrollment after credential capture — persistence via legitimate auth",
+    "New MFA device enrollment after credential capture \u00e2\u20ac\u201d persistence via legitimate auth",
     "Anodot token abuse to pivot into BigQuery, Snowflake, and downstream analytics",
-    "Harassment escalation — threatening calls to victims and family members, swatting",
-    "Mullvad VPN for exfiltration — blends with legitimate commercial VPN traffic"
+    "Harassment escalation \u00e2\u20ac\u201d threatening calls to victims and family members, swatting",
+    "Mullvad VPN for exfiltration \u00e2\u20ac\u201d blends with legitimate commercial VPN traffic"
   ],
   "detection_opportunities": [
     "New MFA device enrollment following login from unusual geolocation",
@@ -48,15 +90,36 @@
     "Brief executives and staff on possible follow-on harassment/extortion contact (including swatting threats) and loop in physical security."
   ],
   "sources": [
-    { "title": "Huntress Threat Library: ShinyHunters", "url": "https://www.huntress.com/threat-library/threat-actors/shinyhunters" }
+    {
+      "title": "Huntress Threat Library: ShinyHunters",
+      "url": "https://www.huntress.com/threat-library/threat-actors/shinyhunters"
+    }
   ],
   "mention_count_30d": 41,
   "mention_history": [
-    { "month": "2026-01", "count": 22 },
-    { "month": "2026-02", "count": 28 },
-    { "month": "2026-03", "count": 35 },
-    { "month": "2026-04", "count": 39 },
-    { "month": "2026-05", "count": 41 },
-    { "month": "2026-06", "count": 41 }
+    {
+      "month": "2026-02",
+      "count": 0
+    },
+    {
+      "month": "2026-03",
+      "count": 0
+    },
+    {
+      "month": "2026-04",
+      "count": 0
+    },
+    {
+      "month": "2026-05",
+      "count": 0
+    },
+    {
+      "month": "2026-06",
+      "count": 1
+    },
+    {
+      "month": "2026-07",
+      "count": 0
+    }
   ]
 }

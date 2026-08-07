@@ -1,7 +1,15 @@
 {
   "id": "kimsuky",
   "name": "Kimsuky",
-  "aliases": ["APT43", "Black Banshee", "Velvet Chollima", "Emerald Sleet", "THALLIUM", "Springtail", "TA427"],
+  "aliases": [
+    "APT43",
+    "Black Banshee",
+    "Velvet Chollima",
+    "Emerald Sleet",
+    "THALLIUM",
+    "Springtail",
+    "TA427"
+  ],
   "mitre_attack_id": "G0094",
   "type": "apt",
   "model": "nation_state",
@@ -9,27 +17,85 @@
   "first_seen": "2012-01",
   "last_seen": "2026-06",
   "origin": "North Korea (RGB)",
-  "motivation": ["espionage","intelligence_collection","financial"],
+  "motivation": [
+    "espionage",
+    "intelligence_collection",
+    "financial"
+  ],
   "description": "Kimsuky is a long-running North Korean RGB-linked espionage unit focused on diplomatic, think tank, academic, and government targets connected to Korean Peninsula policy. In January 2026, the FBI issued a FLASH alert detailing Kimsuky 'quishing' campaigns from May-June 2025 that used malicious QR codes embedded in spoofed conference invitations and questionnaires impersonating foreign policy advisors and embassy staff. The group continues to evolve its toolset around PebbleDash and AppleSeed backdoor variants, increasingly leveraging legitimate infrastructure such as VSCode Tunneling, Cloudflare Quick Tunnels, DWAgent, and ClickFix-style fake CAPTCHA lures. A March 2026 GitHub-themed phishing wave targeted developers with fake VS Code security alerts referencing fabricated CVEs, showing continued expansion beyond traditional policy-community targeting into software supply chain reconnaissance.",
   "activity_score": 74,
   "monthly_victims": null,
-  "targeted_sectors": ["Government","Think Tanks","Academia","NGOs","Defense","Cryptocurrency","Software Development"],
-  "targeted_regions": ["South Korea","United States","Europe","Global"],
-  "ttps": [
-    { "technique_id": "T1566.002", "technique_name": "Phishing: Spearphishing Link", "notes": "Spoofed conference invitations and questionnaires from impersonated policy advisors and embassy staff containing malicious links/QR codes" },
-    { "technique_id": "T1598.003", "technique_name": "Phishing for Information: Spearphishing Link", "notes": "Reconnaissance-focused emails to North Korea policy researchers to harvest credentials before payload delivery" },
-    { "technique_id": "T1204.001", "technique_name": "User Execution: Malicious Link", "notes": "QR codes ('quishing') direct mobile devices to credential-harvesting landing pages, evading email-based URL inspection" },
-    { "technique_id": "T1059.001", "technique_name": "Command and Scripting Interpreter: PowerShell", "notes": "ClickFix-style fake CAPTCHA pages trick users into pasting and running malicious PowerShell commands" },
-    { "technique_id": "T1071.001", "technique_name": "Application Layer Protocol: Web Protocols", "notes": "AppleSeed and PebbleDash backdoors communicate over HTTP/HTTPS to attacker-controlled C2" },
-    { "technique_id": "T1572", "technique_name": "Protocol Tunneling", "notes": "Use of VSCode Tunneling and Cloudflare Quick Tunnels for covert C2 and remote access" },
-    { "technique_id": "T1219", "technique_name": "Remote Access Software", "notes": "Deployment of legitimate remote admin tool DWAgent for persistent access following initial compromise" },
-    { "technique_id": "T1078.004", "technique_name": "Valid Accounts: Cloud Accounts", "notes": "Stolen webmail and cloud credentials used for ongoing intelligence collection from victim mailboxes" }
+  "targeted_sectors": [
+    "Government",
+    "Think Tanks",
+    "Academia",
+    "NGOs",
+    "Defense",
+    "Cryptocurrency",
+    "Software Development"
   ],
-  "malware_families": ["AppleSeed","PebbleDash","BabyShark","RandomQuery","xRAT","XenoRAT","TutRAT","KGH Spyware Suite"],
+  "targeted_regions": [
+    "South Korea",
+    "United States",
+    "Europe",
+    "Global"
+  ],
+  "ttps": [
+    {
+      "technique_id": "T1566.002",
+      "technique_name": "Phishing: Spearphishing Link",
+      "notes": "Spoofed conference invitations and questionnaires from impersonated policy advisors and embassy staff containing malicious links/QR codes"
+    },
+    {
+      "technique_id": "T1598.003",
+      "technique_name": "Phishing for Information: Spearphishing Link",
+      "notes": "Reconnaissance-focused emails to North Korea policy researchers to harvest credentials before payload delivery"
+    },
+    {
+      "technique_id": "T1204.001",
+      "technique_name": "User Execution: Malicious Link",
+      "notes": "QR codes ('quishing') direct mobile devices to credential-harvesting landing pages, evading email-based URL inspection"
+    },
+    {
+      "technique_id": "T1059.001",
+      "technique_name": "Command and Scripting Interpreter: PowerShell",
+      "notes": "ClickFix-style fake CAPTCHA pages trick users into pasting and running malicious PowerShell commands"
+    },
+    {
+      "technique_id": "T1071.001",
+      "technique_name": "Application Layer Protocol: Web Protocols",
+      "notes": "AppleSeed and PebbleDash backdoors communicate over HTTP/HTTPS to attacker-controlled C2"
+    },
+    {
+      "technique_id": "T1572",
+      "technique_name": "Protocol Tunneling",
+      "notes": "Use of VSCode Tunneling and Cloudflare Quick Tunnels for covert C2 and remote access"
+    },
+    {
+      "technique_id": "T1219",
+      "technique_name": "Remote Access Software",
+      "notes": "Deployment of legitimate remote admin tool DWAgent for persistent access following initial compromise"
+    },
+    {
+      "technique_id": "T1078.004",
+      "technique_name": "Valid Accounts: Cloud Accounts",
+      "notes": "Stolen webmail and cloud credentials used for ongoing intelligence collection from victim mailboxes"
+    }
+  ],
+  "malware_families": [
+    "AppleSeed",
+    "PebbleDash",
+    "BabyShark",
+    "RandomQuery",
+    "xRAT",
+    "XenoRAT",
+    "TutRAT",
+    "KGH Spyware Suite"
+  ],
   "notable_techniques": [
     "QR code ('quishing') spearphishing impersonating embassy staff, foreign advisors, and think tank leaders to lure North Korea policy experts",
     "Fake conference invitations and academic questionnaires used as social engineering pretext",
-    "Continued reliance on PebbleDash — a backdoor platform originally associated with Lazarus Group, repurposed by Kimsuky since at least 2021",
+    "Continued reliance on PebbleDash \u00e2\u20ac\u201d a backdoor platform originally associated with Lazarus Group, repurposed by Kimsuky since at least 2021",
     "ClickFix fake-CAPTCHA pages that trick victims into self-executing PowerShell payloads",
     "Abuse of legitimate developer-trust channels (GitHub, VS Code update notifications) with fabricated CVE lures",
     "Heavy use of cloud-based and tunneling infrastructure (VSCode Tunneling, Cloudflare Quick Tunnels, DWAgent) to blend with legitimate traffic"
@@ -49,21 +115,51 @@
     "Audit outbound connections to *.trycloudflare.com or VS Code Tunnel domains from non-developer hosts.",
     "Check for unauthorized DWAgent or other remote-support tool installations.",
     "Scan for AppleSeed/PebbleDash file artifacts and registry persistence keys.",
-    "Treat GitHub/VS Code update notifications referencing unfamiliar CVEs as likely lures — verify out-of-band before acting."
+    "Treat GitHub/VS Code update notifications referencing unfamiliar CVEs as likely lures \u00e2\u20ac\u201d verify out-of-band before acting."
   ],
   "sources": [
-    { "title": "FBI: North Korean Kimsuky Actors Leverage Malicious QR Codes in Spearphishing Campaigns Targeting U.S. Entities", "url": "https://www.fbi.gov/file-repository/cyber-alerts/north-korean-kimsuky-actors-leverage-malicious-qr.pdf/view" },
-    { "title": "Securelist: Disclosing new PebbleDash-based tools by Kimsuky", "url": "https://securelist.com/kimsuky-appleseed-pebbledash-campaigns/119785/" },
-    { "title": "The Hacker News: FBI Warns of North Korean Hackers Using Malicious QR Codes in Spear-Phishing", "url": "https://thehackernews.com/2026/01/fbi-warns-north-korean-hackers-using.html" },
-    { "title": "MITRE ATT&CK: Kimsuky (G0094)", "url": "https://attack.mitre.org/groups/G0094/" }
+    {
+      "title": "FBI: North Korean Kimsuky Actors Leverage Malicious QR Codes in Spearphishing Campaigns Targeting U.S. Entities",
+      "url": "https://www.fbi.gov/file-repository/cyber-alerts/north-korean-kimsuky-actors-leverage-malicious-qr.pdf/view"
+    },
+    {
+      "title": "Securelist: Disclosing new PebbleDash-based tools by Kimsuky",
+      "url": "https://securelist.com/kimsuky-appleseed-pebbledash-campaigns/119785/"
+    },
+    {
+      "title": "The Hacker News: FBI Warns of North Korean Hackers Using Malicious QR Codes in Spear-Phishing",
+      "url": "https://thehackernews.com/2026/01/fbi-warns-north-korean-hackers-using.html"
+    },
+    {
+      "title": "MITRE ATT&CK: Kimsuky (G0094)",
+      "url": "https://attack.mitre.org/groups/G0094/"
+    }
   ],
   "mention_count_30d": 33,
   "mention_history": [
-    { "month": "2026-01", "count": 38 },
-    { "month": "2026-02", "count": 30 },
-    { "month": "2026-03", "count": 35 },
-    { "month": "2026-04", "count": 28 },
-    { "month": "2026-05", "count": 31 },
-    { "month": "2026-06", "count": 33 }
+    {
+      "month": "2026-02",
+      "count": 0
+    },
+    {
+      "month": "2026-03",
+      "count": 0
+    },
+    {
+      "month": "2026-04",
+      "count": 0
+    },
+    {
+      "month": "2026-05",
+      "count": 0
+    },
+    {
+      "month": "2026-06",
+      "count": 1
+    },
+    {
+      "month": "2026-07",
+      "count": 0
+    }
   ]
 }

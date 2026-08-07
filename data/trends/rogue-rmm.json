@@ -5,17 +5,56 @@
   "trend": "rising",
   "first_observed": "2023-01",
   "last_seen": "2026-06",
-  "description": "Threat actors increasingly deploy legitimate Remote Monitoring and Management (RMM) software — ScreenConnect, Atera, Action1, AnyDesk, Splashtop, PDQ, RustDesk, SimpleHelp, and Tactical RMM — as a 'living off the land' substitute for custom RATs, since signed RMM binaries rarely trigger AV/EDR alerts and blend into normal IT administration traffic. Huntress's 2026 Cyber Threat Report found a 277% year-over-year jump in RMM abuse alongside a 53% drop in traditional malware use, with over 50% of suspicious Atera activity directly tied to ransomware. Delivery is most often via phishing lures impersonating Microsoft Teams, Zoom, Excel, or Adobe installers (sometimes signed with stolen certificates), and frequently chains from the Teams-helpdesk-impersonation and ClickFix vectors. MuddyWater remains the canonical nation-state example of this technique, having weaponized Atera, ScreenConnect, PDQ, and Action1 across its 2025-2026 espionage campaigns, while criminal operators use multi-tool 'daisy-chains' (e.g., PDQ or GoTo Resolve dropping ScreenConnect, SimpleHelp, or MeshAgent) to establish redundant footholds before ransomware deployment.",
+  "description": "Threat actors increasingly deploy legitimate Remote Monitoring and Management (RMM) software \u00e2\u20ac\u201d ScreenConnect, Atera, Action1, AnyDesk, Splashtop, PDQ, RustDesk, SimpleHelp, and Tactical RMM \u00e2\u20ac\u201d as a 'living off the land' substitute for custom RATs, since signed RMM binaries rarely trigger AV/EDR alerts and blend into normal IT administration traffic. Huntress's 2026 Cyber Threat Report found a 277% year-over-year jump in RMM abuse alongside a 53% drop in traditional malware use, with over 50% of suspicious Atera activity directly tied to ransomware. Delivery is most often via phishing lures impersonating Microsoft Teams, Zoom, Excel, or Adobe installers (sometimes signed with stolen certificates), and frequently chains from the Teams-helpdesk-impersonation and ClickFix vectors. MuddyWater remains the canonical nation-state example of this technique, having weaponized Atera, ScreenConnect, PDQ, and Action1 across its 2025-2026 espionage campaigns, while criminal operators use multi-tool 'daisy-chains' (e.g., PDQ or GoTo Resolve dropping ScreenConnect, SimpleHelp, or MeshAgent) to establish redundant footholds before ransomware deployment.",
   "mitre_techniques": [
-    { "technique_id": "T1219", "technique_name": "Remote Access Software", "notes": "Core technique — legitimate RMM agents (ScreenConnect, Atera, Action1, AnyDesk, Splashtop, etc.) installed and used as the primary remote-access channel" },
-    { "technique_id": "T1566.001", "technique_name": "Phishing: Spearphishing Attachment", "notes": "RMM installers delivered disguised as Teams/Zoom/Excel/Adobe installers, sometimes signed with stolen certificates" },
-    { "technique_id": "T1036.005", "technique_name": "Masquerading: Match Legitimate Name or Location", "notes": "RMM binaries renamed or bundled to mimic trusted software, evading both user suspicion and signature-based controls" },
-    { "technique_id": "T1133", "technique_name": "External Remote Services", "notes": "Once installed, RMM agents provide persistent external access points into the victim network" },
-    { "technique_id": "T1021.001", "technique_name": "Remote Services: Remote Desktop Protocol", "notes": "RMM tools provide GUI remote-desktop functionality used for hands-on-keyboard follow-on activity, including ransomware staging" },
-    { "technique_id": "T1105", "technique_name": "Ingress Tool Transfer", "notes": "RMM file-transfer features used to push secondary tools (credential dumpers, ransomware encryptors) to compromised hosts" }
+    {
+      "technique_id": "T1219",
+      "technique_name": "Remote Access Software",
+      "notes": "Core technique \u00e2\u20ac\u201d legitimate RMM agents (ScreenConnect, Atera, Action1, AnyDesk, Splashtop, etc.) installed and used as the primary remote-access channel"
+    },
+    {
+      "technique_id": "T1566.001",
+      "technique_name": "Phishing: Spearphishing Attachment",
+      "notes": "RMM installers delivered disguised as Teams/Zoom/Excel/Adobe installers, sometimes signed with stolen certificates"
+    },
+    {
+      "technique_id": "T1036.005",
+      "technique_name": "Masquerading: Match Legitimate Name or Location",
+      "notes": "RMM binaries renamed or bundled to mimic trusted software, evading both user suspicion and signature-based controls"
+    },
+    {
+      "technique_id": "T1133",
+      "technique_name": "External Remote Services",
+      "notes": "Once installed, RMM agents provide persistent external access points into the victim network"
+    },
+    {
+      "technique_id": "T1021.001",
+      "technique_name": "Remote Services: Remote Desktop Protocol",
+      "notes": "RMM tools provide GUI remote-desktop functionality used for hands-on-keyboard follow-on activity, including ransomware staging"
+    },
+    {
+      "technique_id": "T1105",
+      "technique_name": "Ingress Tool Transfer",
+      "notes": "RMM file-transfer features used to push secondary tools (credential dumpers, ransomware encryptors) to compromised hosts"
+    }
   ],
-  "related_actors": ["muddywater", "unc6692"],
-  "related_tools": ["ScreenConnect", "Atera", "Action1", "AnyDesk", "Splashtop", "PDQ Deploy", "RustDesk", "SimpleHelp", "Tactical RMM", "MeshAgent", "GoTo Resolve"],
+  "related_actors": [
+    "muddywater",
+    "unc6692"
+  ],
+  "related_tools": [
+    "ScreenConnect",
+    "Atera",
+    "Action1",
+    "AnyDesk",
+    "Splashtop",
+    "PDQ Deploy",
+    "RustDesk",
+    "SimpleHelp",
+    "Tactical RMM",
+    "MeshAgent",
+    "GoTo Resolve"
+  ],
   "notable_examples": [
     "Huntress 2026 Cyber Threat Report: 277% YoY increase in RMM abuse, 53% decline in traditional malware, with 50%+ of suspicious Atera activity linked to ransomware",
     "February 2026: attackers used fake workplace-meeting lures with stolen digital certificates to silently deploy ScreenConnect, Tactical RMM, and MeshAgent in a layered chain",
@@ -28,23 +67,53 @@
     "Alert on first-time-seen RMM agent installation/execution on a host with no prior history of that tool",
     "Monitor for RMM installers delivered via email attachments or downloads disguised as Teams/Zoom/Excel/Adobe setup files, especially when signed with recently-issued or unusual certificates",
     "Hunt for RMM tool installation immediately following a Teams/Quick Assist remote session or a ClickFix-style PowerShell execution",
-    "Flag chained RMM activity — one RMM tool (e.g., PDQ, GoTo Resolve) installing or launching a second RMM agent (ScreenConnect, SimpleHelp, MeshAgent)",
+    "Flag chained RMM activity \u00e2\u20ac\u201d one RMM tool (e.g., PDQ, GoTo Resolve) installing or launching a second RMM agent (ScreenConnect, SimpleHelp, MeshAgent)",
     "Restrict outbound access to RMM vendor cloud relay domains/IPs at the network egress level for hosts that don't require them",
     "Treat any unexpected RMM session immediately preceding credential dumping, lateral movement, or shadow-copy deletion as a high-confidence ransomware precursor"
   ],
   "sources": [
-    { "title": "RMM Abuse: When IT Convenience Bites Back", "url": "https://www.huntress.com/blog/rmm-abuse-when-it-convenience-bites-back" },
-    { "title": "A Series of Unfortunate (RMM) Events", "url": "https://www.huntress.com/blog/series-of-unfortunate-rmm-events" },
-    { "title": "RMM Abuse Explodes as Hackers Ditch Malware", "url": "https://www.darkreading.com/application-security/rmm-abuse-explodes-hackers-ditch-malware" },
-    { "title": "Iran-Linked MuddyWater Targets 100+ Organizations in Global Espionage Campaign", "url": "https://thehackernews.com/2025/10/iran-linked-muddywater-targets-100.html" }
+    {
+      "title": "RMM Abuse: When IT Convenience Bites Back",
+      "url": "https://www.huntress.com/blog/rmm-abuse-when-it-convenience-bites-back"
+    },
+    {
+      "title": "A Series of Unfortunate (RMM) Events",
+      "url": "https://www.huntress.com/blog/series-of-unfortunate-rmm-events"
+    },
+    {
+      "title": "RMM Abuse Explodes as Hackers Ditch Malware",
+      "url": "https://www.darkreading.com/application-security/rmm-abuse-explodes-hackers-ditch-malware"
+    },
+    {
+      "title": "Iran-Linked MuddyWater Targets 100+ Organizations in Global Espionage Campaign",
+      "url": "https://thehackernews.com/2025/10/iran-linked-muddywater-targets-100.html"
+    }
   ],
   "mention_count_30d": 36,
   "mention_history": [
-    { "month": "2026-01", "count": 21 },
-    { "month": "2026-02", "count": 25 },
-    { "month": "2026-03", "count": 28 },
-    { "month": "2026-04", "count": 32 },
-    { "month": "2026-05", "count": 34 },
-    { "month": "2026-06", "count": 36 }
+    {
+      "month": "2026-02",
+      "count": 25
+    },
+    {
+      "month": "2026-03",
+      "count": 28
+    },
+    {
+      "month": "2026-04",
+      "count": 32
+    },
+    {
+      "month": "2026-05",
+      "count": 34
+    },
+    {
+      "month": "2026-06",
+      "count": 36
+    },
+    {
+      "month": "2026-07",
+      "count": 0
+    }
   ]
 }

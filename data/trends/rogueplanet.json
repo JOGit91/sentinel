@@ -1,24 +1,41 @@
 {
   "id": "rogueplanet",
-  "name": "RoguePlanet — Microsoft Defender Privilege Escalation Zero-Day",
+  "name": "RoguePlanet \u00e2\u20ac\u201d Microsoft Defender Privilege Escalation Zero-Day",
   "category": "privilege_escalation",
   "trend": "rising",
   "first_observed": "2026-06",
   "last_seen": "2026-06",
-  "description": "RoguePlanet is a Windows local privilege escalation zero-day publicly released on June 9, 2026 by the pseudonymous researcher 'Nightmare Eclipse' (aka Chaotic Eclipse), just hours after that month's Patch Tuesday. It exploits a race condition in Microsoft Defender's handling of the 'mpengine!SysIO*' API family, allowing an unprivileged local user to spawn a SYSTEM-level command prompt — success has been validated as 100% on some machines but inconsistent on others. The exploit was originally developed as a remote code execution chain abusing Defender's handling of files on remote SMB shares and VHD/VHDX mounts (and could bypass BitLocker), but Microsoft hardened that path in mid-May 2026, forcing a rewrite into the current local privilege escalation variant. Confirmed to work against Windows 10 with June 2026 updates and Windows 11 (Official and Canary builds, including KB5094126); it does not function on Windows Server, though the researcher believes server builds are also vulnerable. RoguePlanet is the latest in Nightmare Eclipse's ongoing disclosure spree against Microsoft Defender — following BlueHammer, RedSun, GreenPlasma, and YellowKey — driven by the researcher's frustration with Microsoft's vulnerability disclosure and bug-bounty practices. After GitHub and GitLab removed prior repositories, the PoC was published on a self-hosted git instance (projectnightcrawler.dev).",
+  "description": "RoguePlanet is a Windows local privilege escalation zero-day publicly released on June 9, 2026 by the pseudonymous researcher 'Nightmare Eclipse' (aka Chaotic Eclipse), just hours after that month's Patch Tuesday. It exploits a race condition in Microsoft Defender's handling of the 'mpengine!SysIO*' API family, allowing an unprivileged local user to spawn a SYSTEM-level command prompt \u00e2\u20ac\u201d success has been validated as 100% on some machines but inconsistent on others. The exploit was originally developed as a remote code execution chain abusing Defender's handling of files on remote SMB shares and VHD/VHDX mounts (and could bypass BitLocker), but Microsoft hardened that path in mid-May 2026, forcing a rewrite into the current local privilege escalation variant. Confirmed to work against Windows 10 with June 2026 updates and Windows 11 (Official and Canary builds, including KB5094126); it does not function on Windows Server, though the researcher believes server builds are also vulnerable. RoguePlanet is the latest in Nightmare Eclipse's ongoing disclosure spree against Microsoft Defender \u00e2\u20ac\u201d following BlueHammer, RedSun, GreenPlasma, and YellowKey \u00e2\u20ac\u201d driven by the researcher's frustration with Microsoft's vulnerability disclosure and bug-bounty practices. After GitHub and GitLab removed prior repositories, the PoC was published on a self-hosted git instance (projectnightcrawler.dev).",
   "mitre_techniques": [
-    { "technique_id": "T1068", "technique_name": "Exploitation for Privilege Escalation", "notes": "Race condition in Defender's mpengine!SysIO* API handling allows an unprivileged user to spawn a SYSTEM-level process" },
-    { "technique_id": "T1562.001", "technique_name": "Impair Defenses: Disable or Modify Tools", "notes": "Abuses Microsoft Defender's own privileged file-handling operations as the escalation primitive, continuing the 'Defender becomes the door' pattern" },
-    { "technique_id": "T1574", "technique_name": "Hijack Execution Flow", "notes": "Original RCE variant abused Defender's handling of files on remote SMB shares and mounted VHD/VHDX images before Microsoft's May 2026 hardening" }
+    {
+      "technique_id": "T1068",
+      "technique_name": "Exploitation for Privilege Escalation",
+      "notes": "Race condition in Defender's mpengine!SysIO* API handling allows an unprivileged user to spawn a SYSTEM-level process"
+    },
+    {
+      "technique_id": "T1562.001",
+      "technique_name": "Impair Defenses: Disable or Modify Tools",
+      "notes": "Abuses Microsoft Defender's own privileged file-handling operations as the escalation primitive, continuing the 'Defender becomes the door' pattern"
+    },
+    {
+      "technique_id": "T1574",
+      "technique_name": "Hijack Execution Flow",
+      "notes": "Original RCE variant abused Defender's handling of files on remote SMB shares and mounted VHD/VHDX images before Microsoft's May 2026 hardening"
+    }
   ],
   "related_actors": [],
-  "related_tools": ["RoguePlanet PoC", "Nightmare-Eclipse exploit chain", "BlueHammer (related zero-day)", "RedSun (related zero-day)"],
+  "related_tools": [
+    "RoguePlanet PoC",
+    "Nightmare-Eclipse exploit chain",
+    "BlueHammer (related zero-day)",
+    "RedSun (related zero-day)"
+  ],
   "notable_examples": [
     "June 9, 2026: PoC released hours after Patch Tuesday by 'Nightmare Eclipse', hosted on a self-hosted git instance (projectnightcrawler.dev) after GitHub and GitLab removed prior repos",
     "Validated to spawn a SYSTEM-level command prompt on patched Windows 10 (June 2026 updates) and Windows 11 (Official + Canary, KB5094126)",
     "Originally an RCE chain via Defender's handling of remote SMB/VHD(x) files (with a BitLocker bypass), rewritten into a local privilege escalation after Microsoft's May 2026 mitigations",
     "Fourth in Nightmare Eclipse's recent zero-day disclosure spree against Microsoft Defender, following BlueHammer, RedSun, GreenPlasma, and YellowKey",
-    "Success rate is inconsistent across machines — 100% on some, unreliable on others"
+    "Success rate is inconsistent across machines \u00e2\u20ac\u201d 100% on some, unreliable on others"
   ],
   "detection_opportunities": [
     "Monitor for unexpected SYSTEM-privileged cmd.exe or process creation originating from MsMpEng.exe (Defender's engine process)",
@@ -28,16 +45,40 @@
     "Monitor for known Nightmare-Eclipse PoC infrastructure (e.g. projectnightcrawler.dev) and related exploit repos"
   ],
   "sources": [
-    { "title": "New Windows Zero-Day Exploit 'RoguePlanet' Released", "url": "https://www.securityweek.com/new-windows-zero-day-exploit-rogueplanet-released/" },
-    { "title": "Microsoft Defender RoguePlanet zero-day grants SYSTEM privileges", "url": "https://www.bleepingcomputer.com/news/microsoft/microsoft-defender-rogueplanet-zero-day-grants-system-privileges/" }
+    {
+      "title": "New Windows Zero-Day Exploit 'RoguePlanet' Released",
+      "url": "https://www.securityweek.com/new-windows-zero-day-exploit-rogueplanet-released/"
+    },
+    {
+      "title": "Microsoft Defender RoguePlanet zero-day grants SYSTEM privileges",
+      "url": "https://www.bleepingcomputer.com/news/microsoft/microsoft-defender-rogueplanet-zero-day-grants-system-privileges/"
+    }
   ],
   "mention_count_30d": 14,
   "mention_history": [
-    { "month": "2026-01", "count": 0 },
-    { "month": "2026-02", "count": 0 },
-    { "month": "2026-03", "count": 0 },
-    { "month": "2026-04", "count": 0 },
-    { "month": "2026-05", "count": 0 },
-    { "month": "2026-06", "count": 14 }
+    {
+      "month": "2026-02",
+      "count": 0
+    },
+    {
+      "month": "2026-03",
+      "count": 0
+    },
+    {
+      "month": "2026-04",
+      "count": 0
+    },
+    {
+      "month": "2026-05",
+      "count": 0
+    },
+    {
+      "month": "2026-06",
+      "count": 14
+    },
+    {
+      "month": "2026-07",
+      "count": 0
+    }
   ]
 }

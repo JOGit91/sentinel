@@ -5,17 +5,45 @@
   "trend": "rising",
   "first_observed": "2022-08",
   "last_seen": "2026-06",
-  "description": "Lumma Stealer (LummaC2) is a long-running Malware-as-a-Service infostealer, sold on dark web forums since 2022 and used to harvest browser credentials, session cookies, crypto wallets, and financial data. In May 2025, Microsoft secured a U.S. court order to seize over 2,300 domains tied to Lumma's C2 infrastructure, with the DOJ, FBI, and Europol disrupting key administration domains and redirecting roughly 1,300 domains to sinkholes. Despite this, Lumma's infrastructure began rebuilding within weeks, and by late 2025 into 2026 infection volume climbed back up via CastleLoader-driven delivery chains and ClickFix-style social-engineering lures. The operation has also reduced its reliance on Cloudflare for C2 domain fronting, shifting toward Russia-based hosting providers to evade re-application of the takedown — making it one of the clearest examples of MaaS resilience against law-enforcement disruption.",
+  "description": "Lumma Stealer (LummaC2) is a long-running Malware-as-a-Service infostealer, sold on dark web forums since 2022 and used to harvest browser credentials, session cookies, crypto wallets, and financial data. In May 2025, Microsoft secured a U.S. court order to seize over 2,300 domains tied to Lumma's C2 infrastructure, with the DOJ, FBI, and Europol disrupting key administration domains and redirecting roughly 1,300 domains to sinkholes. Despite this, Lumma's infrastructure began rebuilding within weeks, and by late 2025 into 2026 infection volume climbed back up via CastleLoader-driven delivery chains and ClickFix-style social-engineering lures. The operation has also reduced its reliance on Cloudflare for C2 domain fronting, shifting toward Russia-based hosting providers to evade re-application of the takedown \u00e2\u20ac\u201d making it one of the clearest examples of MaaS resilience against law-enforcement disruption.",
   "mitre_techniques": [
-    { "technique_id": "T1555", "technique_name": "Credentials from Password Stores", "notes": "Harvests saved credentials from browsers and password managers" },
-    { "technique_id": "T1539", "technique_name": "Steal Web Session Cookie", "notes": "Exfiltrates browser session cookies to enable session hijacking" },
-    { "technique_id": "T1204.002", "technique_name": "User Execution: Malicious File", "notes": "Delivered via CastleLoader and ClickFix-style fake-CAPTCHA lures that trick users into running loaders" },
-    { "technique_id": "T1027", "technique_name": "Obfuscated Files or Information", "notes": "Heavy use of packers and string obfuscation to evade static detection" },
-    { "technique_id": "T1071.001", "technique_name": "Application Layer Protocol: Web Protocols", "notes": "C2 and exfiltration over HTTPS to rotating, recently-registered domains" },
-    { "technique_id": "T1041", "technique_name": "Exfiltration Over C2 Channel", "notes": "Stolen data bundled and exfiltrated directly to operator C2 panels" }
+    {
+      "technique_id": "T1555",
+      "technique_name": "Credentials from Password Stores",
+      "notes": "Harvests saved credentials from browsers and password managers"
+    },
+    {
+      "technique_id": "T1539",
+      "technique_name": "Steal Web Session Cookie",
+      "notes": "Exfiltrates browser session cookies to enable session hijacking"
+    },
+    {
+      "technique_id": "T1204.002",
+      "technique_name": "User Execution: Malicious File",
+      "notes": "Delivered via CastleLoader and ClickFix-style fake-CAPTCHA lures that trick users into running loaders"
+    },
+    {
+      "technique_id": "T1027",
+      "technique_name": "Obfuscated Files or Information",
+      "notes": "Heavy use of packers and string obfuscation to evade static detection"
+    },
+    {
+      "technique_id": "T1071.001",
+      "technique_name": "Application Layer Protocol: Web Protocols",
+      "notes": "C2 and exfiltration over HTTPS to rotating, recently-registered domains"
+    },
+    {
+      "technique_id": "T1041",
+      "technique_name": "Exfiltration Over C2 Channel",
+      "notes": "Stolen data bundled and exfiltrated directly to operator C2 panels"
+    }
   ],
   "related_actors": [],
-  "related_tools": ["LummaC2", "CastleLoader", "ClickFix (delivery vector)"],
+  "related_tools": [
+    "LummaC2",
+    "CastleLoader",
+    "ClickFix (delivery vector)"
+  ],
   "notable_examples": [
     "May 2025: Microsoft, DOJ, FBI, and Europol coordinated takedown seized 2,300+ domains and sinkholed ~1,300",
     "Within weeks of the takedown, Lumma's C2 infrastructure began rebuilding and resumed sales on criminal forums",
@@ -31,18 +59,48 @@
     "Enforce phishing-resistant MFA to limit the value of stolen session cookies/credentials"
   ],
   "sources": [
-    { "title": "Lumma Stealer Malware Resurgence Challenges Global Takedown", "url": "https://www.bankinfosecurity.com/lumma-stealer-malware-resurgence-challenges-global-takedown-a-28579" },
-    { "title": "Back to Business: Lumma Stealer Returns with Stealthier Methods", "url": "https://www.trendmicro.com/en_us/research/25/g/lumma-stealer-returns.html" },
-    { "title": "Lumma infostealer malware returns after law enforcement disruption", "url": "https://www.bleepingcomputer.com/news/security/lumma-infostealer-malware-returns-after-law-enforcement-disruption/" },
-    { "title": "LummaStealer returns using CastleLoader to bypass detection", "url": "https://cyberinsider.com/lummastealer-returns-using-castleloader-to-bypass-detection/" }
+    {
+      "title": "Lumma Stealer Malware Resurgence Challenges Global Takedown",
+      "url": "https://www.bankinfosecurity.com/lumma-stealer-malware-resurgence-challenges-global-takedown-a-28579"
+    },
+    {
+      "title": "Back to Business: Lumma Stealer Returns with Stealthier Methods",
+      "url": "https://www.trendmicro.com/en_us/research/25/g/lumma-stealer-returns.html"
+    },
+    {
+      "title": "Lumma infostealer malware returns after law enforcement disruption",
+      "url": "https://www.bleepingcomputer.com/news/security/lumma-infostealer-malware-returns-after-law-enforcement-disruption/"
+    },
+    {
+      "title": "LummaStealer returns using CastleLoader to bypass detection",
+      "url": "https://cyberinsider.com/lummastealer-returns-using-castleloader-to-bypass-detection/"
+    }
   ],
   "mention_count_30d": 38,
   "mention_history": [
-    { "month": "2026-01", "count": 20 },
-    { "month": "2026-02", "count": 24 },
-    { "month": "2026-03", "count": 28 },
-    { "month": "2026-04", "count": 32 },
-    { "month": "2026-05", "count": 35 },
-    { "month": "2026-06", "count": 38 }
+    {
+      "month": "2026-02",
+      "count": 24
+    },
+    {
+      "month": "2026-03",
+      "count": 28
+    },
+    {
+      "month": "2026-04",
+      "count": 32
+    },
+    {
+      "month": "2026-05",
+      "count": 35
+    },
+    {
+      "month": "2026-06",
+      "count": 38
+    },
+    {
+      "month": "2026-07",
+      "count": 0
+    }
   ]
 }

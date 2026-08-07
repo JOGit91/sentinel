@@ -8,26 +8,72 @@
   "first_seen": "2023-03",
   "last_seen": "2026-06",
   "origin": "Unknown (suspected Russia-nexus)",
-  "motivation": ["financial"],
+  "motivation": [
+    "financial"
+  ],
   "description": "Akira is a prolific RaaS operation that ranked among the most active ransomware groups in 2025, reportedly extorting approximately $244M from 600+ victims. The group is notable for a rapid 'scan, steal, encrypt' lifecycle and for prioritizing backup infrastructure destruction early in intrusions to prevent victim recovery. In 2026 the group shifted away from experimental Rust code back to a faster, more stable C++ encryptor, reflecting a pragmatic tooling philosophy focused on operational efficiency.",
   "activity_score": 75,
   "monthly_victims": 42,
-  "targeted_sectors": ["Manufacturing","Education","MSP","Financial Services","Healthcare"],
-  "targeted_regions": ["North America","Europe"],
-  "ttps": [
-    { "technique_id": "T1190", "technique_name": "Exploit Public-Facing Application", "notes": "VPN appliances primary initial access; bypasses OTP-based MFA via inherited VPN config artifacts" },
-    { "technique_id": "T1078", "technique_name": "Valid Accounts", "notes": "Retained appliance secrets and compromised VPN credentials" },
-    { "technique_id": "T1486", "technique_name": "Data Encrypted for Impact", "notes": "C++ encryptor (reverted from Rust); hypervisor encryption to maximize infrastructure paralysis" },
-    { "technique_id": "T1490", "technique_name": "Inhibit System Recovery", "notes": "Backup infrastructure targeted early to prevent recovery — VSS deletion, backup software disabling" },
-    { "technique_id": "T1048", "technique_name": "Exfiltration Over Alternative Protocol", "notes": "Double extortion — data exfiltrated before encryption" },
-    { "technique_id": "T1021.004", "technique_name": "SSH", "notes": "SSH lateral movement observed in Linux/ESXi environments" },
-    { "technique_id": "T1562.001", "technique_name": "Disable or Modify Tools", "notes": "Security tooling disabled early in intrusion lifecycle" }
+  "targeted_sectors": [
+    "Manufacturing",
+    "Education",
+    "MSP",
+    "Financial Services",
+    "Healthcare"
   ],
-  "malware_families": ["Akira ransomware (C++ variant)", "Megazord", "RClone", "WinRAR", "AnyDesk", "PsExec"],
+  "targeted_regions": [
+    "North America",
+    "Europe"
+  ],
+  "ttps": [
+    {
+      "technique_id": "T1190",
+      "technique_name": "Exploit Public-Facing Application",
+      "notes": "VPN appliances primary initial access; bypasses OTP-based MFA via inherited VPN config artifacts"
+    },
+    {
+      "technique_id": "T1078",
+      "technique_name": "Valid Accounts",
+      "notes": "Retained appliance secrets and compromised VPN credentials"
+    },
+    {
+      "technique_id": "T1486",
+      "technique_name": "Data Encrypted for Impact",
+      "notes": "C++ encryptor (reverted from Rust); hypervisor encryption to maximize infrastructure paralysis"
+    },
+    {
+      "technique_id": "T1490",
+      "technique_name": "Inhibit System Recovery",
+      "notes": "Backup infrastructure targeted early to prevent recovery \u00e2\u20ac\u201d VSS deletion, backup software disabling"
+    },
+    {
+      "technique_id": "T1048",
+      "technique_name": "Exfiltration Over Alternative Protocol",
+      "notes": "Double extortion \u00e2\u20ac\u201d data exfiltrated before encryption"
+    },
+    {
+      "technique_id": "T1021.004",
+      "technique_name": "SSH",
+      "notes": "SSH lateral movement observed in Linux/ESXi environments"
+    },
+    {
+      "technique_id": "T1562.001",
+      "technique_name": "Disable or Modify Tools",
+      "notes": "Security tooling disabled early in intrusion lifecycle"
+    }
+  ],
+  "malware_families": [
+    "Akira ransomware (C++ variant)",
+    "Megazord",
+    "RClone",
+    "WinRAR",
+    "AnyDesk",
+    "PsExec"
+  ],
   "notable_techniques": [
     "Rapid 'scan, steal, encrypt' lifecycle compresses dwell time compared to peer RaaS operations",
     "Backup infrastructure and recovery tooling targeted early in the intrusion to prevent victim recovery before encryption",
-    "Reverted from an experimental Rust encryptor back to C++ in 2026 for speed and stability — a pragmatic, efficiency-driven tooling philosophy",
+    "Reverted from an experimental Rust encryptor back to C++ in 2026 for speed and stability \u00e2\u20ac\u201d a pragmatic, efficiency-driven tooling philosophy",
     "Reportedly extorted ~$244M from 600+ victims in 2025, ranking among the most active ransomware groups that year",
     "Hypervisor (ESXi/Hyper-V) encryption used to maximize infrastructure-wide paralysis in a single operation"
   ],
@@ -40,23 +86,44 @@
     "Monitor for rapid large-scale file modification events"
   ],
   "response_playbook": [
-    "Audit and rotate VPN/appliance credentials and secrets — Akira frequently relies on retained config artifacts and valid accounts for initial access (T1190/T1078).",
-    "Check backup infrastructure and recovery tooling first — Akira prioritizes destroying backups (VSS deletion, backup software disabling) early in the intrusion.",
+    "Audit and rotate VPN/appliance credentials and secrets \u00e2\u20ac\u201d Akira frequently relies on retained config artifacts and valid accounts for initial access (T1190/T1078).",
+    "Check backup infrastructure and recovery tooling first \u00e2\u20ac\u201d Akira prioritizes destroying backups (VSS deletion, backup software disabling) early in the intrusion.",
     "Hunt for ESXi/Hyper-V hypervisor encryption activity to scope the blast radius across virtualized infrastructure.",
     "Audit for RClone or WinRAR usage in bulk data-staging contexts indicating pre-encryption exfiltration.",
     "Look for unauthorized AnyDesk installations and PsExec/SSH lateral movement on Linux/ESXi hosts.",
     "Disable or restrict legitimate remote-access and file-compression tools where security tooling was found disabled (T1562.001)."
   ],
   "sources": [
-    { "title": "ConnectWise 2026 MSP Threat Report", "url": "https://www.connectwise.com/resources/msp-threat-report" }
+    {
+      "title": "ConnectWise 2026 MSP Threat Report",
+      "url": "https://www.connectwise.com/resources/msp-threat-report"
+    }
   ],
   "mention_count_30d": 28,
   "mention_history": [
-    { "month": "2026-01", "count": 22 },
-    { "month": "2026-02", "count": 24 },
-    { "month": "2026-03", "count": 25 },
-    { "month": "2026-04", "count": 26 },
-    { "month": "2026-05", "count": 27 },
-    { "month": "2026-06", "count": 28 }
+    {
+      "month": "2026-02",
+      "count": 0
+    },
+    {
+      "month": "2026-03",
+      "count": 0
+    },
+    {
+      "month": "2026-04",
+      "count": 0
+    },
+    {
+      "month": "2026-05",
+      "count": 0
+    },
+    {
+      "month": "2026-06",
+      "count": 0
+    },
+    {
+      "month": "2026-07",
+      "count": 0
+    }
   ]
 }

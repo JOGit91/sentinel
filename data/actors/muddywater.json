@@ -1,7 +1,16 @@
 {
   "id": "muddywater",
   "name": "MuddyWater",
-  "aliases": ["Mango Sandstorm", "Static Kitten", "Seedworm", "TEMP.Zagros", "Earth Vetala", "MERCURY", "TA450", "Boggy Serpens"],
+  "aliases": [
+    "Mango Sandstorm",
+    "Static Kitten",
+    "Seedworm",
+    "TEMP.Zagros",
+    "Earth Vetala",
+    "MERCURY",
+    "TA450",
+    "Boggy Serpens"
+  ],
   "mitre_attack_id": "G0069",
   "type": "apt",
   "model": "nation_state",
@@ -9,27 +18,79 @@
   "first_seen": "2017-01",
   "last_seen": "2026-06",
   "origin": "Iran (MOIS)",
-  "motivation": ["espionage", "intelligence_collection"],
-  "description": "MuddyWater is an Iranian Ministry of Intelligence and Security (MOIS)-linked espionage group active since at least 2017, historically focused on government, telecom, and oil & gas targets across the Middle East and North Africa. The group's hallmark is heavy reliance on legitimate remote monitoring and management (RMM) tools — Atera, ScreenConnect, PDQ, and Action1 — abused as off-the-shelf RATs to blend into normal IT traffic. In August-October 2025 the group ran a large phishing campaign from a compromised mailbox via NordVPN, hitting 100+ government entities (embassies, ministries of foreign affairs, consulates) with the new Phoenix v4 backdoor and a Chromium-based credential stealer disguised as a calculator app. Group-IB's February 2026 'Operation Olalampo' disclosure and the appearance of a new Deno-runtime backdoor ('Dindoor') targeting US/Canadian organizations show continued tooling evolution and a slow geographic expansion beyond its traditional MENA focus.",
+  "motivation": [
+    "espionage",
+    "intelligence_collection"
+  ],
+  "description": "MuddyWater is an Iranian Ministry of Intelligence and Security (MOIS)-linked espionage group active since at least 2017, historically focused on government, telecom, and oil & gas targets across the Middle East and North Africa. The group's hallmark is heavy reliance on legitimate remote monitoring and management (RMM) tools \u00e2\u20ac\u201d Atera, ScreenConnect, PDQ, and Action1 \u00e2\u20ac\u201d abused as off-the-shelf RATs to blend into normal IT traffic. In August-October 2025 the group ran a large phishing campaign from a compromised mailbox via NordVPN, hitting 100+ government entities (embassies, ministries of foreign affairs, consulates) with the new Phoenix v4 backdoor and a Chromium-based credential stealer disguised as a calculator app. Group-IB's February 2026 'Operation Olalampo' disclosure and the appearance of a new Deno-runtime backdoor ('Dindoor') targeting US/Canadian organizations show continued tooling evolution and a slow geographic expansion beyond its traditional MENA focus.",
   "activity_score": 70,
   "monthly_victims": null,
-  "targeted_sectors": ["Government","Telecommunications","Oil & Gas","Diplomatic / Embassies","Foreign Affairs Ministries"],
-  "targeted_regions": ["Middle East","North Africa","North America"],
-  "ttps": [
-    { "technique_id": "T1566.001", "technique_name": "Phishing: Spearphishing Attachment", "notes": "Malicious Word documents with VBA macros sent from compromised legitimate mailboxes" },
-    { "technique_id": "T1204.002", "technique_name": "User Execution: Malicious File", "notes": "Lures urge recipients to 'enable content' to trigger macro execution" },
-    { "technique_id": "T1219", "technique_name": "Remote Access Software", "notes": "Abuse of Atera Agent, ScreenConnect, PDQ Deploy/RMM, and Action1 as persistent remote access channels" },
-    { "technique_id": "T1071.001", "technique_name": "Application Layer Protocol: Web Protocols", "notes": "Phoenix backdoor communicates with C2 over WinHTTP" },
-    { "technique_id": "T1547.001", "technique_name": "Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder", "notes": "Phoenix v4 establishes persistence via Windows Registry modification" },
-    { "technique_id": "T1036.005", "technique_name": "Masquerading: Match Legitimate Name or Location", "notes": "Phoenix copies itself to C:\\ProgramData\\sysprocupdate.exe; credential stealer disguised as a calculator app" },
-    { "technique_id": "T1090.003", "technique_name": "Proxy: Multi-hop Proxy", "notes": "Use of NordVPN and other commercial VPN services to obscure operator infrastructure" },
-    { "technique_id": "T1555", "technique_name": "Credentials from Password Stores", "notes": "Custom Chromium-based credential stealer harvests browser-stored credentials" }
+  "targeted_sectors": [
+    "Government",
+    "Telecommunications",
+    "Oil & Gas",
+    "Diplomatic / Embassies",
+    "Foreign Affairs Ministries"
   ],
-  "malware_families": ["Phoenix backdoor (v4)", "BugSleep", "Chromium_Stealer", "Dindoor", "PowGoop", "MuddyC2Go"],
+  "targeted_regions": [
+    "Middle East",
+    "North Africa",
+    "North America"
+  ],
+  "ttps": [
+    {
+      "technique_id": "T1566.001",
+      "technique_name": "Phishing: Spearphishing Attachment",
+      "notes": "Malicious Word documents with VBA macros sent from compromised legitimate mailboxes"
+    },
+    {
+      "technique_id": "T1204.002",
+      "technique_name": "User Execution: Malicious File",
+      "notes": "Lures urge recipients to 'enable content' to trigger macro execution"
+    },
+    {
+      "technique_id": "T1219",
+      "technique_name": "Remote Access Software",
+      "notes": "Abuse of Atera Agent, ScreenConnect, PDQ Deploy/RMM, and Action1 as persistent remote access channels"
+    },
+    {
+      "technique_id": "T1071.001",
+      "technique_name": "Application Layer Protocol: Web Protocols",
+      "notes": "Phoenix backdoor communicates with C2 over WinHTTP"
+    },
+    {
+      "technique_id": "T1547.001",
+      "technique_name": "Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder",
+      "notes": "Phoenix v4 establishes persistence via Windows Registry modification"
+    },
+    {
+      "technique_id": "T1036.005",
+      "technique_name": "Masquerading: Match Legitimate Name or Location",
+      "notes": "Phoenix copies itself to C:\\ProgramData\\sysprocupdate.exe; credential stealer disguised as a calculator app"
+    },
+    {
+      "technique_id": "T1090.003",
+      "technique_name": "Proxy: Multi-hop Proxy",
+      "notes": "Use of NordVPN and other commercial VPN services to obscure operator infrastructure"
+    },
+    {
+      "technique_id": "T1555",
+      "technique_name": "Credentials from Password Stores",
+      "notes": "Custom Chromium-based credential stealer harvests browser-stored credentials"
+    }
+  ],
+  "malware_families": [
+    "Phoenix backdoor (v4)",
+    "BugSleep",
+    "Chromium_Stealer",
+    "Dindoor",
+    "PowGoop",
+    "MuddyC2Go"
+  ],
   "notable_techniques": [
     "Heavy reliance on legitimate, signed RMM software (Atera, ScreenConnect, PDQ, Action1) to evade detection by appearing as routine IT administration traffic",
     "Hijacking of legitimate, already-compromised mailboxes to send phishing from trusted senders rather than spoofed domains",
-    "Rapid backdoor iteration — Phoenix has progressed through multiple versions (v4 by late 2025) with incremental anti-analysis improvements",
+    "Rapid backdoor iteration \u00e2\u20ac\u201d Phoenix has progressed through multiple versions (v4 by late 2025) with incremental anti-analysis improvements",
     "Custom credential stealer disguised as a benign calculator utility to avoid triggering user suspicion",
     "Expansion into new runtimes (Deno-based 'Dindoor') signaling active tradecraft modernization beyond traditional VBA/PowerShell loaders",
     "Targets diplomatic and foreign-affairs entities specifically, consistent with Iranian state intelligence-collection priorities"
@@ -51,18 +112,48 @@
     "Scope hunting to diplomatic and foreign-affairs users specifically, given this actor's targeting profile."
   ],
   "sources": [
-    { "title": "Iran-Linked MuddyWater Targets 100+ Organizations in Global Espionage Campaign", "url": "https://thehackernews.com/2025/10/iran-linked-muddywater-targets-100.html" },
-    { "title": "Unmasking MuddyWater's New Malware Toolkit Driving International Espionage", "url": "https://www.group-ib.com/blog/muddywater-espionage/" },
-    { "title": "MuddyWater campaign abusing Atera Agents", "url": "https://harfanglab.io/insidethelab/muddywater-rmm-campaign/" },
-    { "title": "MuddyWater (Mango Sandstorm, Static Kitten, Seedworm) Group Profile", "url": "https://attack.mitre.org/groups/G0069/" }
+    {
+      "title": "Iran-Linked MuddyWater Targets 100+ Organizations in Global Espionage Campaign",
+      "url": "https://thehackernews.com/2025/10/iran-linked-muddywater-targets-100.html"
+    },
+    {
+      "title": "Unmasking MuddyWater's New Malware Toolkit Driving International Espionage",
+      "url": "https://www.group-ib.com/blog/muddywater-espionage/"
+    },
+    {
+      "title": "MuddyWater campaign abusing Atera Agents",
+      "url": "https://harfanglab.io/insidethelab/muddywater-rmm-campaign/"
+    },
+    {
+      "title": "MuddyWater (Mango Sandstorm, Static Kitten, Seedworm) Group Profile",
+      "url": "https://attack.mitre.org/groups/G0069/"
+    }
   ],
   "mention_count_30d": 24,
   "mention_history": [
-    { "month": "2026-01", "count": 14 },
-    { "month": "2026-02", "count": 19 },
-    { "month": "2026-03", "count": 17 },
-    { "month": "2026-04", "count": 18 },
-    { "month": "2026-05", "count": 22 },
-    { "month": "2026-06", "count": 24 }
+    {
+      "month": "2026-02",
+      "count": 0
+    },
+    {
+      "month": "2026-03",
+      "count": 0
+    },
+    {
+      "month": "2026-04",
+      "count": 0
+    },
+    {
+      "month": "2026-05",
+      "count": 1
+    },
+    {
+      "month": "2026-06",
+      "count": 0
+    },
+    {
+      "month": "2026-07",
+      "count": 0
+    }
   ]
 }

@@ -75,40 +75,53 @@ def save_activity(data: dict):
     ACTIVITY_FILE.write_text(json.dumps(data, indent=2))
 
 
-def update_actor_mention_count(actor_id: str, mentions_data: dict):
-    """Update 30-day mention count and month-by-month history for an actor."""
-    actor_file = ACTORS_DIR / f"{actor_id}.json"
-    if not actor_file.exists():
-        return
+def _rolling_6_months() -> list[str]:
+    """Return the 6 most recently completed calendar months as YYYY-MM strings."""
+    now = datetime.utcnow()
+    months = []
+    for i in range(5, -1, -1):
+        m = now.month - 1 - i
+        y = now.year
+        while m <= 0:
+            m += 12
+            y -= 1
+        months.append(f"{y:04d}-{m:02d}")
+    return months
 
-    actor = json.loads(actor_file.read_text())
 
-    # Count mentions in last 30 days from the mentions feed
-    cutoff = (datetime.utcnow() - timedelta(days=30)).strftime("%Y-%m-%d")
-    count = sum(
-        1 for m in mentions_data.get("mentions", [])
-        if m.get("actor_id") == actor_id and m.get("date", "") >= cutoff
-    )
-    actor["mention_count_30d"] = count
+def refresh_all_actor_histories(actor_profiles: list, mentions_data: dict):
+    """Rebuild rolling 6-month mention_history and mention_count_30d for every actor."""
+    mentions = mentions_data.get("mentions", [])
+    months = _rolling_6_months()
+    cutoff_30d = (datetime.utcnow() - timedelta(days=30)).strftime("%Y-%m-%d")
 
-    # Upsert current month into mention_history (keeps last 6 months)
-    current_month = datetime.utcnow().strftime("%Y-%m")
-    month_count = sum(
-        1 for m in mentions_data.get("mentions", [])
-        if m.get("actor_id") == actor_id and m.get("date", "").startswith(current_month)
-    )
-    history = actor.setdefault("mention_history", [])
-    for entry in history:
-        if entry.get("month") == current_month:
-            entry["count"] = month_count
-            break
-    else:
-        history.append({"month": current_month, "count": month_count})
-    # Keep only the 6 most recent months, sorted ascending
-    history.sort(key=lambda x: x["month"])
-    actor["mention_history"] = history[-6:]
+    for actor in actor_profiles:
+        actor_id = actor["id"]
+        actor_file = ACTORS_DIR / f"{actor_id}.json"
+        if not actor_file.exists():
+            continue
 
-    actor_file.write_text(json.dumps(actor, indent=2))
+        actor_data = json.loads(actor_file.read_text())
+
+        # 30-day count
+        actor_data["mention_count_30d"] = sum(
+            1 for m in mentions
+            if m.get("actor_id") == actor_id and m.get("date", "") >= cutoff_30d
+        )
+
+        # Per-month counts from mentions.json
+        history_map: dict[str, int] = {}
+        for m in mentions:
+            if m.get("actor_id") == actor_id:
+                date = m.get("date", "")
+                if len(date) >= 7:
+                    history_map[date[:7]] = history_map.get(date[:7], 0) + 1
+
+        actor_data["mention_history"] = [
+            {"month": mo, "count": history_map.get(mo, 0)} for mo in months
+        ]
+
+        actor_file.write_text(json.dumps(actor_data, indent=2))
 
 
 def merge_actor_intel(actor_id: str, extraction: dict):
@@ -257,25 +270,23 @@ def run_ingestor():
         mentions_data["mentions"] = mentions_data["mentions"][:200]
         save_mentions(mentions_data)
         print(f"Added {len(new_mentions)} new mentions")
-        
-        # Update actor mention counts
-        mentioned_actor_ids = set(m["actor_id"] for m in new_mentions if m["actor_id"])
-        for actor_id in mentioned_actor_ids:
-            update_actor_mention_count(actor_id, mentions_data)
-        
-        # Refresh activity.json
-        updated_actors = []
-        for actor in activity_data.get("top_actors", []):
-            profile_file = ACTORS_DIR / f"{actor['id']}.json"
-            if profile_file.exists():
-                profile = json.loads(profile_file.read_text())
-                actor["mention_count_30d"] = profile.get("mention_count_30d", actor["mention_count_30d"])
-                actor["activity_score"] = profile.get("activity_score", actor["activity_score"])
-            updated_actors.append(actor)
-        
-        activity_data["top_actors"] = sorted(updated_actors, key=lambda x: x["activity_score"], reverse=True)
-        save_activity(activity_data)
-    
+
+    # Always rebuild actor histories so the rolling window stays current
+    refresh_all_actor_histories(actor_profiles, mentions_data)
+
+    # Refresh activity.json
+    updated_actors = []
+    for actor in activity_data.get("top_actors", []):
+        profile_file = ACTORS_DIR / f"{actor['id']}.json"
+        if profile_file.exists():
+            profile = json.loads(profile_file.read_text())
+            actor["mention_count_30d"] = profile.get("mention_count_30d", actor["mention_count_30d"])
+            actor["activity_score"] = profile.get("activity_score", actor["activity_score"])
+        updated_actors.append(actor)
+
+    activity_data["top_actors"] = sorted(updated_actors, key=lambda x: x["activity_score"], reverse=True)
+    save_activity(activity_data)
+
     save_seen(seen)
     print(f"Ingestor complete — {len(new_articles)} articles processed, {len(new_mentions)} mentions added")
 
