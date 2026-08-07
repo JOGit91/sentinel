@@ -125,7 +125,7 @@ def refresh_all_actor_histories(actor_profiles: list, mentions_data: dict):
                     data_counts[date[:7]] = data_counts.get(date[:7], 0) + 1
 
         actor_data["mention_history"] = [
-            {"month": mo, "count": data_counts.get(mo, 0) if mo in covered_months else existing.get(mo, 0)}
+            {"month": mo, "count": max(data_counts.get(mo, 0), existing.get(mo, 0)) if mo in covered_months else existing.get(mo, 0)}
             for mo in months
         ]
 
