@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-07T17:41:48.492189Z",
+  "last_updated": "2026-08-07T17:59:30.167082Z",
   "top_actors": [
     {
       "id": "qilin",
@@ -7,7 +7,7 @@
       "activity_score": 98,
       "monthly_victims": 111,
       "type": "ransomware",
-      "mention_count_30d": 0
+      "mention_count_30d": 2
     },
     {
       "id": "the-gentlemen",
@@ -15,7 +15,7 @@
       "activity_score": 91,
       "monthly_victims": 66,
       "type": "ransomware",
-      "mention_count_30d": 0
+      "mention_count_30d": 1
     },
     {
       "id": "eviltokens",
@@ -23,7 +23,7 @@
       "activity_score": 90,
       "monthly_victims": null,
       "type": "initial_access",
-      "mention_count_30d": 0
+      "mention_count_30d": 1
     },
     {
       "id": "apt28",
@@ -31,7 +31,7 @@
       "activity_score": 88,
       "monthly_victims": null,
       "type": "apt",
-      "mention_count_30d": 0
+      "mention_count_30d": 1
     },
     {
       "id": "shinyhunters",
@@ -39,7 +39,7 @@
       "activity_score": 85,
       "monthly_victims": null,
       "type": "data_extortion",
-      "mention_count_30d": 0
+      "mention_count_30d": 1
     },
     {
       "id": "lazarus",
@@ -47,7 +47,7 @@
       "activity_score": 84,
       "monthly_victims": null,
       "type": "apt",
-      "mention_count_30d": 0
+      "mention_count_30d": 1
     },
     {
       "id": "silver-fox",
@@ -55,7 +55,7 @@
       "activity_score": 81,
       "monthly_victims": null,
       "type": "apt",
-      "mention_count_30d": 0
+      "mention_count_30d": 1
     },
     {
       "id": "turla",
@@ -63,7 +63,7 @@
       "activity_score": 81,
       "monthly_victims": null,
       "type": "apt",
-      "mention_count_30d": 0
+      "mention_count_30d": 1
     },
     {
       "id": "gamaredon",
@@ -79,7 +79,7 @@
       "activity_score": 79,
       "monthly_victims": null,
       "type": "supply_chain",
-      "mention_count_30d": 0
+      "mention_count_30d": 1
     },
     {
       "id": "apt38",
@@ -95,7 +95,7 @@
       "activity_score": 78,
       "monthly_victims": null,
       "type": "apt",
-      "mention_count_30d": 0
+      "mention_count_30d": 1
     },
     {
       "id": "salt-typhoon",
@@ -103,7 +103,7 @@
       "activity_score": 76,
       "monthly_victims": null,
       "type": "apt",
-      "mention_count_30d": 0
+      "mention_count_30d": 1
     },
     {
       "id": "akira",
@@ -111,7 +111,7 @@
       "activity_score": 75,
       "monthly_victims": 42,
       "type": "ransomware",
-      "mention_count_30d": 0
+      "mention_count_30d": 1
     },
     {
       "id": "kimsuky",
@@ -119,7 +119,7 @@
       "activity_score": 74,
       "monthly_victims": null,
       "type": "apt",
-      "mention_count_30d": 0
+      "mention_count_30d": 1
     },
     {
       "id": "unc6692",
