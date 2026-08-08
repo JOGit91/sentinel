@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-07T20:26:08.418167Z",
+  "last_updated": "2026-08-08T00:39:56.325082Z",
   "top_actors": [
     {
       "id": "qilin",
@@ -95,7 +95,7 @@
       "activity_score": 78,
       "monthly_victims": null,
       "type": "apt",
-      "mention_count_30d": 1
+      "mention_count_30d": 0
     },
     {
       "id": "salt-typhoon",
