@@ -1,6 +1,21 @@
 {
-  "last_updated": "2026-08-08T16:17:05.461262Z",
+  "last_updated": "2026-08-10T16:40:10.450569Z",
   "mentions": [
+    {
+      "date": "2026-08-10",
+      "actor_id": "the-com",
+      "actor_name": "The Com",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/member-of-the-com-sent-to-prison-for-blackmail-sextortion/",
+      "title": "Member of The Com sent to prison for blackmail, sextortion",
+      "context": "Named threat actor",
+      "confidence": "high",
+      "ttps_observed": [
+        "T1566",
+        "T1534"
+      ],
+      "summary": "A member of 'The Com,' a cybercrime collective known for targeting children and teenagers, was sentenced to two years in prison for blackmail and sextortion offenses against approximately 120 victims worldwide."
+    },
     {
       "date": "2026-08-08",
       "actor_id": "head-mare",
