@@ -1,6 +1,36 @@
 {
-  "last_updated": "2026-08-11T00:44:14.429828Z",
+  "last_updated": "2026-08-11T12:35:42.874115Z",
   "mentions": [
+    {
+      "date": "2026-08-11",
+      "actor_id": "gunra",
+      "actor_name": "Gunra",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/us-warns-of-gunra-ransomware-attacks-against-government-critical-infrastructure/",
+      "title": "US and South Korea warn of Gunra ransomware targeting govt agencies",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "U.S. federal agencies and South Korea's National Policy Agency issued a joint warning to government and critical infrastructure organizations worldwide about active Gunra ransomware attacks. Organizations are urged to secure their systems against this threat."
+    },
+    {
+      "date": "2026-08-11",
+      "actor_id": "head-mare",
+      "actor_name": "Head Mare",
+      "source": "Securelist (Kaspersky)",
+      "url": "https://securelist.com/tr/head-mare-targets-trueconf-server-with-phantomcore/120988/",
+      "title": "Head Mare APT is exploiting vulnerabilities in an unpatched TrueConf server to deliver PhantomCore and PhantomGraph to video conference participants",
+      "context": "Named threat actor",
+      "confidence": "high",
+      "ttps_observed": [
+        "T1190",
+        "T1566",
+        "T1059",
+        "T1105",
+        "T1204.002"
+      ],
+      "summary": "The Head Mare APT group is exploiting vulnerabilities in unpatched TrueConf servers to deliver malicious installers, which subsequently drop the PhantomCore and PhantomGraph backdoors onto victim systems of video conference participants."
+    },
     {
       "date": "2026-08-11",
       "actor_id": "bdthemes-(victim)",
