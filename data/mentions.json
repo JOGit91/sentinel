@@ -1,6 +1,21 @@
 {
-  "last_updated": "2026-08-11T12:35:42.874115Z",
+  "last_updated": "2026-08-11T16:43:34.941843Z",
   "mentions": [
+    {
+      "date": "2026-08-11",
+      "actor_id": "exfilsquad",
+      "actor_name": "ExfilSquad",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/wesco-confirms-security-incident-after-exfilsquad-claims-data-theft/",
+      "title": "Wesco confirms security incident after ExfilSquad claims data theft",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1486",
+        "T1657"
+      ],
+      "summary": "Global supply chain and distribution company Wesco confirmed it is investigating a cybersecurity incident after a threat actor known as ExfilSquad claimed responsibility for stealing data from the organization."
+    },
     {
       "date": "2026-08-11",
       "actor_id": "gunra",
