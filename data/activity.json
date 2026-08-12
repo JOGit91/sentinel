@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-12T12:38:05.441916Z",
+  "last_updated": "2026-08-12T16:43:21.062767Z",
   "top_actors": [
     {
       "id": "qilin",
@@ -47,7 +47,7 @@
       "activity_score": 84,
       "monthly_victims": null,
       "type": "apt",
-      "mention_count_30d": 2
+      "mention_count_30d": 3
     },
     {
       "id": "silver-fox",

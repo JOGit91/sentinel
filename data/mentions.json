@@ -1,6 +1,22 @@
 {
-  "last_updated": "2026-08-12T12:38:05.434250Z",
+  "last_updated": "2026-08-12T16:43:21.054325Z",
   "mentions": [
+    {
+      "date": "2026-08-12",
+      "actor_id": "lazarus",
+      "actor_name": "Lazarus Group",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/lazarus-hackers-exploited-windows-zero-day-to-target-defense-firms/",
+      "title": "Lazarus hackers exploited Windows zero-day to target defense firms",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1190",
+        "T1566.002",
+        "T1587.004"
+      ],
+      "summary": "North Korean Lazarus Group exploited a Windows zero-day vulnerability (CVE-2026-68820) targeting defense-sector companies as part of their Operation Dream Job campaign."
+    },
     {
       "date": "2026-08-12",
       "actor_id": "nightmare-eclipse",
