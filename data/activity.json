@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-11T20:31:19.867188Z",
+  "last_updated": "2026-08-12T00:51:41.308635Z",
   "top_actors": [
     {
       "id": "qilin",
@@ -63,7 +63,7 @@
       "activity_score": 81,
       "monthly_victims": null,
       "type": "apt",
-      "mention_count_30d": 1
+      "mention_count_30d": 0
     },
     {
       "id": "gamaredon",
