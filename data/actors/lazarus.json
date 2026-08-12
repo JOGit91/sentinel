@@ -101,7 +101,8 @@
     "Brandjacked and hijacked maintainer accounts used to push malicious versions of high-traffic npm packages (e.g. axios, with 100M+ weekly downloads)",
     "Single npm packages (e.g. 'bigmathutils') published clean first, then updated with malicious payloads after building download trust (10,000+ downloads)",
     "Pivot into Medusa ransomware operations against US healthcare and Middle East targets, blending espionage tooling with for-profit extortion",
-    "Crypto theft proceeds laundered through mixers and cross-chain bridges to fund DPRK weapons programs"
+    "Crypto theft proceeds laundered through mixers and cross-chain bridges to fund DPRK weapons programs",
+    "ForestTiger backdoor deployed post-exploitation"
   ],
   "detection_opportunities": [
     "New or modified scripts in .git/hooks/ (post-merge, post-checkout, pre-push) within cloned repositories",
@@ -138,7 +139,7 @@
       "url": "https://threatbook.io/blog/lazarus-group-poisons-axios-inside-the-npm-supply-chain-attack"
     }
   ],
-  "mention_count_30d": 1,
+  "mention_count_30d": 2,
   "mention_history": [
     {
       "month": "2026-02",

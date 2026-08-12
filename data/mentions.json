@@ -1,6 +1,22 @@
 {
-  "last_updated": "2026-08-12T00:51:41.302933Z",
+  "last_updated": "2026-08-12T08:57:31.196176Z",
   "mentions": [
+    {
+      "date": "2026-08-12",
+      "actor_id": "lazarus",
+      "actor_name": "Lazarus Group",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/fresh-windows-zero-day-exploited-in-north-korean-cyberattacks/",
+      "title": "Fresh Windows Zero-Day Exploited in North Korean Cyberattacks",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1190",
+        "T1068",
+        "T1543"
+      ],
+      "summary": "North Korean threat actors exploited a fresh Windows zero-day vulnerability to gain full system control and deploy the ForestTiger backdoor on victim systems."
+    },
     {
       "date": "2026-08-12",
       "actor_id": "deadlock",
