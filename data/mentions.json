@@ -1,6 +1,21 @@
 {
-  "last_updated": "2026-08-12T08:57:31.196176Z",
+  "last_updated": "2026-08-12T12:38:05.434250Z",
   "mentions": [
+    {
+      "date": "2026-08-12",
+      "actor_id": "nightmare-eclipse",
+      "actor_name": "Nightmare Eclipse",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/new-microsoft-defender-shieldbreak-zero-day-grants-system-privileges/",
+      "title": "New Microsoft Defender 'ShieldBreak' zero-day grants SYSTEM privileges",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1068",
+        "T1548.002"
+      ],
+      "summary": "A threat actor named Nightmare Eclipse released a zero-day exploit called 'ShieldBreak' targeting Microsoft Defender that grants SYSTEM privileges, published after Microsoft's August 2026 Patch Tuesday updates."
+    },
     {
       "date": "2026-08-12",
       "actor_id": "lazarus",
