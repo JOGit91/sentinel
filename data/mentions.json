@@ -1,6 +1,18 @@
 {
-  "last_updated": "2026-08-13T08:59:12.647561Z",
+  "last_updated": "2026-08-13T20:26:53.623520Z",
   "mentions": [
+    {
+      "date": "2026-08-13",
+      "actor_id": "jewelbug",
+      "actor_name": "Jewelbug",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/hackers-breach-govt-webmail-while-running-parallel-crypto-fraud/",
+      "title": "Hackers breach govt webmail while running parallel crypto fraud",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "The Jewelbug hacker group is conducting dual-track operations, combining espionage campaigns targeting government and military webmail systems with parallel cryptocurrency fraud activity."
+    },
     {
       "date": "2026-08-13",
       "actor_id": "nightmare-eclipse",
