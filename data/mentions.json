@@ -1,6 +1,41 @@
 {
-  "last_updated": "2026-08-12T16:43:21.054325Z",
+  "last_updated": "2026-08-13T08:59:12.647561Z",
   "mentions": [
+    {
+      "date": "2026-08-13",
+      "actor_id": "nightmare-eclipse",
+      "actor_name": "Nightmare Eclipse",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/nightmare-eclipse-drops-windows-zero-day-exploit-shieldbreak/",
+      "title": "Nightmare Eclipse Drops Windows Zero-Day Exploit \u2018ShieldBreak\u2019",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1068",
+        "T1548.002"
+      ],
+      "summary": "A threat actor named Nightmare Eclipse released a Windows zero-day exploit called 'ShieldBreak' on Patch Tuesday that allows any user to spawn a shell with SYSTEM-level privileges, representing a local privilege escalation vulnerability."
+    },
+    {
+      "date": "2026-08-13",
+      "actor_id": "armored-likho",
+      "actor_name": "Armored Likho",
+      "source": "Securelist (Kaspersky)",
+      "url": "https://securelist.com/armored-likho-still-toolkit/121033/",
+      "title": "Armored Likho expands its cyber-espionage toolkit",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1566",
+        "T1566.001",
+        "T1539",
+        "T1113",
+        "T1056",
+        "T1119",
+        "T1083"
+      ],
+      "summary": "Armored Likho has launched a new cyber-espionage campaign using phishing lures disguised as fundraising efforts to deliver the Still Toolkit, a new malware capable of stealing Telegram data and eavesdropping on victims."
+    },
     {
       "date": "2026-08-12",
       "actor_id": "lazarus",
