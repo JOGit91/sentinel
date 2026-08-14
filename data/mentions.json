@@ -1,6 +1,51 @@
 {
-  "last_updated": "2026-08-14T00:52:14.173984Z",
+  "last_updated": "2026-08-14T12:34:54.667759Z",
   "mentions": [
+    {
+      "date": "2026-08-14",
+      "actor_id": "clop",
+      "actor_name": "Clop",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/shell-investigates-potential-incident-after-clop-data-theft-claims/",
+      "title": "Shell investigates 'potential incident' after Clop data theft claims",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1537",
+        "T1657"
+      ],
+      "summary": "The Clop ransomware gang has claimed to have stolen 89GB of data from oil giant Shell, which has confirmed it is investigating a potential security incident related to the claim."
+    },
+    {
+      "date": "2026-08-14",
+      "actor_id": "shinyhunters",
+      "actor_name": "ShinyHunters",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/ringcentral-data-breach-exposed-info-of-16-million-accounts/",
+      "title": "RingCentral data breach exposed info of 1.6 million accounts",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [],
+      "summary": "The ShinyHunters extortion group breached RingCentral in July, stealing personal information from 1.6 million accounts, as reported via the Have I Been Pwned data breach notification service."
+    },
+    {
+      "date": "2026-08-14",
+      "actor_id": "honeymyte",
+      "actor_name": "HoneyMyte",
+      "source": "Securelist (Kaspersky)",
+      "url": "https://securelist.com/honeymyte-coolclient-driver-rootkit/121028/",
+      "title": "APT group HoneyMyte upgrades CoolClient: the backdoor gets a kernel-level Windows rootkit",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1014",
+        "T1055",
+        "T1564",
+        "T1071",
+        "T1543.003"
+      ],
+      "summary": "The APT group HoneyMyte has upgraded its CoolClient backdoor with a kernel-mode rootkit driver that hides malicious processes, files, and network connections from security tools and analysts."
+    },
     {
       "date": "2026-08-14",
       "actor_id": "akira",
