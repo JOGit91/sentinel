@@ -75,7 +75,10 @@
     "Backup infrastructure and recovery tooling targeted early in the intrusion to prevent victim recovery before encryption",
     "Reverted from an experimental Rust encryptor back to C++ in 2026 for speed and stability \u00e2\u20ac\u201d a pragmatic, efficiency-driven tooling philosophy",
     "Reportedly extorted ~$244M from 600+ victims in 2025, ranking among the most active ransomware groups that year",
-    "Hypervisor (ESXi/Hyper-V) encryption used to maximize infrastructure-wide paralysis in a single operation"
+    "Hypervisor (ESXi/Hyper-V) encryption used to maximize infrastructure-wide paralysis in a single operation",
+    "Safe Mode with Networking reboot used to disable EDR solution",
+    "Data exfiltration performed prior to encryption attempt",
+    "Encryption stage failed/incomplete"
   ],
   "detection_opportunities": [
     "Alert on VPN authentication from new devices or unusual geolocations",
@@ -91,7 +94,11 @@
     "Hunt for ESXi/Hyper-V hypervisor encryption activity to scope the blast radius across virtualized infrastructure.",
     "Audit for RClone or WinRAR usage in bulk data-staging contexts indicating pre-encryption exfiltration.",
     "Look for unauthorized AnyDesk installations and PsExec/SSH lateral movement on Linux/ESXi hosts.",
-    "Disable or restrict legitimate remote-access and file-compression tools where security tooling was found disabled (T1562.001)."
+    "Disable or restrict legitimate remote-access and file-compression tools where security tooling was found disabled (T1562.001).",
+    "Configure EDR solutions to remain active or alert during Safe Mode boots",
+    "Monitor for unexpected system reboots into Safe Mode via Windows event logs",
+    "Implement registry protections to prevent unauthorized Safe Mode configuration changes",
+    "Hunt for signs of data exfiltration even when ransomware encryption does not complete"
   ],
   "sources": [
     {
@@ -99,7 +106,7 @@
       "url": "https://www.connectwise.com/resources/msp-threat-report"
     }
   ],
-  "mention_count_30d": 1,
+  "mention_count_30d": 2,
   "mention_history": [
     {
       "month": "2026-02",

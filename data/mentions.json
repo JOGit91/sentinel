@@ -1,6 +1,25 @@
 {
-  "last_updated": "2026-08-13T20:26:53.623520Z",
+  "last_updated": "2026-08-14T00:52:14.173984Z",
   "mentions": [
+    {
+      "date": "2026-08-14",
+      "actor_id": "akira",
+      "actor_name": "Akira",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/akira-hackers-disable-edr-with-safe-mode-steal-data-but-fail-to-encrypt/",
+      "title": "Akira hackers disable EDR with Safe Mode, steal data but fail to encrypt",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1562.001",
+        "T1486",
+        "T1059",
+        "T1490",
+        "T1112",
+        "T1529"
+      ],
+      "summary": "An Akira ransomware affiliate was observed rebooting a compromised system into Safe Mode with Networking to disable EDR protections, successfully exfiltrating data but ultimately failing to complete the encryption stage of the attack."
+    },
     {
       "date": "2026-08-13",
       "actor_id": "jewelbug",
