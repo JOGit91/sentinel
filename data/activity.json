@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-14T20:19:04.084383Z",
+  "last_updated": "2026-08-15T00:29:14.505647Z",
   "top_actors": [
     {
       "id": "qilin",
@@ -55,7 +55,7 @@
       "activity_score": 81,
       "monthly_victims": null,
       "type": "apt",
-      "mention_count_30d": 1
+      "mention_count_30d": 0
     },
     {
       "id": "turla",
