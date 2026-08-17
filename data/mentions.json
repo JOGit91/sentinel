@@ -1,6 +1,34 @@
 {
-  "last_updated": "2026-08-14T12:34:54.667759Z",
+  "last_updated": "2026-08-17T12:17:01.959435Z",
   "mentions": [
+    {
+      "date": "2026-08-17",
+      "actor_id": "clop",
+      "actor_name": "Clop",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/philips-and-ge-investigating-clop-ransomware-data-theft-claims/",
+      "title": "Philips and GE investigating Clop ransomware data theft claims",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1537",
+        "T1486",
+        "T1190"
+      ],
+      "summary": "General Electric and Philips are investigating claims by the Clop ransomware gang that it breached their systems and exfiltrated data. Both companies have confirmed the investigation is ongoing."
+    },
+    {
+      "date": "2026-08-17",
+      "actor_id": "nightmare-eclipse",
+      "actor_name": "Nightmare Eclipse",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/microsoft-working-on-defender-patch-for-shieldbreak-zero-day/",
+      "title": "Microsoft working on Defender patch for ShieldBreak zero-day",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "Microsoft is developing a patch for the 'ShieldBreak' zero-day vulnerability (CVE-2026-69414) in Microsoft Defender, disclosed by security researcher 'Nightmare Eclipse'."
+    },
     {
       "date": "2026-08-14",
       "actor_id": "clop",
