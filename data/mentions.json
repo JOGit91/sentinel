@@ -1,6 +1,24 @@
 {
-  "last_updated": "2026-08-17T12:17:01.959435Z",
+  "last_updated": "2026-08-18T20:09:29.299698Z",
   "mentions": [
+    {
+      "date": "2026-08-18",
+      "actor_id": "clop",
+      "actor_name": "Clop",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/clop-created-custom-web-shell-for-windchill-data-theft-attacks/",
+      "title": "Clop created custom web shell for Windchill data theft attacks",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1505.003",
+        "T1078",
+        "T1560",
+        "T1213",
+        "T1071"
+      ],
+      "summary": "The Clop ransomware gang developed a custom Java web shell specifically targeting PTC Windchill and FlexPLM servers, with built-in capabilities to decrypt credentials, enumerate file repositories, and exfiltrate data. This tool represents a targeted effort by Clop to conduct data theft operations against organizations using these product lifecycle management platforms."
+    },
     {
       "date": "2026-08-17",
       "actor_id": "clop",
