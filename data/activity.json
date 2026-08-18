@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-17T20:12:37.750187Z",
+  "last_updated": "2026-08-18T00:28:06.208271Z",
   "top_actors": [
     {
       "id": "qilin",
@@ -111,7 +111,7 @@
       "activity_score": 75,
       "monthly_victims": 42,
       "type": "ransomware",
-      "mention_count_30d": 2
+      "mention_count_30d": 1
     },
     {
       "id": "kimsuky",
