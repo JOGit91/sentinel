@@ -1,6 +1,18 @@
 {
-  "last_updated": "2026-08-19T12:18:44.864339Z",
+  "last_updated": "2026-08-19T16:16:12.538194Z",
   "mentions": [
+    {
+      "date": "2026-08-19",
+      "actor_id": "mabna-institute",
+      "actor_name": "Mabna Institute",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/us-charges-iranian-hackers-over-34-billion-intellectual-property-theft/",
+      "title": "US charges Iranian hackers over $3.4 billion intellectual property theft",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [],
+      "summary": "The U.S. charged 17 Iranian nationals allegedly affiliated with the Mabna Institute, a hacking-for-hire organization, for conducting multi-year cyber espionage operations resulting in approximately $3.4 billion in intellectual property theft from American organizations."
+    },
     {
       "date": "2026-08-19",
       "actor_id": "mabna-institute",
