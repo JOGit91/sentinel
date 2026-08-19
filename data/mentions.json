@@ -1,6 +1,23 @@
 {
-  "last_updated": "2026-08-18T20:09:29.299698Z",
+  "last_updated": "2026-08-19T08:21:12.179125Z",
   "mentions": [
+    {
+      "date": "2026-08-19",
+      "actor_id": "medusa",
+      "actor_name": "Medusa",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/cisa-medusa-ransomware-hit-over-500-critical-infrastructure-orgs/",
+      "title": "CISA: Medusa ransomware hit over 500 critical infrastructure orgs",
+      "context": "Named threat actor",
+      "confidence": "high",
+      "ttps_observed": [
+        "T1486",
+        "T1190",
+        "T1078",
+        "T1489"
+      ],
+      "summary": "The FBI and CISA reported that the Medusa ransomware gang has compromised over 500 critical infrastructure organizations in the United States since June 2021. The advisory highlights ongoing ransomware activity targeting critical sectors."
+    },
     {
       "date": "2026-08-18",
       "actor_id": "clop",
