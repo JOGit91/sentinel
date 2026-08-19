@@ -1,6 +1,33 @@
 {
-  "last_updated": "2026-08-19T08:21:12.179125Z",
+  "last_updated": "2026-08-19T12:18:44.864339Z",
   "mentions": [
+    {
+      "date": "2026-08-19",
+      "actor_id": "mabna-institute",
+      "actor_name": "Mabna Institute",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/us-charges-17-iranian-hackers-offers-10-million-rewards-for-5-of-them/",
+      "title": "US Charges 17 Iranian Hackers, Offers $10 Million Rewards for 5 of Them",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "The US has charged 17 Iranian hackers affiliated with the Mabna Institute for targeting hundreds of universities and organizations in the US and abroad, offering $10 million rewards for information on 5 of the individuals."
+    },
+    {
+      "date": "2026-08-19",
+      "actor_id": "cl0p",
+      "actor_name": "Cl0p",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/cl0p-ransomware-group-names-over-40-victims-of-ptc-windchill-campaign/",
+      "title": "Cl0p Ransomware Group Names Over 40 Victims of PTC Windchill Campaign",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1190",
+        "T1657"
+      ],
+      "summary": "The Cl0p ransomware group has named over 40 victims of a campaign exploiting PTC Windchill, listing major organizations including Shell, Philips, Fiserv, Zebra, Mindray, and Largan Precision. The group is leveraging a vulnerability in the PTC Windchill product lifecycle management platform to exfiltrate data from targeted companies."
+    },
     {
       "date": "2026-08-19",
       "actor_id": "medusa",
