@@ -1,6 +1,22 @@
 {
-  "last_updated": "2026-08-19T16:16:12.538194Z",
+  "last_updated": "2026-08-20T00:29:13.559596Z",
   "mentions": [
+    {
+      "date": "2026-08-20",
+      "actor_id": "ransom-busters",
+      "actor_name": "Ransom Busters",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/rogue-ransomware-affiliate-ransom-busters-poses-as-recovery-firm/",
+      "title": "Rogue ransomware affiliate poses as recovery firm to steal payments",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1591",
+        "T1585",
+        "T1657"
+      ],
+      "summary": "A suspected ransomware affiliate is operating a fraudulent recovery firm called 'Ransom Busters,' contacting ransomware victims before attacks go public and offering to provide decryption keys and data deletion for a fee. The scheme represents a double-extortion tactic where the affiliate profits from both the initial attack and the fraudulent recovery service."
+    },
     {
       "date": "2026-08-19",
       "actor_id": "mabna-institute",
