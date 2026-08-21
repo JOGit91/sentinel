@@ -1,6 +1,22 @@
 {
-  "last_updated": "2026-08-21T08:23:30.442218Z",
+  "last_updated": "2026-08-21T12:20:02.057069Z",
   "mentions": [
+    {
+      "date": "2026-08-21",
+      "actor_id": "lazarus",
+      "actor_name": "Lazarus Group",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/rust-supply-chain-attack-linked-to-north-korean-hackers/",
+      "title": "Rust Supply Chain Attack Linked to North Korean Hackers",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1195.001",
+        "T1105",
+        "T1071"
+      ],
+      "summary": "North Korean hackers, attributed to Lazarus Group, conducted a supply chain attack by publishing a poisoned version of the 'arrayref' Rust crate that added a malicious dependency to fetch a remote payload from an attacker-controlled server."
+    },
     {
       "date": "2026-08-21",
       "actor_id": "head-mare",
