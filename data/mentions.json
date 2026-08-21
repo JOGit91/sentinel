@@ -1,6 +1,18 @@
 {
-  "last_updated": "2026-08-20T00:29:13.559596Z",
+  "last_updated": "2026-08-21T08:23:30.442218Z",
   "mentions": [
+    {
+      "date": "2026-08-21",
+      "actor_id": "head-mare",
+      "actor_name": "Head Mare",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/cisa-urges-immediate-patching-of-exploited-trueconf-vulnerabilities/",
+      "title": "CISA Urges Immediate Patching of Exploited TrueConf Vulnerabilities",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "The Head Mare hacktivist group has been exploiting vulnerabilities in TrueConf to deploy PhantomCore malware, prompting CISA to urge immediate patching of the affected systems."
+    },
     {
       "date": "2026-08-20",
       "actor_id": "ransom-busters",
