@@ -1,6 +1,22 @@
 {
-  "last_updated": "2026-08-24T12:20:59.892542Z",
+  "last_updated": "2026-08-24T16:21:09.699149Z",
   "mentions": [
+    {
+      "date": "2026-08-24",
+      "actor_id": "shinyhunters",
+      "actor_name": "ShinyHunters",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/reliaquest-confirms-failed-data-theft-attack-after-shinyhunters-breach/",
+      "title": "ReliaQuest confirms failed data-theft attack after ShinyHunters breach",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1566",
+        "T1534",
+        "T1078"
+      ],
+      "summary": "ShinyHunters conducted a social engineering attack against cybersecurity firm ReliaQuest by impersonating an internal security team member targeting an employee; ReliaQuest confirmed the data-theft attempt failed."
+    },
     {
       "date": "2026-08-24",
       "actor_id": "juan-manuel-gouveia-aguilera",
