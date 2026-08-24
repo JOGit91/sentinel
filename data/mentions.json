@@ -1,6 +1,33 @@
 {
-  "last_updated": "2026-08-21T12:20:02.057069Z",
+  "last_updated": "2026-08-24T12:20:59.892542Z",
   "mentions": [
+    {
+      "date": "2026-08-24",
+      "actor_id": "juan-manuel-gouveia-aguilera",
+      "actor_name": "Juan Manuel Gouveia-Aguilera",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/venezuelan-gets-record-federal-prison-term-for-atm-jackpotting/",
+      "title": "Venezuelan Gets Record Federal Prison Term for ATM Jackpotting",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1565",
+        "T0828"
+      ],
+      "summary": "Venezuelan national Juan Manuel Gouveia-Aguilera was sentenced to 8 years in federal prison for his role in an ATM jackpotting scheme that resulted in millions of dollars in losses."
+    },
+    {
+      "date": "2026-08-24",
+      "actor_id": "iran-linked-hackers",
+      "actor_name": "Iran-linked hackers",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/iran-linked-hackers-shut-down-uk-power-plant-for-four-days/",
+      "title": "Iran-Linked Hackers Shut Down UK Power Plant for Four Days",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "Iran-linked threat actors reportedly shut down a UK power plant for four days, causing real-world operational disruption and raising concerns about the resilience of Britain's distributed energy infrastructure."
+    },
     {
       "date": "2026-08-21",
       "actor_id": "lazarus",
