@@ -1,6 +1,21 @@
 {
-  "last_updated": "2026-08-24T16:21:09.699149Z",
+  "last_updated": "2026-08-24T20:15:28.066272Z",
   "mentions": [
+    {
+      "date": "2026-08-24",
+      "actor_id": "shinyhunters",
+      "actor_name": "ShinyHunters",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/reliaquest-confirms-shinyhunters-hack-but-says-impact-was-limited/",
+      "title": "ReliaQuest Confirms ShinyHunters Hack, but Says Impact Was Limited",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1566",
+        "T1078"
+      ],
+      "summary": "ShinyHunters compromised a ReliaQuest employee via phishing and gained access to a dashboard, though ReliaQuest states the overall impact was limited."
+    },
     {
       "date": "2026-08-24",
       "actor_id": "shinyhunters",
