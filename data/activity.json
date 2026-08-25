@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-24T20:15:28.073765Z",
+  "last_updated": "2026-08-25T00:30:08.112292Z",
   "top_actors": [
     {
       "id": "qilin",
@@ -119,7 +119,7 @@
       "activity_score": 74,
       "monthly_victims": null,
       "type": "apt",
-      "mention_count_30d": 1
+      "mention_count_30d": 0
     },
     {
       "id": "unc6692",
