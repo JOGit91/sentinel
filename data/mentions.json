@@ -1,6 +1,24 @@
 {
-  "last_updated": "2026-08-24T20:15:28.066272Z",
+  "last_updated": "2026-08-26T00:31:35.254546Z",
   "mentions": [
+    {
+      "date": "2026-08-26",
+      "actor_id": "anonymouskit",
+      "actor_name": "AnonyMousKIT",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/anonymouskit-phaas-uses-voice-ai-agents-to-phish-iphone-passcodes/",
+      "title": "AnonyMousKIT PhaaS uses voice AI agents to phish iPhone passcodes",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1566",
+        "T1566.004",
+        "T1598",
+        "T1539",
+        "T1657"
+      ],
+      "summary": "AnonyMousKIT is a phishing-as-a-service platform that uses AI-driven voice agents to trick victims into revealing iPhone passcodes and Apple ID credentials, enabling attackers to unlock stolen devices and disable Activation Lock."
+    },
     {
       "date": "2026-08-24",
       "actor_id": "shinyhunters",
