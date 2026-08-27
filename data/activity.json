@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-27T05:18:52.769723Z",
+  "last_updated": "2026-08-27T18:27:12.401978Z",
   "top_actors": [
     {
       "id": "qilin",
@@ -79,7 +79,7 @@
       "activity_score": 79,
       "monthly_victims": null,
       "type": "supply_chain",
-      "mention_count_30d": 0
+      "mention_count_30d": 2
     },
     {
       "id": "apt38",

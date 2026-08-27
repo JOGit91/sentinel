@@ -1,6 +1,33 @@
 {
-  "last_updated": "2026-08-26T00:31:35.254546Z",
+  "last_updated": "2026-08-27T18:27:12.393979Z",
   "mentions": [
+    {
+      "date": "2026-08-27",
+      "actor_id": "teampcp",
+      "actor_name": "TeamPCP",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/australia-arrests-alleged-teampcp-hackers-behind-supply-chain-attacks/",
+      "title": "Australia arrests alleged TeamPCP hackers behind supply-chain attacks",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1195",
+        "T1195.002"
+      ],
+      "summary": "Australian authorities arrested and charged two individuals allegedly linked to the TeamPCP hacking group, which is accused of conducting developer supply-chain attacks. The arrests follow investigations into a series of far-reaching supply-chain compromises attributed to the group."
+    },
+    {
+      "date": "2026-08-27",
+      "actor_id": "teampcp",
+      "actor_name": "TeamPCP",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/australia-arrests-2-alleged-teampcp-hackers/",
+      "title": "Australia Arrests 2 Alleged TeamPCP Hackers",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "Australian authorities, in collaboration with US law enforcement, arrested two alleged members of the cybercriminal group TeamPCP, who face significant prison sentences."
+    },
     {
       "date": "2026-08-26",
       "actor_id": "anonymouskit",
