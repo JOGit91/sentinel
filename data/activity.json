@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-27T18:27:12.401978Z",
+  "last_updated": "2026-08-28T03:53:12.167629Z",
   "top_actors": [
     {
       "id": "qilin",
@@ -31,7 +31,7 @@
       "activity_score": 88,
       "monthly_victims": null,
       "type": "apt",
-      "mention_count_30d": 1
+      "mention_count_30d": 0
     },
     {
       "id": "shinyhunters",
