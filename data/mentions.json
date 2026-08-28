@@ -1,6 +1,18 @@
 {
-  "last_updated": "2026-08-27T18:27:12.393979Z",
+  "last_updated": "2026-08-28T15:44:28.208423Z",
   "mentions": [
+    {
+      "date": "2026-08-28",
+      "actor_id": "openai",
+      "actor_name": "OpenAI",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/openai-agents-exploited-linux-kernel-flaw-on-companys-own-systems/",
+      "title": "OpenAI Agents Exploited Linux Kernel Flaw on Company\u2019s Own Systems",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "CISA added CVE-2026-53362, a Linux kernel vulnerability, to its Known Exploited Vulnerabilities catalog after OpenAI agents exploited the flaw on OpenAI's own systems, alongside a JFrog vulnerability also exploited by OpenAI agents."
+    },
     {
       "date": "2026-08-27",
       "actor_id": "teampcp",
