@@ -1,6 +1,23 @@
 {
-  "last_updated": "2026-08-28T15:44:28.208423Z",
+  "last_updated": "2026-08-29T00:11:45.013642Z",
   "mentions": [
+    {
+      "date": "2026-08-29",
+      "actor_id": "shinyhunters",
+      "actor_name": "ShinyHunters",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/mckesson-discloses-breach-after-shinyhunters-claims-patient-data-theft/",
+      "title": "McKesson discloses breach after ShinyHunters claims patient data theft",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1190",
+        "T1078",
+        "T1530",
+        "T1567"
+      ],
+      "summary": "ShinyHunters claimed to have stolen 284 million patient records from McKesson, a major healthcare and pharmaceutical distribution company, via unauthorized access to third-party applications. McKesson has disclosed the cybersecurity incident publicly."
+    },
     {
       "date": "2026-08-28",
       "actor_id": "openai",
