@@ -1,6 +1,18 @@
 {
-  "last_updated": "2026-08-29T00:11:45.013642Z",
+  "last_updated": "2026-08-30T15:34:06.624225Z",
   "mentions": [
+    {
+      "date": "2026-08-30",
+      "actor_id": "fulcrumsec",
+      "actor_name": "FulcrumSec",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/fulcrumsec-claims-manchester-airports-hack-theft-of-86-gb-of-data/",
+      "title": "FulcrumSec claims Manchester Airports hack, theft of 86 GB of data",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [],
+      "summary": "Threat actor FulcrumSec claims to have stolen 86 GB of data from Manchester Airports Group (MAG), with BleepingComputer validating at least one traveller record; leaked samples reportedly contain detailed customer, booking, and travel information beyond what MAG publicly disclosed."
+    },
     {
       "date": "2026-08-29",
       "actor_id": "shinyhunters",
