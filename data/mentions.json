@@ -1,6 +1,42 @@
 {
-  "last_updated": "2026-08-30T15:34:06.624225Z",
+  "last_updated": "2026-08-31T10:10:11.646406Z",
   "mentions": [
+    {
+      "date": "2026-08-31",
+      "actor_id": "rhysida",
+      "actor_name": "Rhysida",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/berlin-wont-pay-extortion-group-claiming-data-theft/",
+      "title": "Berlin Won\u2019t Pay Extortion Group Claiming Data Theft",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1486",
+        "T1657",
+        "T1530"
+      ],
+      "summary": "The Rhysida ransomware group claims to have exfiltrated over 5TB of data, including personal information and credentials, from a Berlin government entity, which has refused to pay the extortion demand."
+    },
+    {
+      "date": "2026-08-31",
+      "actor_id": "storm-1811",
+      "actor_name": "Storm-1811",
+      "source": "Unit 42 (Palo Alto)",
+      "url": "https://unit42.paloaltonetworks.com/spring-ring-voice-phishing-campaigns/",
+      "title": "Spring Ring: An Inside Look at Voice Phishing Campaigns in Microsoft Teams",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1566",
+        "T1566.004",
+        "T1078",
+        "T1204",
+        "T1219",
+        "T1021",
+        "T1078.002"
+      ],
+      "summary": "The Spring Ring campaign abuses Microsoft Teams voice phishing (vishing) to deploy malware and target enterprise domain controllers, as analyzed by Palo Alto Networks Unit 42."
+    },
     {
       "date": "2026-08-30",
       "actor_id": "fulcrumsec",
