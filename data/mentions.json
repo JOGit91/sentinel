@@ -1,6 +1,67 @@
 {
-  "last_updated": "2026-08-31T10:10:11.646406Z",
+  "last_updated": "2026-08-31T18:17:30.764251Z",
   "mentions": [
+    {
+      "date": "2026-08-31",
+      "actor_id": "fire-ant",
+      "actor_name": "Fire Ant",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/chinese-fire-ant-hackers-turn-cisco-routers-into-spying-platforms/",
+      "title": "Chinese Fire Ant hackers turn Cisco routers into spying platforms",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1572",
+        "T1599",
+        "T1600",
+        "T1601",
+        "T1205"
+      ],
+      "summary": "A Chinese threat actor tracked as Fire Ant was observed compromising Cisco IOS XR routers by establishing covert GRE tunnels that are not visible in the running configuration or commit history, effectively turning network infrastructure into espionage platforms."
+    },
+    {
+      "date": "2026-08-31",
+      "actor_id": "rhysida",
+      "actor_name": "Rhysida",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/berlin-confirms-data-theft-after-rhysida-ransomware-attack-claims/",
+      "title": "Berlin confirms data theft after Rhysida ransomware attack claims",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1486",
+        "T1657",
+        "T1041"
+      ],
+      "summary": "The Rhysida ransomware gang has claimed responsibility for an attack on Berlin's city administration, with the city confirming that data was stolen and that threat actors are attempting extortion via a data leak site listing."
+    },
+    {
+      "date": "2026-08-31",
+      "actor_id": "nightmare-eclipse",
+      "actor_name": "Nightmare Eclipse",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/nightmare-eclipse-drops-hardbreacher-kaspersky-product-exploit/",
+      "title": "Nightmare Eclipse Drops \u2018HardBreacher\u2019 Kaspersky Product Exploit",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "A threat actor known as Nightmare Eclipse released an exploit tool called 'HardBreacher' targeting a vulnerability in Kaspersky Endpoint Security, which Kaspersky has since patched."
+    },
+    {
+      "date": "2026-08-31",
+      "actor_id": "shinyhunters",
+      "actor_name": "ShinyHunters",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/mckesson-confirms-data-breach-as-attacker-deadline-looms/",
+      "title": "McKesson Confirms Data Breach as Attacker Deadline Looms",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1530",
+        "T1657"
+      ],
+      "summary": "ShinyHunters extortion group has claimed responsibility for stealing 284 million records from McKesson, a major healthcare company, which has confirmed the data breach as an attacker-imposed deadline approaches."
+    },
     {
       "date": "2026-08-31",
       "actor_id": "rhysida",
