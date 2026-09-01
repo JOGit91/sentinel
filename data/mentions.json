@@ -1,6 +1,18 @@
 {
-  "last_updated": "2026-08-31T18:17:30.764251Z",
+  "last_updated": "2026-09-01T08:57:13.166554Z",
   "mentions": [
+    {
+      "date": "2026-09-01",
+      "actor_id": "mirage-kitten",
+      "actor_name": "Mirage Kitten",
+      "source": "Securelist (Kaspersky)",
+      "url": "https://securelist.com/mirage-kitten-new-backdoors-noderabbit-pollcat/121244/",
+      "title": "Mirage Kitten targeting aviation and FinTech sectors across the Middle East and Africa with a new malware set",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [],
+      "summary": "Mirage Kitten is conducting attacks against aviation and FinTech organizations across the Middle East and Africa using two previously undocumented malware families: NodeRabbit, written in Node.js, and PollCat, written in JavaScript. The activity was discovered and reported by Kaspersky researchers."
+    },
     {
       "date": "2026-08-31",
       "actor_id": "fire-ant",
