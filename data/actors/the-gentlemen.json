@@ -116,12 +116,8 @@
       "url": "https://www.huntress.com/blog/the-gentlemen-ransomware"
     }
   ],
-  "mention_count_30d": 1,
+  "mention_count_30d": 0,
   "mention_history": [
-    {
-      "month": "2026-02",
-      "count": 19
-    },
     {
       "month": "2026-03",
       "count": 26
@@ -141,6 +137,10 @@
     {
       "month": "2026-07",
       "count": 34
+    },
+    {
+      "month": "2026-08",
+      "count": 1
     }
   ]
 }

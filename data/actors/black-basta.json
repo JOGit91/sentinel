@@ -117,10 +117,6 @@
   "mention_count_30d": 0,
   "mention_history": [
     {
-      "month": "2026-02",
-      "count": 18
-    },
-    {
       "month": "2026-03",
       "count": 15
     },
@@ -139,6 +135,10 @@
     {
       "month": "2026-07",
       "count": 10
+    },
+    {
+      "month": "2026-08",
+      "count": 0
     }
   ]
 }
