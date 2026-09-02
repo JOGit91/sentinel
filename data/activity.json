@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-01T22:08:36.260866Z",
+  "last_updated": "2026-09-02T01:37:25.824980Z",
   "top_actors": [
     {
       "id": "qilin",
@@ -7,7 +7,7 @@
       "activity_score": 98,
       "monthly_victims": 111,
       "type": "ransomware",
-      "mention_count_30d": 2
+      "mention_count_30d": 1
     },
     {
       "id": "the-gentlemen",
