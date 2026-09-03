@@ -1,6 +1,26 @@
 {
-  "last_updated": "2026-09-01T08:57:13.166554Z",
+  "last_updated": "2026-09-03T01:41:35.931679Z",
   "mentions": [
+    {
+      "date": "2026-09-03",
+      "actor_id": "storm-1811",
+      "actor_name": "Storm-1811",
+      "source": "Microsoft Security Blog",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/09/02/impersonating-it-support-threat-actors-turn-remote-session-into-enterprise-wide-access/",
+      "title": "Impersonating IT support: how threat actors turn a remote session into enterprise-wide access",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1566",
+        "T1534",
+        "T1219",
+        "T1059.007",
+        "T1078",
+        "T1021",
+        "T1204"
+      ],
+      "summary": "Microsoft Threat Intelligence observed a human-operated intrusion campaign abusing Microsoft Teams external collaboration to impersonate IT support, gain remote access, and deploy a Node.js-based implant, enabling lateral movement across enterprise environments using legitimate tools."
+    },
     {
       "date": "2026-09-01",
       "actor_id": "mirage-kitten",
