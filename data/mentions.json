@@ -1,6 +1,37 @@
 {
-  "last_updated": "2026-09-03T01:41:35.931679Z",
+  "last_updated": "2026-09-04T15:15:23.464875Z",
   "mentions": [
+    {
+      "date": "2026-09-04",
+      "actor_id": "nightmare-eclipse",
+      "actor_name": "Nightmare Eclipse",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/new-crowdstrike-falconflank-zero-day-grants-system-privileges/",
+      "title": "New CrowdStrike 'FalconFlank' zero-day grants SYSTEM privileges",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1068"
+      ],
+      "summary": "An anonymous researcher known as 'Nightmare Eclipse' released a zero-day exploit called 'FalconFlank' targeting CrowdStrike Falcon that allows privilege escalation to SYSTEM on up-to-date Windows systems."
+    },
+    {
+      "date": "2026-09-04",
+      "actor_id": "toy-ghouls",
+      "actor_name": "Toy Ghouls",
+      "source": "Securelist (Kaspersky)",
+      "url": "https://securelist.com/toy-ghouls-new-hivemq-and-element-backdoors/121270/",
+      "title": "Angry Birds: Toy Ghouls\u2019 new toys",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1102",
+        "T1571",
+        "T1059",
+        "T1573"
+      ],
+      "summary": "Kaspersky GERT researchers identified two new backdoors attributed to the Toy Ghouls threat group, one leveraging the HiveMQ MQTT broker and another using the Matrix-based Element messenger as command-and-control channels, representing an abuse of legitimate messaging infrastructure to evade detection."
+    },
     {
       "date": "2026-09-03",
       "actor_id": "storm-1811",
