@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-05T21:44:54.244622Z",
+  "last_updated": "2026-09-06T01:30:37.463132Z",
   "top_actors": [
     {
       "id": "qilin",
@@ -103,7 +103,7 @@
       "activity_score": 76,
       "monthly_victims": null,
       "type": "apt",
-      "mention_count_30d": 1
+      "mention_count_30d": 0
     },
     {
       "id": "akira",
