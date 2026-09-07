@@ -1,6 +1,39 @@
 {
-  "last_updated": "2026-09-04T15:15:23.464875Z",
+  "last_updated": "2026-09-07T16:43:54.227931Z",
   "mentions": [
+    {
+      "date": "2026-09-07",
+      "actor_id": "nightmare-eclipse",
+      "actor_name": "Nightmare Eclipse",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/nightmare-eclipse-drops-crowdstrike-nvidia-avast-zero-day-exploits/",
+      "title": "Nightmare Eclipse Drops CrowdStrike, Nvidia, Avast Zero-Day Exploits",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1068",
+        "T1548"
+      ],
+      "summary": "A threat actor known as Nightmare Eclipse has released proof-of-concept zero-day exploits targeting CrowdStrike, Nvidia, and Avast products, all leading to privilege escalation and spawning a shell with System privileges."
+    },
+    {
+      "date": "2026-09-07",
+      "actor_id": "north-korean-hackers",
+      "actor_name": "North Korean Hackers",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/north-korean-hackers-deploy-new-linux-espionage-toolkit/",
+      "title": "North Korean Hackers Deploy New Linux Espionage Toolkit",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1543",
+        "T1505.003",
+        "T1071",
+        "T1560",
+        "T1074"
+      ],
+      "summary": "North Korean threat actors have deployed a new Linux-based espionage toolkit that embeds a backdoor within HAProxy, targeting automotive and media organizations in South Korea for long-term surveillance operations."
+    },
     {
       "date": "2026-09-04",
       "actor_id": "nightmare-eclipse",
