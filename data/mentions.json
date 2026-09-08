@@ -1,6 +1,21 @@
 {
-  "last_updated": "2026-09-07T16:43:54.227931Z",
+  "last_updated": "2026-09-08T19:03:21.145231Z",
   "mentions": [
+    {
+      "date": "2026-09-08",
+      "actor_id": "shinyhunters",
+      "actor_name": "ShinyHunters",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/shinyhunters-hackers-claim-breach-of-florida-david-dmv-database/",
+      "title": "ShinyHunters hackers claim breach of Florida \"DAVID\" DMV database",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1530",
+        "T1657"
+      ],
+      "summary": "ShinyHunters claims to have breached the Florida DMV's 'DAVID' online platform and exfiltrated over 200,000 driver records. The group is threatening extortion based on the stolen data."
+    },
     {
       "date": "2026-09-07",
       "actor_id": "nightmare-eclipse",
