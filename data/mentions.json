@@ -1,6 +1,21 @@
 {
-  "last_updated": "2026-09-08T22:05:10.226590Z",
+  "last_updated": "2026-09-09T08:25:13.006110Z",
   "mentions": [
+    {
+      "date": "2026-09-09",
+      "actor_id": "nightmare-eclipse",
+      "actor_name": "Nightmare Eclipse",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/new-microsoft-defender-shieldcrash-zero-day-grants-system-access/",
+      "title": "New Microsoft Defender 'ShieldCrash' zero-day grants SYSTEM access",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1068",
+        "T1543"
+      ],
+      "summary": "An anonymous researcher named Nightmare Eclipse released a zero-day exploit called ShieldCrash targeting Microsoft Defender that grants SYSTEM-level access, disclosed after Microsoft's September 2026 Patch Tuesday updates."
+    },
     {
       "date": "2026-09-08",
       "actor_id": "doppelcart",
