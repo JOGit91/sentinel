@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-09T15:25:11.112828Z",
+  "last_updated": "2026-09-09T18:54:31.376549Z",
   "top_actors": [
     {
       "id": "qilin",
@@ -15,7 +15,7 @@
       "activity_score": 91,
       "monthly_victims": 66,
       "type": "ransomware",
-      "mention_count_30d": 0
+      "mention_count_30d": 1
     },
     {
       "id": "eviltokens",

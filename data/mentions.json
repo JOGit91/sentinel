@@ -1,6 +1,22 @@
 {
-  "last_updated": "2026-09-09T08:25:13.006110Z",
+  "last_updated": "2026-09-09T18:54:31.371613Z",
   "mentions": [
+    {
+      "date": "2026-09-09",
+      "actor_id": "the-gentlemen",
+      "actor_name": "The Gentlemen",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/veradigm-discloses-patient-data-breach-after-gentlemen-gang-claims-attack/",
+      "title": "Veradigm warns of patient data breach after ransomware gang claims attack",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1190",
+        "T1486",
+        "T1657"
+      ],
+      "summary": "Healthcare technology company Veradigm disclosed a patient data breach resulting from a ransomware attack by The Gentlemen gang targeting one of its third-party vendors. Personal data of patients was exposed as a result of the third-party compromise."
+    },
     {
       "date": "2026-09-09",
       "actor_id": "nightmare-eclipse",
