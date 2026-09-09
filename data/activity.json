@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-09T18:54:31.376549Z",
+  "last_updated": "2026-09-09T22:02:17.989060Z",
   "top_actors": [
     {
       "id": "qilin",
@@ -39,7 +39,7 @@
       "activity_score": 85,
       "monthly_victims": null,
       "type": "data_extortion",
-      "mention_count_30d": 6
+      "mention_count_30d": 7
     },
     {
       "id": "lazarus",

@@ -1,6 +1,23 @@
 {
-  "last_updated": "2026-09-09T18:54:31.371613Z",
+  "last_updated": "2026-09-09T22:02:17.980460Z",
   "mentions": [
+    {
+      "date": "2026-09-09",
+      "actor_id": "shinyhunters",
+      "actor_name": "ShinyHunters",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/adapthealth-confirms-41-million-people-exposed-in-july-cyberattack/",
+      "title": "AdaptHealth confirms 4.1 million people exposed in July cyberattack",
+      "context": "Named threat actor",
+      "confidence": "high",
+      "ttps_observed": [
+        "T1486",
+        "T1078",
+        "T1566",
+        "T1041"
+      ],
+      "summary": "AdaptHealth confirmed that a July cyberattack attributed to ShinyHunters exposed the personal data of 4.1 million individuals. The healthcare company disclosed the breach impacting a significant number of patients and potentially sensitive health-related information."
+    },
     {
       "date": "2026-09-09",
       "actor_id": "the-gentlemen",
