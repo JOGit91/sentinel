@@ -1,6 +1,30 @@
 {
-  "last_updated": "2026-09-11T08:21:31.499130Z",
+  "last_updated": "2026-09-11T15:21:13.422750Z",
   "mentions": [
+    {
+      "date": "2026-09-11",
+      "actor_id": "oleksii-oleksiyovych-lytvynenko",
+      "actor_name": "Oleksii Oleksiyovych Lytvynenko",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/ukrainian-conti-ransomware-developer-sentenced-to-4-years-in-us-prison/",
+      "title": "Ukrainian Conti Ransomware Developer Sentenced to 4 Years in US Prison",
+      "context": "Named threat actor",
+      "confidence": "high",
+      "ttps_observed": [],
+      "summary": "Ukrainian national Oleksii Oleksiyovych Lytvynenko, a developer for the Conti ransomware group, was sentenced to 4 years in US prison after being arrested in Ireland in 2023."
+    },
+    {
+      "date": "2026-09-11",
+      "actor_id": "conti",
+      "actor_name": "Conti",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/ukrainian-conti-ransomware-developer-sentenced-to-4-years-in-us-prison/",
+      "title": "Ukrainian Conti Ransomware Developer Sentenced to 4 Years in US Prison",
+      "context": "Named threat actor",
+      "confidence": "high",
+      "ttps_observed": [],
+      "summary": "Ukrainian national Oleksii Oleksiyovych Lytvynenko, a developer for the Conti ransomware group, was sentenced to 4 years in US prison after being arrested in Ireland in 2023."
+    },
     {
       "date": "2026-09-11",
       "actor_id": "conti",
