@@ -1,6 +1,18 @@
 {
-  "last_updated": "2026-09-09T22:02:17.980460Z",
+  "last_updated": "2026-09-11T08:21:31.499130Z",
   "mentions": [
+    {
+      "date": "2026-09-11",
+      "actor_id": "conti",
+      "actor_name": "Conti",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/conti-ransomware-gang-member-sentenced-to-four-years-in-prison/",
+      "title": "Conti ransomware gang member sentenced to 4 years in prison",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "A Ukrainian national was sentenced to four years in prison for participating in Conti ransomware attacks conducted between 2021 and 2022."
+    },
     {
       "date": "2026-09-09",
       "actor_id": "shinyhunters",
