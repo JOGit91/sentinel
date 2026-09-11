@@ -1,6 +1,44 @@
 {
-  "last_updated": "2026-09-11T15:21:13.422750Z",
+  "last_updated": "2026-09-11T18:48:39.795681Z",
   "mentions": [
+    {
+      "date": "2026-09-11",
+      "actor_id": "shinyhunters",
+      "actor_name": "ShinyHunters",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/passkey-themed-phishing-attacks-lead-to-microsoft-365-data-theft/",
+      "title": "Passkey-themed phishing attacks lead to Microsoft 365 data theft",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1566",
+        "T1566.002",
+        "T1078",
+        "T1557",
+        "T1539",
+        "T1530"
+      ],
+      "summary": "Threat actors affiliated with ShinyHunters and Helix extortion groups are conducting passkey- and SSO-themed social engineering attacks to compromise corporate Microsoft accounts and exfiltrate data from Microsoft 365 services."
+    },
+    {
+      "date": "2026-09-11",
+      "actor_id": "helix",
+      "actor_name": "Helix",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/passkey-themed-phishing-attacks-lead-to-microsoft-365-data-theft/",
+      "title": "Passkey-themed phishing attacks lead to Microsoft 365 data theft",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1566",
+        "T1566.002",
+        "T1078",
+        "T1557",
+        "T1539",
+        "T1530"
+      ],
+      "summary": "Threat actors affiliated with ShinyHunters and Helix extortion groups are conducting passkey- and SSO-themed social engineering attacks to compromise corporate Microsoft accounts and exfiltrate data from Microsoft 365 services."
+    },
     {
       "date": "2026-09-11",
       "actor_id": "oleksii-oleksiyovych-lytvynenko",
