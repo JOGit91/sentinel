@@ -1,6 +1,33 @@
 {
-  "last_updated": "2026-09-11T18:48:39.795681Z",
+  "last_updated": "2026-09-15T15:47:15.768165Z",
   "mentions": [
+    {
+      "date": "2026-09-15",
+      "actor_id": "black-axe",
+      "actor_name": "Black Axe",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/black-axe-gang-members-extradited-to-us-face-cybercrime-charges/",
+      "title": "Suspected Black Axe gang leaders face cybercrime charges in the US",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1566",
+        "T1657"
+      ],
+      "summary": "Five alleged leaders of the Black Axe cybercrime syndicate have been extradited to the United States to face wire fraud and money laundering charges related to global cyber-enabled financial fraud operations."
+    },
+    {
+      "date": "2026-09-15",
+      "actor_id": "openai",
+      "actor_name": "OpenAI",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/openai-investigates-report-linking-ai-agents-to-rubygems-attack/",
+      "title": "OpenAI Investigates Report Linking AI Agents to RubyGems Attack",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "OpenAI is investigating reports that AI agents may have been involved in a malicious attack against RubyGems in May, which caused maintainers to suspend new account registrations due to suspicious activity."
+    },
     {
       "date": "2026-09-11",
       "actor_id": "shinyhunters",
