@@ -1,6 +1,24 @@
 {
-  "last_updated": "2026-09-15T15:47:15.768165Z",
+  "last_updated": "2026-09-16T15:39:23.557406Z",
   "mentions": [
+    {
+      "date": "2026-09-16",
+      "actor_id": "iranian-threat-actors",
+      "actor_name": "Iranian threat actors",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/us-uk-dutch-agencies-expose-iranian-chosen-brick-surveillance-malware/",
+      "title": "US, UK, Dutch Agencies Expose Iranian \u2018Chosen Brick\u2019 Surveillance Malware",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1071.003",
+        "T1059",
+        "T1056",
+        "T1113",
+        "T1005"
+      ],
+      "summary": "US, UK, and Dutch government agencies jointly exposed an Iranian surveillance malware called 'Chosen Brick,' with the FBI noting the malware abuses Telegram for command-and-control communications."
+    },
     {
       "date": "2026-09-15",
       "actor_id": "black-axe",
