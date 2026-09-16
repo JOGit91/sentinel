@@ -1,6 +1,24 @@
 {
-  "last_updated": "2026-09-16T15:39:23.557406Z",
+  "last_updated": "2026-09-16T22:26:01.429852Z",
   "mentions": [
+    {
+      "date": "2026-09-16",
+      "actor_id": "iranian-state-linked-hackers",
+      "actor_name": "Iranian state-linked hackers",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/iranian-hackers-use-chosen-brick-windows-malware-to-spy-on-targets/",
+      "title": "Iranian hackers use CHOSEN BRICK Windows malware to spy on targets",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1566",
+        "T1083",
+        "T1113",
+        "T1056",
+        "T1071"
+      ],
+      "summary": "Iranian state-linked hackers are deploying Windows malware named CHOSEN BRICK to conduct surveillance against dissidents, activists, and journalists globally, according to government agency warnings."
+    },
     {
       "date": "2026-09-16",
       "actor_id": "iranian-threat-actors",
