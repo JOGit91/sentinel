@@ -1,6 +1,18 @@
 {
-  "last_updated": "2026-09-16T22:26:01.429852Z",
+  "last_updated": "2026-09-18T15:18:09.466888Z",
   "mentions": [
+    {
+      "date": "2026-09-18",
+      "actor_id": "hacktron",
+      "actor_name": "Hacktron",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/ai-built-exploit-and-sign-in-flaw-opened-path-to-internal-openai-code/",
+      "title": "AI-Built Exploit and Sign-In Flaw Opened Path to Internal OpenAI Code",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "Hacktron researchers earned a bug bounty from OpenAI after using an AI-built exploit and a sign-in vulnerability to demonstrate unauthorized access to OpenAI employee accounts and internal code repositories."
+    },
     {
       "date": "2026-09-16",
       "actor_id": "iranian-state-linked-hackers",
