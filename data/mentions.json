@@ -1,6 +1,38 @@
 {
-  "last_updated": "2026-09-19T14:54:33.814885Z",
+  "last_updated": "2026-09-19T18:15:12.098777Z",
   "mentions": [
+    {
+      "date": "2026-09-19",
+      "actor_id": "gal-weizman",
+      "actor_name": "Gal Weizman",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/bragjack-attacks-hijack-ai-browser-agents-through-malicious-extensions/",
+      "title": "BragJack attacks hijack AI browser agents through malicious extensions",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1176",
+        "T1059",
+        "T1185"
+      ],
+      "summary": "BragJack is a proof-of-concept attack technique that hijacks AI browser agents in Chrome, Edge, Opera Neon, Perplexity Comet, and Claude via a malicious browser extension using a method called Prompt Forcing, earning two CVEs and over $20,000 in bug bounties."
+    },
+    {
+      "date": "2026-09-19",
+      "actor_id": "forever-security",
+      "actor_name": "Forever Security",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/bragjack-attacks-hijack-ai-browser-agents-through-malicious-extensions/",
+      "title": "BragJack attacks hijack AI browser agents through malicious extensions",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1176",
+        "T1059",
+        "T1185"
+      ],
+      "summary": "BragJack is a proof-of-concept attack technique that hijacks AI browser agents in Chrome, Edge, Opera Neon, Perplexity Comet, and Claude via a malicious browser extension using a method called Prompt Forcing, earning two CVEs and over $20,000 in bug bounties."
+    },
     {
       "date": "2026-09-19",
       "actor_id": "waterplum",
