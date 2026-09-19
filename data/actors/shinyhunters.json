@@ -71,7 +71,10 @@
     "New MFA device enrollment after credential capture \u00e2\u20ac\u201d persistence via legitimate auth",
     "Anodot token abuse to pivot into BigQuery, Snowflake, and downstream analytics",
     "Harassment escalation \u00e2\u20ac\u201d threatening calls to victims and family members, swatting",
-    "Mullvad VPN for exfiltration \u00e2\u20ac\u201d blends with legitimate commercial VPN traffic"
+    "Mullvad VPN for exfiltration \u00e2\u20ac\u201d blends with legitimate commercial VPN traffic",
+    "Clop Tor leak site defaced",
+    "stolen private keys for Clop onion service",
+    "stolen server data from Clop infrastructure"
   ],
   "detection_opportunities": [
     "New MFA device enrollment following login from unusual geolocation",
@@ -95,7 +98,7 @@
       "url": "https://www.huntress.com/threat-library/threat-actors/shinyhunters"
     }
   ],
-  "mention_count_30d": 7,
+  "mention_count_30d": 8,
   "mention_history": [
     {
       "month": "2026-03",

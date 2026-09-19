@@ -1,6 +1,66 @@
 {
-  "last_updated": "2026-09-18T15:18:09.466888Z",
+  "last_updated": "2026-09-19T14:54:33.814885Z",
   "mentions": [
+    {
+      "date": "2026-09-19",
+      "actor_id": "waterplum",
+      "actor_name": "WaterPlum",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/north-korean-waterplum-hackers-infected-30-000-devices-worldwide/",
+      "title": "North Korean WaterPlum hackers infected 30,000 devices worldwide",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "North Korean hacking group WaterPlum compromised at least 30,000 devices worldwide between December 2025 and July 2026, stealing over $10.7 million in cryptocurrency transferred to North Korea, according to a joint law enforcement advisory."
+    },
+    {
+      "date": "2026-09-19",
+      "actor_id": "shinyhunters",
+      "actor_name": "ShinyHunters",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/shinyhunters-hacks-clop-leak-site-threatens-to-extort-ransomware-gang/",
+      "title": "ShinyHunters hacks Clop leak site, threatens to extort ransomware gang",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1491.001",
+        "T1588.004",
+        "T1583.004"
+      ],
+      "summary": "The ShinyHunters extortion group breached and defaced the Clop ransomware gang's Tor-based data leak site, allegedly stealing server data and the private keys for Clop's onion service, threatening to extort the ransomware operation."
+    },
+    {
+      "date": "2026-09-19",
+      "actor_id": "clop",
+      "actor_name": "Clop",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/shinyhunters-hacks-clop-leak-site-threatens-to-extort-ransomware-gang/",
+      "title": "ShinyHunters hacks Clop leak site, threatens to extort ransomware gang",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1491.001",
+        "T1588.004",
+        "T1583.004"
+      ],
+      "summary": "The ShinyHunters extortion group breached and defaced the Clop ransomware gang's Tor-based data leak site, allegedly stealing server data and the private keys for Clop's onion service, threatening to extort the ransomware operation."
+    },
+    {
+      "date": "2026-09-19",
+      "actor_id": "cl0p",
+      "actor_name": "Cl0p",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/shinyhunters-hacks-clop-leak-site-threatens-to-extort-ransomware-gang/",
+      "title": "ShinyHunters hacks Clop leak site, threatens to extort ransomware gang",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1491.001",
+        "T1588.004",
+        "T1583.004"
+      ],
+      "summary": "The ShinyHunters extortion group breached and defaced the Clop ransomware gang's Tor-based data leak site, allegedly stealing server data and the private keys for Clop's onion service, threatening to extort the ransomware operation."
+    },
     {
       "date": "2026-09-18",
       "actor_id": "hacktron",
