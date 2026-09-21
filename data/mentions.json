@@ -1,6 +1,22 @@
 {
-  "last_updated": "2026-09-19T18:15:12.098777Z",
+  "last_updated": "2026-09-21T17:16:35.403110Z",
   "mentions": [
+    {
+      "date": "2026-09-21",
+      "actor_id": "lazarus",
+      "actor_name": "Lazarus Group",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/rust-team-members-and-popular-crate-owners-targeted-via-video-calls/",
+      "title": "Rust Team Members and Popular Crate Owners Targeted via Video Calls",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1566",
+        "T1204",
+        "T1059"
+      ],
+      "summary": "North Korea-linked threat actors are targeting Rust programming language team members and popular crate owners via video calls, using techniques consistent with previous North Korean campaigns."
+    },
     {
       "date": "2026-09-19",
       "actor_id": "gal-weizman",
