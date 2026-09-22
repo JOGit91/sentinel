@@ -1,6 +1,40 @@
 {
-  "last_updated": "2026-09-22T15:49:37.987654Z",
+  "last_updated": "2026-09-22T19:19:25.586433Z",
   "mentions": [
+    {
+      "date": "2026-09-22",
+      "actor_id": "shinyhunters",
+      "actor_name": "ShinyHunters",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/shinyhunters-claims-fbi-hack-data-theft-in-peoplesoft-zero-day-breach/",
+      "title": "ShinyHunters claims FBI hack, data theft in PeopleSoft zero-day breach",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1190",
+        "T1078",
+        "T1530",
+        "T1213"
+      ],
+      "summary": "ShinyHunters claims to have breached FBI systems by exploiting a zero-day vulnerability in Oracle PeopleSoft, allegedly stealing sensitive data on employees and job applicants. The group is using the access for extortion purposes."
+    },
+    {
+      "date": "2026-09-22",
+      "actor_id": "eviltokens",
+      "actor_name": "EvilTokens",
+      "source": "Microsoft Security Blog",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/09/22/unmasking-eviltokens-getting-to-the-root-of-device-code-phishing/",
+      "title": "Unmasking EvilTokens: Getting to the root of device code phishing",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1566",
+        "T1528",
+        "T1550.001",
+        "T1583"
+      ],
+      "summary": "EvilTokens is a Phishing-as-a-Service (PhaaS) platform that enables device code phishing attacks using AI-assisted lures, automated infrastructure, and OAuth token theft; Microsoft DCU and partners disrupted EvilTokens infrastructure and operations."
+    },
     {
       "date": "2026-09-22",
       "actor_id": "eviltokens",

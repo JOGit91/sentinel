@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-22T15:49:37.995574Z",
+  "last_updated": "2026-09-22T19:19:25.591482Z",
   "top_actors": [
     {
       "id": "qilin",
@@ -23,7 +23,7 @@
       "activity_score": 90,
       "monthly_victims": null,
       "type": "initial_access",
-      "mention_count_30d": 1
+      "mention_count_30d": 2
     },
     {
       "id": "apt28",
@@ -39,7 +39,7 @@
       "activity_score": 85,
       "monthly_victims": null,
       "type": "data_extortion",
-      "mention_count_30d": 8
+      "mention_count_30d": 9
     },
     {
       "id": "lazarus",

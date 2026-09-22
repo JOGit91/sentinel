@@ -74,7 +74,10 @@
     "Mullvad VPN for exfiltration \u00e2\u20ac\u201d blends with legitimate commercial VPN traffic",
     "Clop Tor leak site defaced",
     "stolen private keys for Clop onion service",
-    "stolen server data from Clop infrastructure"
+    "stolen server data from Clop infrastructure",
+    "Oracle PeopleSoft zero-day vulnerability exploitation",
+    "stolen employee data",
+    "stolen job applicant data"
   ],
   "detection_opportunities": [
     "New MFA device enrollment following login from unusual geolocation",
@@ -90,7 +93,11 @@
     "Check Salesforce event logs for anomalous /s/sfsites/aura API access and bulk record exports outside business hours.",
     "Inspect connected data-warehouse integrations (Snowflake, BigQuery, Anodot) for token misuse and downstream pivoting.",
     "Flag outbound traffic to Mullvad VPN ranges as a possible exfiltration channel.",
-    "Brief executives and staff on possible follow-on harassment/extortion contact (including swatting threats) and loop in physical security."
+    "Brief executives and staff on possible follow-on harassment/extortion contact (including swatting threats) and loop in physical security.",
+    "Patch Oracle PeopleSoft installations immediately and monitor vendor advisories for zero-day fixes",
+    "Audit PeopleSoft access logs for unauthorized access or anomalous queries",
+    "Review and restrict external-facing PeopleSoft instances",
+    "Assess exposure of sensitive HR and personnel data stored in PeopleSoft systems"
   ],
   "sources": [
     {
@@ -98,7 +105,7 @@
       "url": "https://www.huntress.com/threat-library/threat-actors/shinyhunters"
     }
   ],
-  "mention_count_30d": 8,
+  "mention_count_30d": 9,
   "mention_history": [
     {
       "month": "2026-03",
