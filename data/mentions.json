@@ -1,6 +1,87 @@
 {
-  "last_updated": "2026-09-22T08:50:51.687522Z",
+  "last_updated": "2026-09-22T15:49:37.987654Z",
   "mentions": [
+    {
+      "date": "2026-09-22",
+      "actor_id": "eviltokens",
+      "actor_name": "EvilTokens",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/eviltokens-phaas-disrupted-after-compromising-12-000-microsoft-accounts/",
+      "title": "EvilTokens PhaaS disrupted after compromising 12,000 Microsoft accounts",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1557",
+        "T1111",
+        "T1078",
+        "T1566.002"
+      ],
+      "summary": "The EvilTokens phishing-as-a-service (PhaaS) platform, which compromised over 12,000 Microsoft accounts across more than 10,000 organizations, was disrupted by Microsoft's Digital Crimes Unit (DCU)."
+    },
+    {
+      "date": "2026-09-22",
+      "actor_id": "abdelhamid-naceri",
+      "actor_name": "Abdelhamid Naceri",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/new-windows-defender-zero-day-blocks-microsoft-antivirus-updates/",
+      "title": "New Windows Defender zero-day blocks Microsoft antivirus updates",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1562.001"
+      ],
+      "summary": "Security researcher Abdelhamid Naceri (Nightmare Eclipse) publicly released a zero-day exploit targeting Windows Defender that blocks Microsoft antivirus definition updates. The article provides limited technical detail beyond the disclosure."
+    },
+    {
+      "date": "2026-09-22",
+      "actor_id": "nightmare-eclipse",
+      "actor_name": "Nightmare Eclipse",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/new-windows-defender-zero-day-blocks-microsoft-antivirus-updates/",
+      "title": "New Windows Defender zero-day blocks Microsoft antivirus updates",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1562.001"
+      ],
+      "summary": "Security researcher Abdelhamid Naceri (Nightmare Eclipse) publicly released a zero-day exploit targeting Windows Defender that blocks Microsoft antivirus definition updates. The article provides limited technical detail beyond the disclosure."
+    },
+    {
+      "date": "2026-09-22",
+      "actor_id": "nightmare-eclipse",
+      "actor_name": "Nightmare Eclipse",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/nightmare-eclipse-drops-new-microsoft-defender-exploit-after-revealing-identity/",
+      "title": "Nightmare Eclipse Drops New Microsoft Defender Exploit After Revealing Identity",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "Abdelhamid Naceri, a former Microsoft Germany employee, has been identified as the exploit leaker known as Nightmare Eclipse (also Chaotic Eclipse), who released a new Microsoft Defender exploit following the public reveal of their identity."
+    },
+    {
+      "date": "2026-09-22",
+      "actor_id": "chaotic-eclipse",
+      "actor_name": "Chaotic Eclipse",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/nightmare-eclipse-drops-new-microsoft-defender-exploit-after-revealing-identity/",
+      "title": "Nightmare Eclipse Drops New Microsoft Defender Exploit After Revealing Identity",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "Abdelhamid Naceri, a former Microsoft Germany employee, has been identified as the exploit leaker known as Nightmare Eclipse (also Chaotic Eclipse), who released a new Microsoft Defender exploit following the public reveal of their identity."
+    },
+    {
+      "date": "2026-09-22",
+      "actor_id": "abdelhamid-naceri",
+      "actor_name": "Abdelhamid Naceri",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/nightmare-eclipse-drops-new-microsoft-defender-exploit-after-revealing-identity/",
+      "title": "Nightmare Eclipse Drops New Microsoft Defender Exploit After Revealing Identity",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "Abdelhamid Naceri, a former Microsoft Germany employee, has been identified as the exploit leaker known as Nightmare Eclipse (also Chaotic Eclipse), who released a new Microsoft Defender exploit following the public reveal of their identity."
+    },
     {
       "date": "2026-09-22",
       "actor_id": "lazarus",
