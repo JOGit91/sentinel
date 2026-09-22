@@ -1,6 +1,22 @@
 {
-  "last_updated": "2026-09-21T17:16:35.403110Z",
+  "last_updated": "2026-09-22T08:50:51.687522Z",
   "mentions": [
+    {
+      "date": "2026-09-22",
+      "actor_id": "lazarus",
+      "actor_name": "Lazarus Group",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/japan-dismantles-first-north-korean-laptop-farm-as-us-and-allies-detail-wider-scheme/",
+      "title": "Japan Dismantles First North Korean Laptop Farm as US and Allies Detail Wider Scheme",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1583.003",
+        "T1036",
+        "T1204"
+      ],
+      "summary": "Japan dismantled its first North Korean laptop farm operation while the US, Japan, Germany, and Australia published a joint advisory detailing the scope of North Korea's WaterPlum IT worker fraud campaign, in which North Korean operatives obtain remote employment at foreign companies to generate revenue for the regime."
+    },
     {
       "date": "2026-09-21",
       "actor_id": "lazarus",
