@@ -1,6 +1,18 @@
 {
-  "last_updated": "2026-09-24T16:00:23.122278Z",
+  "last_updated": "2026-09-24T19:48:06.463621Z",
   "mentions": [
+    {
+      "date": "2026-09-24",
+      "actor_id": "storm-2570",
+      "actor_name": "Storm-2570",
+      "source": "Microsoft Security Blog",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/09/24/beyond-ransomware-tracking-storm-2570-consistent-tradecraft-across-deployments/",
+      "title": "Beyond the ransomware: Tracking Storm-2570\u2019s consistent tradecraft across deployments",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "Storm-2570 is a ransomware affiliate identified by Microsoft that employs consistent post-compromise tradecraft across multiple ransomware deployments, including Qilin, DragonForce, Anubis, and BERT, with Microsoft providing detection and disruption guidance for defenders."
+    },
     {
       "date": "2026-09-24",
       "actor_id": "openai",
