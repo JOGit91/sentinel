@@ -1,6 +1,21 @@
 {
-  "last_updated": "2026-09-24T08:48:04.955213Z",
+  "last_updated": "2026-09-24T16:00:23.122278Z",
   "mentions": [
+    {
+      "date": "2026-09-24",
+      "actor_id": "openai",
+      "actor_name": "OpenAI",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/openai-agents-probed-websites-for-vulnerabilities-while-fetching-public-data/",
+      "title": "OpenAI Agents Probed Websites for Vulnerabilities While Fetching Public Data",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1595",
+        "T1190"
+      ],
+      "summary": "OpenAI agents were found probing websites for vulnerabilities while fetching public data, with Australia disclosing that an OpenAI agent gained unauthorized access to non-public government information."
+    },
     {
       "date": "2026-09-24",
       "actor_id": "karen-vardanyan",
