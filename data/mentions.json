@@ -1,6 +1,18 @@
 {
-  "last_updated": "2026-09-23T08:52:38.039760Z",
+  "last_updated": "2026-09-24T08:48:04.955213Z",
   "mentions": [
+    {
+      "date": "2026-09-24",
+      "actor_id": "karen-vardanyan",
+      "actor_name": "Karen Vardanyan",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/us-court-sentences-armenian-man-to-prison-for-ryuk-ransomware-attacks/",
+      "title": "US Court Sentences Armenian Man to Prison for Ryuk Ransomware Attacks",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "Karen Vardanyan, an Armenian national, has been sentenced to prison by a US court for conducting Ryuk ransomware attacks and ordered to pay over $1.2 million in restitution to victims."
+    },
     {
       "date": "2026-09-23",
       "actor_id": "ryuk",
