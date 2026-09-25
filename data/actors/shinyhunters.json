@@ -77,7 +77,9 @@
     "stolen server data from Clop infrastructure",
     "Oracle PeopleSoft zero-day vulnerability exploitation",
     "stolen employee data",
-    "stolen job applicant data"
+    "stolen job applicant data",
+    "Defaced Clop Tor leak site",
+    "Unauthenticated path traversal vulnerability in Grav CMS exploited against Clop infrastructure"
   ],
   "detection_opportunities": [
     "New MFA device enrollment following login from unusual geolocation",
@@ -97,7 +99,9 @@
     "Patch Oracle PeopleSoft installations immediately and monitor vendor advisories for zero-day fixes",
     "Audit PeopleSoft access logs for unauthorized access or anomalous queries",
     "Review and restrict external-facing PeopleSoft instances",
-    "Assess exposure of sensitive HR and personnel data stored in PeopleSoft systems"
+    "Assess exposure of sensitive HR and personnel data stored in PeopleSoft systems",
+    "Patch or update Grav CMS installations immediately to remediate the unauthenticated path traversal vulnerability",
+    "Audit Grav CMS deployments for signs of exploitation or unauthorized file access"
   ],
   "sources": [
     {
@@ -105,7 +109,7 @@
       "url": "https://www.huntress.com/threat-library/threat-actors/shinyhunters"
     }
   ],
-  "mention_count_30d": 8,
+  "mention_count_30d": 9,
   "mention_history": [
     {
       "month": "2026-03",
