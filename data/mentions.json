@@ -1,6 +1,62 @@
 {
-  "last_updated": "2026-09-25T09:08:17.313922Z",
+  "last_updated": "2026-09-25T16:01:21.390070Z",
   "mentions": [
+    {
+      "date": "2026-09-25",
+      "actor_id": "clop",
+      "actor_name": "Clop",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/in-other-news-clop-leak-site-takeover-docker-botnet-hunts-ai-keys-water-utility-exposure/",
+      "title": "In Other News: Clop Leak Site Takeover, Docker Botnet Hunts AI Keys, Water Utility Exposure",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "A roundup of security news covering a Clop ransomware leak site takeover, a Docker botnet targeting AI API keys, and exposure of water utility systems, along with other notable security stories."
+    },
+    {
+      "date": "2026-09-25",
+      "actor_id": "lazarus",
+      "actor_name": "Lazarus Group",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/north-korea-suspected-in-351-million-bitget-crypto-heist/",
+      "title": "North Korea Suspected in $351 Million Bitget Crypto Heist",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "North Korea-linked threat actors are suspected in a $351 million unauthorized cryptocurrency theft from Bitget, detected on September 24, with some attacker wallet addresses subsequently frozen."
+    },
+    {
+      "date": "2026-09-25",
+      "actor_id": "ardit-kutleshi",
+      "actor_name": "Ardit Kutleshi",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/kosovar-owner-of-rydox-marketplace-pleads-guilty-in-us-court/",
+      "title": "Kosovar Owner of Rydox Marketplace Pleads Guilty in US Court",
+      "context": "Named threat actor",
+      "confidence": "high",
+      "ttps_observed": [
+        "T1583.008",
+        "T1650"
+      ],
+      "summary": "Ardit Kutleshi, a Kosovar national, has pleaded guilty in a US court for creating and operating the Rydox cybercrime marketplace, which facilitated trading of personally identifiable information (PII) and cybercrime tools and services."
+    },
+    {
+      "date": "2026-09-25",
+      "actor_id": "storm-3168",
+      "actor_name": "Storm-3168",
+      "source": "Microsoft Security Blog",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/09/25/storm-3168-agentic-driven-cloud-attacks-using-compromised-service-principals/",
+      "title": "Storm-3168: Agentic-driven cloud attacks using compromised service principals",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1078.004",
+        "T1580",
+        "T1485",
+        "T1528"
+      ],
+      "summary": "Storm-3168 conducted agentic-driven attacks against Azure cloud environments using compromised service principals, performing reconnaissance, resource deletion, and credential access operations leveraging tooling associated with JADEPUFFER."
+    },
     {
       "date": "2026-09-25",
       "actor_id": "lazarus",
