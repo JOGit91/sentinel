@@ -1,6 +1,21 @@
 {
-  "last_updated": "2026-09-24T19:48:06.463621Z",
+  "last_updated": "2026-09-25T09:08:17.313922Z",
   "mentions": [
+    {
+      "date": "2026-09-25",
+      "actor_id": "lazarus",
+      "actor_name": "Lazarus Group",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/hackers-steal-3516-million-in-bitget-crypto-exchange-hack/",
+      "title": "Hackers steal $351.6 million in Bitget crypto exchange hack",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1657",
+        "T1562"
+      ],
+      "summary": "Suspected North Korean hackers stole $351.6 million from cryptocurrency exchange Bitget by compromising its hot and warm wallets. The attack is attributed to North Korean threat actors, consistent with Lazarus Group's history of targeting cryptocurrency exchanges."
+    },
     {
       "date": "2026-09-24",
       "actor_id": "storm-2570",
