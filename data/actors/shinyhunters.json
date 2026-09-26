@@ -79,7 +79,8 @@
     "stolen employee data",
     "stolen job applicant data",
     "Defaced Clop Tor leak site",
-    "Unauthenticated path traversal vulnerability in Grav CMS exploited against Clop infrastructure"
+    "Unauthenticated path traversal vulnerability in Grav CMS exploited against Clop infrastructure",
+    "URL-encoding trick to bypass WAF rules targeting CVE-2026-35273 mitigations"
   ],
   "detection_opportunities": [
     "New MFA device enrollment following login from unusual geolocation",
@@ -101,7 +102,10 @@
     "Review and restrict external-facing PeopleSoft instances",
     "Assess exposure of sensitive HR and personnel data stored in PeopleSoft systems",
     "Patch or update Grav CMS installations immediately to remediate the unauthenticated path traversal vulnerability",
-    "Audit Grav CMS deployments for signs of exploitation or unauthorized file access"
+    "Audit Grav CMS deployments for signs of exploitation or unauthorized file access",
+    "Patch Oracle PeopleSoft systems against CVE-2026-35273 at the application level rather than relying solely on WAF rules",
+    "Review WAF configurations to ensure URL-encoded variants of attack payloads are decoded and inspected before rule matching",
+    "Hunt for exploitation attempts against PeopleSoft instances using URL-encoded payloads in logs"
   ],
   "sources": [
     {
@@ -109,7 +113,7 @@
       "url": "https://www.huntress.com/threat-library/threat-actors/shinyhunters"
     }
   ],
-  "mention_count_30d": 9,
+  "mention_count_30d": 10,
   "mention_history": [
     {
       "month": "2026-03",
