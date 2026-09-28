@@ -1,6 +1,58 @@
 {
-  "last_updated": "2026-09-28T10:13:31.566584Z",
+  "last_updated": "2026-09-28T18:50:09.896030Z",
   "mentions": [
+    {
+      "date": "2026-09-28",
+      "actor_id": "jadepuffer",
+      "actor_name": "JadePuffer",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/jadepuffer-agentic-ai-attacks-target-azure-destroy-cloud-resources/",
+      "title": "JadePuffer agentic AI attacks target Azure, destroy cloud resources",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1595",
+        "T1078",
+        "T1528",
+        "T1485",
+        "T1496",
+        "T1087.004",
+        "T1530"
+      ],
+      "summary": "JadePuffer is a ransomware operator using agentic AI-driven attacks to target Microsoft Azure tenants, performing reconnaissance, credential theft, and deliberate destruction of cloud resources. The attacks leverage automated agent workflows to compromise and disrupt Azure environments."
+    },
+    {
+      "date": "2026-09-28",
+      "actor_id": "shinyhunters",
+      "actor_name": "ShinyHunters",
+      "source": "Krebs on Security",
+      "url": "https://krebsonsecurity.com/2026/09/dutch-police-arrest-reformed-hacker-in-shiny-hunters-investigation/",
+      "title": "Dutch Police Arrest \u2018Reformed\u2019 Hacker in Shiny Hunters Investigation",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1530",
+        "T1657",
+        "T1213"
+      ],
+      "summary": "Dutch police arrested a 23-year-old convicted hacker suspected of assisting ShinyHunters in data theft and extortion operations; following the arrest, ShinyHunters escalated activity by stealing data from the FBI and extorting the ransomware group Cl0p."
+    },
+    {
+      "date": "2026-09-28",
+      "actor_id": "cl0p",
+      "actor_name": "Cl0p",
+      "source": "Krebs on Security",
+      "url": "https://krebsonsecurity.com/2026/09/dutch-police-arrest-reformed-hacker-in-shiny-hunters-investigation/",
+      "title": "Dutch Police Arrest \u2018Reformed\u2019 Hacker in Shiny Hunters Investigation",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1530",
+        "T1657",
+        "T1213"
+      ],
+      "summary": "Dutch police arrested a 23-year-old convicted hacker suspected of assisting ShinyHunters in data theft and extortion operations; following the arrest, ShinyHunters escalated activity by stealing data from the FBI and extorting the ransomware group Cl0p."
+    },
     {
       "date": "2026-09-28",
       "actor_id": "lazarus",
