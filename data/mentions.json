@@ -1,6 +1,18 @@
 {
-  "last_updated": "2026-09-26T22:13:53.102280Z",
+  "last_updated": "2026-09-28T10:13:31.566584Z",
   "mentions": [
+    {
+      "date": "2026-09-28",
+      "actor_id": "lazarus",
+      "actor_name": "Lazarus Group",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/bitget-resumes-bitcoin-withdrawals-after-3875-million-crypto-heist/",
+      "title": "Bitget resumes Bitcoin withdrawals after $387.5 million crypto heist",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "Cryptocurrency exchange Bitget was breached by suspected North Korean hackers, resulting in the theft of over $350-387.5 million in cryptocurrency, prompting a temporary suspension of Bitcoin withdrawals."
+    },
     {
       "date": "2026-09-26",
       "actor_id": "shinyhunters",
