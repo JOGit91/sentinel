@@ -1,6 +1,18 @@
 {
-  "last_updated": "2026-09-28T18:50:09.896030Z",
+  "last_updated": "2026-09-29T00:00:29.275813Z",
   "mentions": [
+    {
+      "date": "2026-09-29",
+      "actor_id": "shinyhunters",
+      "actor_name": "ShinyHunters",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/dutch-police-confirm-arrest-in-shinyhunters-hacking-investigation/",
+      "title": "Dutch police confirm arrest in ShinyHunters hacking investigation",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "Dutch police arrested a 24-year-old Amsterdam man in connection with an investigation into the ShinyHunters hacking group. No further technical details about the arrest or associated activity were provided in the article."
+    },
     {
       "date": "2026-09-28",
       "actor_id": "jadepuffer",
