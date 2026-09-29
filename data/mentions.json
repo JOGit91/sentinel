@@ -1,6 +1,30 @@
 {
-  "last_updated": "2026-09-29T00:00:29.275813Z",
+  "last_updated": "2026-09-29T14:24:45.727374Z",
   "mentions": [
+    {
+      "date": "2026-09-29",
+      "actor_id": "shinyhunters",
+      "actor_name": "ShinyHunters",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/dutch-police-arrest-convicted-hacker-in-shinyhunters-investigation/",
+      "title": "Dutch Police Arrest Convicted Hacker in ShinyHunters Investigation",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "Dutch police arrested Pepijn van der Stap, previously convicted in 2023 for hacking, data theft, and extortion, as part of an investigation into the ShinyHunters threat group."
+    },
+    {
+      "date": "2026-09-29",
+      "actor_id": "pepijn-van-der-stap",
+      "actor_name": "Pepijn van der Stap",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/dutch-police-arrest-convicted-hacker-in-shinyhunters-investigation/",
+      "title": "Dutch Police Arrest Convicted Hacker in ShinyHunters Investigation",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "Dutch police arrested Pepijn van der Stap, previously convicted in 2023 for hacking, data theft, and extortion, as part of an investigation into the ShinyHunters threat group."
+    },
     {
       "date": "2026-09-29",
       "actor_id": "shinyhunters",
