@@ -1,6 +1,47 @@
 {
-  "last_updated": "2026-09-29T14:24:45.727374Z",
+  "last_updated": "2026-09-29T20:17:45.380136Z",
   "mentions": [
+    {
+      "date": "2026-09-29",
+      "actor_id": "shinyhunters",
+      "actor_name": "ShinyHunters",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/fbi-tells-shinyhunters-members-to-turn-themselves-in-after-recent-arrest/",
+      "title": "FBI tells ShinyHunters members to turn themselves in after recent arrest",
+      "context": "Named threat actor",
+      "confidence": "high",
+      "ttps_observed": [],
+      "summary": "The FBI is urging members of the ShinyHunters extortion group to surrender following the Dutch police arrest of an alleged leader of the group."
+    },
+    {
+      "date": "2026-09-29",
+      "actor_id": "storm-3068",
+      "actor_name": "Storm-3068",
+      "source": "Microsoft Security Blog",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/09/29/beyond-source-code-a-path-to-the-keys-to-the-kingdom/",
+      "title": "\u200b\u200bBeyond source code: A path to the keys to the kingdom",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "Storm-3068 leveraged a compromised identity to gain broader cloud access, moving beyond source code repositories toward higher-value cloud infrastructure and credentials. Microsoft details the attack path and defensive recommendations for identities, pipelines, and cloud environments."
+    },
+    {
+      "date": "2026-09-29",
+      "actor_id": "star-blizzard",
+      "actor_name": "Star Blizzard",
+      "source": "Microsoft Security Blog",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/09/29/star-blizzard-refines-phishing-and-malware-delivery-with-the-redflick-technique/",
+      "title": "Star Blizzard refines phishing and malware delivery with the RedFlick technique",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1566",
+        "T1566.002",
+        "T1584.004",
+        "T1027"
+      ],
+      "summary": "Since January 2026, Russian state actor Star Blizzard has been conducting large-scale phishing campaigns using compromised websites and a novel malware delivery technique called RedFlick to evade detection. Microsoft has tracked this evolution in Star Blizzard's capabilities across multiple campaigns."
+    },
     {
       "date": "2026-09-29",
       "actor_id": "shinyhunters",
