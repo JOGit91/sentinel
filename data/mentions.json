@@ -1,6 +1,18 @@
 {
-  "last_updated": "2026-09-29T20:17:45.380136Z",
+  "last_updated": "2026-09-30T23:16:02.919748Z",
   "mentions": [
+    {
+      "date": "2026-09-30",
+      "actor_id": "star-blizzard",
+      "actor_name": "Star Blizzard",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/russian-state-hackers-use-new-redflick-technique-to-push-malware/",
+      "title": "Russian state hackers use new RedFlick technique to push malware",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "Russian state actor Star Blizzard is using a new malware installation technique called 'RedFlick' to deploy its CosmicPulse backdoor. The article describes this as a novel tactic in the group's operational toolkit."
+    },
     {
       "date": "2026-09-29",
       "actor_id": "shinyhunters",
