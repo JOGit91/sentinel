@@ -1,6 +1,30 @@
 {
-  "last_updated": "2026-09-30T23:16:02.919748Z",
+  "last_updated": "2026-10-01T17:35:38.912937Z",
   "mentions": [
+    {
+      "date": "2026-10-01",
+      "actor_id": "killsec",
+      "actor_name": "KillSec",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/police-dismantle-killsec-ransomware-gang-allegedly-led-by-16-year-old/",
+      "title": "Police dismantle KillSec ransomware gang allegedly led by 16-year-old",
+      "context": "Named threat actor",
+      "confidence": "high",
+      "ttps_observed": [],
+      "summary": "An international law enforcement operation called 'Operation KillSwitch' dismantled the KillSec ransomware gang, seizing their data leak site and servers, making three arrests, and identifying a 16-year-old as the group's alleged administrator."
+    },
+    {
+      "date": "2026-10-01",
+      "actor_id": "killsec",
+      "actor_name": "KillSec",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/police-shut-down-killsec-ransomware-identify-alleged-teen-leader/",
+      "title": "Police Shut Down KillSec Ransomware, Identify Alleged Teen Leader",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "Law enforcement took down KillSec's ransomware leak site, seized approximately 110 terabytes of stolen victim data, and identified an alleged teenage leader of the operation."
+    },
     {
       "date": "2026-09-30",
       "actor_id": "star-blizzard",
