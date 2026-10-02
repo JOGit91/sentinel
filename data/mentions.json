@@ -1,6 +1,57 @@
 {
-  "last_updated": "2026-10-02T10:05:56.132276Z",
+  "last_updated": "2026-10-02T16:54:27.852464Z",
   "mentions": [
+    {
+      "date": "2026-10-02",
+      "actor_id": "tren-de-aragua",
+      "actor_name": "Tren de Aragua",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/us-sanctions-tren-de-aragua-members-in-atm-jackpotting-crackdown/",
+      "title": "US sanctions Tren de Aragua gang members in ATM hacks crackdown",
+      "context": "Named threat actor",
+      "confidence": "high",
+      "ttps_observed": [
+        "T1565",
+        "T1078"
+      ],
+      "summary": "The U.S. Treasury Department sanctioned eight members of Venezuelan gang Tren de Aragua for conducting ATM jackpotting attacks across the United States, resulting in the theft of millions of dollars."
+    },
+    {
+      "date": "2026-10-02",
+      "actor_id": "amir-barati",
+      "actor_name": "Amir Barati",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/in-rare-move-iranian-hacker-accused-of-working-for-irgc-extradited-to-us/",
+      "title": "In Rare Move, Alleged Iranian State Hacker Extradited to US",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "Amir Barati, an alleged Iranian state hacker and member of the Mabna Institute linked to the IRGC, was extradited to the US after being indicted for cyberattacks targeting universities, private organizations, and government entities in the US and abroad."
+    },
+    {
+      "date": "2026-10-02",
+      "actor_id": "mabna-institute",
+      "actor_name": "Mabna Institute",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/in-rare-move-iranian-hacker-accused-of-working-for-irgc-extradited-to-us/",
+      "title": "In Rare Move, Alleged Iranian State Hacker Extradited to US",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "Amir Barati, an alleged Iranian state hacker and member of the Mabna Institute linked to the IRGC, was extradited to the US after being indicted for cyberattacks targeting universities, private organizations, and government entities in the US and abroad."
+    },
+    {
+      "date": "2026-10-02",
+      "actor_id": "irgc",
+      "actor_name": "IRGC",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/in-rare-move-iranian-hacker-accused-of-working-for-irgc-extradited-to-us/",
+      "title": "In Rare Move, Alleged Iranian State Hacker Extradited to US",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "Amir Barati, an alleged Iranian state hacker and member of the Mabna Institute linked to the IRGC, was extradited to the US after being indicted for cyberattacks targeting universities, private organizations, and government entities in the US and abroad."
+    },
     {
       "date": "2026-10-02",
       "actor_id": "warlock",
