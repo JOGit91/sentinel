@@ -1,6 +1,18 @@
 {
-  "last_updated": "2026-10-01T17:35:38.912937Z",
+  "last_updated": "2026-10-02T10:05:56.132276Z",
   "mentions": [
+    {
+      "date": "2026-10-02",
+      "actor_id": "warlock",
+      "actor_name": "Warlock",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/warlock-expands-sharepoint-exploitation-in-critical-infrastructure-attacks/",
+      "title": "Warlock Expands SharePoint Exploitation in Critical Infrastructure Attacks",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "A China-based hacking group tracked as Warlock has been exploiting SharePoint vulnerabilities to target critical infrastructure organizations since July 2025."
+    },
     {
       "date": "2026-10-01",
       "actor_id": "killsec",
