@@ -1,6 +1,21 @@
 {
-  "last_updated": "2026-10-02T16:54:27.852464Z",
+  "last_updated": "2026-10-02T23:21:12.142512Z",
   "mentions": [
+    {
+      "date": "2026-10-02",
+      "actor_id": "warlock",
+      "actor_name": "Warlock",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/warlock-ransomware-breach-sharepoint-in-water-telecom-operator-attacks/",
+      "title": "Warlock ransomware breach SharePoint in water, telecom operator attacks",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1190",
+        "T1486"
+      ],
+      "summary": "A China-linked ransomware group called Warlock exploited SharePoint vulnerabilities to breach organizations across the water utility, telecom, regional government, and university sectors. The group used initial access via SharePoint exploitation to conduct ransomware attacks."
+    },
     {
       "date": "2026-10-02",
       "actor_id": "tren-de-aragua",
