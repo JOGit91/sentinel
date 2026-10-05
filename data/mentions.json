@@ -1,6 +1,30 @@
 {
-  "last_updated": "2026-10-03T22:29:01.046553Z",
+  "last_updated": "2026-10-05T10:55:04.298311Z",
   "mentions": [
+    {
+      "date": "2026-10-05",
+      "actor_id": "shinyhunters",
+      "actor_name": "ShinyHunters",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/alleged-shinyhunters-leader-arrested-in-jordan/",
+      "title": "Alleged ShinyHunters Leader Arrested in Jordan",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [],
+      "summary": "The alleged leader of the ShinyHunters extortion group, known as 'Rey', has been arrested in Jordan and is reportedly cooperating with the FBI to identify and locate other group members."
+    },
+    {
+      "date": "2026-10-05",
+      "actor_id": "rey",
+      "actor_name": "Rey",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/alleged-shinyhunters-leader-arrested-in-jordan/",
+      "title": "Alleged ShinyHunters Leader Arrested in Jordan",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [],
+      "summary": "The alleged leader of the ShinyHunters extortion group, known as 'Rey', has been arrested in Jordan and is reportedly cooperating with the FBI to identify and locate other group members."
+    },
     {
       "date": "2026-10-03",
       "actor_id": "shinyhunters",
