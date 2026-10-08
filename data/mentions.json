@@ -1,6 +1,18 @@
 {
-  "last_updated": "2026-10-07T18:01:57.386250Z",
+  "last_updated": "2026-10-08T10:59:00.513163Z",
   "mentions": [
+    {
+      "date": "2026-10-08",
+      "actor_id": "zohar-pinhasi",
+      "actor_name": "Zohar Pinhasi",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/fake-decryption-tools-masked-11m-markup-in-ransomware-recovery-scheme/",
+      "title": "Fake Decryption Tools Masked $11M Markup in Ransomware Recovery Scheme",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "Zohar Pinhasi operated a fraudulent ransomware recovery scheme in which he paid ransoms to obtain decryption keys from threat actors and then charged victims substantially more\u2014totaling an $11M markup\u2014while misrepresenting the service as proprietary decryption tools."
+    },
     {
       "date": "2026-10-07",
       "actor_id": "shinyhunters",
