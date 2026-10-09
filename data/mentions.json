@@ -1,6 +1,30 @@
 {
-  "last_updated": "2026-10-09T10:57:50.917166Z",
+  "last_updated": "2026-10-09T17:36:44.185471Z",
   "mentions": [
+    {
+      "date": "2026-10-09",
+      "actor_id": "shinyhunters",
+      "actor_name": "ShinyHunters",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/fbi-arrests-another-suspected-shinyhunters-hacker-after-agency-breach/",
+      "title": "FBI arrests another suspected ShinyHunters hacker after agency breach",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "The FBI arrested another suspected member of the ShinyHunters extortion group believed to be involved in a breach of FBI systems, as announced by Director Kash Patel."
+    },
+    {
+      "date": "2026-10-09",
+      "actor_id": "qilin",
+      "actor_name": "Qilin",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/germany-arrests-alleged-core-qilin-ransomware-member-after-extradition/",
+      "title": "Germany arrests alleged core Qilin ransomware member after extradition",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [],
+      "summary": "Germany arrested a Russian national suspected of being a core member of the Qilin ransomware group following extradition from Japan. The arrest represents a law enforcement action against the ransomware operation."
+    },
     {
       "date": "2026-10-09",
       "actor_id": "midnight-mimosa",
