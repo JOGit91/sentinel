@@ -1,6 +1,18 @@
 {
-  "last_updated": "2026-10-08T18:03:48.872788Z",
+  "last_updated": "2026-10-09T00:00:57.223622Z",
   "mentions": [
+    {
+      "date": "2026-10-09",
+      "actor_id": "flax-typhoon",
+      "actor_name": "Flax Typhoon",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/fbi-disrupts-chinese-hacking-tools-used-to-breach-critical-infrastructure/",
+      "title": "FBI disrupts Chinese hacking tools used to breach critical infrastructure",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [],
+      "summary": "The FBI seized seven domains used by Chinese state-sponsored group Flax Typhoon to operate two hacking tools, MicroScan and FishHub, which were used to breach critical infrastructure and other organizations worldwide."
+    },
     {
       "date": "2026-10-08",
       "actor_id": "hafnium",
