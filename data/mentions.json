@@ -1,6 +1,34 @@
 {
-  "last_updated": "2026-10-09T00:00:57.223622Z",
+  "last_updated": "2026-10-09T10:57:50.917166Z",
   "mentions": [
+    {
+      "date": "2026-10-09",
+      "actor_id": "midnight-mimosa",
+      "actor_name": "Midnight Mimosa",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/pre-baked-firmware-malware-hits-budget-android-devices-in-150-countries/",
+      "title": "Pre-Baked Firmware Malware Hits Budget Android Devices in 150+ Countries",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1195.003",
+        "T1521",
+        "T1437"
+      ],
+      "summary": "A malware campaign named Midnight Mimosa targets low-cost Android devices by embedding malicious code in preinstalled firmware, affecting users across 150+ countries."
+    },
+    {
+      "date": "2026-10-09",
+      "actor_id": "flax-typhoon",
+      "actor_name": "Flax Typhoon",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/us-disrupts-chinese-state-sponsored-hacking-tools/",
+      "title": "US Disrupts Chinese State-Sponsored Hacking Tools",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "US authorities disrupted Chinese state-sponsored hacking tools MicroScan and FishHub, used by Flax Typhoon and other APTs to scan and compromise US and foreign critical infrastructure."
+    },
     {
       "date": "2026-10-09",
       "actor_id": "flax-typhoon",
