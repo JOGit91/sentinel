@@ -1,6 +1,18 @@
 {
-  "last_updated": "2026-10-09T17:36:44.185471Z",
+  "last_updated": "2026-10-10T02:57:30.787773Z",
   "mentions": [
+    {
+      "date": "2026-10-10",
+      "actor_id": "shinyhunters",
+      "actor_name": "ShinyHunters",
+      "source": "Krebs on Security",
+      "url": "https://krebsonsecurity.com/2026/10/fbi-arrests-founder-of-ransomware-negotiation-firm/",
+      "title": "FBI Arrests Founder of Ransomware Negotiation Firm",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [],
+      "summary": "The FBI arrested the co-founder of a Canadian cybersecurity firm in connection with an investigation into the ShinyHunters hacking group, which reportedly exfiltrated sensitive data on thousands of FBI agents. The arrested individual appears to be connected to the ransomware negotiation industry."
+    },
     {
       "date": "2026-10-09",
       "actor_id": "shinyhunters",
