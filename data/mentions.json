@@ -1,6 +1,34 @@
 {
-  "last_updated": "2026-10-10T02:57:30.787773Z",
+  "last_updated": "2026-10-10T16:27:10.569634Z",
   "mentions": [
+    {
+      "date": "2026-10-10",
+      "actor_id": "shinyhunters",
+      "actor_name": "ShinyHunters",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/cyber-exec-arrested-in-case-allegedly-tied-to-shinyhunters-hackers/",
+      "title": "Cyber exec arrested in case allegedly tied to ShinyHunters hackers",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1657"
+      ],
+      "summary": "Canadian cybersecurity executive Edward Dubrovsky was arrested in Pennsylvania in connection with alleged extortion activity linked to the FBI's crackdown on the ShinyHunters hacking group."
+    },
+    {
+      "date": "2026-10-10",
+      "actor_id": "edward-dubrovsky",
+      "actor_name": "Edward Dubrovsky",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/cyber-exec-arrested-in-case-allegedly-tied-to-shinyhunters-hackers/",
+      "title": "Cyber exec arrested in case allegedly tied to ShinyHunters hackers",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1657"
+      ],
+      "summary": "Canadian cybersecurity executive Edward Dubrovsky was arrested in Pennsylvania in connection with alleged extortion activity linked to the FBI's crackdown on the ShinyHunters hacking group."
+    },
     {
       "date": "2026-10-10",
       "actor_id": "shinyhunters",
