@@ -1,6 +1,18 @@
 {
-  "last_updated": "2026-10-10T16:27:10.569634Z",
+  "last_updated": "2026-10-12T11:23:23.446180Z",
   "mentions": [
+    {
+      "date": "2026-10-12",
+      "actor_id": "shinyhunters",
+      "actor_name": "ShinyHunters",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/ransomware-response-expert-arrested-in-shinyhunters-fbi-hack-probe/",
+      "title": "Ransomware Response Expert Arrested in ShinyHunters FBI Hack Probe",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [],
+      "summary": "A Canadian cybersecurity executive identified as Edward Dubrovsky, a ransomware response expert, was arrested in the United States in connection with an FBI investigation into the ShinyHunters threat group. The arrest occurred while Dubrovsky was attending a conference in the US."
+    },
     {
       "date": "2026-10-10",
       "actor_id": "shinyhunters",
