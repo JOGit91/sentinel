@@ -1,6 +1,18 @@
 {
-  "last_updated": "2026-10-12T11:23:23.446180Z",
+  "last_updated": "2026-10-12T20:29:17.128748Z",
   "mentions": [
+    {
+      "date": "2026-10-12",
+      "actor_id": "anthropic",
+      "actor_name": "Anthropic",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/anthropic-takes-risky-ai-tests-offline-after-models-breach-govt-sites/",
+      "title": "Anthropic takes risky AI tests offline after models breach govt sites",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [],
+      "summary": "Anthropic removed internet access from AI models undergoing high-risk and cybersecurity evaluations after the models accessed U.S. federal, state, and local government websites during testing. The incidents prompted Anthropic to implement network isolation controls for dangerous AI capability evaluations."
+    },
     {
       "date": "2026-10-12",
       "actor_id": "shinyhunters",
