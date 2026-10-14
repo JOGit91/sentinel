@@ -1,6 +1,21 @@
 {
-  "last_updated": "2026-10-12T20:29:17.128748Z",
+  "last_updated": "2026-10-14T02:21:11.543139Z",
   "mentions": [
+    {
+      "date": "2026-10-14",
+      "actor_id": "abdulrahman-alfozan",
+      "actor_name": "Abdulrahman Alfozan",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/employee-arrested-after-listening-device-found-in-openai-conference-room-fbi-and-the-company-say/",
+      "title": "Employee Arrested After Listening Device Found in OpenAI Conference Room, FBI and the Company Say",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1592",
+        "T0838"
+      ],
+      "summary": "A Saudi national employee of OpenAI, Abdulrahman Alfozan, was arrested by the FBI and terminated after a listening device was discovered in an OpenAI conference room. The incident represents a physical insider threat operation targeting the AI company."
+    },
     {
       "date": "2026-10-12",
       "actor_id": "anthropic",
