@@ -105,7 +105,9 @@
     "ForestTiger backdoor deployed post-exploitation",
     "poisoned arrayref Rust crate with malicious dependency",
     "remote payload fetched from external server via compromised package",
-    "187 laptops seized across 40 locations in Texas used as laptop farms to mask North Korean IT worker locations"
+    "187 laptops seized across 40 locations in Texas used as laptop farms to mask North Korean IT worker locations",
+    "Laptop farms used as proxy infrastructure for remote IT worker fraud",
+    "187 laptops seized from Texas-based laptop farms"
   ],
   "detection_opportunities": [
     "New or modified scripts in .git/hooks/ (post-merge, post-checkout, pre-push) within cloned repositories",
@@ -122,7 +124,10 @@
     "Check crypto wallet directories (Exodus, Atomic, MetaMask, Electrum) for access by unrelated processes.",
     "If a 'job interview' or recruiter contact requested cloning/running external code, treat the developer's workstation as compromised and isolate it.",
     "Monitor for fileless RAT memory indicators (BeaverTail/InvisibleFerret) on developer endpoints.",
-    "Watch for ransomware-style encryption activity (Medusa) on healthcare-adjacent systems following any Lazarus-linked initial access."
+    "Watch for ransomware-style encryption activity (Medusa) on healthcare-adjacent systems following any Lazarus-linked initial access.",
+    "Verify the physical identity and location of remote employees, especially contractors",
+    "Audit remote access infrastructure for signs of proxy or KVM-over-IP usage",
+    "Screen new hires for inconsistencies indicative of fraudulent identity use"
   ],
   "sources": [
     {
@@ -142,7 +147,7 @@
       "url": "https://threatbook.io/blog/lazarus-group-poisons-axios-inside-the-npm-supply-chain-attack"
     }
   ],
-  "mention_count_30d": 6,
+  "mention_count_30d": 7,
   "mention_history": [
     {
       "month": "2026-04",

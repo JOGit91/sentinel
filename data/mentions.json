@@ -1,6 +1,40 @@
 {
-  "last_updated": "2026-10-14T16:03:17.380512Z",
+  "last_updated": "2026-10-14T22:45:24.069697Z",
   "mentions": [
+    {
+      "date": "2026-10-14",
+      "actor_id": "famous-chollima",
+      "actor_name": "Famous Chollima",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/fbi-raids-dprk-it-worker-laptop-farms-in-texas-us-nationals-arrested/",
+      "title": "FBI raids DPRK IT worker laptop farms in Texas, US nationals arrested",
+      "context": "Named threat actor",
+      "confidence": "high",
+      "ttps_observed": [
+        "T1583.003",
+        "T1586.002",
+        "T1078",
+        "T1204"
+      ],
+      "summary": "The FBI disrupted North Korean threat group Famous Chollima's IT worker fraud scheme by arresting two US nationals, charging 14 individuals, and seizing approximately 187 laptops from laptop farms in Texas used to fraudulently employ DPRK workers at US companies."
+    },
+    {
+      "date": "2026-10-14",
+      "actor_id": "lazarus",
+      "actor_name": "Lazarus Group",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/fbi-raids-dprk-it-worker-laptop-farms-in-texas-us-nationals-arrested/",
+      "title": "FBI raids DPRK IT worker laptop farms in Texas, US nationals arrested",
+      "context": "Named threat actor",
+      "confidence": "high",
+      "ttps_observed": [
+        "T1583.003",
+        "T1586.002",
+        "T1078",
+        "T1204"
+      ],
+      "summary": "The FBI disrupted North Korean threat group Famous Chollima's IT worker fraud scheme by arresting two US nationals, charging 14 individuals, and seizing approximately 187 laptops from laptop farms in Texas used to fraudulently employ DPRK workers at US companies."
+    },
     {
       "date": "2026-10-14",
       "actor_id": "lazarus",
