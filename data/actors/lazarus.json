@@ -104,7 +104,8 @@
     "Crypto theft proceeds laundered through mixers and cross-chain bridges to fund DPRK weapons programs",
     "ForestTiger backdoor deployed post-exploitation",
     "poisoned arrayref Rust crate with malicious dependency",
-    "remote payload fetched from external server via compromised package"
+    "remote payload fetched from external server via compromised package",
+    "187 laptops seized across 40 locations in Texas used as laptop farms to mask North Korean IT worker locations"
   ],
   "detection_opportunities": [
     "New or modified scripts in .git/hooks/ (post-merge, post-checkout, pre-push) within cloned repositories",
@@ -141,7 +142,7 @@
       "url": "https://threatbook.io/blog/lazarus-group-poisons-axios-inside-the-npm-supply-chain-attack"
     }
   ],
-  "mention_count_30d": 5,
+  "mention_count_30d": 6,
   "mention_history": [
     {
       "month": "2026-04",

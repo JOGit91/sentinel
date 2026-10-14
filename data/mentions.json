@@ -1,6 +1,60 @@
 {
-  "last_updated": "2026-10-14T02:21:11.543139Z",
+  "last_updated": "2026-10-14T16:03:17.380512Z",
   "mentions": [
+    {
+      "date": "2026-10-14",
+      "actor_id": "lazarus",
+      "actor_name": "Lazarus Group",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/us-arrests-two-in-crackdown-on-north-korean-it-worker-laptop-farms/",
+      "title": "US Arrests Two in Crackdown on North Korean IT Worker Laptop Farms",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1583.003",
+        "T1036",
+        "T1090"
+      ],
+      "summary": "US authorities arrested two individuals and raided 40 locations in Texas, seizing 187 laptops used by North Korean IT workers to conceal their true location while fraudulently obtaining remote employment at US companies."
+    },
+    {
+      "date": "2026-10-14",
+      "actor_id": "storm-2990",
+      "actor_name": "Storm-2990",
+      "source": "Microsoft Security Blog",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/10/14/the-hidden-network-inside-the-phishing-infrastructure-ecosystem-powering-global-cybercrime/",
+      "title": "The hidden network: Inside the phishing infrastructure ecosystem powering global cybercrime",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1566",
+        "T1583",
+        "T1583.001",
+        "T1583.004",
+        "T1608",
+        "T1608.004"
+      ],
+      "summary": "Microsoft uncovered a Chinese-language cybercriminal ecosystem comprising phishing kit operators (Storm-2990) and an illicit marketplace (Storm-3119) selling phishing tools and infrastructure at scale; Microsoft's Digital Crimes Unit collaborated with law enforcement to disrupt the ecosystem."
+    },
+    {
+      "date": "2026-10-14",
+      "actor_id": "storm-3119",
+      "actor_name": "Storm-3119",
+      "source": "Microsoft Security Blog",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/10/14/the-hidden-network-inside-the-phishing-infrastructure-ecosystem-powering-global-cybercrime/",
+      "title": "The hidden network: Inside the phishing infrastructure ecosystem powering global cybercrime",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1566",
+        "T1583",
+        "T1583.001",
+        "T1583.004",
+        "T1608",
+        "T1608.004"
+      ],
+      "summary": "Microsoft uncovered a Chinese-language cybercriminal ecosystem comprising phishing kit operators (Storm-2990) and an illicit marketplace (Storm-3119) selling phishing tools and infrastructure at scale; Microsoft's Digital Crimes Unit collaborated with law enforcement to disrupt the ecosystem."
+    },
     {
       "date": "2026-10-14",
       "actor_id": "abdulrahman-alfozan",
