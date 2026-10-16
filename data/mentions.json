@@ -1,6 +1,23 @@
 {
-  "last_updated": "2026-10-16T15:39:12.971229Z",
+  "last_updated": "2026-10-16T19:05:10.280008Z",
   "mentions": [
+    {
+      "date": "2026-10-16",
+      "actor_id": "candiru",
+      "actor_name": "Candiru",
+      "source": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/news/security/zero-click-attacks-used-targeted-ads-to-deliver-candiru-spyware/",
+      "title": "Zero-click attacks used targeted ads to deliver Candiru spyware",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1203",
+        "T1189",
+        "T1598",
+        "T1056"
+      ],
+      "summary": "Candiru spyware was delivered to Al Jazeera Media Network devices via malicious targeted online advertisements in a zero-click attack that required no user interaction beyond the ads being rendered on screen."
+    },
     {
       "date": "2026-10-16",
       "actor_id": "armory-castle",
