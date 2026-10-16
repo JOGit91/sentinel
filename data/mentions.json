@@ -1,6 +1,22 @@
 {
-  "last_updated": "2026-10-14T22:45:24.069697Z",
+  "last_updated": "2026-10-16T15:39:12.971229Z",
   "mentions": [
+    {
+      "date": "2026-10-16",
+      "actor_id": "armory-castle",
+      "actor_name": "Armory Castle",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/chinese-apt-exploited-beyondtrust-vulnerability-as-zero-day/",
+      "title": "Chinese APT Exploited BeyondTrust Vulnerability as Zero-Day",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1190",
+        "T1070.004",
+        "T1070"
+      ],
+      "summary": "A Chinese APT tracked as Armory Castle exploited CVE-2026-102764 in BeyondTrust as a zero-day for initial access, deployed custom tools, and deleted logs and artifacts to cover their tracks."
+    },
     {
       "date": "2026-10-14",
       "actor_id": "famous-chollima",
