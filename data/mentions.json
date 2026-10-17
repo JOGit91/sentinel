@@ -1,6 +1,40 @@
 {
-  "last_updated": "2026-10-16T19:05:10.280008Z",
+  "last_updated": "2026-10-17T14:30:48.817391Z",
   "mentions": [
+    {
+      "date": "2026-10-17",
+      "actor_id": "candiru",
+      "actor_name": "Candiru",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/israeli-ad-firm-doubled-as-candirus-zero-click-spyware-delivery-channel/",
+      "title": "Israeli Ad Firm Doubled as Candiru\u2019s Zero-Click Spyware Delivery Channel",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1189",
+        "T1203",
+        "T1592",
+        "T1498"
+      ],
+      "summary": "Israeli ad firm Discover-Tech allegedly served as a delivery channel for Candiru's zero-click spyware, enabling threat actors to fingerprint and track devices at scale through advertising infrastructure and selectively infect high-value targets."
+    },
+    {
+      "date": "2026-10-17",
+      "actor_id": "discover-tech",
+      "actor_name": "Discover-Tech",
+      "source": "SecurityWeek",
+      "url": "https://www.securityweek.com/israeli-ad-firm-doubled-as-candirus-zero-click-spyware-delivery-channel/",
+      "title": "Israeli Ad Firm Doubled as Candiru\u2019s Zero-Click Spyware Delivery Channel",
+      "context": "Named threat actor",
+      "confidence": "low",
+      "ttps_observed": [
+        "T1189",
+        "T1203",
+        "T1592",
+        "T1498"
+      ],
+      "summary": "Israeli ad firm Discover-Tech allegedly served as a delivery channel for Candiru's zero-click spyware, enabling threat actors to fingerprint and track devices at scale through advertising infrastructure and selectively infect high-value targets."
+    },
     {
       "date": "2026-10-16",
       "actor_id": "candiru",
