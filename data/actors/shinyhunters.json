@@ -66,8 +66,6 @@
   ],
   "malware_families": [],
   "notable_techniques": [
-    "Salesforce Aura Campaign \u00e2\u20ac\u201d exploited misconfigured Experience Cloud guest user profiles via /s/sfsites/aura API endpoint across 300-400 orgs",
-    "AI-powered voice calls that adjust tone in real-time for vishing",
     "New MFA device enrollment after credential capture \u00e2\u20ac\u201d persistence via legitimate auth",
     "Anodot token abuse to pivot into BigQuery, Snowflake, and downstream analytics",
     "Harassment escalation \u00e2\u20ac\u201d threatening calls to victims and family members, swatting",
@@ -80,7 +78,9 @@
     "stolen job applicant data",
     "Defaced Clop Tor leak site",
     "Unauthenticated path traversal vulnerability in Grav CMS exploited against Clop infrastructure",
-    "URL-encoding trick to bypass WAF rules targeting CVE-2026-35273 mitigations"
+    "URL-encoding trick to bypass WAF rules targeting CVE-2026-35273 mitigations",
+    "ShinyHunters-operated extortion/ransom pressure website",
+    "Data stolen from FBI attributed to ShinyHunters"
   ],
   "detection_opportunities": [
     "New MFA device enrollment following login from unusual geolocation",
@@ -91,8 +91,6 @@
     "Mullvad VPN IP ranges in outbound exfiltration traffic"
   ],
   "response_playbook": [
-    "Review Entra ID/Okta logs for new MFA device enrollments following anomalous logins or vishing-style helpdesk calls.",
-    "Audit OAuth app consent grants for unrecognized or newly registered applications with broad mail/file scopes.",
     "Check Salesforce event logs for anomalous /s/sfsites/aura API access and bulk record exports outside business hours.",
     "Inspect connected data-warehouse integrations (Snowflake, BigQuery, Anodot) for token misuse and downstream pivoting.",
     "Flag outbound traffic to Mullvad VPN ranges as a possible exfiltration channel.",
@@ -105,7 +103,9 @@
     "Audit Grav CMS deployments for signs of exploitation or unauthorized file access",
     "Patch Oracle PeopleSoft systems against CVE-2026-35273 at the application level rather than relying solely on WAF rules",
     "Review WAF configurations to ensure URL-encoded variants of attack payloads are decoded and inspected before rule matching",
-    "Hunt for exploitation attempts against PeopleSoft instances using URL-encoded payloads in logs"
+    "Hunt for exploitation attempts against PeopleSoft instances using URL-encoded payloads in logs",
+    "Vet ransomware negotiation firms for potential conflicts of interest or ties to threat actor groups before engaging",
+    "Organizations engaging third-party ransomware negotiators should conduct due diligence on firm executives and their relationships with known threat actors"
   ],
   "sources": [
     {
@@ -113,7 +113,7 @@
       "url": "https://www.huntress.com/threat-library/threat-actors/shinyhunters"
     }
   ],
-  "mention_count_30d": 17,
+  "mention_count_30d": 18,
   "mention_history": [
     {
       "month": "2026-04",

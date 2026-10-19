@@ -1,6 +1,22 @@
 {
-  "last_updated": "2026-10-17T14:30:48.817391Z",
+  "last_updated": "2026-10-19T17:50:49.023340Z",
   "mentions": [
+    {
+      "date": "2026-10-19",
+      "actor_id": "shinyhunters",
+      "actor_name": "ShinyHunters",
+      "source": "Krebs on Security",
+      "url": "https://krebsonsecurity.com/2026/10/feds-suspect-ransom-negotiator-ran-shinyhunters-extortion-site/",
+      "title": "Feds Suspect Ransom Negotiator Ran ShinyHunters Extortion Site",
+      "context": "Named threat actor",
+      "confidence": "medium",
+      "ttps_observed": [
+        "T1591",
+        "T1657",
+        "T1498"
+      ],
+      "summary": "U.S. federal investigators have identified executives at two ransomware negotiation firms with unusually close ties to ShinyHunters, including one U.S.-based executive suspected of helping operate the group's extortion website. ShinyHunters recently stole sensitive data from the FBI."
+    },
     {
       "date": "2026-10-17",
       "actor_id": "candiru",
