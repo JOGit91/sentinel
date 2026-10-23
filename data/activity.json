@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-22T22:49:14.693001Z",
+  "last_updated": "2026-10-23T02:11:03.763889Z",
   "top_actors": [
     {
       "id": "qilin",
@@ -23,7 +23,7 @@
       "activity_score": 90,
       "monthly_victims": null,
       "type": "initial_access",
-      "mention_count_30d": 2
+      "mention_count_30d": 0
     },
     {
       "id": "apt28",
@@ -39,7 +39,7 @@
       "activity_score": 85,
       "monthly_victims": null,
       "type": "data_extortion",
-      "mention_count_30d": 17
+      "mention_count_30d": 16
     },
     {
       "id": "lazarus",
@@ -47,7 +47,7 @@
       "activity_score": 84,
       "monthly_victims": null,
       "type": "apt",
-      "mention_count_30d": 6
+      "mention_count_30d": 5
     },
     {
       "id": "silver-fox",
