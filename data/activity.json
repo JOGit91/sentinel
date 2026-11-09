@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-08T23:14:23.995605Z",
+  "last_updated": "2026-11-09T03:14:26.485003Z",
   "top_actors": [
     {
       "id": "qilin",
@@ -7,7 +7,7 @@
       "activity_score": 98,
       "monthly_victims": 111,
       "type": "ransomware",
-      "mention_count_30d": 1
+      "mention_count_30d": 0
     },
     {
       "id": "the-gentlemen",
@@ -39,7 +39,7 @@
       "activity_score": 85,
       "monthly_victims": null,
       "type": "data_extortion",
-      "mention_count_30d": 5
+      "mention_count_30d": 4
     },
     {
       "id": "lazarus",
